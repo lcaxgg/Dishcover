@@ -20,8 +20,8 @@ struct AllCategories: View {
     
     var geometry: GeometryProxy
     var mealsViewModel: MealsViewModel
-    
     @Binding var shouldShowAllCategories: Bool
+    var completion: (Int, MealsCategoriesModel) -> Void
     
     var body: some View {
         VStack {
@@ -71,30 +71,33 @@ struct AllCategories: View {
                     GridItem(.flexible(), spacing: 10.0)
                 ], spacing: 17.0) {
                     
-                    ForEach(Array(AllCategories.mealsCategoriesViewModel.mealsCategories.enumerated()), id: \.1.id) { index, category in
+                    ForEach(Array(AllCategories.mealsCategoriesViewModel.mealsCategories.enumerated()), id: \.1.id) { index, categoryModel in
                         VStack {
                             VStack(spacing: 0) {
                                 let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.lightGrayThree)
                                 
-                                Image(category.name.lowercased())
+                                Image(categoryModel.name.lowercased())
                                     .configure(withModifier: imageModifier)
                                     .frame(width: geometry.size.width * 0.3, height: geometry.size.width * 0.3)
                                 
                                 let firstTextModifier = [TextModifier(font: .system(size: 15, weight: .semibold, design: .rounded), color: AppConstants.black)]
                                 
-                                Text(category.name)
+                                Text(categoryModel.name)
                                     .configure(withModifier: firstTextModifier)
                                 
                                 let secondTextModifier = [TextModifier(font: .system(size: 13, weight: .regular, design: .rounded), color: AppConstants.lightGrayThree)]
                                 
-                                let itemCount = "\(mealsViewModel.mealsData[category.name]?.count ?? 0)"
-                                let additionalLabel = mealsViewModel.mealsData[category.name]!.count > 1 ? AppConstants.items : AppConstants.item
+                                let itemCount = "\(mealsViewModel.mealsData[categoryModel.name]?.count ?? 0)"
+                                let additionalLabel = mealsViewModel.mealsData[categoryModel.name]!.count > 1 ? AppConstants.items : AppConstants.item
                                 
                                 Text(itemCount + AppConstants.whiteSpace + additionalLabel)
                                     .configure(withModifier: secondTextModifier)
                                     .padding(.top, 5.0)
                             }
                             .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.3)
+                            .onTapGesture {
+                                completion(index, categoryModel)
+                            }
                         }
                         .background(Color(AppConstants.white))
                         .cornerRadius(11.0)
@@ -121,7 +124,7 @@ struct AllCategories_Previews: PreviewProvider {
             
             CustomPreview { AllCategories(geometry: geometry,
                                           mealsViewModel: MealsViewModel(),
-                                          shouldShowAllCategories: shouldShowAllCategories) }
+                                          shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
         }
     }
 }
