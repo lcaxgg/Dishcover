@@ -2,7 +2,7 @@
 //  AuthManager.swift
 //  FoodGrab
 //
-//  Created by jayvee on 9/13/23.
+//  Created by j8bok on 9/13/23.
 //
 
 import Foundation

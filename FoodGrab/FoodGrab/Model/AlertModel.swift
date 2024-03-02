@@ -2,7 +2,7 @@
 //  AlertModel.swift
 //  FoodGrab
 //
-//  Created by jayvee on 9/20/23.
+//  Created by j8bok on 9/20/23.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  MealsModel.swift
 //  FoodGrab
 //
-//  Created by jayvee on 12/29/23.
+//  Created by j8bok on 12/29/23.
 //
 
 import Foundation

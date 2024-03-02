@@ -2,7 +2,7 @@
 //  CustomLabel.swift
 //  FoodGrab
 //
-//  Created by jayvee on 9/7/23.
+//  Created by j8bok on 9/7/23.
 //
 
 import SwiftUI

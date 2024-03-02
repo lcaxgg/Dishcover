@@ -2,7 +2,7 @@
 //  SearchModel.swift
 //  FoodGrab
 //
-//  Created by jayvee on 2/29/24.
+//  Created by j8bok on 2/29/24.
 //
 
 import Foundation
