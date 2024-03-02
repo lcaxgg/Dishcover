@@ -13,7 +13,8 @@ struct Catalog: View {
     var geometry: GeometryProxy
     @ObservedObject var mealsViewModel: MealsViewModel
     @ObservedObject var searchViewModel: SearchViewModel
-
+    var completion: () -> Void
+    
     var body: some View {
         ZStack {
             Color(AppConstants.lightGrayOne)
@@ -61,9 +62,8 @@ struct Catalog: View {
                                     .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.06)
                                     .background(Color(AppConstants.white))
                                     .onTapGesture {
-                                        print("test")
+                                        completion()
                                     }
-                                    
                                 } else {
                                     let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.lightGrayThree)
                                     
@@ -94,7 +94,7 @@ struct Catalog_Previews: PreviewProvider {
         GeometryReader { geometry in
             CustomPreview { Catalog(geometry: geometry,
                                     mealsViewModel: MealsViewModel(),
-                                    searchViewModel: SearchViewModel()) }
+                                    searchViewModel: SearchViewModel(), completion: {}) }
         }
     }
 }

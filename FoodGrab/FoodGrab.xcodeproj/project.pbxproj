@@ -63,6 +63,8 @@
 		5B969D442ACFDC420039F2BE /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B969D432ACFDC420039F2BE /* SearchField.swift */; };
 		5B9C06252B4010F9004F7B5F /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 5B9C06242B4010F9004F7B5F /* AlamofireImage */; };
 		5B9FE8DA2B3F1AA000E49F07 /* MealsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9FE8D92B3F1AA000E49F07 /* MealsService.swift */; };
+		5BA258242B935102003E37A3 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA258232B935102003E37A3 /* ViewExtension.swift */; };
+		5BA258282B9351BB003E37A3 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA258272B9351BB003E37A3 /* SearchViewModel.swift */; };
 		5BAA442D2B34271F00DE4713 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA442C2B34271E00DE4713 /* LoginModel.swift */; };
 		5BAA442F2B34275300DE4713 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BAA442E2B34275300DE4713 /* LoginViewModel.swift */; };
 		5BB2BF9C2AC3A56A00AF886D /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB2BF9B2AC3A56A00AF886D /* RegistrationViewModel.swift */; };
@@ -120,6 +122,8 @@
 		5B89F7232B65F5D000BA5DFF /* MealsCategoriesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsCategoriesEnum.swift; sourceTree = "<group>"; };
 		5B969D432ACFDC420039F2BE /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		5B9FE8D92B3F1AA000E49F07 /* MealsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsService.swift; sourceTree = "<group>"; };
+		5BA258232B935102003E37A3 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		5BA258272B9351BB003E37A3 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		5BAA442C2B34271E00DE4713 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		5BAA442E2B34275300DE4713 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		5BB2BF9B2AC3A56A00AF886D /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
@@ -199,6 +203,7 @@
 			children = (
 				5B56EDFD2AD8E7720095D70D /* TextExtension.swift */,
 				5B56EDFF2AD8E7860095D70D /* ImageExtension.swift */,
+				5BA258232B935102003E37A3 /* ViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				5B597A802AD61BB70093045C /* MealsCategoriesViewModel.swift */,
 				5BAA442E2B34275300DE4713 /* LoginViewModel.swift */,
 				5B1A1BF02B3F3F0D0061AE2D /* MealsViewModel.swift */,
+				5BA258272B9351BB003E37A3 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -432,7 +438,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1340;
-				LastUpgradeCheck = 1340;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					5B5A05332A9ECA81001A05CA = {
 						CreatedOnToolsVersion = 13.4.1;
@@ -486,6 +492,7 @@
 				5B56EE042AD8E7A30095D70D /* ImageModifier.swift in Sources */,
 				5B5B79922AA9BAA800DBEA9F /* AuthService.swift in Sources */,
 				5B597A812AD61BB70093045C /* MealsCategoriesViewModel.swift in Sources */,
+				5BA258242B935102003E37A3 /* ViewExtension.swift in Sources */,
 				5B61E5442B9047D600B36FA4 /* SearchModel.swift in Sources */,
 				5B5B79942AA9BD1200DBEA9F /* RegistrationValidationService.swift in Sources */,
 				5B5A05572A9F343C001A05CA /* ButtonOne.swift in Sources */,
@@ -529,6 +536,7 @@
 				5BF7EEDE2ABACC92005A736A /* AlertModel.swift in Sources */,
 				5B89F7242B65F5D000BA5DFF /* MealsCategoriesEnum.swift in Sources */,
 				5B0E1ACE2B7626D100924AE0 /* AllCategories.swift in Sources */,
+				5BA258282B9351BB003E37A3 /* SearchViewModel.swift in Sources */,
 				5B56EE002AD8E7860095D70D /* ImageExtension.swift in Sources */,
 				5B5B79762AA95E7300DBEA9F /* HorizontalSeparator.swift in Sources */,
 			);
@@ -573,6 +581,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -591,6 +600,10 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-no_warn_duplicate_libraries",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -633,6 +646,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
