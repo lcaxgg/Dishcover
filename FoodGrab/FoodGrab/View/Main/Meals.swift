@@ -15,7 +15,7 @@ struct Meals: View {
     @State private var searchText: String = AppConstants.emptyString
     @State private var selectedIndex: Int = 0
     @State private var selectedTab: Int = 0
-
+    
     @State private var isDownloadComplete: Bool = false
     @State private var isLoadingVisible: Bool = true
     @State private var isAnimating: Bool = false
@@ -51,13 +51,13 @@ struct Meals: View {
                         SearchField(geometry: geometry,
                                     searchText: $searchText,
                                     searchViewModel: searchViewModel)
-                            .padding(.horizontal, geometry.size.width * 0.05)
-                            .padding(.top, geometry.size.height * 0.014)
-                            .focused($isSearchFieldFocused)
-                            .onTapGesture {
-                                isSearchFieldFocused = true
-                            }
-                            .bindFocusState($searchViewModel.searchModel.isSearchFieldFocused, with: _isSearchFieldFocused)
+                        .padding(.horizontal, geometry.size.width * 0.05)
+                        .padding(.top, geometry.size.height * 0.014)
+                        .focused($isSearchFieldFocused)
+                        .onTapGesture {
+                            isSearchFieldFocused = true
+                        }
+                        .bindFocusState($searchViewModel.searchModel.isSearchFieldFocused, with: _isSearchFieldFocused)
                         
                         HStack {
                             let textModifier = [TextModifier(font: .system(size: geometry.size.height * 0.0237, weight: .semibold, design: .rounded), color: AppConstants.black)]
@@ -86,7 +86,11 @@ struct Meals: View {
                             .sheet(isPresented: $shouldShowAllCategories) {
                                 AllCategories(geometry: geometry,
                                               mealsViewModel: mealsViewModel,
-                                              shouldShowAllCategories: $shouldShowAllCategories)
+                                              shouldShowAllCategories: $shouldShowAllCategories, completion: { index, categoryModel in
+                                    selectedIndex = index
+                                    mealsViewModel.mealKey = categoryModel.name
+                                    shouldShowAllCategories.toggle()
+                                })
                             }
                         }
                         .padding(.horizontal, geometry.size.width * 0.05)
@@ -96,28 +100,40 @@ struct Meals: View {
                         
                         // MARK: - BODY
                         
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: geometry.size.width * 0.04) {
-                                ForEach(Array(mealsCategoriesViewModel.mealsCategories.enumerated()), id: \.1.id) { index, category in
-                                    
-                                    let bgColor = selectedIndex == index ? AppConstants.green : AppConstants.white
-                                    let fontColor = selectedIndex == index ? AppConstants.white : AppConstants.black
-                                    let fontWeight = selectedIndex == index ? Font.Weight.semibold : Font.Weight.regular
-                                    let attribute =  ButtonOneAttributes(text: category.name, bgColor: bgColor, fontColor: fontColor, fontWeight: fontWeight, fontSize: geometry.size.height * 0.02, cornerRadius: 6.0)
-                                    
-                                    ButtonOne(attribute: attribute)
-                                        .frame(width: index == 4 ? geometry.size.width * 0.3 : geometry.size.width * 0.26, height: geometry.size.height * 0.05)
-                                        .onTapGesture {
-                                            selectedIndex = index
-                                            mealsViewModel.mealKey = category.name
-                                            isSearchFieldFocused = false
-                                        }
+                        ScrollViewReader { scrollViewProxy in
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack(spacing: geometry.size.width * 0.04) {
+                                    ForEach(Array(mealsCategoriesViewModel.mealsCategories.enumerated()), id: \.1.id) { index, categoryModel in
+                                        
+                                        let bgColor = selectedIndex == index ? AppConstants.green : AppConstants.white
+                                        let fontColor = selectedIndex == index ? AppConstants.white : AppConstants.black
+                                        let fontWeight = selectedIndex == index ? Font.Weight.semibold : Font.Weight.regular
+                                        let attribute =  ButtonOneAttributes(text: categoryModel.name, bgColor: bgColor, fontColor: fontColor, fontWeight: fontWeight, fontSize: geometry.size.height * 0.02, cornerRadius: 6.0)
+                                        
+                                        ButtonOne(attribute: attribute)
+                                            .frame(width: index == 4 ? geometry.size.width * 0.3 : geometry.size.width * 0.26, height: geometry.size.height * 0.05)
+                                            .onTapGesture {
+                                                selectedIndex = index
+                                                mealsViewModel.mealKey = categoryModel.name
+                                                isSearchFieldFocused = false
+                                                
+                                                withAnimation {
+                                                    scrollViewProxy.scrollTo(index, anchor: .center)
+                                                }
+                                            }
+                                            .id(index)
+                                    }
+                                }
+                                .padding(.horizontal, geometry.size.width * 0.05)
+                            }
+                            .frame(width: geometry.size.width)
+                            .padding(.top, geometry.size.width * 0.02)
+                            .onChange(of: selectedIndex) { newIndex in
+                                withAnimation {
+                                    scrollViewProxy.scrollTo(newIndex, anchor: .center)
                                 }
                             }
-                            .padding(.horizontal, geometry.size.width * 0.05)
                         }
-                        .frame(width: geometry.size.width)
-                        .padding(.top, geometry.size.width * 0.02)
                         
                         // MARK: - FOOTER
                         
@@ -127,14 +143,14 @@ struct Meals: View {
                                     searchViewModel: searchViewModel, completion: {
                                 isSearchFieldFocused = false
                             })
-                                .tag(0)
-                                .frame(width: geometry.size.width)
-                                .background(Color(AppConstants.lightGrayOne))
-                                .tabItem {
-                                    Image(systemName: AppConstants.squareGrid)
-                                    Text(AppConstants.meals)
-                                }
-                                
+                            .tag(0)
+                            .frame(width: geometry.size.width)
+                            .background(Color(AppConstants.lightGrayOne))
+                            .tabItem {
+                                Image(systemName: AppConstants.squareGrid)
+                                Text(AppConstants.meals)
+                            }
+                            
                         }
                         .accentColor(Color(AppConstants.green))
                         .onTapGesture {
