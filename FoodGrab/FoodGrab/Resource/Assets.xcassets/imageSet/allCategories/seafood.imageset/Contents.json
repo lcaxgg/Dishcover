@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "filename" : "seafood~universal@1x.png"
+    },
+    {
+      "filename" : "seafood~universal@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "scale" : "3x",
+      "idiom" : "universal",
+      "filename" : "seafood~universal@3x.png"
+    }
+  ],
+  "info" : {
+    "version" : "4.1",
+    "author" : "AssetsGen"
+  }
+}

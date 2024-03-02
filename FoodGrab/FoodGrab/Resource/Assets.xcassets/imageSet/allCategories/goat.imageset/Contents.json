@@ -1,0 +1,23 @@
+{
+  "info" : {
+    "author" : "AssetsGen",
+    "version" : "4.1"
+  },
+  "images" : [
+    {
+      "scale" : "1x",
+      "filename" : "goat~universal@1x.png",
+      "idiom" : "universal"
+    },
+    {
+      "scale" : "2x",
+      "idiom" : "universal",
+      "filename" : "goat~universal@2x.png"
+    },
+    {
+      "scale" : "3x",
+      "idiom" : "universal",
+      "filename" : "goat~universal@3x.png"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+//
+//  LoginService.swift
+//  FoodGrab
+//
+//  Created by jayvee on 12/28/23.
+//
+
+import Foundation
+
+class LoginValidationService : BaseService {
+    func validateLoginInputs(with key: String, andWith viewModel: LoginViewModel) {
+        if key == AppConstants.emailKey {
+            validateEmail(with: key, andWith: viewModel)
+        }
+        
+        if key == AppConstants.passwordKey {
+            validatePassword(with: key, andWith: viewModel)
+        }
+  
+        if viewModel.invalidFields.count == 0 {
+            viewModel.isValidCredentials = true
+        } else {
+            viewModel.isValidCredentials = false
+        }
+    }
+    
+    private func validateEmail(with key: String, andWith viewModel: LoginViewModel) {
+        if viewModel.getEmail().count > 0 {
+            if isEmailValid(viewModel.getEmail()) {
+                viewModel.invalidFields.removeValue(forKey: key)
+            } else {
+                viewModel.invalidFields[key] = AppConstants.invalidEmail
+            }
+        } else {
+            viewModel.invalidFields[key] = AppConstants.fillInEmail
+        }
+    }
+    
+    private func validatePassword(with key: String, andWith viewModel: LoginViewModel) {
+        if viewModel.getPassword().count >= 8 {
+            viewModel.invalidFields.removeValue(forKey: key)
+        } else {
+            viewModel.invalidFields[key] = AppConstants.invalidLength
+        }
+    }
+}
+
