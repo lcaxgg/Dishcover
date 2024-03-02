@@ -15,13 +15,13 @@ struct Meals: View {
     @State private var searchText: String = AppConstants.emptyString
     @State private var selectedIndex: Int = 0
     @State private var selectedTab: Int = 0
-    
-    @State private var isSearching: Bool = false
+
     @State private var isDownloadComplete: Bool = false
     @State private var isLoadingVisible: Bool = true
     @State private var isAnimating: Bool = false
     @State private var shouldShowMainScreen: Bool = false
     @State private var shouldShowAllCategories: Bool = false
+    @FocusState private var isSearchFieldFocused: Bool
     
     @ObservedObject private var mealsViewModel = MealsViewModel()
     @ObservedObject private var searchViewModel = SearchViewModel()
@@ -48,12 +48,17 @@ struct Meals: View {
                         
                         // MARK: - HEADER
                         
-                        SearchField(geometry: geometry, 
+                        SearchField(geometry: geometry,
                                     searchText: $searchText,
                                     searchViewModel: searchViewModel)
                             .padding(.horizontal, geometry.size.width * 0.05)
                             .padding(.top, geometry.size.height * 0.014)
-                
+                            .focused($isSearchFieldFocused)
+                            .onTapGesture {
+                                isSearchFieldFocused = true
+                            }
+                            .bindFocusState($searchViewModel.searchModel.isSearchFieldFocused, with: _isSearchFieldFocused)
+                        
                         HStack {
                             let textModifier = [TextModifier(font: .system(size: geometry.size.height * 0.0237, weight: .semibold, design: .rounded), color: AppConstants.black)]
                             
@@ -76,9 +81,10 @@ struct Meals: View {
                             }
                             .onTapGesture {
                                 shouldShowAllCategories.toggle()
+                                isSearchFieldFocused = false
                             }
                             .sheet(isPresented: $shouldShowAllCategories) {
-                                AllCategories(geometry: geometry, 
+                                AllCategories(geometry: geometry,
                                               mealsViewModel: mealsViewModel,
                                               shouldShowAllCategories: $shouldShowAllCategories)
                             }
@@ -104,6 +110,7 @@ struct Meals: View {
                                         .onTapGesture {
                                             selectedIndex = index
                                             mealsViewModel.mealKey = category.name
+                                            isSearchFieldFocused = false
                                         }
                                 }
                             }
@@ -117,7 +124,9 @@ struct Meals: View {
                         TabView(selection: $selectedTab) {
                             Catalog(geometry: geometry,
                                     mealsViewModel: mealsViewModel,
-                                    searchViewModel: searchViewModel)
+                                    searchViewModel: searchViewModel, completion: {
+                                isSearchFieldFocused = false
+                            })
                                 .tag(0)
                                 .frame(width: geometry.size.width)
                                 .background(Color(AppConstants.lightGrayOne))
@@ -125,8 +134,12 @@ struct Meals: View {
                                     Image(systemName: AppConstants.squareGrid)
                                     Text(AppConstants.meals)
                                 }
+                                
                         }
                         .accentColor(Color(AppConstants.green))
+                        .onTapGesture {
+                            isSearchFieldFocused = false
+                        }
                     }
                 }
             }
