@@ -9,17 +9,23 @@ import Foundation
 import SwiftUI
 
 struct AuthManager {
-    static func processLogin(with loginViewModel: LoginViewModel) {
+    static func processLogin(with loginViewModel: LoginViewModel, andWith alertViewModel: AlertViewModel) {
         loginViewModel.isProccessingLogin = true
         loginViewModel.shouldDisableButton = true
+        alertViewModel.setIsPresented(with: false)
         
         AuthService.login(with: loginViewModel) { error in
+            loginViewModel.isProccessingLogin = false
+            loginViewModel.isValidCredentials = false
+
             if error != nil {
-                loginViewModel.isProccessingLogin = false
+                alertViewModel.setIsPresented(with: true)
+                alertViewModel.setTitle(with: AppConstants.error)
+                alertViewModel.setMessage(with: error!.localizedDescription)
+                
                 loginViewModel.isPresentedMainScreen = false
             } else {
-                 loginViewModel.isProccessingLogin = false
-                 loginViewModel.isPresentedMainScreen = true
+                loginViewModel.isPresentedMainScreen = true
             }
         }
     }

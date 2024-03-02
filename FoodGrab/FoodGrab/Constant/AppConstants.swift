@@ -110,6 +110,7 @@ struct AppConstants {
     static let ok = "Ok"
     static let close = "Close"
     static let information = "Information"
+    static let error = "Error"
     
     // MARK: - COLORS
     

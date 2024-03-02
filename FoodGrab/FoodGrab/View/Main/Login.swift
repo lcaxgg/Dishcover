@@ -17,6 +17,7 @@ struct Login: View {
     @State private var isPasswordVisible = false
     
     @StateObject private var loginViewModel = LoginViewModel()
+    @StateObject private var alertViewModel = AlertViewModel()
     
     private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
     private let loginValidationService = LoginValidationService()
@@ -102,7 +103,7 @@ struct Login: View {
                         .padding(.horizontal, geometry.size.width * 0.04)
                         .onTapGesture {
                             if loginViewModel.isValidCredentials {
-                                AuthManager.processLogin(with: loginViewModel)
+                                AuthManager.processLogin(with: loginViewModel, andWith: alertViewModel)
                             }
                         }
                 }//: VStack
@@ -113,6 +114,7 @@ struct Login: View {
                 }
             }//: ZStack
             .edgesIgnoringSafeArea(.bottom)
+            .accentColor(Color(AppConstants.green))
             .padding(.bottom, geometry.size.height * 0.02)
             .navigationBarTitle(AppConstants.login, displayMode: .inline)
             .onAppear {
@@ -120,6 +122,13 @@ struct Login: View {
             }
             .navigationBarBackButtonHidden(loginViewModel.isProccessingLogin)
             .disabled(loginViewModel.isProccessingLogin)
+            .alert(isPresented: Binding(get: { alertViewModel.getIsPresented() }, set: { _ in })) {
+                Alert(
+                    title: Text(alertViewModel.getTitle()),
+                    message: Text(alertViewModel.getMessage()),
+                    dismissButton: .default(Text(AppConstants.ok), action: {})
+                )
+            }
             .background(
                 NavigationLink(AppConstants.emptyString, destination: Meals(), isActive: $loginViewModel.isPresentedMainScreen)
             )
