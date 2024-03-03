@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B049A442B94717700806731 /* RecipeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B049A432B94717700806731 /* RecipeModel.swift */; };
 		5B04D4702B3E8DF5006E39E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */; };
 		5B0E1ACE2B7626D100924AE0 /* AllCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E1ACD2B7626D100924AE0 /* AllCategories.swift */; };
 		5B12E4A12AC525DC008BB487 /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12E4A02AC525DC008BB487 /* Meals.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B049A432B94717700806731 /* RecipeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeModel.swift; sourceTree = "<group>"; };
 		5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5B0E1ACD2B7626D100924AE0 /* AllCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategories.swift; sourceTree = "<group>"; };
 		5B12E4A02AC525DC008BB487 /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				5BAA442C2B34271E00DE4713 /* LoginModel.swift */,
 				5B7480692B3DD50800CD333B /* MealsModel.swift */,
 				5B61E5432B9047D600B36FA4 /* SearchModel.swift */,
+				5B049A432B94717700806731 /* RecipeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				5BF7EEE02ABAD8F9005A736A /* ButtonTwo.swift in Sources */,
 				5B6DC3212B3D6DF2008FAA22 /* BaseService.swift in Sources */,
 				5BDBC1F62AB12E1300AB6171 /* RegisterUpperPart.swift in Sources */,
+				5B049A442B94717700806731 /* RecipeModel.swift in Sources */,
 				5B5B79872AA99E1F00DBEA9F /* AppConstants.swift in Sources */,
 				5BB2BF9C2AC3A56A00AF886D /* RegistrationViewModel.swift in Sources */,
 				5B7480682B3DD47200CD333B /* DownloadManager.swift in Sources */,

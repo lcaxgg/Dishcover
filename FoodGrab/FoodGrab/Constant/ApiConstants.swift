@@ -8,8 +8,9 @@
 import Foundation
 
 struct ApiConstants {
-    private static let baseUrl = "https://www.themealdb.com"
-    private static let path = "/api/json/v1/1/filter.php?"
+    static let baseUrl = "https://www.themealdb.com"
+    private static let mealPath = "/api/json/v1/1/filter.php?"
+    static let recipePath = "/api/json/v1/1/lookup.php?"
     
     private static let beefParam = "c=Beef"
     private static let chickenParam = "c=Chicken"
@@ -26,20 +27,22 @@ struct ApiConstants {
     private static let breakfastParam = "c=Breakfast"
     private static let goatParam = "c=Goat"
     
+    static let recipeParam = "i="
+    
     struct Url {
-        static let lists = [baseUrl + path + beefParam,
-                            baseUrl + path + chickenParam,
-                            baseUrl + path + dessertParam,
-                            baseUrl + path + lambParam,
-                            baseUrl + path + miscellaneousParam,
-                            baseUrl + path + pastaParam,
-                            baseUrl + path + porkParam,
-                            baseUrl + path + seafoodParam,
-                            baseUrl + path + sideParam,
-                            baseUrl + path + starterParam,
-                            baseUrl + path + veganParam,
-                            baseUrl + path + vegetarianParam,
-                            baseUrl + path + breakfastParam,
-                            baseUrl + path + goatParam]
+        static let mealsList = [baseUrl + mealPath + beefParam,
+                                baseUrl + mealPath + chickenParam,
+                                baseUrl + mealPath + dessertParam,
+                                baseUrl + mealPath + lambParam,
+                                baseUrl + mealPath + miscellaneousParam,
+                                baseUrl + mealPath + pastaParam,
+                                baseUrl + mealPath + porkParam,
+                                baseUrl + mealPath + seafoodParam,
+                                baseUrl + mealPath + sideParam,
+                                baseUrl + mealPath + starterParam,
+                                baseUrl + mealPath + veganParam,
+                                baseUrl + mealPath + vegetarianParam,
+                                baseUrl + mealPath + breakfastParam,
+                                baseUrl + mealPath + goatParam]
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MealsModel : Codable {
+struct MealsModel: Codable {
     let meals: [MealsDetails]?
 }
 

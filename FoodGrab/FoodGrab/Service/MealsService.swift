@@ -14,7 +14,7 @@ struct MealsService {
         let isEmptyRecord = CoreDataManager.sharedInstance.checkEmptyRecord()
         
         if isEmptyRecord {
-            DownloadManager.sharedInstance.fetchMealsDataFromServer(with: ApiConstants.Url.lists) { responseObject in
+            DownloadManager.sharedInstance.fetchMealsDataFromServer(with: ApiConstants.Url.mealsList) { responseObject in
                 if responseObject != nil {
                     if let mealsCollection = responseObject {
                         for dictionary in mealsCollection {
@@ -83,7 +83,6 @@ struct MealsService {
         }
         
         mealsViewModel.mealsData[key ?? AppConstants.emptyString] = mealsDetails
-        mealsViewModel.mealsDataCopy[key ?? AppConstants.emptyString] = mealsDetails
     }
     
     static func fetchImageFromLocal(urlString: String) -> UIImage? {
