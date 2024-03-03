@@ -83,6 +83,7 @@ struct MealsService {
         }
         
         mealsViewModel.mealsData[key ?? AppConstants.emptyString] = mealsDetails
+        mealsViewModel.mealsDataCopy[key ?? AppConstants.emptyString] = mealsDetails
     }
     
     static func fetchImageFromLocal(urlString: String) -> UIImage? {
@@ -91,7 +92,7 @@ struct MealsService {
         }
         
         let url = URL(string: urlString)!
-        let imageDirectory = documentsDirectory.appendingPathComponent("Images")
+        let imageDirectory = documentsDirectory.appendingPathComponent(AppConstants.images)
         let imageURL = imageDirectory.appendingPathComponent(url.lastPathComponent)
 
         guard FileManager.default.fileExists(atPath: imageURL.path) else {
@@ -103,6 +104,14 @@ struct MealsService {
         } else {
             return nil
         }
+    }
+    
+    static func searchMeal(in mealsData: [MealsDetails]?, with searchText: String) -> [MealsDetails]? {
+        mealsData?.filter { $0.strMeal.localizedStandardContains(searchText) }
+    }
+    
+    static func fetchMealsData(per category: String, in mealsData: Dictionary<String, [MealsDetails]>?) -> [MealsDetails]? {
+        mealsData?[category]
     }
 }
 

@@ -13,7 +13,7 @@ struct FoodGrabApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Meals()
+            Welcome()
         }
     }
 }

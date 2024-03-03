@@ -16,6 +16,7 @@ import SwiftUI
 struct AllCategories: View {
     
     // MARK: - PROPERTIES
+    
     static private var mealsCategoriesViewModel = MealsCategoriesViewModel()
     
     var geometry: GeometryProxy

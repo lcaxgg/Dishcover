@@ -95,9 +95,10 @@ struct AppConstants {
     static let passwordKey = "password"
     static let confirmPasswordKey = "confirmPassword"
     
-    // MARK: - FIREBASE DB COLLECTION NAMES
+    // MARK: - FIREBASE DB COLLECTION & FILE NAMES
     
     static let users = "Users"
+    static let images = "Images"
     
     // MARK: - MEALS DATA KEYS
     

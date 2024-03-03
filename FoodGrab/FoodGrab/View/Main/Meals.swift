@@ -23,8 +23,9 @@ struct Meals: View {
     @State private var shouldShowAllCategories: Bool = false
     @FocusState private var isSearchFieldFocused: Bool
     
-    @ObservedObject private var mealsViewModel = MealsViewModel()
-    @ObservedObject private var searchViewModel = SearchViewModel()
+    @StateObject private var mealsViewModel = MealsViewModel()
+    @StateObject private var searchViewModel = SearchViewModel()
+    
     private var mealsCategoriesViewModel = MealsCategoriesViewModel()
     
     var body: some View {
@@ -56,6 +57,7 @@ struct Meals: View {
                         .focused($isSearchFieldFocused)
                         .onTapGesture {
                             isSearchFieldFocused = true
+                            searchViewModel.setIsSearching(with: true)
                         }
                         .bindFocusState($searchViewModel.searchModel.isSearchFieldFocused, with: _isSearchFieldFocused)
                         
@@ -88,7 +90,7 @@ struct Meals: View {
                                               mealsViewModel: mealsViewModel,
                                               shouldShowAllCategories: $shouldShowAllCategories, completion: { index, categoryModel in
                                     selectedIndex = index
-                                    mealsViewModel.mealKey = categoryModel.name
+                                    mealsViewModel.mealCategory = categoryModel.name
                                     shouldShowAllCategories.toggle()
                                 })
                             }
@@ -114,7 +116,7 @@ struct Meals: View {
                                             .frame(width: index == 4 ? geometry.size.width * 0.3 : geometry.size.width * 0.26, height: geometry.size.height * 0.05)
                                             .onTapGesture {
                                                 selectedIndex = index
-                                                mealsViewModel.mealKey = categoryModel.name
+                                                mealsViewModel.mealCategory = categoryModel.name
                                                 isSearchFieldFocused = false
                                                 
                                                 withAnimation {

@@ -12,7 +12,7 @@ class MealsViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     @Published var mealsData: Dictionary<String, [MealsDetails]> = Dictionary()
-    @Published var mealKey: String = AppConstants.beef
+    @Published var mealCategory: String = AppConstants.beef
     @Published var mealsDetails: MealsDetails = MealsDetails(idMeal: AppConstants.emptyString,
                                                              strMeal: AppConstants.emptyString,
                                                              strMealThumb: AppConstants.emptyString)

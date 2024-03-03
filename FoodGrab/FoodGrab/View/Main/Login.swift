@@ -15,6 +15,8 @@ struct Login: View {
     
     @State private var text: String = AppConstants.emptyString
     @State private var isPasswordVisible = false
+    @State private var isKeyboardShowing = false
+    @State private var keyboardHeight: CGFloat = 0
     
     @StateObject private var loginViewModel = LoginViewModel()
     @StateObject private var alertViewModel = AlertViewModel()
@@ -101,6 +103,8 @@ struct Login: View {
                     ButtonOne(attribute: attribute)
                         .frame(height: geometry.size.height * 0.055)
                         .padding(.horizontal, geometry.size.width * 0.04)
+                        .padding(.bottom, isKeyboardShowing ? keyboardHeight : geometry.size.height * 0.06)
+                        .animation(.easeInOut, value: isKeyboardShowing)
                         .onTapGesture {
                             if loginViewModel.isValidCredentials {
                                 AuthManager.processLogin(with: loginViewModel, andWith: alertViewModel)
@@ -115,13 +119,26 @@ struct Login: View {
             }//: ZStack
             .edgesIgnoringSafeArea(.bottom)
             .accentColor(Color(AppConstants.green))
-            .padding(.bottom, geometry.size.height * 0.02)
             .navigationBarTitle(AppConstants.login, displayMode: .inline)
+            .navigationBarBackButtonHidden(loginViewModel.isProccessingLogin)
+            .disabled(loginViewModel.isProccessingLogin)
+            .background(
+                NavigationLink(AppConstants.emptyString, destination: Meals(), isActive: $loginViewModel.isPresentedMainScreen)
+            )
             .onAppear {
                 loginViewModel.initDictionary()
             }
-            .navigationBarBackButtonHidden(loginViewModel.isProccessingLogin)
-            .disabled(loginViewModel.isProccessingLogin)
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+                isKeyboardShowing = true
+                
+                if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                    keyboardHeight = keyboardSize.height + 5.0
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { notification in
+                isKeyboardShowing = false
+                keyboardHeight = 0.0
+            }
             .alert(isPresented: Binding(get: { alertViewModel.getIsPresented() }, set: { _ in })) {
                 Alert(
                     title: Text(alertViewModel.getTitle()),
@@ -129,9 +146,6 @@ struct Login: View {
                     dismissButton: .default(Text(AppConstants.ok), action: {})
                 )
             }
-            .background(
-                NavigationLink(AppConstants.emptyString, destination: Meals(), isActive: $loginViewModel.isPresentedMainScreen)
-            )
         }//: GeometryReader
         .ignoresSafeArea(.keyboard)
     }

@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct Catalog: View {
+    
     // MARK: - PROPERTIES
     
     var geometry: GeometryProxy
     @ObservedObject var mealsViewModel: MealsViewModel
     @ObservedObject var searchViewModel: SearchViewModel
     var completion: () -> Void
+    
+    @State private var searchedMealsData: [MealsDetails]?
     
     var body: some View {
         ZStack {
@@ -26,10 +29,9 @@ struct Catalog: View {
                     GridItem(.flexible(), spacing: 10.0)
                 ], spacing: 17.0) {
                     
-                    let mealsData = mealsViewModel.mealsData[mealsViewModel.mealKey]
-                    let searchedMealsData = mealsData?.filter { $0.strMeal.localizedStandardContains(searchViewModel.getSearchText()) }
-                
-                    ForEach((searchedMealsData!.count > 0 ? searchedMealsData : mealsData) ?? [], id: \.idMeal) { item in
+                    let mealsData =  MealsService.fetchMealsData(per: mealsViewModel.mealCategory, in: mealsViewModel.mealsData)
+                   
+                    ForEach((!searchViewModel.getSearchText().isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
                             VStack(spacing: 0) {
                                 if let strMealThumb = item.strMealThumb,
@@ -79,6 +81,11 @@ struct Catalog: View {
                         }
                         .background(Color(AppConstants.lightGrayTwo))
                         .cornerRadius(11.0)
+                    }
+                    .onChange(of: searchViewModel.getSearchText()) { searchText in
+                        if !searchText.isEmpty {
+                            searchedMealsData = MealsService.searchMeal(in: mealsData, with: searchViewModel.getSearchText())
+                        }
                     }
                 }
                 .padding()
