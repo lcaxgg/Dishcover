@@ -14,7 +14,7 @@ struct MealsService {
         let isEmptyRecord = CoreDataManager.sharedInstance.checkEmptyRecord()
         
         if isEmptyRecord {
-            DownloadManager.sharedInstance.fetchMealsDataFromServer(with: ApiConstants.Url.mealsList) { responseObject in
+            DownloadManager.sharedInstance.fetchMealsFromServer(with: ApiConstants.Url.mealsList) { responseObject in
                 if responseObject != nil {
                     if let mealsCollection = responseObject {
                         for dictionary in mealsCollection {
@@ -93,7 +93,7 @@ struct MealsService {
         let url = URL(string: urlString)!
         let imageDirectory = documentsDirectory.appendingPathComponent(AppConstants.images)
         let imageURL = imageDirectory.appendingPathComponent(url.lastPathComponent)
-
+        
         guard FileManager.default.fileExists(atPath: imageURL.path) else {
             return nil
         }

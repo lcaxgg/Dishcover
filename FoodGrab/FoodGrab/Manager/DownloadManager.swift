@@ -23,7 +23,7 @@ struct DownloadManager {
     
     private let dispatchGroup: DispatchGroup = DispatchGroup()
     
-    func fetchMealsDataFromServer(with mealsUrls: [String], completion: @escaping ([[String: [MealsDetails]]]?) -> Void) {
+    func fetchMealsFromServer(with mealsUrls: [String], completion: @escaping ([[String: [MealsDetails]]]?) -> Void) {
         DownloadManager.sharedInstance.startTime = Date().timeIntervalSince1970
         var urlListPerCategory = Array<String>()
         
@@ -36,14 +36,14 @@ struct DownloadManager {
                 }
                 
                 switch response.result {
-               
+                    
                 case .success(let value):
                     if let range = url.range(of: AppConstants.equalString) {
                         let category = String(url[range.upperBound...])
                         
                         if let mealsForCategory = value.meals {
                             DownloadManager.sharedInstance.meals.append([category: mealsForCategory])
-                             saveMealsDetailsLocally(with: category, andWith: mealsForCategory)
+                            saveMealDetailsLocally(with: category, andWith: mealsForCategory)
                             
                             for details in mealsForCategory {
                                 DownloadManager.sharedInstance.mealsUrls?.append(details.strMealThumb ?? AppConstants.emptyString)
@@ -56,20 +56,20 @@ struct DownloadManager {
                         DownloadManager.sharedInstance.recipessUrls?[category] = urlListPerCategory
                         urlListPerCategory.removeAll()
                         
-                        print("Couldn't fetch meal. Category:" + AppConstants.whiteSpace + category)
+                        print("Completed fetching meal. Category:" + AppConstants.whiteSpace + category)
                     }
                     
                 case .failure(let error):
-                    print("Couldn't fetch meal. \(error.localizedDescription)")
+                    print("* Couldn't fetch meal. \(error.localizedDescription) *")
                     return
                 }
             }
         }
         
         dispatchGroup.notify(queue: .main) {
-            fetchRecipesDataFromServer { done in
+            fetchRecipesFromServer { done in
                 DownloadManager.sharedInstance.isDoneFetchingRecipe = done
-               
+                
                 if let response = processCompletion() {
                     if !response.isEmpty {
                         completion(response)
@@ -79,7 +79,7 @@ struct DownloadManager {
             
             fetchMealsImagesFromServer { meals in
                 DownloadManager.sharedInstance.isDoneFetchingMealsImages = meals!.count > 0
-            
+                
                 if let response = processCompletion() {
                     if !response.isEmpty {
                         completion(response)
@@ -88,8 +88,16 @@ struct DownloadManager {
             }
         }
     }
-        
-    private func fetchRecipesDataFromServer(completion: @escaping (Bool) -> Void) {
+    
+    private func saveMealDetailsLocally(with key: String, andWith mealDetails: Array<MealsDetails>) {
+        for detail in mealDetails {
+            let newEntity = CoreDataManager.sharedInstance.fetchMealEntity(with: key)
+            
+            newEntity?.setMealDetails(with: detail)
+        }
+    }
+    
+    private func fetchRecipesFromServer(completion: @escaping (Bool) -> Void) {
         if let recipessUrls = DownloadManager.sharedInstance.recipessUrls {
             for urls in recipessUrls {
                 let list = urls.value
@@ -98,7 +106,7 @@ struct DownloadManager {
                     dispatchGroup.enter()
                     
                     AF.request(url)
-                        .responseDecodable(of: RecipeModel.self) { response in
+                        .responseDecodable(of: RecipesModel.self) { response in
                             defer {
                                 dispatchGroup.leave()
                             }
@@ -106,10 +114,16 @@ struct DownloadManager {
                             switch response.result {
                                 
                             case .success(let value):
-                                print("Completed fetching recipe. Recipe: \(value.meals)")
-                                
+                                if  let recipeDetails = value.meals.first {
+                                    if let category = recipeDetails[AppConstants.strCategory] {
+                                        let key = (category ?? AppConstants.emptyString) + AppConstants.underScoreString + AppConstants.recipes
+                                        saveRecipeDetailsLocally(with: key, andWith: recipeDetails)
+                                        
+                                        print("Completed fetching recipe. Category:" + AppConstants.whiteSpace + (category ?? AppConstants.emptyString))
+                                    }
+                                }
                             case .failure(let error):
-                                print("Couldn't fetch recipe. \(error.localizedDescription)")
+                                print("* Couldn't fetch recipe. URL: \(url) \nReason: \(error.localizedDescription) *")
                                 return
                             }
                         }
@@ -122,15 +136,11 @@ struct DownloadManager {
         }
     }
     
-    private func saveMealsDetailsLocally(with key: String, andWith mealsDetails: [MealsDetails]) {
-        for detail in mealsDetails {
-            let newEntity = CoreDataManager.sharedInstance.fetchMealEntityForSaving(with: key)
+    private func saveRecipeDetailsLocally(with key: String, andWith recipeDetails: Dictionary<String, String?>?) {
+        if let details = recipeDetails {
+            let newEntity = CoreDataManager.sharedInstance.fetchRecipeEntity(with: key)
             
-            newEntity?.setValue(Int64(detail.idMeal), forKey: AppConstants.idMealKey)
-            newEntity?.setValue(detail.strMeal, forKey: AppConstants.strMealKey)
-            newEntity?.setValue(detail.strMealThumb, forKey: AppConstants.strMealThumbKey)
-            
-            CoreDataManager.sharedInstance.save()
+            newEntity?.setRecipeDetails(with: details)
         }
     }
     
@@ -159,7 +169,7 @@ struct DownloadManager {
                                 
                                 print("Completed saving image. Filename:" + AppConstants.whiteSpace + filename)
                             } catch {
-                                print("Couldn't save image: \(error.localizedDescription)")
+                                print("* Couldn't save image: \(error.localizedDescription) *")
                             }
                         }
                         

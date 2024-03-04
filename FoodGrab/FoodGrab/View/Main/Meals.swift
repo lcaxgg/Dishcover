@@ -117,7 +117,9 @@ struct Meals: View {
                                             .onTapGesture {
                                                 selectedIndex = index
                                                 mealsViewModel.mealCategory = categoryModel.name
+                                              
                                                 isSearchFieldFocused = false
+                                                searchViewModel.setSearchText(with: AppConstants.emptyString)
                                                 
                                                 withAnimation {
                                                     scrollViewProxy.scrollTo(index, anchor: .center)
@@ -157,6 +159,7 @@ struct Meals: View {
                         .accentColor(Color(AppConstants.green))
                         .onTapGesture {
                             isSearchFieldFocused = false
+                            searchViewModel.setSearchText(with: AppConstants.emptyString)
                         }
                     }
                 }

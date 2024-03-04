@@ -87,7 +87,7 @@ class CoreDataManager {
         viewContext.persistentStoreCoordinator?.managedObjectModel.entities ?? Array()
     }
     
-    func fetchMealEntityForSaving(with key: String?) -> NSManagedObject? {
+    func fetchMealEntity(with key: String?) -> NSManagedObject? {
         var entity: NSManagedObject? = nil
         
         if let newKey = MealsCategoriesEnum.fromString(key ?? AppConstants.emptyString) {
@@ -120,6 +120,45 @@ class CoreDataManager {
                 entity = Breakfast(context: viewContext)
             case .goat:
                 entity = Goat(context: viewContext)
+            }
+        }
+        
+        return entity
+    }
+    
+    func fetchRecipeEntity(with key: String?) -> NSManagedObject? {
+        var entity: NSManagedObject? = nil
+        
+        if let newKey = RecipesEnum.fromString(key ?? AppConstants.emptyString) {
+            switch newKey {
+            case .beef_recipe:
+                entity = Beef_Recipe(context: viewContext)
+            case .chicken_recipe:
+                entity = Chicken_Recipe(context: viewContext)
+            case .dessert_recipe:
+                entity = Dessert_Recipe(context: viewContext)
+            case .lamb_recipe:
+                entity = Lamb_Recipe(context: viewContext)
+            case .miscellaneous_recipe:
+                entity = Miscellaneous_Recipe(context: viewContext)
+            case .pasta_recipe:
+                entity = Pasta_Recipe(context: viewContext)
+            case .pork_recipe:
+                entity = Pork_Recipe(context: viewContext)
+            case .seafood_recipe:
+                entity = Seafood_Recipe(context: viewContext)
+            case .side_recipe:
+                entity = Side_Recipe(context: viewContext)
+            case .starter_recipe:
+                entity = Starter_Recipe(context: viewContext)
+            case .vegan_recipe:
+                entity = Vegan_Recipe(context: viewContext)
+            case .vegetarian_recipe:
+                entity = Vegetarian_Recipe(context: viewContext)
+            case .breakfast_recipe:
+                entity = Breakfast_Recipe(context: viewContext)
+            case .goat_recipe:
+                entity = Goat_Recipe(context: viewContext)
             }
         }
         

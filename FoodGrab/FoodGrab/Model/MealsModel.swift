@@ -22,3 +22,9 @@ struct MealsDetails: Codable {
         self.strMealThumb = strMealThumb
     }
 }
+
+struct MealsDetailsModel {
+    var idMeal: Int64 = 0
+    var strMeal: String = AppConstants.emptyString
+    var strMealThumb: String = AppConstants.emptyString
+}
