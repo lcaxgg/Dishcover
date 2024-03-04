@@ -2,7 +2,7 @@
 //  AllCategories.swift
 //  FoodGrab
 //
-//  Created by jayvee on 2/9/24.
+//  Created by j8bok on 2/9/24.
 //
 
 /**
@@ -16,6 +16,7 @@ import SwiftUI
 struct AllCategories: View {
     
     // MARK: - PROPERTIES
+    
     static private var mealsCategoriesViewModel = MealsCategoriesViewModel()
     
     var geometry: GeometryProxy

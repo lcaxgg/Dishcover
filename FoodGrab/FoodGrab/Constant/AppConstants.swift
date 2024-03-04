@@ -2,7 +2,7 @@
 //  AppConstants.swift
 //  FoodGrab
 //
-//  Created by jayvee on 9/7/23.
+//  Created by j8bok on 9/7/23.
 //
 
 import Foundation
@@ -95,21 +95,73 @@ struct AppConstants {
     static let passwordKey = "password"
     static let confirmPasswordKey = "confirmPassword"
     
-    // MARK: - FIREBASE DB COLLECTION NAMES
+    // MARK: - FIREBASE DB COLLECTION & FILE NAMES
     
     static let users = "Users"
+    static let images = "Images"
     
-    // MARK: - MEALS DATA KEYS
+    // MARK: - MEALS, RECIPES
     
-    static let idMealKey = "idMeal"
-    static let strMealKey = "strMeal"
-    static let strMealThumbKey = "strMealThumb"
+    static let idMeal = "idMeal"
+    static let strMeal = "strMeal"
+    static let strCategory = "strCategory"
+    
+    static let strIngredients = "strIngredients"
+    static let strIngredient1 = "strIngredient1"
+    static let strIngredient2 = "strIngredient2"
+    static let strIngredient3 = "strIngredient3"
+    static let strIngredient4 = "strIngredient4"
+    static let strIngredient5 = "strIngredient5"
+    static let strIngredient6 = "strIngredient6"
+    static let strIngredient7 = "strIngredient7"
+    static let strIngredient8 = "strIngredient8"
+    static let strIngredient9 = "strIngredient9"
+    static let strIngredient10 = "strIngredient10"
+    static let strIngredient11 = "strIngredient11"
+    static let strIngredient12 = "strIngredient12"
+    static let strIngredient13 = "strIngredient13"
+    static let strIngredient14 = "strIngredient14"
+    static let strIngredient15 = "strIngredient15"
+    static let strIngredient16 = "strIngredient16"
+    static let strIngredient17 = "strIngredient17"
+    static let strIngredient18 = "strIngredient18"
+    static let strIngredient19 = "strIngredient19"
+    static let strIngredient20 = "strIngredient20"
+    
+    static let strMeasures = "strMeasures"
+    static let strMeasure1 = "strMeasure1"
+    static let strMeasure2 = "strMeasure2"
+    static let strMeasure3 = "strMeasure3"
+    static let strMeasure4 = "strMeasure4"
+    static let strMeasure5 = "strMeasure5"
+    static let strMeasure6 = "strMeasure6"
+    static let strMeasure7 = "strMeasure7"
+    static let strMeasure8 = "strMeasure8"
+    static let strMeasure9 = "strMeasure9"
+    static let strMeasure10 = "strMeasure10"
+    static let strMeasure11 = "strMeasure11"
+    static let strMeasure12 = "strMeasure12"
+    static let strMeasure13 = "strMeasure13"
+    static let strMeasure14 = "strMeasure14"
+    static let strMeasure15 = "strMeasure15"
+    static let strMeasure16 = "strMeasure16"
+    static let strMeasure17 = "strMeasure17"
+    static let strMeasure18 = "strMeasure18"
+    static let strMeasure19 = "strMeasure19"
+    static let strMeasure20 = "strMeasure20"
+    
+    static let strInstructions = "strInstructions"
+    static let strYoutube = "strYoutube"
+    static let strMealThumb = "strMealThumb"
+    
+    static let recipes = "Recipe"
     
     // MARK: - ALERT, POPUP MODAL
     
     static let ok = "Ok"
     static let close = "Close"
     static let information = "Information"
+    static let error = "Error"
     
     // MARK: - COLORS
     
@@ -143,6 +195,7 @@ struct AppConstants {
     
     static let emptyString = ""
     static let whiteSpace = " "
+    static let underScoreString = "_"
     static let equalString = "="
     static let emailRegexOne = "[A-Za-z0-9.@]"
     static let emailRegexTwo = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"

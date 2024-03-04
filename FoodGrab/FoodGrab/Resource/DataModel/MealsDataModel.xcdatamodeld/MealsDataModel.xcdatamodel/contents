@@ -1,89 +1,213 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="22C65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22222" systemVersion="23A344" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Beef" representedClassName="Beef" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Beef_Recipe" representedClassName="Beef_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Breakfast" representedClassName="Breakfast" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Breakfast_Recipe" representedClassName="Breakfast_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Chicken" representedClassName="Chicken" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Chicken_Recipe" representedClassName="Chicken_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Dessert" representedClassName="Dessert" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Dessert_Recipe" representedClassName="Dessert_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Goat" representedClassName="Goat" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Goat_Recipe" representedClassName="Goat_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Lamb" representedClassName="Lamb" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Lamb_Recipe" representedClassName="Lamb_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Miscellaneous" representedClassName="Miscellaneous" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Miscellaneous_Recipe" representedClassName="Miscellaneous_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Pasta" representedClassName="Pasta" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Pasta_Recipe" representedClassName="Pasta_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Pork" representedClassName="Pork" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Pork_Recipe" representedClassName="Pork_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Seafood" representedClassName="Seafood" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Seafood_Recipe" representedClassName="Seafood_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Side" representedClassName="Side" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Side_Recipe" representedClassName="Side_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Starter" representedClassName="Starter" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Starter_Recipe" representedClassName="Starter_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Vegan" representedClassName="Vegan" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Vegan_Recipe" representedClassName="Vegan_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Vegetarian" representedClassName="Vegetarian" syncable="YES" codeGenerationType="class">
         <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="strMeal" optional="YES" attributeType="String"/>
         <attribute name="strMealThumb" optional="YES" attributeType="String"/>
     </entity>
-    <elements>
-        <element name="Beef" positionX="-63" positionY="-18" width="128" height="74"/>
-        <element name="Chicken" positionX="-63" positionY="9" width="128" height="74"/>
-        <element name="Dessert" positionX="-54" positionY="27" width="128" height="74"/>
-        <element name="Lamb" positionX="-36" positionY="45" width="128" height="74"/>
-        <element name="Miscellaneous" positionX="-18" positionY="63" width="128" height="74"/>
-        <element name="Pasta" positionX="0" positionY="72" width="128" height="74"/>
-        <element name="Pork" positionX="18" positionY="99" width="128" height="74"/>
-        <element name="Seafood" positionX="36" positionY="117" width="128" height="74"/>
-        <element name="Side" positionX="-9" positionY="72" width="128" height="74"/>
-        <element name="Starter" positionX="0" positionY="81" width="128" height="74"/>
-        <element name="Vegan" positionX="9" positionY="90" width="128" height="74"/>
-        <element name="Vegetarian" positionX="18" positionY="99" width="128" height="74"/>
-        <element name="Breakfast" positionX="27" positionY="108" width="128" height="74"/>
-        <element name="Goat" positionX="36" positionY="117" width="128" height="74"/>
-    </elements>
+    <entity name="Vegetarian_Recipe" representedClassName="Vegetarian_Recipe" syncable="YES" codeGenerationType="class">
+        <attribute name="idMeal" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="strCategory" optional="YES" attributeType="String"/>
+        <attribute name="strIngredients" optional="YES" attributeType="String"/>
+        <attribute name="strInstructions" optional="YES" attributeType="String"/>
+        <attribute name="strMeal" optional="YES" attributeType="String"/>
+        <attribute name="strMealThumb" optional="YES" attributeType="String"/>
+        <attribute name="strMeasures" optional="YES" attributeType="String"/>
+        <attribute name="strYoutube" optional="YES" attributeType="String"/>
+    </entity>
 </model>

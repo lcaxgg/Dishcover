@@ -2,7 +2,7 @@
 //  Login.swift
 //  FoodGrab
 //
-//  Created by jayvee on 8/30/23.
+//  Created by j8bok on 8/30/23.
 //
 
 import SwiftUI
@@ -15,8 +15,11 @@ struct Login: View {
     
     @State private var text: String = AppConstants.emptyString
     @State private var isPasswordVisible = false
+    @State private var isKeyboardShowing = false
+    @State private var keyboardHeight: CGFloat = 0
     
     @StateObject private var loginViewModel = LoginViewModel()
+    @StateObject private var alertViewModel = AlertViewModel()
     
     private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
     private let loginValidationService = LoginValidationService()
@@ -100,9 +103,11 @@ struct Login: View {
                     ButtonOne(attribute: attribute)
                         .frame(height: geometry.size.height * 0.055)
                         .padding(.horizontal, geometry.size.width * 0.04)
+                        .padding(.bottom, isKeyboardShowing ? keyboardHeight : geometry.size.height * 0.06)
+                        .animation(.easeInOut, value: isKeyboardShowing)
                         .onTapGesture {
                             if loginViewModel.isValidCredentials {
-                                AuthManager.processLogin(with: loginViewModel)
+                                AuthManager.processLogin(with: loginViewModel, andWith: alertViewModel)
                             }
                         }
                 }//: VStack
@@ -113,16 +118,34 @@ struct Login: View {
                 }
             }//: ZStack
             .edgesIgnoringSafeArea(.bottom)
-            .padding(.bottom, geometry.size.height * 0.02)
+            .accentColor(Color(AppConstants.green))
             .navigationBarTitle(AppConstants.login, displayMode: .inline)
-            .onAppear {
-                loginViewModel.initDictionary()
-            }
             .navigationBarBackButtonHidden(loginViewModel.isProccessingLogin)
             .disabled(loginViewModel.isProccessingLogin)
             .background(
                 NavigationLink(AppConstants.emptyString, destination: Meals(), isActive: $loginViewModel.isPresentedMainScreen)
             )
+            .onAppear {
+                loginViewModel.initDictionary()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+                isKeyboardShowing = true
+                
+                if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                    keyboardHeight = keyboardSize.height + 5.0
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { notification in
+                isKeyboardShowing = false
+                keyboardHeight = 0.0
+            }
+            .alert(isPresented: Binding(get: { alertViewModel.getIsPresented() }, set: { _ in })) {
+                Alert(
+                    title: Text(alertViewModel.getTitle()),
+                    message: Text(alertViewModel.getMessage()),
+                    dismissButton: .default(Text(AppConstants.ok), action: {})
+                )
+            }
         }//: GeometryReader
         .ignoresSafeArea(.keyboard)
     }

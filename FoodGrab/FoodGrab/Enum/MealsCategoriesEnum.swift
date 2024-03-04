@@ -2,7 +2,7 @@
 //  MealsCategoriesEnum.swift
 //  FoodGrab
 //
-//  Created by jayvee on 1/28/24.
+//  Created by j8bok on 1/28/24.
 //
 
 import Foundation
