@@ -2,7 +2,7 @@
 //  MealsService.swift
 //  FoodGrab
 //
-//  Created by jayvee on 12/29/23.
+//  Created by j8bok on 12/29/23.
 //
 
 import Foundation
@@ -14,7 +14,7 @@ struct MealsService {
         let isEmptyRecord = CoreDataManager.sharedInstance.checkEmptyRecord()
         
         if isEmptyRecord {
-            DownloadManager.sharedInstance.fetchMealsDataFromServer(with: ApiConstants.Url.lists) { responseObject in
+            DownloadManager.sharedInstance.fetchMealsFromServer(with: ApiConstants.Url.mealsList) { responseObject in
                 if responseObject != nil {
                     if let mealsCollection = responseObject {
                         for dictionary in mealsCollection {
@@ -91,9 +91,9 @@ struct MealsService {
         }
         
         let url = URL(string: urlString)!
-        let imageDirectory = documentsDirectory.appendingPathComponent("Images")
+        let imageDirectory = documentsDirectory.appendingPathComponent(AppConstants.images)
         let imageURL = imageDirectory.appendingPathComponent(url.lastPathComponent)
-
+        
         guard FileManager.default.fileExists(atPath: imageURL.path) else {
             return nil
         }
@@ -103,6 +103,14 @@ struct MealsService {
         } else {
             return nil
         }
+    }
+    
+    static func searchMeal(in mealsData: [MealsDetails]?, with searchText: String) -> [MealsDetails]? {
+        mealsData?.filter { $0.strMeal.localizedStandardContains(searchText) }
+    }
+    
+    static func fetchMealsData(per category: String, in mealsData: Dictionary<String, [MealsDetails]>?) -> [MealsDetails]? {
+        mealsData?[category]
     }
 }
 

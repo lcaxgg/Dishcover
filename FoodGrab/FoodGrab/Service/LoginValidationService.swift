@@ -2,7 +2,7 @@
 //  LoginService.swift
 //  FoodGrab
 //
-//  Created by jayvee on 12/28/23.
+//  Created by j8bok on 12/28/23.
 //
 
 import Foundation
@@ -31,16 +31,21 @@ class LoginValidationService : BaseService {
             } else {
                 viewModel.invalidFields[key] = AppConstants.invalidEmail
             }
+            
+            viewModel.shouldDisableButton = false
         } else {
             viewModel.invalidFields[key] = AppConstants.fillInEmail
+            viewModel.shouldDisableButton = true
         }
     }
     
     private func validatePassword(with key: String, andWith viewModel: LoginViewModel) {
         if viewModel.getPassword().count >= 8 {
             viewModel.invalidFields.removeValue(forKey: key)
+            viewModel.shouldDisableButton = false
         } else {
             viewModel.invalidFields[key] = AppConstants.invalidLength
+            viewModel.shouldDisableButton = true
         }
     }
 }

@@ -2,7 +2,7 @@
 //  SearchField.swift
 //  FoodGrab
 //
-//  Created by jayvee on 10/6/23.
+//  Created by j8bok on 10/6/23.
 //
 
 import SwiftUI
