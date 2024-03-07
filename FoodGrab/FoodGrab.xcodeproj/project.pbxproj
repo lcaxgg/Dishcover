@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5B049A442B94717700806731 /* RecipesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B049A432B94717700806731 /* RecipesModel.swift */; };
-		5B049A482B94C57400806731 /* NSManagedObjectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B049A472B94C57400806731 /* NSManagedObjectExtension.swift */; };
 		5B04D4702B3E8DF5006E39E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */; };
 		5B0E1ACE2B7626D100924AE0 /* AllCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E1ACD2B7626D100924AE0 /* AllCategories.swift */; };
 		5B12E4A12AC525DC008BB487 /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12E4A02AC525DC008BB487 /* Meals.swift */; };
@@ -82,7 +81,6 @@
 
 /* Begin PBXFileReference section */
 		5B049A432B94717700806731 /* RecipesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesModel.swift; sourceTree = "<group>"; };
-		5B049A472B94C57400806731 /* NSManagedObjectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSManagedObjectExtension.swift; sourceTree = "<group>"; };
 		5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5B0E1ACD2B7626D100924AE0 /* AllCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategories.swift; sourceTree = "<group>"; };
 		5B12E4A02AC525DC008BB487 /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 				5B56EDFD2AD8E7720095D70D /* TextExtension.swift */,
 				5B56EDFF2AD8E7860095D70D /* ImageExtension.swift */,
 				5BA258232B935102003E37A3 /* ViewExtension.swift */,
-				5B049A472B94C57400806731 /* NSManagedObjectExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -502,7 +499,6 @@
 			files = (
 				5B5B79832AA9997D00DBEA9F /* CustomImage.swift in Sources */,
 				5B56EE042AD8E7A30095D70D /* ImageModifier.swift in Sources */,
-				5B049A482B94C57400806731 /* NSManagedObjectExtension.swift in Sources */,
 				5B5B79922AA9BAA800DBEA9F /* AuthService.swift in Sources */,
 				5B597A812AD61BB70093045C /* MealsCategoriesViewModel.swift in Sources */,
 				5BA258242B935102003E37A3 /* ViewExtension.swift in Sources */,
@@ -766,7 +762,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
+				minimumVersion = 10.22.0;
 			};
 		};
 		5B953D552ABBB9F60057E3B9 /* XCRemoteSwiftPackageReference "SwiftfulLoadingIndicators" */ = {

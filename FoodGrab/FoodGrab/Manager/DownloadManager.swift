@@ -91,9 +91,7 @@ struct DownloadManager {
     
     private func saveMealDetailsLocally(with key: String, andWith mealDetails: Array<MealsDetails>) {
         for detail in mealDetails {
-            let newEntity = CoreDataManager.sharedInstance.fetchMealEntity(with: key)
-            
-            newEntity?.setMealDetails(with: detail)
+            CoreDataManager.sharedInstance.setMealDetails(with: detail, andWith: key)
         }
     }
     
@@ -138,9 +136,7 @@ struct DownloadManager {
     
     private func saveRecipeDetailsLocally(with key: String, andWith recipeDetails: Dictionary<String, String?>?) {
         if let details = recipeDetails {
-            let newEntity = CoreDataManager.sharedInstance.fetchRecipeEntity(with: key)
-            
-            newEntity?.setRecipeDetails(with: details)
+            CoreDataManager.sharedInstance.setRecipeDetails(with: details, andWith: key)
         }
     }
     
