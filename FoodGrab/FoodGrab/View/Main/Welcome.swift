@@ -76,8 +76,6 @@ struct Welcome: View {
 
 // MARK: - PREVIEW
 
-struct Welcome_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomPreview { Welcome() }
-    }
+#Preview {
+    CustomPreview { Welcome() }
 }

@@ -118,9 +118,7 @@ struct RegisterMiddlePart: View {
 
 // MARK: - PREVIEW
 
-struct RegisterMiddlePart_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterMiddlePart(registrationViewModel: RegistrationViewModel())
-            .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: 400.0))
-    }
+#Preview {
+    RegisterMiddlePart(registrationViewModel: RegistrationViewModel())
+        .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: 400.0))
 }

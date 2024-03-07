@@ -22,9 +22,7 @@ struct CustomLabel: View {
 
 // MARK: - PREVIEW
 
-struct CustomLabel_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomLabel()
-            .previewLayout(.fixed(width: 100.0, height: 100.0))
-    }
+#Preview {
+    CustomLabel()
+        .previewLayout(.fixed(width: 100.0, height: 100.0))
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct VerticalSeparator: View {
     
     // MARK: - PROPERTIES
-   
+    
     var body: some View {
         ZStack {
             Color(AppConstants.lightGrayThree)
@@ -21,9 +21,7 @@ struct VerticalSeparator: View {
 
 // MARK: - PREVIEW
 
-struct VerticalSeparator_Previews: PreviewProvider {
-    static var previews: some View {
-        VerticalSeparator()
-            .previewLayout(.fixed(width: 1.0, height: 100.0))
-    }
+#Preview {
+    VerticalSeparator()
+        .previewLayout(.fixed(width: 1.0, height: 100.0))
 }

@@ -27,7 +27,7 @@ struct RegisterUpperPart: View {
                 Text(AppConstants.firstName)
                     .configure(withModifier: textModifier)
                     .frame(width: UIScreen.main.bounds.width * 0.19, alignment: .leading)
-        
+                
                 TextField(AppConstants.firstNamePlaceHolder, text: registrationViewModel.firstNameBinding)
                     .autocapitalization(.words)
                     .keyboardType(.alphabet)
@@ -96,11 +96,7 @@ struct RegisterUpperPart: View {
 
 // MARK: - PREVIEW
 
-struct RegisterUpperPart_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterUpperPart(registrationViewModel: RegistrationViewModel(),
-                          registrationValidationService: RegistrationValidationService())
-        
-            .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: 220.0))
-    }
+#Preview {
+    RegisterUpperPart(registrationViewModel: RegistrationViewModel(), registrationValidationService: RegistrationValidationService())
+        .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: 220.0))
 }

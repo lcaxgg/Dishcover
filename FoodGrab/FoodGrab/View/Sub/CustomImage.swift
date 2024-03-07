@@ -24,9 +24,7 @@ struct CustomImage: View {
 
 // MARK: - PREVIEW
 
-struct CustomImage_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomImage()
-            .previewLayout(.fixed(width: 100.0, height: 100.0))
-    }
+#Preview {
+    CustomImage()
+        .previewLayout(.fixed(width: 100.0, height: 100.0))
 }

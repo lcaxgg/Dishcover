@@ -115,17 +115,15 @@ struct AllCategories: View {
 
 // MARK: - PREVIEW
 
-struct AllCategories_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader { geometry in
-            let shouldShowAllCategories = Binding<Bool>(
-                get: { false },
-                set: { _ in }
-            )
-            
-            CustomPreview { AllCategories(geometry: geometry,
-                                          mealsViewModel: MealsViewModel(),
-                                          shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
-        }
+#Preview {
+    GeometryReader { geometry in
+        let shouldShowAllCategories = Binding<Bool>(
+            get: { false },
+            set: { _ in }
+        )
+        
+        CustomPreview { AllCategories(geometry: geometry,
+                                      mealsViewModel: MealsViewModel(),
+                                      shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
     }
 }

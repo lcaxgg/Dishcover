@@ -153,9 +153,7 @@ struct Login: View {
 
 // MARK: - PREVIEW
 
-struct Login_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomPreview { Login() }
-            .previewInterfaceOrientation(.portrait)
-    }
+#Preview {
+    CustomPreview { Login() }
+        .previewInterfaceOrientation(.portrait)
 }

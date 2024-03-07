@@ -29,9 +29,7 @@ struct ButtonTwo: View {
 
 // MARK: - PREVIEW
 
-struct CustomButtonTwo_Previews: PreviewProvider {
-    static var previews: some View {
-        ButtonTwo(action: {}, attribute: ButtonOneAttributes())
-            .previewLayout(.fixed(width: 345.0, height: 50.0))
-    }
+#Preview {
+    ButtonTwo(action: {}, attribute: ButtonOneAttributes())
+        .previewLayout(.fixed(width: 345.0, height: 50.0))
 }

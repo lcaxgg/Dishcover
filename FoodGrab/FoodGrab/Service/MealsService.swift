@@ -58,8 +58,10 @@ struct MealsService {
                         initMealsDataFromLocal(with: [key: results], andWith: mealsViewModel)
                     }
                 }
+                
+                print("Completed fetching data. Entity Name:" + entityName)
             } catch {
-                print("Error fetching data for \(String(describing: entityName)): \(error.localizedDescription)")
+                print("* Couldn't fetch data. Entity Name: \(String(describing: entityName)) \nReason: \(error.localizedDescription) *")
                 completion(false)
             }
         }

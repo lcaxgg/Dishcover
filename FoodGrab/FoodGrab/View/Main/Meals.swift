@@ -117,7 +117,7 @@ struct Meals: View {
                                             .onTapGesture {
                                                 selectedIndex = index
                                                 mealsViewModel.mealCategory = categoryModel.name
-                                              
+                                                
                                                 isSearchFieldFocused = false
                                                 searchViewModel.setSearchText(with: AppConstants.emptyString)
                                                 
@@ -198,11 +198,7 @@ struct Meals: View {
 
 // MARK: - PREVIEW
 
-struct Main_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomPreview { Meals() }
-            .previewInterfaceOrientation(.portrait)
-    }
+#Preview {
+    CustomPreview { Meals() }
+        .previewInterfaceOrientation(.portrait)
 }
-
-

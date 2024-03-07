@@ -30,7 +30,7 @@ struct Catalog: View {
                 ], spacing: 17.0) {
                     
                     let mealsData =  MealsService.fetchMealsData(per: mealsViewModel.mealCategory, in: mealsViewModel.mealsData)
-                   
+                    
                     ForEach((!searchViewModel.getSearchText().isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
                             VStack(spacing: 0) {
@@ -96,13 +96,10 @@ struct Catalog: View {
 
 // MARK: - PREVIEW
 
-struct Catalog_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader { geometry in
-            CustomPreview { Catalog(geometry: geometry,
-                                    mealsViewModel: MealsViewModel(),
-                                    searchViewModel: SearchViewModel(), completion: {}) }
-        }
+#Preview {
+    GeometryReader { geometry in
+        CustomPreview { Catalog(geometry: geometry,
+                                mealsViewModel: MealsViewModel(),
+                                searchViewModel: SearchViewModel(), completion: {}) }
     }
 }
-
