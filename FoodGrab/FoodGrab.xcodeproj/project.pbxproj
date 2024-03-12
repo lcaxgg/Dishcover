@@ -44,10 +44,8 @@
 		5B5A05572A9F343C001A05CA /* ButtonOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5A05562A9F343C001A05CA /* ButtonOne.swift */; };
 		5B5B79762AA95E7300DBEA9F /* HorizontalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79752AA95E7300DBEA9F /* HorizontalSeparator.swift */; };
 		5B5B79782AA9734900DBEA9F /* VerticalSeparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79772AA9734900DBEA9F /* VerticalSeparator.swift */; };
-		5B5B797A2AA993A800DBEA9F /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79792AA993A800DBEA9F /* CustomLabel.swift */; };
 		5B5B797F2AA9980A00DBEA9F /* RegisterMiddlePart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B797E2AA9980A00DBEA9F /* RegisterMiddlePart.swift */; };
 		5B5B79812AA9981700DBEA9F /* RegisterLowerPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79802AA9981700DBEA9F /* RegisterLowerPart.swift */; };
-		5B5B79832AA9997D00DBEA9F /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79822AA9997D00DBEA9F /* CustomImage.swift */; };
 		5B5B79872AA99E1F00DBEA9F /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79862AA99E1F00DBEA9F /* AppConstants.swift */; };
 		5B5B79892AA9AEA200DBEA9F /* CustomPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79882AA9AEA200DBEA9F /* CustomPreview.swift */; };
 		5B5B79922AA9BAA800DBEA9F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79912AA9BAA800DBEA9F /* AuthService.swift */; };
@@ -77,7 +75,6 @@
 		5BDD66CD2AFCC55900C39111 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5BDD66CC2AFCC55900C39111 /* Alamofire */; };
 		5BE8A0B32B9A0F30004EE043 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8A0B22B9A0F30004EE043 /* Recipe.swift */; };
 		5BF7EEDE2ABACC92005A736A /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF7EEDD2ABACC92005A736A /* AlertModel.swift */; };
-		5BF7EEE02ABAD8F9005A736A /* ButtonTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF7EEDF2ABAD8F9005A736A /* ButtonTwo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,10 +107,8 @@
 		5B5A05562A9F343C001A05CA /* ButtonOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOne.swift; sourceTree = "<group>"; };
 		5B5B79752AA95E7300DBEA9F /* HorizontalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalSeparator.swift; sourceTree = "<group>"; };
 		5B5B79772AA9734900DBEA9F /* VerticalSeparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalSeparator.swift; sourceTree = "<group>"; };
-		5B5B79792AA993A800DBEA9F /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		5B5B797E2AA9980A00DBEA9F /* RegisterMiddlePart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterMiddlePart.swift; sourceTree = "<group>"; };
 		5B5B79802AA9981700DBEA9F /* RegisterLowerPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLowerPart.swift; sourceTree = "<group>"; };
-		5B5B79822AA9997D00DBEA9F /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
 		5B5B79862AA99E1F00DBEA9F /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		5B5B79882AA9AEA200DBEA9F /* CustomPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPreview.swift; sourceTree = "<group>"; };
 		5B5B79912AA9BAA800DBEA9F /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -139,7 +134,6 @@
 		5BDBC1F72AB144E900AB6171 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		5BE8A0B22B9A0F30004EE043 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		5BF7EEDD2ABACC92005A736A /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
-		5BF7EEDF2ABAD8F9005A736A /* ButtonTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTwo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,9 +343,6 @@
 				5B5A05562A9F343C001A05CA /* ButtonOne.swift */,
 				5B5B79752AA95E7300DBEA9F /* HorizontalSeparator.swift */,
 				5B5B79772AA9734900DBEA9F /* VerticalSeparator.swift */,
-				5BF7EEDF2ABAD8F9005A736A /* ButtonTwo.swift */,
-				5B5B79792AA993A800DBEA9F /* CustomLabel.swift */,
-				5B5B79822AA9997D00DBEA9F /* CustomImage.swift */,
 				5B969D432ACFDC420039F2BE /* SearchField.swift */,
 			);
 			path = Sub;
@@ -500,7 +491,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B5B79832AA9997D00DBEA9F /* CustomImage.swift in Sources */,
 				5B56EE042AD8E7A30095D70D /* ImageModifier.swift in Sources */,
 				5B5B79922AA9BAA800DBEA9F /* AuthService.swift in Sources */,
 				5B597A812AD61BB70093045C /* MealsCategoriesViewModel.swift in Sources */,
@@ -513,7 +503,6 @@
 				5B379B1E2AD646E00081FB59 /* ButtonOneAttributes.swift in Sources */,
 				5B5B79892AA9AEA200DBEA9F /* CustomPreview.swift in Sources */,
 				5B04D4702B3E8DF5006E39E9 /* CoreDataManager.swift in Sources */,
-				5B5B797A2AA993A800DBEA9F /* CustomLabel.swift in Sources */,
 				5B9FE8DA2B3F1AA000E49F07 /* MealsService.swift in Sources */,
 				5B5A05492A9ECD5D001A05CA /* Welcome.swift in Sources */,
 				5B5A053A2A9ECA81001A05CA /* Splash.swift in Sources */,
@@ -527,7 +516,6 @@
 				5B56EDFE2AD8E7720095D70D /* TextExtension.swift in Sources */,
 				5B578C2C2B96065100FD0277 /* RecipesEnum.swift in Sources */,
 				5B7FCBA92B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld in Sources */,
-				5BF7EEE02ABAD8F9005A736A /* ButtonTwo.swift in Sources */,
 				5B6DC3212B3D6DF2008FAA22 /* BaseService.swift in Sources */,
 				5BDBC1F62AB12E1300AB6171 /* RegisterUpperPart.swift in Sources */,
 				5B049A442B94717700806731 /* RecipesModel.swift in Sources */,
