@@ -24,8 +24,8 @@ struct HorizontalSeparator: View {
 
 // MARK: - PREVIEW
 
-#Preview {
+@available(iOS 17, *)
+#Preview(traits: .fixedLayout(width: 345.0, height: 20.0)) {
     HorizontalSeparator()
-        .previewLayout(.fixed(width: 345.0, height: 20.0))
 }
 

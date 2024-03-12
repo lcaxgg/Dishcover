@@ -59,7 +59,7 @@ struct MealsService {
                     }
                 }
                 
-                print("Completed fetching data. Entity Name:" + entityName)
+                print("Completed fetching data. Entity Name:" + AppConstants.whiteSpace + entityName)
             } catch {
                 print("* Couldn't fetch data. Entity Name: \(String(describing: entityName)) \nReason: \(error.localizedDescription) *")
                 completion(false)

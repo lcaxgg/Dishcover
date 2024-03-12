@@ -53,12 +53,17 @@ struct Catalog: View {
                                         Spacer()
                                         
                                         Color(AppConstants.green)
-                                            .overlay(
-                                                CustomImage(imageName: AppConstants.arrowUpForwardSquare, color: AppConstants.white)
-                                                    .frame(width: geometry.size.width * 0.023, height: geometry.size.height * 0.023)
-                                            )
                                             .frame(width: geometry.size.width * 0.09, height: geometry.size.height * 0.04)
                                             .cornerRadius(11.0)
+                                            .overlay(
+                                                Group {
+                                                    let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.white)
+                                                    
+                                                    Image(systemName: AppConstants.arrowUpForwardSquare)
+                                                        .configure(withModifier: imageModifier)
+                                                        .frame(width: geometry.size.width * 0.023, height: geometry.size.height * 0.023)
+                                                }
+                                            )
                                     }
                                     .padding()
                                     .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.06)
@@ -67,13 +72,15 @@ struct Catalog: View {
                                         completion()
                                     }
                                 } else {
-                                    let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.lightGrayThree)
-                                    
                                     Color(AppConstants.lightGrayOne)
                                         .overlay(
-                                            Image(systemName: AppConstants.photoFill)
-                                                .configure(withModifier: imageModifier)
-                                                .frame(width: geometry.size.width * 0.1, height: geometry.size.height * 0.3)
+                                            Group {
+                                                let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.lightGrayThree)
+                                                
+                                                Image(systemName: AppConstants.photoFill)
+                                                    .configure(withModifier: imageModifier)
+                                                    .frame(width: geometry.size.width * 0.1, height: geometry.size.height * 0.3)
+                                            }
                                         )
                                 }
                             }

@@ -118,7 +118,7 @@ struct RegisterMiddlePart: View {
 
 // MARK: - PREVIEW
 
-#Preview {
+@available(iOS 17, *)
+#Preview(traits: .fixedLayout(width: UIScreen.main.bounds.width, height: 400.0)) {
     RegisterMiddlePart(registrationViewModel: RegistrationViewModel())
-        .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: 400.0))
 }

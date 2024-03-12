@@ -24,7 +24,7 @@ struct CustomImage: View {
 
 // MARK: - PREVIEW
 
-#Preview {
+@available(iOS 17, *)
+#Preview(traits: .fixedLayout(width: 100.0, height: 100.0)) {
     CustomImage()
-        .previewLayout(.fixed(width: 100.0, height: 100.0))
 }

@@ -12,9 +12,6 @@ struct AppConstants {
     
     static let welcomeTitle = "Food that tells a story"
     static let mainTitle = "Explore"
-    static let login = "Login"
-    static let register = "Register"
-    static let addPhoto = "Add Photo"
     
     // MARK: - LABELS
     
@@ -61,6 +58,14 @@ struct AppConstants {
     static let vegetarian = "Vegetarian"
     static let breakFast = "Breakfast"
     static let goat = "Goat"
+    
+    // MARK: - BUTTONS
+    
+    static let login = "Login"
+    static let register = "Register"
+    static let addPhoto = "Add Photo"
+    static let back = "Back"
+    static let share = "Share"
     
     // MARK: - FIELDS
     
@@ -182,6 +187,7 @@ struct AppConstants {
     static let photoFill = "photo.fill"
     static let personCircleFill = "person.crop.circle.fill"
     static let mapFill = "map.fill"
+    static let chevronLeft = "chevron.left"
     static let chevronRight = "chevron.right"
     static let eyeSlash =  "eye.slash"
     static let eye = "eye"

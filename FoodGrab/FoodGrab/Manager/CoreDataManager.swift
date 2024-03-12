@@ -51,7 +51,7 @@ class CoreDataManager {
     }
     
     func checkEmptyRecord() -> Bool {
-        var isEmptyRecord: Bool = false
+        var isEmptyRecord: Bool = true
         let entities = viewContext.persistentStoreCoordinator?.managedObjectModel.entities
         
         for entity in entities ?? [] {
@@ -62,7 +62,7 @@ class CoreDataManager {
             do {
                 let results = try viewContext.fetch(fetchRequest)
                 
-                if results.isEmpty {
+                if !results.isEmpty {
                     isEmptyRecord.toggle()
                     break
                 }

@@ -21,7 +21,7 @@ struct VerticalSeparator: View {
 
 // MARK: - PREVIEW
 
-#Preview {
+@available(iOS 17, *)
+#Preview(traits: .fixedLayout(width: 1.0, height: 100.0)) {
     VerticalSeparator()
-        .previewLayout(.fixed(width: 1.0, height: 100.0))
 }

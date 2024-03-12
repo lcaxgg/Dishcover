@@ -22,7 +22,7 @@ struct CustomLabel: View {
 
 // MARK: - PREVIEW
 
-#Preview {
+@available(iOS 17, *)
+#Preview(traits: .fixedLayout(width: 100.0, height: 100.0)) {
     CustomLabel()
-        .previewLayout(.fixed(width: 100.0, height: 100.0))
 }
