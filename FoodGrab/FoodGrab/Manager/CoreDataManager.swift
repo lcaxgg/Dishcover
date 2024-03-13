@@ -51,7 +51,7 @@ class CoreDataManager {
     }
     
     func checkEmptyRecord() -> Bool {
-        var isEmptyRecord: Bool = false
+        var isEmptyRecord: Bool = true
         let entities = viewContext.persistentStoreCoordinator?.managedObjectModel.entities
         
         for entity in entities ?? [] {
@@ -62,7 +62,7 @@ class CoreDataManager {
             do {
                 let results = try viewContext.fetch(fetchRequest)
                 
-                if results.isEmpty {
+                if !results.isEmpty {
                     isEmptyRecord.toggle()
                     break
                 }
@@ -73,21 +73,15 @@ class CoreDataManager {
         
         return isEmptyRecord
     }
-    
-    func save() {
-        do {
-            try viewContext.save()
-        } catch {
-            viewContext.rollback()
-            print(error.localizedDescription)
-        }
-    }
-    
+
     func fetchAllMealsEntities() -> Array<NSEntityDescription> {
-        viewContext.persistentStoreCoordinator?.managedObjectModel.entities ?? Array()
+        let mealsEntities = viewContext.persistentStoreCoordinator?.managedObjectModel.entities ?? Array()
+        let filteredMealEntities = mealsEntities.filter { !$0.name!.contains(AppConstants.underScoreString) }
+        
+        return filteredMealEntities
     }
     
-    func fetchMealEntity(with key: String?) -> NSManagedObject? {
+    private func fetchMealEntity(with key: String?) -> NSManagedObject? {
         var entity: NSManagedObject? = nil
         
         if let newKey = MealsCategoriesEnum.fromString(key ?? AppConstants.emptyString) {
@@ -126,7 +120,14 @@ class CoreDataManager {
         return entity
     }
     
-    func fetchRecipeEntity(with key: String?) -> NSManagedObject? {
+    func fetchAllRecipesEntities() -> Array<NSEntityDescription> {
+        let recipesEntities = viewContext.persistentStoreCoordinator?.managedObjectModel.entities ?? Array()
+        let filteredRecipesEntities = recipesEntities.filter { $0.name!.contains(AppConstants.underScoreString) }
+        
+        return filteredRecipesEntities
+    }
+    
+    private func fetchRecipeEntity(with key: String?) -> NSManagedObject? {
         var entity: NSManagedObject? = nil
         
         if let newKey = RecipesEnum.fromString(key ?? AppConstants.emptyString) {
@@ -163,5 +164,45 @@ class CoreDataManager {
         }
         
         return entity
+    }
+    
+    func save() {
+        do {
+            try viewContext.save()
+        } catch {
+            viewContext.rollback()
+            print(error.localizedDescription)
+        }
+    }
+    
+    func setMealDetails(with mealsDetails: MealsDetails, andWith entityKey: String) {
+        let mealsViewModel = MealsViewModel()
+        mealsViewModel.setMealsDetails(with: mealsDetails)
+        
+        let entity = fetchMealEntity(with: entityKey)
+        
+        entity?.setValue(mealsViewModel.getIdMeal(), forKey: AppConstants.idMeal)
+        entity?.setValue(mealsViewModel.getStrMeal(), forKey: AppConstants.strMeal)
+        entity?.setValue(mealsViewModel.getStrMealThumb(), forKey: AppConstants.strMealThumb)
+        
+        save()
+    }
+    
+    func setRecipeDetails(with recipeDetails: Dictionary<String, String?>?, andWith entityKey: String) {
+        let recipesViewModel = RecipesViewModel()
+        recipesViewModel.setRecipesDetails(with: recipeDetails)
+        
+        let entity = fetchRecipeEntity(with: entityKey)
+        
+        entity?.setValue(recipesViewModel.getIdMeal(), forKey: AppConstants.idMeal)
+        entity?.setValue(recipesViewModel.getStrMeal(), forKey: AppConstants.strMeal)
+        entity?.setValue(recipesViewModel.getStrCategory(), forKey: AppConstants.strCategory)
+        entity?.setValue(recipesViewModel.getStrIngredients(), forKey: AppConstants.strIngredients)
+        entity?.setValue(recipesViewModel.getStrMeasures(), forKey: AppConstants.strMeasures)
+        entity?.setValue(recipesViewModel.getStrInstructions(), forKey: AppConstants.strInstructions)
+        entity?.setValue(recipesViewModel.getStrMealThumb(), forKey: AppConstants.strMealThumb)
+        entity?.setValue(recipesViewModel.getStrYoutube(), forKey: AppConstants.strYoutube)
+        
+        save()
     }
 }

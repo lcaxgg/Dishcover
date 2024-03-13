@@ -27,9 +27,7 @@ struct ButtonOne: View {
 
 // MARK: - PREVIEW
 
-struct CustomButtonOne_Previews: PreviewProvider {
-    static var previews: some View {
-        ButtonOne(attribute: ButtonOneAttributes())
-            .previewLayout(.fixed(width: 345.0, height: 50.0))
-    }
+@available(iOS 17, *)
+#Preview(traits: .fixedLayout(width: 345.0, height: 50.0)) {
+    ButtonOne(attribute: ButtonOneAttributes())
 }

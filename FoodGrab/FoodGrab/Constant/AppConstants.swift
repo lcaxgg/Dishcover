@@ -12,9 +12,6 @@ struct AppConstants {
     
     static let welcomeTitle = "Food that tells a story"
     static let mainTitle = "Explore"
-    static let login = "Login"
-    static let register = "Register"
-    static let addPhoto = "Add Photo"
     
     // MARK: - LABELS
     
@@ -36,17 +33,30 @@ struct AppConstants {
     static let confirmPassword = "Confirm Password"
     static let useLocation = "Use your current location"
     
+    static let allCategories = "All Categories"
+    static let categories = "Categories"
+    static let item = "Item"
+    static let items = "Items"
+    static let mealName = "Meal Name"
+    static let ingredients = "Ingredients"
+    static let instructions = "Instructions"
+    
+    // MARK: - BUTTONS, OTHER ACTIONS
+    
     static let meals = "Meals"
     static let chat = "Chat"
     static let maps = "Maps"
     static let account = "Account"
     
-    static let allCategories = "All Categories"
-    static let categories = "Categories"
+    static let login = "Login"
+    static let register = "Register"
+    static let addPhoto = "Add Photo"
+    static let back = "Back"
+    static let share = "Share"
     static let seeAll = "See All"
-    static let item = "Item"
-    static let items = "Items"
-
+    static let showDetails = "Show Details"
+    static let hideDetails = "Hide Details"
+    
     static let beef = "Beef"
     static let chicken = "Chicken"
     static let dessert = "Dessert"
@@ -169,6 +179,7 @@ struct AppConstants {
     static let black = "black"
     static let green = "green"
     static let darkGray = "darkGray"
+    static let darkGrayOne = "darkGrayOne"
     static let lightGrayOne = "lightGrayOne"
     static let lightGrayTwo = "lightGrayTwo"
     static let lightGrayThree = "lightGrayThree"
@@ -182,6 +193,7 @@ struct AppConstants {
     static let photoFill = "photo.fill"
     static let personCircleFill = "person.crop.circle.fill"
     static let mapFill = "map.fill"
+    static let chevronLeft = "chevron.left"
     static let chevronRight = "chevron.right"
     static let eyeSlash =  "eye.slash"
     static let eye = "eye"

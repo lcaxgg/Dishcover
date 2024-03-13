@@ -17,7 +17,9 @@ struct RecipesDetailsModel {
     var strMeal: String = AppConstants.emptyString
     var strCategory: String = AppConstants.emptyString
     var strIngredients: String = AppConstants.emptyString
+    var strIngredientsDictionary: Dictionary = Dictionary<String, String>()
     var strMeasures: String = AppConstants.emptyString
+    var strMeasuresDictionary: Dictionary = Dictionary<String, String>()
     var strInstructions: String = AppConstants.emptyString
     var strMealThumb: String = AppConstants.emptyString
     var strYoutube: String = AppConstants.emptyString
