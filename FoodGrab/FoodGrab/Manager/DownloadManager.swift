@@ -16,7 +16,7 @@ struct DownloadManager {
     
     static var sharedInstance = DownloadManager()
     
-    private var meals: [[String: [MealsDetails]]] = Array()
+    private var meals: [[String: [MealsDetailsModel]]] = Array()
     private var mealsUrls: [String]? = Array()
     private var recipessUrls: [String: [String]]? = Dictionary()
     private var startTime: Double = 0.0
@@ -28,7 +28,7 @@ struct DownloadManager {
     
     // MARK: - PROCESS FOR MEALS
     
-    func fetchMealsFromServer(with mealsUrls: [String], completion: @escaping ([[String: [MealsDetails]]]?) -> Void) {
+    func fetchMealsFromServer(with mealsUrls: [String], completion: @escaping ([[String: [MealsDetailsModel]]]?) -> Void) {
         DownloadManager.sharedInstance.startTime = Date().timeIntervalSince1970
         var urlListPerCategory = Array<String>()
         
@@ -94,7 +94,7 @@ struct DownloadManager {
         }
     }
     
-    private func saveMealDetailsLocally(with key: String, andWith mealDetails: Array<MealsDetails>) {
+    private func saveMealDetailsLocally(with key: String, andWith mealDetails: Array<MealsDetailsModel>) {
         for detail in mealDetails {
             CoreDataManager.sharedInstance.setMealDetails(with: detail, andWith: key)
         }
@@ -149,7 +149,7 @@ struct DownloadManager {
     
     // MARK: - PROCESS FOR IMAGES
     
-    private func fetchMealsImagesFromServer(completion: @escaping ([[String: [MealsDetails]]]?) -> Void) {
+    private func fetchMealsImagesFromServer(completion: @escaping ([[String: [MealsDetailsModel]]]?) -> Void) {
         if let mealsUrls = DownloadManager.sharedInstance.mealsUrls {
             for urlString in mealsUrls {
                 let url = URL(string: urlString)!
@@ -194,7 +194,7 @@ struct DownloadManager {
     
     // MARK: - OTHERS
     
-    private func processCompletion() -> [[String: [MealsDetails]]]? {
+    private func processCompletion() -> [[String: [MealsDetailsModel]]]? {
         let isDoneFetchingRecipe = DownloadManager.sharedInstance.isDoneFetchingRecipe
         let isDoneFetchingMealsImages = DownloadManager.sharedInstance.isDoneFetchingMealsImages
         

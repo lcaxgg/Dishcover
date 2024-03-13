@@ -13,8 +13,9 @@ class RecipesViewModel: ObservableObject {
     // MARK: - PROPERTIES
     
     static let sharedInstance: RecipesViewModel = RecipesViewModel()
+    
+    private var recipesData: Dictionary<String, [RecipesDetailsModel]> = Dictionary()
     private var recipesDetailsModel: RecipesDetailsModel = RecipesDetailsModel()
-    var recipesData: Dictionary<String, [RecipesDetailsModel]> = Dictionary()
     
     // MARK: - METHODS
     
@@ -218,6 +219,12 @@ class RecipesViewModel: ObservableObject {
     
     func setStrYoutube(with strYoutube: String) {
         recipesDetailsModel.strYoutube = strYoutube
+    }
+    
+    // MARK: - GETTER FOR VIEWMODEL PROPERTIES
+    
+    func getRecipesData() -> Dictionary<String, [RecipesDetailsModel]> {
+        RecipesViewModel.sharedInstance.recipesData
     }
     
     // MARK: - SETTER FOR VIEWMODEL PROPERTIES

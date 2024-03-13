@@ -20,7 +20,6 @@ struct AllCategories: View {
     static private var mealsCategoriesViewModel = MealsCategoriesViewModel()
     
     var geometry: GeometryProxy
-    var mealsViewModel: MealsViewModel
     @Binding var shouldShowAllCategories: Bool
     var completion: (Int, MealsCategoriesModel) -> Void
     
@@ -88,8 +87,9 @@ struct AllCategories: View {
                                 
                                 let secondTextModifier = [TextModifier(font: .system(size: 13, weight: .regular, design: .rounded), color: AppConstants.lightGrayThree)]
                                 
-                                let itemCount = "\(mealsViewModel.mealsData[categoryModel.name]?.count ?? 0)"
-                                let additionalLabel = mealsViewModel.mealsData[categoryModel.name]!.count > 1 ? AppConstants.items : AppConstants.item
+                                let mealsData = MealsViewModel.sharedInstance.getMealsData()
+                                let itemCount = "\(mealsData[categoryModel.name]?.count ?? 0)"
+                                let additionalLabel = mealsData[categoryModel.name]!.count > 1 ? AppConstants.items : AppConstants.item
                                 
                                 Text(itemCount + AppConstants.whiteSpace + additionalLabel)
                                     .configure(withModifier: secondTextModifier)
@@ -123,7 +123,6 @@ struct AllCategories: View {
         )
         
         CustomPreview { AllCategories(geometry: geometry,
-                                      mealsViewModel: MealsViewModel(),
                                       shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
     }
 }

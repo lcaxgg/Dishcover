@@ -175,7 +175,7 @@ class CoreDataManager {
         }
     }
     
-    func setMealDetails(with mealsDetails: MealsDetails, andWith entityKey: String) {
+    func setMealDetails(with mealsDetails: MealsDetailsModel, andWith entityKey: String) {
         let mealsViewModel = MealsViewModel()
         mealsViewModel.setMealsDetails(with: mealsDetails)
         

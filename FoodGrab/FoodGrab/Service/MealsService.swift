@@ -34,11 +34,11 @@ struct MealsService {
     
     // MARK: - PROCESS FOR MEALS
     
-    private static func initMealsData(with dictionary: Dictionary<String, [MealsDetails]>, andWith mealsViewModel: MealsViewModel) {
+    private static func initMealsData(with dictionary: Dictionary<String, [MealsDetailsModel]>, andWith mealsViewModel: MealsViewModel) {
         let key = dictionary.keys.first
-        let values = dictionary[key ?? AppConstants.emptyString]
-        
-        mealsViewModel.mealsData[key ?? AppConstants.emptyString] = values
+        let values = dictionary[key ?? AppConstants.emptyString] ?? []
+    
+        MealsViewModel.setMealsData(with: key ?? AppConstants.emptyString, andWith: values)
     }
     
     private static func processFetchingMealsDataFromLocal(with mealsViewModel: MealsViewModel, completion: @escaping (Bool) -> Void) {
@@ -75,7 +75,7 @@ struct MealsService {
         let key = dictionary.keys.first
         let value = dictionary[key ?? AppConstants.emptyString]
         
-        var mealsDetails: [MealsDetails] = Array()
+        var mealsDetails: [MealsDetailsModel] = Array()
         
         if let value = value {
             for entity in value {
@@ -86,7 +86,7 @@ struct MealsService {
             }
         }
         
-        mealsViewModel.mealsData[key ?? AppConstants.emptyString] = mealsDetails
+        MealsViewModel.setMealsData(with: key ?? AppConstants.emptyString, andWith: mealsDetails)
     }
 
     // MARK: - PROCESS FOR RECIPES
@@ -187,12 +187,15 @@ struct MealsService {
         }
     }
     
-    static func searchMeal(in mealsData: [MealsDetails]?, with searchText: String) -> [MealsDetails]? {
+    static func searchMeal(in mealsData: [MealsDetailsModel]?, with searchText: String) -> [MealsDetailsModel]? {
         mealsData?.filter { $0.strMeal.localizedStandardContains(searchText) }
     }
     
-    static func fetchMealsData(per category: String, in mealsData: Dictionary<String, [MealsDetails]>?) -> [MealsDetails]? {
-        mealsData?[category]
+    static func fetchMealsData() -> [MealsDetailsModel]? {
+        let category = MealsViewModel.sharedInstance.getMealCategory()
+        let mealsData = MealsViewModel.sharedInstance.getMealsData()
+        
+        return mealsData[category]
     }
 }
 

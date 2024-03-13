@@ -12,11 +12,10 @@ struct Catalog: View {
     // MARK: - PROPERTIES
     
     var geometry: GeometryProxy
-    @ObservedObject var mealsViewModel: MealsViewModel
     @ObservedObject var searchViewModel: SearchViewModel
     var completion: () -> Void
     
-    @State private var searchedMealsData: [MealsDetails]?
+    @State private var searchedMealsData: [MealsDetailsModel]?
     
     var body: some View {
         ZStack {
@@ -29,7 +28,7 @@ struct Catalog: View {
                     GridItem(.flexible(), spacing: 10.0)
                 ], spacing: 17.0) {
                     
-                    let mealsData =  MealsService.fetchMealsData(per: mealsViewModel.mealCategory, in: mealsViewModel.mealsData)
+                    let mealsData =  MealsService.fetchMealsData()
                     
                     ForEach((!searchViewModel.getSearchText().isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
@@ -107,7 +106,6 @@ struct Catalog: View {
 #Preview {
     GeometryReader { geometry in
         CustomPreview { Catalog(geometry: geometry,
-                                mealsViewModel: MealsViewModel(),
                                 searchViewModel: SearchViewModel(), completion: {}) }
     }
 }
