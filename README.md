@@ -3,30 +3,30 @@
 <h6> Meals Module </h6>
 
 <div>
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.36.40%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.38.02%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.39.12%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.39.34%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.36.40%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.38.02%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.39.12%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.39.34%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
 </div>
 
 <h6> Chat Module </h6>
 
 <div>
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.40.53%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.40.34%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.41.16%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.40.53%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.40.34%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.41.16%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
 </div>
 
 <h6> Map Module </h6>
 
 <div>
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.41.29%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.41.29%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
 </div>
 
 <h6> Account Module </h6> 
 
 <div>
-  <img src="https://github.com/lcaxgg/FoodGrab/blob/2024/Q1/build_phase/issues/additional_image/ScreenShots/Screenshot%202024-03-13%20at%204.41.52%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
+  <img src="https://github.com/lcaxgg/FoodGrab/blob/main/ScreenShots/Screenshot%202024-03-13%20at%204.41.52%E2%80%AFPM.png" alt="Alt text" width="250" height="500">
 </div><br>
 
 > [!TIP]  
