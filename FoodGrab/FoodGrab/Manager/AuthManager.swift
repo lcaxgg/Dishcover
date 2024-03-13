@@ -14,10 +14,10 @@ struct AuthManager {
         loginViewModel.shouldDisableButton = true
         alertViewModel.setIsPresented(with: false)
         
-        AuthService.login(with: loginViewModel) { error in
+        LoginService.login(with: loginViewModel) { error in
             loginViewModel.isProccessingLogin = false
             loginViewModel.isValidCredentials = false
-
+            
             if error != nil {
                 alertViewModel.setIsPresented(with: true)
                 alertViewModel.setTitle(with: AppConstants.error)
@@ -35,7 +35,7 @@ struct AuthManager {
         registrationViewModel.isProccessingRegistration = true
         registrationViewModel.shouldDisableButton = true
         
-        AuthService.register(with: registrationViewModel) { error in
+        RegistrationService.register(with: registrationViewModel) { error in
             alertViewModel.setIsPresented(with: true)
             registrationViewModel.isProccessingRegistration = false
             

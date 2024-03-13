@@ -11,8 +11,8 @@ import CoreData
 class MealsViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
-    
-    static let sharedInstance: MealsViewModel = MealsViewModel()
+   
+    static let shared: MealsViewModel = MealsViewModel()
     
     private var mealCategory: String = AppConstants.beef
     private var mealsData: Dictionary<String, [MealsDetailsModel]> = Dictionary()
@@ -21,6 +21,12 @@ class MealsViewModel: ObservableObject {
                                                                     strMealThumb: AppConstants.emptyString)
     
     // MARK: - METHOD
+    
+    private init() {}
+ 
+    func getFirstInstance() -> MealsViewModel {
+        return MealsViewModel.shared
+    }
     
     func initMealsDetails(with entity: NSManagedObject) -> MealsDetailsModel {
         if entity.responds(to: NSSelectorFromString(AppConstants.idMeal)) {
@@ -80,21 +86,21 @@ class MealsViewModel: ObservableObject {
     
     // MARK: - GETTER FOR VIEWMODEL PROPERTIES
     
-    func getMealCategory() -> String {
-        MealsViewModel.sharedInstance.mealCategory
+    static func getMealCategory() -> String {
+        MealsViewModel.shared.mealCategory
     }
     
-    func getMealsData() -> Dictionary<String, [MealsDetailsModel]> {
-        MealsViewModel.sharedInstance.mealsData
+    static func getMealsData() -> Dictionary<String, [MealsDetailsModel]> {
+        MealsViewModel.shared.mealsData
     }
     
     // MARK: - SETTER FOR VIEWMODEL PROPERTIES
     
-    func setMealCategory(with category: String) {
-        MealsViewModel.sharedInstance.mealCategory = category
+    static func setMealCategory(with category: String) {
+        MealsViewModel.shared.mealCategory = category
     }
     
     static func setMealsData(with key: String, andWith value: Array<MealsDetailsModel>) {
-        MealsViewModel.sharedInstance.mealsData[key] = value
+        MealsViewModel.shared.mealsData[key] = value
     }
 }

@@ -138,6 +138,16 @@ struct Recipes: View {
             
             Spacer()
         }//: VStack
+        .onAppear(perform: {
+            let category = RecipesViewModel.getRecipeCategory()
+            
+            let data = RecipesViewModel.getRecipesData()
+            let fetched = data[category]
+            
+         
+            
+            print(fetched)
+        })
         
         // MARK: - FOOTER
     }

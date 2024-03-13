@@ -87,7 +87,7 @@ struct AllCategories: View {
                                 
                                 let secondTextModifier = [TextModifier(font: .system(size: 13, weight: .regular, design: .rounded), color: AppConstants.lightGrayThree)]
                                 
-                                let mealsData = MealsViewModel.sharedInstance.getMealsData()
+                                let mealsData = MealsViewModel.getMealsData()
                                 let itemCount = "\(mealsData[categoryModel.name]?.count ?? 0)"
                                 let additionalLabel = mealsData[categoryModel.name]!.count > 1 ? AppConstants.items : AppConstants.item
                                 

@@ -14,7 +14,7 @@ struct DownloadManager {
     
     // MARK: - PROPERTIES
     
-    static var sharedInstance = DownloadManager()
+    static var shared = DownloadManager()
     
     private var meals: [[String: [MealsDetailsModel]]] = Array()
     private var mealsUrls: [String]? = Array()
@@ -26,10 +26,18 @@ struct DownloadManager {
     
     private let dispatchGroup: DispatchGroup = DispatchGroup()
     
+    // MARK: - METHODS
+    
+    private init() {}
+ 
+    func getFirstInstance() -> DownloadManager {
+        return DownloadManager.shared
+    }
+    
     // MARK: - PROCESS FOR MEALS
     
     func fetchMealsFromServer(with mealsUrls: [String], completion: @escaping ([[String: [MealsDetailsModel]]]?) -> Void) {
-        DownloadManager.sharedInstance.startTime = Date().timeIntervalSince1970
+        DownloadManager.shared.startTime = Date().timeIntervalSince1970
         var urlListPerCategory = Array<String>()
         
         for url in mealsUrls {
@@ -47,18 +55,18 @@ struct DownloadManager {
                         let category = String(url[range.upperBound...])
                         
                         if let mealsForCategory = value.meals {
-                            DownloadManager.sharedInstance.meals.append([category: mealsForCategory])
+                            DownloadManager.shared.meals.append([category: mealsForCategory])
                             saveMealDetailsLocally(with: category, andWith: mealsForCategory)
                             
                             for details in mealsForCategory {
-                                DownloadManager.sharedInstance.mealsUrls?.append(details.strMealThumb ?? AppConstants.emptyString)
+                                DownloadManager.shared.mealsUrls?.append(details.strMealThumb ?? AppConstants.emptyString)
                                 
                                 let recipeUrl = ApiConstants.baseUrl + ApiConstants.recipePath + ApiConstants.recipeParam + details.idMeal
                                 urlListPerCategory.append(recipeUrl)
                             }
                         }
                         
-                        DownloadManager.sharedInstance.recipessUrls?[category] = urlListPerCategory
+                        DownloadManager.shared.recipessUrls?[category] = urlListPerCategory
                         urlListPerCategory.removeAll()
                         
                         print("Completed fetching meal. Category:" + AppConstants.whiteSpace + category)
@@ -73,7 +81,7 @@ struct DownloadManager {
         
         dispatchGroup.notify(queue: .main) {
             fetchRecipesFromServer { done in
-                DownloadManager.sharedInstance.isDoneFetchingRecipe = done
+                DownloadManager.shared.isDoneFetchingRecipe = done
                 
                 if let response = processCompletion() {
                     if !response.isEmpty {
@@ -83,7 +91,7 @@ struct DownloadManager {
             }
             
             fetchMealsImagesFromServer { meals in
-                DownloadManager.sharedInstance.isDoneFetchingMealsImages = meals!.count > 0
+                DownloadManager.shared.isDoneFetchingMealsImages = meals!.count > 0
                 
                 if let response = processCompletion() {
                     if !response.isEmpty {
@@ -96,14 +104,14 @@ struct DownloadManager {
     
     private func saveMealDetailsLocally(with key: String, andWith mealDetails: Array<MealsDetailsModel>) {
         for detail in mealDetails {
-            CoreDataManager.sharedInstance.setMealDetails(with: detail, andWith: key)
+            CoreDataManager.shared.setMealDetails(with: detail, andWith: key)
         }
     }
     
     // MARK: - PROCESS FOR RECIPES
     
     private func fetchRecipesFromServer(completion: @escaping (Bool) -> Void) {
-        if let recipessUrls = DownloadManager.sharedInstance.recipessUrls {
+        if let recipessUrls = DownloadManager.shared.recipessUrls {
             for urls in recipessUrls {
                 let list = urls.value
                 
@@ -121,7 +129,7 @@ struct DownloadManager {
                             case .success(let value):
                                 if  let recipeDetails = value.meals.first {
                                     if let category = recipeDetails[AppConstants.strCategory] {
-                                        let key = (category ?? AppConstants.emptyString) + AppConstants.underScoreString + AppConstants.recipes
+                                        let key = (category ?? AppConstants.emptyString) + AppConstants.underScoreString + AppConstants.recipe
                                         saveRecipeDetailsLocally(with: key, andWith: recipeDetails)
                                         
                                         print("Completed fetching recipe. Category:" + AppConstants.whiteSpace + (category ?? AppConstants.emptyString))
@@ -143,14 +151,14 @@ struct DownloadManager {
     
     private func saveRecipeDetailsLocally(with key: String, andWith recipeDetails: Dictionary<String, String?>?) {
         if let details = recipeDetails {
-            CoreDataManager.sharedInstance.setRecipeDetails(with: details, andWith: key)
+            CoreDataManager.shared.setRecipeDetails(with: details, andWith: key)
         }
     }
     
     // MARK: - PROCESS FOR IMAGES
     
     private func fetchMealsImagesFromServer(completion: @escaping ([[String: [MealsDetailsModel]]]?) -> Void) {
-        if let mealsUrls = DownloadManager.sharedInstance.mealsUrls {
+        if let mealsUrls = DownloadManager.shared.mealsUrls {
             for urlString in mealsUrls {
                 let url = URL(string: urlString)!
                 
@@ -187,7 +195,7 @@ struct DownloadManager {
             }
             
             dispatchGroup.notify(queue: .main) {
-                completion(DownloadManager.sharedInstance.meals)
+                completion(DownloadManager.shared.meals)
             }
         }
     }
@@ -195,15 +203,15 @@ struct DownloadManager {
     // MARK: - OTHERS
     
     private func processCompletion() -> [[String: [MealsDetailsModel]]]? {
-        let isDoneFetchingRecipe = DownloadManager.sharedInstance.isDoneFetchingRecipe
-        let isDoneFetchingMealsImages = DownloadManager.sharedInstance.isDoneFetchingMealsImages
+        let isDoneFetchingRecipe = DownloadManager.shared.isDoneFetchingRecipe
+        let isDoneFetchingMealsImages = DownloadManager.shared.isDoneFetchingMealsImages
         
         if isDoneFetchingRecipe && isDoneFetchingMealsImages {
             let endTime = Date().timeIntervalSince1970
-            let elapsedTime = endTime - DownloadManager.sharedInstance.startTime
+            let elapsedTime = endTime - DownloadManager.shared.startTime
             print("Completed fetching data. Elapsed time: \(elapsedTime.rounded())")
             
-            return DownloadManager.sharedInstance.meals
+            return DownloadManager.shared.meals
         }
         
         return []

@@ -10,15 +10,15 @@ import SwiftUI
 import CoreData
 
 struct MealsService {
-    static func processMealsDataForDisplay(with mealsViewModel: MealsViewModel, completion: @escaping (Bool) -> Void) {
-        let isEmptyRecord = CoreDataManager.sharedInstance.checkEmptyRecord()
+    static func processMealsDataForDisplay(completion: @escaping (Bool) -> Void) {
+        let isEmptyRecord = CoreDataManager.shared.checkEmptyRecord()
         
         if isEmptyRecord {
-            DownloadManager.sharedInstance.fetchMealsFromServer(with: ApiConstants.Url.mealsList) { responseObject in
+            DownloadManager.shared.fetchMealsFromServer(with: ApiConstants.Url.mealsList) { responseObject in
                 if responseObject != nil {
                     if let mealsCollection = responseObject {
                         for dictionary in mealsCollection {
-                            initMealsData(with: dictionary, andWith: mealsViewModel)
+                            initMealsData(with: dictionary)
                         }
                     }
                 }
@@ -34,15 +34,15 @@ struct MealsService {
     
     // MARK: - PROCESS FOR MEALS
     
-    private static func initMealsData(with dictionary: Dictionary<String, [MealsDetailsModel]>, andWith mealsViewModel: MealsViewModel) {
+    private static func initMealsData(with dictionary: Dictionary<String, [MealsDetailsModel]>) {
         let key = dictionary.keys.first
         let values = dictionary[key ?? AppConstants.emptyString] ?? []
     
         MealsViewModel.setMealsData(with: key ?? AppConstants.emptyString, andWith: values)
     }
     
-    private static func processFetchingMealsDataFromLocal(with mealsViewModel: MealsViewModel, completion: @escaping (Bool) -> Void) {
-        let entities = CoreDataManager.sharedInstance.fetchAllMealsEntities()
+    private static func processFetchingMealsDataFromLocal(completion: @escaping (Bool) -> Void) {
+        let entities = CoreDataManager.shared.fetchAllMealsEntities()
         
         for entity in entities {
             guard let entityName = entity.name else {
@@ -52,12 +52,12 @@ struct MealsService {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
             
             do {
-                let results = try CoreDataManager.sharedInstance.viewContext.fetch(fetchRequest)
+                let results = try CoreDataManager.shared.viewContext.fetch(fetchRequest)
                 
                 for result in results {
                     if let managedObject = result as? NSManagedObject {
                         let key = managedObject.entity.name ?? AppConstants.emptyString
-                        initMealsDataFromLocal(with: [key: results], andWith: mealsViewModel)
+                        initMealsDataFromLocal(with: [key: results])
                     }
                 }
                 
@@ -71,7 +71,7 @@ struct MealsService {
         completion(true)
     }
     
-    private static func initMealsDataFromLocal(with dictionary: Dictionary<String, [any NSFetchRequestResult]>, andWith mealsViewModel: MealsViewModel) {
+    private static func initMealsDataFromLocal(with dictionary: Dictionary<String, [any NSFetchRequestResult]>) {
         let key = dictionary.keys.first
         let value = dictionary[key ?? AppConstants.emptyString]
         
@@ -80,7 +80,7 @@ struct MealsService {
         if let value = value {
             for entity in value {
                 if let entity = entity as? NSManagedObject {
-                    let details = mealsViewModel.initMealsDetails(with: entity)
+                    let details = MealsViewModel.shared.initMealsDetails(with: entity)
                     mealsDetails.append(details)
                 }
             }
@@ -92,7 +92,7 @@ struct MealsService {
     // MARK: - PROCESS FOR RECIPES
     
     private static func processFetchingRecipesDataFromLocal(completion: @escaping (Bool) -> Void) {
-        let entities = CoreDataManager.sharedInstance.fetchAllRecipesEntities()
+        let entities = CoreDataManager.shared.fetchAllRecipesEntities()
         
         for entity in entities {
             guard let entityName = entity.name else {
@@ -102,7 +102,7 @@ struct MealsService {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
             
             do {
-                let results = try CoreDataManager.sharedInstance.viewContext.fetch(fetchRequest)
+                let results = try CoreDataManager.shared.viewContext.fetch(fetchRequest)
                 
                 if (results.count != 0) {
                     initRecipesDataFromLocal(with: [entityName: results])
@@ -127,7 +127,7 @@ struct MealsService {
         if let value = value {
             for entity in value {
                 if let entity = entity as? NSManagedObject {
-                    let details = RecipesViewModel.sharedInstance.initRecipesDetails(with: entity)
+                    let details = RecipesViewModel.shared.initRecipesDetails(with: entity)
                     recipesDetails.append(details)
                 }
             }
@@ -166,7 +166,7 @@ struct MealsService {
         var isDoneFetchingRecipes = false
         var isDoneFetchingMeals = false
         
-        processFetchingMealsDataFromLocal(with: MealsViewModel.sharedInstance) { success in
+        processFetchingMealsDataFromLocal { success in
             if success {
                 isDoneFetchingMeals = success
             }
@@ -192,8 +192,8 @@ struct MealsService {
     }
     
     static func fetchMealsData() -> [MealsDetailsModel]? {
-        let category = MealsViewModel.sharedInstance.getMealCategory()
-        let mealsData = MealsViewModel.sharedInstance.getMealsData()
+        let category = MealsViewModel.getMealCategory()
+        let mealsData = MealsViewModel.getMealsData()
         
         return mealsData[category]
     }

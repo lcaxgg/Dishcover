@@ -12,12 +12,20 @@ class RecipesViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
-    static let sharedInstance: RecipesViewModel = RecipesViewModel()
+    static let shared: RecipesViewModel = RecipesViewModel()
     
+    private var recipeCategory: String = AppConstants.beef + AppConstants.underScoreString + AppConstants.recipe
     private var recipesData: Dictionary<String, [RecipesDetailsModel]> = Dictionary()
     private var recipesDetailsModel: RecipesDetailsModel = RecipesDetailsModel()
+    private var idMealForRecipeFetching: String = AppConstants.emptyString
     
     // MARK: - METHODS
+    
+    private init() {}
+ 
+    func getFirstInstance() -> RecipesViewModel {
+        return RecipesViewModel.shared
+    }
     
     func initRecipesDetails(with entity: NSManagedObject) -> RecipesDetailsModel {
         if entity.responds(to: NSSelectorFromString(AppConstants.idMeal)) {
@@ -223,13 +231,29 @@ class RecipesViewModel: ObservableObject {
     
     // MARK: - GETTER FOR VIEWMODEL PROPERTIES
     
-    func getRecipesData() -> Dictionary<String, [RecipesDetailsModel]> {
-        RecipesViewModel.sharedInstance.recipesData
+    static func getRecipeCategory() -> String {
+        RecipesViewModel.shared.recipeCategory
+    }
+    
+    static func getIdMealForRecipeFetching() -> String {
+        RecipesViewModel.shared.idMealForRecipeFetching
+    }
+    
+    static func getRecipesData() -> Dictionary<String, [RecipesDetailsModel]> {
+        RecipesViewModel.shared.recipesData
     }
     
     // MARK: - SETTER FOR VIEWMODEL PROPERTIES
     
+    static func setMealCategory(with category: String) {
+        RecipesViewModel.shared.recipeCategory = category + AppConstants.underScoreString + AppConstants.recipe
+    }
+    
+    static func setIdMealForRecipeFetching(with idMealForRecipeFetching: String) {
+        RecipesViewModel.shared.idMealForRecipeFetching = idMealForRecipeFetching
+    }
+    
     static func setRecipesData(with key: String, andWith value: Array<RecipesDetailsModel>) {
-        RecipesViewModel.sharedInstance.recipesData[key] = value
+        RecipesViewModel.shared.recipesData[key] = value
     }
 }

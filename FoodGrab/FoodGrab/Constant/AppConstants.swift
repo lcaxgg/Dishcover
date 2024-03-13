@@ -164,7 +164,7 @@ struct AppConstants {
     static let strYoutube = "strYoutube"
     static let strMealThumb = "strMealThumb"
     
-    static let recipes = "Recipe"
+    static let recipe = "Recipe"
     
     // MARK: - ALERT, POPUP MODAL
     

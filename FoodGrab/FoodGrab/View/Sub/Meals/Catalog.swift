@@ -13,7 +13,7 @@ struct Catalog: View {
     
     var geometry: GeometryProxy
     @ObservedObject var searchViewModel: SearchViewModel
-    var completion: () -> Void
+    var completion: (String) -> Void
     
     @State private var searchedMealsData: [MealsDetailsModel]?
     
@@ -28,7 +28,7 @@ struct Catalog: View {
                     GridItem(.flexible(), spacing: 10.0)
                 ], spacing: 17.0) {
                     
-                    let mealsData =  MealsService.fetchMealsData()
+                    let mealsData = MealsService.fetchMealsData()
                     
                     ForEach((!searchViewModel.getSearchText().isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
@@ -69,7 +69,7 @@ struct Catalog: View {
                                     .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.06)
                                     .background(Color(AppConstants.white))
                                     .onTapGesture {
-                                        completion()
+                                        completion(item.idMeal)
                                     }
                                 } else {
                                     Color(AppConstants.lightGrayOne)
@@ -106,6 +106,6 @@ struct Catalog: View {
 #Preview {
     GeometryReader { geometry in
         CustomPreview { Catalog(geometry: geometry,
-                                searchViewModel: SearchViewModel(), completion: {}) }
+                                searchViewModel: SearchViewModel(), completion: { idMeal in }) }
     }
 }
