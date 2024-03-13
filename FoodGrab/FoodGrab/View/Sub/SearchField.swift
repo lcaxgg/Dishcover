@@ -34,7 +34,7 @@ struct SearchField: View {
                     if !searchViewModel.getSearchText().isEmpty {
                         HStack {
                             Spacer()
-                           
+                            
                             Button(action: {
                                 searchViewModel.setSearchText(with: AppConstants.emptyString)
                             }) {
@@ -54,18 +54,15 @@ struct SearchField: View {
 
 // MARK: - PREVIEW
 
-struct SearchField_Previews: PreviewProvider {
-    static var previews: some View {
+#Preview {
+    GeometryReader { geometry in
+        let textBinding = Binding<String>(
+            get: { AppConstants.emptyString },
+            set: { _ in }
+        )
         
-        GeometryReader { geometry in
-            let textBinding = Binding<String>(
-                get: { AppConstants.emptyString },
-                set: { _ in }
-            )
-            
-            CustomPreview { SearchField(geometry: geometry,
-                                        searchText: textBinding,
-                                        searchViewModel: SearchViewModel()) }
-        }
+        CustomPreview { SearchField(geometry: geometry,
+                                    searchText: textBinding,
+                                    searchViewModel: SearchViewModel()) }
     }
 }

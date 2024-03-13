@@ -31,7 +31,7 @@ struct AllCategories: View {
             
             VStack {
                 HStack {
-                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.02, weight: .regular, design: .rounded), color: AppConstants.green)]
+                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: firstTextModifier)
@@ -41,7 +41,7 @@ struct AllCategories: View {
                     
                     Spacer()
                     
-                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.02, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .semibold, design: .rounded), color: AppConstants.black)]
                     
                     Text(AppConstants.allCategories)
                         .configure(withModifier: secondTextModifier)
@@ -115,17 +115,15 @@ struct AllCategories: View {
 
 // MARK: - PREVIEW
 
-struct AllCategories_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader { geometry in
-            let shouldShowAllCategories = Binding<Bool>(
-                get: { false },
-                set: { _ in }
-            )
-            
-            CustomPreview { AllCategories(geometry: geometry,
-                                          mealsViewModel: MealsViewModel(),
-                                          shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
-        }
+#Preview {
+    GeometryReader { geometry in
+        let shouldShowAllCategories = Binding<Bool>(
+            get: { false },
+            set: { _ in }
+        )
+        
+        CustomPreview { AllCategories(geometry: geometry,
+                                      mealsViewModel: MealsViewModel(),
+                                      shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
     }
 }

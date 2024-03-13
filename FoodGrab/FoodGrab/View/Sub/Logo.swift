@@ -25,15 +25,12 @@ struct Logo: View {
 
 // MARK: - PREVIEW
 
-struct Logo_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            Color(AppConstants.green)
-                .ignoresSafeArea(.all)
-            
-            Logo()
-        }
-        .previewLayout(.fixed(width: 100.0, height: 100.0))
+@available(iOS 17, *)
+#Preview(traits: .fixedLayout(width: 100.0, height: 100.0)) {
+    ZStack {
+        Color(AppConstants.green)
+            .ignoresSafeArea(.all)
+        
+        Logo()
     }
 }
-

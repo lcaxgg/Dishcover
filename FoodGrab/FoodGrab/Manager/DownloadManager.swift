@@ -11,6 +11,9 @@ import AlamofireImage
 import SwiftUI
 
 struct DownloadManager {
+    
+    // MARK: - PROPERTIES
+    
     static var sharedInstance = DownloadManager()
     
     private var meals: [[String: [MealsDetails]]] = Array()
@@ -22,6 +25,8 @@ struct DownloadManager {
     private var isDoneFetchingMealsImages: Bool = false
     
     private let dispatchGroup: DispatchGroup = DispatchGroup()
+    
+    // MARK: - PROCESS FOR MEALS
     
     func fetchMealsFromServer(with mealsUrls: [String], completion: @escaping ([[String: [MealsDetails]]]?) -> Void) {
         DownloadManager.sharedInstance.startTime = Date().timeIntervalSince1970
@@ -91,11 +96,11 @@ struct DownloadManager {
     
     private func saveMealDetailsLocally(with key: String, andWith mealDetails: Array<MealsDetails>) {
         for detail in mealDetails {
-            let newEntity = CoreDataManager.sharedInstance.fetchMealEntity(with: key)
-            
-            newEntity?.setMealDetails(with: detail)
+            CoreDataManager.sharedInstance.setMealDetails(with: detail, andWith: key)
         }
     }
+    
+    // MARK: - PROCESS FOR RECIPES
     
     private func fetchRecipesFromServer(completion: @escaping (Bool) -> Void) {
         if let recipessUrls = DownloadManager.sharedInstance.recipessUrls {
@@ -138,11 +143,11 @@ struct DownloadManager {
     
     private func saveRecipeDetailsLocally(with key: String, andWith recipeDetails: Dictionary<String, String?>?) {
         if let details = recipeDetails {
-            let newEntity = CoreDataManager.sharedInstance.fetchRecipeEntity(with: key)
-            
-            newEntity?.setRecipeDetails(with: details)
+            CoreDataManager.sharedInstance.setRecipeDetails(with: details, andWith: key)
         }
     }
+    
+    // MARK: - PROCESS FOR IMAGES
     
     private func fetchMealsImagesFromServer(completion: @escaping ([[String: [MealsDetails]]]?) -> Void) {
         if let mealsUrls = DownloadManager.sharedInstance.mealsUrls {
@@ -187,6 +192,8 @@ struct DownloadManager {
         }
     }
     
+    // MARK: - OTHERS
+    
     private func processCompletion() -> [[String: [MealsDetails]]]? {
         let isDoneFetchingRecipe = DownloadManager.sharedInstance.isDoneFetchingRecipe
         let isDoneFetchingMealsImages = DownloadManager.sharedInstance.isDoneFetchingMealsImages
@@ -194,7 +201,7 @@ struct DownloadManager {
         if isDoneFetchingRecipe && isDoneFetchingMealsImages {
             let endTime = Date().timeIntervalSince1970
             let elapsedTime = endTime - DownloadManager.sharedInstance.startTime
-            print("Completed fetching data. Elapsed time: \(elapsedTime)")
+            print("Completed fetching data. Elapsed time: \(elapsedTime.rounded())")
             
             return DownloadManager.sharedInstance.meals
         }

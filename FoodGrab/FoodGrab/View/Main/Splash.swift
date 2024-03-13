@@ -43,8 +43,6 @@ struct Splash: View {
 
 // MARK: - PREVIEW
 
-struct Splash_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomPreview { Splash() }
-    }
+#Preview {
+    CustomPreview { Splash() }
 }

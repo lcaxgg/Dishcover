@@ -50,7 +50,7 @@ struct Welcome: View {
                         Spacer()
                         
                         NavigationLink(destination: Register()) {
-                            let attribute =  ButtonOneAttributes(text: AppConstants.register, bgColor: AppConstants.green, fontWeight: .semibold, fontSize: geometry.size.height * 0.018, cornerRadius: 10.0, isEnabled: true)
+                            let attribute = ButtonOneAttributes(text: AppConstants.register, bgColor: AppConstants.green, fontWeight: .semibold, fontSize: geometry.size.height * 0.018, cornerRadius: 10.0, isEnabled: true)
                             
                             ButtonOne(attribute: attribute)
                                 .frame(height: geometry.size.height * 0.045)
@@ -76,8 +76,6 @@ struct Welcome: View {
 
 // MARK: - PREVIEW
 
-struct Welcome_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomPreview { Welcome() }
-    }
+#Preview {
+    CustomPreview { Welcome() }
 }

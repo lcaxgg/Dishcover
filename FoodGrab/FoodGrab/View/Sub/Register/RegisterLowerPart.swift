@@ -33,7 +33,7 @@ struct RegisterLowerPart: View {
                             registrationViewModel.setPassword(with: password)
                             registrationValidationService.validateRegistrationData(with: AppConstants.passwordKey, andWith: registrationViewModel)
                         }
-                
+                    
                 } else {
                     SecureField(AppConstants.passwordPlaceHolder, text: registrationViewModel.passwordBinding)
                         .onChange(of: registrationViewModel.getPassword()) { newValue in
@@ -65,26 +65,26 @@ struct RegisterLowerPart: View {
                     Text(AppConstants.confirmPassword)
                         .configure(withModifier: textModifier)
                         .frame(width: UIScreen.main.bounds.width * 0.19, alignment: .leading)
-
+                    
                     if isConfirmPasswordVisible {
                         TextField(AppConstants.confrimPasswordPlaceHolder, text: registrationViewModel.confirmPasswordBinding)
                             .onChange(of: registrationViewModel.getConfirmPassword()) { newValue in
                                 let confirmPassword = newValue.filter { !$0.isWhitespace }
-                             
+                                
                                 registrationViewModel.setConfirmPaswword(with: confirmPassword)
                                 registrationValidationService.validateRegistrationData(with: AppConstants.confirmPasswordKey, andWith: registrationViewModel)
                             }
-
+                        
                     } else {
                         SecureField(AppConstants.confrimPasswordPlaceHolder, text: registrationViewModel.confirmPasswordBinding)
                             .onChange(of: registrationViewModel.getConfirmPassword()) { newValue in
                                 let confirmPassword = newValue.filter { !$0.isWhitespace }
-                             
+                                
                                 registrationViewModel.setConfirmPaswword(with: confirmPassword)
                                 registrationValidationService.validateRegistrationData(with: AppConstants.confirmPasswordKey, andWith: registrationViewModel)
                             }
                     }
-
+                    
                     if registrationViewModel.getConfirmPassword().count > 0 {
                         Button(action: {
                             isConfirmPasswordVisible.toggle()
@@ -106,11 +106,7 @@ struct RegisterLowerPart: View {
 
 // MARK: - PREVIEW
 
-struct RegisterLowerPart_Previews: PreviewProvider {
-    static var previews: some View {
-        RegisterLowerPart(registrationViewModel: RegistrationViewModel(),
-                          registrationValidationService: RegistrationValidationService())
-        
-            .previewLayout(.fixed(width: UIScreen.main.bounds.width, height: 150.0))
-    }
+@available(iOS 17, *)
+#Preview(traits: .fixedLayout(width: UIScreen.main.bounds.width, height: 150.0)) {
+    RegisterLowerPart(registrationViewModel: RegistrationViewModel(), registrationValidationService: RegistrationValidationService())
 }
