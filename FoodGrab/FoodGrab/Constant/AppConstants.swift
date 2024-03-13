@@ -33,17 +33,30 @@ struct AppConstants {
     static let confirmPassword = "Confirm Password"
     static let useLocation = "Use your current location"
     
+    static let allCategories = "All Categories"
+    static let categories = "Categories"
+    static let item = "Item"
+    static let items = "Items"
+    static let mealName = "Meal Name"
+    static let ingredients = "Ingredients"
+    static let instructions = "Instructions"
+    
+    // MARK: - BUTTONS, OTHER ACTIONS
+    
     static let meals = "Meals"
     static let chat = "Chat"
     static let maps = "Maps"
     static let account = "Account"
     
-    static let allCategories = "All Categories"
-    static let categories = "Categories"
+    static let login = "Login"
+    static let register = "Register"
+    static let addPhoto = "Add Photo"
+    static let back = "Back"
+    static let share = "Share"
     static let seeAll = "See All"
-    static let item = "Item"
-    static let items = "Items"
-
+    static let showDetails = "Show Details"
+    static let hideDetails = "Hide Details"
+    
     static let beef = "Beef"
     static let chicken = "Chicken"
     static let dessert = "Dessert"
@@ -58,14 +71,6 @@ struct AppConstants {
     static let vegetarian = "Vegetarian"
     static let breakFast = "Breakfast"
     static let goat = "Goat"
-    
-    // MARK: - BUTTONS
-    
-    static let login = "Login"
-    static let register = "Register"
-    static let addPhoto = "Add Photo"
-    static let back = "Back"
-    static let share = "Share"
     
     // MARK: - FIELDS
     
@@ -174,6 +179,7 @@ struct AppConstants {
     static let black = "black"
     static let green = "green"
     static let darkGray = "darkGray"
+    static let darkGrayOne = "darkGrayOne"
     static let lightGrayOne = "lightGrayOne"
     static let lightGrayTwo = "lightGrayTwo"
     static let lightGrayThree = "lightGrayThree"

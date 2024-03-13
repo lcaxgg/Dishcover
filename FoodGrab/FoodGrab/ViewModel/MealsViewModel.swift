@@ -12,6 +12,7 @@ class MealsViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
+    static let sharedInstance: MealsViewModel = MealsViewModel()
     @Published var mealsData: Dictionary<String, [MealsDetails]> = Dictionary()
     @Published var mealCategory: String = AppConstants.beef
     @Published var mealsDetails: MealsDetails = MealsDetails(idMeal: AppConstants.emptyString,

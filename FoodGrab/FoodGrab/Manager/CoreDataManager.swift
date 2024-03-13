@@ -75,7 +75,10 @@ class CoreDataManager {
     }
 
     func fetchAllMealsEntities() -> Array<NSEntityDescription> {
-        viewContext.persistentStoreCoordinator?.managedObjectModel.entities ?? Array()
+        let mealsEntities = viewContext.persistentStoreCoordinator?.managedObjectModel.entities ?? Array()
+        let filteredMealEntities = mealsEntities.filter { !$0.name!.contains(AppConstants.underScoreString) }
+        
+        return filteredMealEntities
     }
     
     private func fetchMealEntity(with key: String?) -> NSManagedObject? {
@@ -115,6 +118,13 @@ class CoreDataManager {
         }
         
         return entity
+    }
+    
+    func fetchAllRecipesEntities() -> Array<NSEntityDescription> {
+        let recipesEntities = viewContext.persistentStoreCoordinator?.managedObjectModel.entities ?? Array()
+        let filteredRecipesEntities = recipesEntities.filter { $0.name!.contains(AppConstants.underScoreString) }
+        
+        return filteredRecipesEntities
     }
     
     private func fetchRecipeEntity(with key: String?) -> NSManagedObject? {

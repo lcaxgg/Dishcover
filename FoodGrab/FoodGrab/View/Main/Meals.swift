@@ -25,6 +25,7 @@ struct Meals: View {
     @FocusState private var isSearchFieldFocused: Bool
     
     @StateObject private var mealsViewModel = MealsViewModel()
+    @StateObject private var recipesViewModel = RecipesViewModel()
     @StateObject private var searchViewModel = SearchViewModel()
     
     private var mealsCategoriesViewModel = MealsCategoriesViewModel()
@@ -159,7 +160,7 @@ struct Meals: View {
                                     Text(AppConstants.meals)
                                 }
                                 .fullScreenCover(isPresented: $isPresentedRecipe) {
-                                    Recipe(isPresentedRecipe: $isPresentedRecipe,
+                                    Recipes(isPresentedRecipe: $isPresentedRecipe,
                                            geometry: geometry)
                                 }
                             }

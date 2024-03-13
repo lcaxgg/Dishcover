@@ -66,6 +66,7 @@ struct Catalog: View {
                                             )
                                     }
                                     .padding()
+                                    .padding(.bottom, 2.0)
                                     .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.06)
                                     .background(Color(AppConstants.white))
                                     .onTapGesture {

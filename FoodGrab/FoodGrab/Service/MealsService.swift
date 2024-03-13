@@ -26,11 +26,13 @@ struct MealsService {
                 completion(true)
             }
         } else {
-            processFetchingMealsDataFromLocal(with: mealsViewModel) { success in
+            processFetchingAllDataFromLocal { success in
                 completion(success)
             }
         }
     }
+    
+    // MARK: - PROCESS FOR MEALS
     
     private static func initMealsData(with dictionary: Dictionary<String, [MealsDetails]>, andWith mealsViewModel: MealsViewModel) {
         let key = dictionary.keys.first
@@ -86,6 +88,55 @@ struct MealsService {
         
         mealsViewModel.mealsData[key ?? AppConstants.emptyString] = mealsDetails
     }
+
+    // MARK: - PROCESS FOR RECIPES
+    
+    private static func processFetchingRecipesDataFromLocal(completion: @escaping (Bool) -> Void) {
+        let entities = CoreDataManager.sharedInstance.fetchAllRecipesEntities()
+        
+        for entity in entities {
+            guard let entityName = entity.name else {
+                continue
+            }
+            
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            
+            do {
+                let results = try CoreDataManager.sharedInstance.viewContext.fetch(fetchRequest)
+                
+                if (results.count != 0) {
+                    initRecipesDataFromLocal(with: [entityName: results])
+                }
+                
+                print("Completed fetching data. Entity Name:" + AppConstants.whiteSpace + entityName)
+            } catch {
+                print("* Couldn't fetch data. Entity Name: \(String(describing: entityName)) \nReason: \(error.localizedDescription) *")
+                completion(false)
+            }
+        }
+        
+        completion(true)
+    }
+    
+    private static func initRecipesDataFromLocal(with dictionary: Dictionary<String, [any NSFetchRequestResult]>) {
+        let key = dictionary.keys.first
+        let value = dictionary[key ?? AppConstants.emptyString]
+        
+        var recipesDetails: [RecipesDetailsModel] = Array()
+        
+        if let value = value {
+            for entity in value {
+                if let entity = entity as? NSManagedObject {
+                    let details = RecipesViewModel.sharedInstance.initRecipesDetails(with: entity)
+                    recipesDetails.append(details)
+                }
+            }
+        }
+        
+        RecipesViewModel.setRecipesData(with: key ?? AppConstants.emptyString, andWith: recipesDetails)
+    }
+    
+    // MARK: - PROCESS FOR IMAGES
     
     static func fetchImageFromLocal(urlString: String) -> UIImage? {
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
@@ -104,6 +155,35 @@ struct MealsService {
             return image
         } else {
             return nil
+        }
+    }
+    
+    // MARK: - OTHERS
+    
+    private static func processFetchingAllDataFromLocal(completion: @escaping (Bool) -> Void) {
+        let startTime = Date().timeIntervalSince1970
+        
+        var isDoneFetchingRecipes = false
+        var isDoneFetchingMeals = false
+        
+        processFetchingMealsDataFromLocal(with: MealsViewModel.sharedInstance) { success in
+            if success {
+                isDoneFetchingMeals = success
+            }
+        }
+        
+        processFetchingRecipesDataFromLocal { success in
+            if success {
+                isDoneFetchingRecipes = success
+            }
+        }
+        
+        if isDoneFetchingMeals && isDoneFetchingRecipes {
+            let endTime = Date().timeIntervalSince1970
+            let elapsedTime = endTime - startTime
+            print("Completed fetching data. Elapsed time: \(elapsedTime.rounded())")
+            
+            completion(true)
         }
     }
     

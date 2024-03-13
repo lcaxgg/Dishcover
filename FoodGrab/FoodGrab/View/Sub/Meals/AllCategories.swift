@@ -31,7 +31,7 @@ struct AllCategories: View {
             
             VStack {
                 HStack {
-                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.02, weight: .regular, design: .rounded), color: AppConstants.green)]
+                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: firstTextModifier)
@@ -41,7 +41,7 @@ struct AllCategories: View {
                     
                     Spacer()
                     
-                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.02, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .semibold, design: .rounded), color: AppConstants.black)]
                     
                     Text(AppConstants.allCategories)
                         .configure(withModifier: secondTextModifier)
