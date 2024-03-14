@@ -8,10 +8,10 @@
 import Foundation
 
 struct MealsModel: Codable {
-    let meals: [MealsDetails]?
+    let meals: [MealsDetailsModel]?
 }
 
-struct MealsDetails: Codable {
+struct MealsDetailsModel: Codable {
     var idMeal: String
     var strMeal: String
     var strMealThumb: String?
@@ -23,8 +23,3 @@ struct MealsDetails: Codable {
     }
 }
 
-struct MealsDetailsModel {
-    var idMeal: Int64 = 0
-    var strMeal: String = AppConstants.emptyString
-    var strMealThumb: String = AppConstants.emptyString
-}

@@ -23,9 +23,7 @@ struct Meals: View {
     @State private var isPresentedAllCategories: Bool = false
     @State private var isPresentedRecipe: Bool = false
     @FocusState private var isSearchFieldFocused: Bool
-    
-    @StateObject private var mealsViewModel = MealsViewModel()
-    @StateObject private var recipesViewModel = RecipesViewModel()
+
     @StateObject private var searchViewModel = SearchViewModel()
     
     private var mealsCategoriesViewModel = MealsCategoriesViewModel()
@@ -90,10 +88,12 @@ struct Meals: View {
                                 }
                                 .sheet(isPresented: $isPresentedAllCategories) {
                                     AllCategories(geometry: geometry,
-                                                  mealsViewModel: mealsViewModel,
                                                   shouldShowAllCategories: $isPresentedAllCategories, completion: { index, categoryModel in
+                                       
                                         selectedIndex = index
-                                        mealsViewModel.mealCategory = categoryModel.name
+                                        MealsViewModel.setMealCategory(with: categoryModel.name)
+                                        RecipesViewModel.setMealCategory(with: categoryModel.name)
+                                        
                                         isPresentedAllCategories.toggle()
                                     })
                                 }
@@ -119,7 +119,9 @@ struct Meals: View {
                                                 .frame(width: index == 4 ? geometry.size.width * 0.3 : geometry.size.width * 0.26, height: geometry.size.height * 0.05)
                                                 .onTapGesture {
                                                     selectedIndex = index
-                                                    mealsViewModel.mealCategory = categoryModel.name
+                                                    
+                                                    MealsViewModel.setMealCategory(with: categoryModel.name)
+                                                    RecipesViewModel.setMealCategory(with: categoryModel.name)
                                                     
                                                     isSearchFieldFocused = false
                                                     searchViewModel.setSearchText(with: AppConstants.emptyString)
@@ -146,8 +148,9 @@ struct Meals: View {
                             
                             TabView(selection: $selectedTab) {
                                 Catalog(geometry: geometry,
-                                        mealsViewModel: mealsViewModel,
-                                        searchViewModel: searchViewModel, completion: {
+                                        searchViewModel: searchViewModel, completion: { idMeal in
+                                   
+                                    RecipesViewModel.setIdMealForRecipeFetching(with: idMeal)
                                     
                                     isSearchFieldFocused = false
                                     isPresentedRecipe = true
@@ -186,7 +189,7 @@ struct Meals: View {
     
     private func processMealsDisplay() {
         if !isDownloadComplete {
-            MealsService.processMealsDataForDisplay(with: mealsViewModel) { success in
+            MealsService.processMealsDataForDisplay { success in
                 if success {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.65) {
                         isLoadingVisible.toggle()

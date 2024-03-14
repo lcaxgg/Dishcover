@@ -12,7 +12,7 @@ class CoreDataManager {
     
     // MARK: - PROPERTIES
     
-    static var sharedInstance = CoreDataManager()
+    static var shared = CoreDataManager()
     private let persistentContainer: NSPersistentContainer
     
     // MARK: - COMPUTED PROPERTY
@@ -48,6 +48,10 @@ class CoreDataManager {
                 print("Core Data loaded successfully")
             }
         }
+    }
+    
+    func getFirstInstance() -> CoreDataManager {
+        return CoreDataManager.shared
     }
     
     func checkEmptyRecord() -> Bool {
@@ -175,8 +179,8 @@ class CoreDataManager {
         }
     }
     
-    func setMealDetails(with mealsDetails: MealsDetails, andWith entityKey: String) {
-        let mealsViewModel = MealsViewModel()
+    func setMealDetails(with mealsDetails: MealsDetailsModel, andWith entityKey: String) {
+        let mealsViewModel = MealsViewModel.shared.getFirstInstance()
         mealsViewModel.setMealsDetails(with: mealsDetails)
         
         let entity = fetchMealEntity(with: entityKey)
@@ -189,7 +193,7 @@ class CoreDataManager {
     }
     
     func setRecipeDetails(with recipeDetails: Dictionary<String, String?>?, andWith entityKey: String) {
-        let recipesViewModel = RecipesViewModel()
+        let recipesViewModel = RecipesViewModel.shared.getFirstInstance()
         recipesViewModel.setRecipesDetails(with: recipeDetails)
         
         let entity = fetchRecipeEntity(with: entityKey)
