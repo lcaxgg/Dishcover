@@ -91,7 +91,7 @@ struct AllCategories: View {
                                 let itemCount = "\(mealsData[categoryModel.name]?.count ?? 0)"
                                 let additionalLabel = mealsData[categoryModel.name]!.count > 1 ? AppConstants.items : AppConstants.item
                                 
-                                Text(itemCount + AppConstants.whiteSpace + additionalLabel)
+                                Text(itemCount + AppConstants.whiteSpaceString + additionalLabel)
                                     .configure(withModifier: secondTextModifier)
                                     .padding(.top, 5.0)
                             }

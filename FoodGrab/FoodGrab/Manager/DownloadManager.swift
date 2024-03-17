@@ -69,7 +69,7 @@ struct DownloadManager {
                         DownloadManager.shared.recipessUrls?[category] = urlListPerCategory
                         urlListPerCategory.removeAll()
                         
-                        print("Completed fetching meal. Category:" + AppConstants.whiteSpace + category)
+                        print("Completed fetching meal. Category:" + AppConstants.whiteSpaceString + category)
                     }
                     
                 case .failure(let error):
@@ -132,7 +132,7 @@ struct DownloadManager {
                                         let key = (category ?? AppConstants.emptyString) + AppConstants.underScoreString + AppConstants.recipe
                                         saveRecipeDetailsLocally(with: key, andWith: recipeDetails)
                                         
-                                        print("Completed fetching recipe. Category:" + AppConstants.whiteSpace + (category ?? AppConstants.emptyString))
+                                        print("Completed fetching recipe. Category:" + AppConstants.whiteSpaceString + (category ?? AppConstants.emptyString))
                                     }
                                 }
                             case .failure(let error):
@@ -180,7 +180,7 @@ struct DownloadManager {
                                 let fileURL = imagesDirectory.appendingPathComponent(filename)
                                 try imageData.write(to: fileURL)
                                 
-                                print("Completed saving image. Filename:" + AppConstants.whiteSpace + filename)
+                                print("Completed saving image. Filename:" + AppConstants.whiteSpaceString + filename)
                             } catch {
                                 print("* Couldn't save image: \(error.localizedDescription) *")
                             }

@@ -33,9 +33,7 @@ struct Catalog: View {
                     ForEach((!searchViewModel.getSearchText().isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
                             VStack(spacing: 0) {
-                                if let strMealThumb = item.strMealThumb,
-                                   let image = MealsService.fetchImageFromLocal(urlString: strMealThumb) {
-                                    
+                                if let image = MealsService.fetchImageFromLocal(urlString: item.strMealThumb ?? AppConstants.emptyString) {
                                     let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.emptyString)
                                     
                                     Image(uiImage: image)
@@ -48,10 +46,12 @@ struct Catalog: View {
                                             .configure(withModifier: textModifier)
                                             .lineLimit(2)
                                             .frame(height: geometry.size.height * 0.06)
-                                        
+                                           
                                         Spacer()
                                         
-                                        Color(AppConstants.green)
+                                        let isEmptyRecipesData = MealsService.checkEmptyRecipesData()
+                                        
+                                        Color(isEmptyRecipesData ? AppConstants.lightGrayTwo : AppConstants.green)
                                             .frame(width: geometry.size.width * 0.09, height: geometry.size.height * 0.04)
                                             .cornerRadius(11.0)
                                             .overlay(
@@ -64,9 +64,9 @@ struct Catalog: View {
                                                 }
                                             )
                                     }
-                                    .padding()
-                                    .padding(.bottom, 2.0)
-                                    .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.06)
+                                    .padding(.horizontal, 10.0)
+                                    .padding(.vertical, 5.0)
+                                    .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.07)
                                     .background(Color(AppConstants.white))
                                     .onTapGesture {
                                         completion(item.idMeal)
