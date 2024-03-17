@@ -89,7 +89,7 @@ struct Meals: View {
                                 .sheet(isPresented: $isPresentedAllCategories) {
                                     AllCategories(geometry: geometry,
                                                   shouldShowAllCategories: $isPresentedAllCategories, completion: { index, categoryModel in
-                                       
+                                        
                                         selectedIndex = index
                                         MealsViewModel.setMealCategory(with: categoryModel.name)
                                         RecipesViewModel.setMealCategory(with: categoryModel.name)
@@ -149,11 +149,8 @@ struct Meals: View {
                             TabView(selection: $selectedTab) {
                                 Catalog(geometry: geometry,
                                         searchViewModel: searchViewModel, completion: { idMeal in
-                                   
-                                    RecipesViewModel.setIdMealForRecipeFetching(with: idMeal)
                                     
-                                    isSearchFieldFocused = false
-                                    isPresentedRecipe = true
+                                    processMealTap(with: idMeal)
                                 })
                                 .tag(0)
                                 .frame(width: geometry.size.width)
@@ -164,7 +161,7 @@ struct Meals: View {
                                 }
                                 .fullScreenCover(isPresented: $isPresentedRecipe) {
                                     Recipes(isPresentedRecipe: $isPresentedRecipe,
-                                           geometry: geometry)
+                                            geometry: geometry)
                                 }
                             }
                             .accentColor(Color(AppConstants.green))
@@ -206,6 +203,18 @@ struct Meals: View {
                     }
                 }
             }
+        }
+    }
+    
+    private func processMealTap(with idMeal: String) {
+        RecipesViewModel.setRecipeId(with: idMeal)
+        
+        let recipesData = MealsService.fetchRecipesData()
+        let detail = recipesData?.first
+        
+        if detail != nil {
+            isSearchFieldFocused = false
+            isPresentedRecipe = true
         }
     }
 }

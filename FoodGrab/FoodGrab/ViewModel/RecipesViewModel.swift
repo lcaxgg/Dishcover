@@ -14,15 +14,17 @@ class RecipesViewModel: ObservableObject {
     
     static let shared: RecipesViewModel = RecipesViewModel()
     
-    private var recipeCategory: String = AppConstants.beef + AppConstants.underScoreString + AppConstants.recipe
-    private var recipesData: Dictionary<String, [RecipesDetailsModel]> = Dictionary()
     private var recipesDetailsModel: RecipesDetailsModel = RecipesDetailsModel()
-    private var idMealForRecipeFetching: String = AppConstants.emptyString
+    private var recipeId: String = AppConstants.emptyString
+    private var recipeCategory: String = AppConstants.beef + AppConstants.underScoreString + AppConstants.recipe
+    private var recipesData: [String: [RecipesDetailsModel]] = Dictionary()
+    private var ingredients: [String: [[String: [String: String]]]] = Dictionary()
+    private var emptyRecipesList: [String] = Array()
     
     // MARK: - METHODS
     
     private init() {}
- 
+    
     func getFirstInstance() -> RecipesViewModel {
         return RecipesViewModel.shared
     }
@@ -84,17 +86,19 @@ class RecipesViewModel: ObservableObject {
     private func processJsonString(with jsonString: String) -> Dictionary<String, String> {
         let cleanedString = jsonString.trimmingCharacters(in: CharacterSet(charactersIn: "[]"))
         let keyValuePairs = cleanedString.components(separatedBy: ", ")
-
+        
         var dictionary = Dictionary<String, String>()
-
+        
         for pair in keyValuePairs {
             let components = pair.components(separatedBy: ": ")
             
             if components.count == 2 {
                 let key = components[0].trimmingCharacters(in: CharacterSet(charactersIn: "\""))
                 let value = components[1].trimmingCharacters(in: CharacterSet(charactersIn: "\""))
-  
-                dictionary[key] = value
+                
+                if !value.isEmpty {
+                    dictionary[key] = value
+                }
             }
         }
         
@@ -198,7 +202,7 @@ class RecipesViewModel: ObservableObject {
     }
     
     func setStrCategory(with strCategory: String) {
-        recipesDetailsModel.strCategory = strCategory
+        recipesDetailsModel.strCategory = strCategory + AppConstants.underScoreString + AppConstants.recipe
     }
     
     func setStrIngredients(with strIngredients: Dictionary<String, String>) {
@@ -235,12 +239,20 @@ class RecipesViewModel: ObservableObject {
         RecipesViewModel.shared.recipeCategory
     }
     
-    static func getIdMealForRecipeFetching() -> String {
-        RecipesViewModel.shared.idMealForRecipeFetching
+    static func getRecipeId() -> String {
+        RecipesViewModel.shared.recipeId
     }
     
     static func getRecipesData() -> Dictionary<String, [RecipesDetailsModel]> {
         RecipesViewModel.shared.recipesData
+    }
+    
+    static func getEmptyRecipesList() -> Array<String> {
+        RecipesViewModel.shared.emptyRecipesList
+    }
+    
+    static func getIngredients() -> [String: [[String: [String: String]]]] {
+        RecipesViewModel.shared.ingredients
     }
     
     // MARK: - SETTER FOR VIEWMODEL PROPERTIES
@@ -249,11 +261,21 @@ class RecipesViewModel: ObservableObject {
         RecipesViewModel.shared.recipeCategory = category + AppConstants.underScoreString + AppConstants.recipe
     }
     
-    static func setIdMealForRecipeFetching(with idMealForRecipeFetching: String) {
-        RecipesViewModel.shared.idMealForRecipeFetching = idMealForRecipeFetching
+    static func setRecipeId(with idMealForRecipeFetching: String) {
+        RecipesViewModel.shared.recipeId = idMealForRecipeFetching
     }
     
     static func setRecipesData(with key: String, andWith value: Array<RecipesDetailsModel>) {
         RecipesViewModel.shared.recipesData[key] = value
+    }
+    
+    static func setEmptyRecipesList(with entityName: String) {
+        RecipesViewModel.shared.emptyRecipesList.append(entityName)
+    }
+    
+    static func setIngredientsPerCategory(with ingredientsAndMeasures: [[String: [String: String]]]) {
+        let category = RecipesViewModel.shared.getStrCategory()
+        
+        RecipesViewModel.shared.ingredients[category] = ingredientsAndMeasures
     }
 }
