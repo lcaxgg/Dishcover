@@ -72,6 +72,8 @@ struct AppConstants {
     static let breakFast = "Breakfast"
     static let goat = "Goat"
     
+    static let playVideo = "Play Video"
+    
     // MARK: - FIELDS
     
     static let firstNamePlaceHolder = "enter your first name"
@@ -160,11 +162,12 @@ struct AppConstants {
     static let strMeasure19 = "strMeasure19"
     static let strMeasure20 = "strMeasure20"
     
+    static let strIngredientsWithMeasures = "strIngredientsWithMeasures"
     static let strInstructions = "strInstructions"
     static let strYoutube = "strYoutube"
     static let strMealThumb = "strMealThumb"
     
-    static let recipes = "Recipe"
+    static let recipe = "Recipe"
     
     // MARK: - ALERT, POPUP MODAL
     
@@ -188,25 +191,31 @@ struct AppConstants {
     
     static let logo = "logo"
     static let welcomeBackGround = "welcomeBG"
+  
     static let photoCircle = "photo.circle"
     static let photo = "photo"
     static let photoFill = "photo.fill"
+    
     static let personCircleFill = "person.crop.circle.fill"
     static let mapFill = "map.fill"
+    static let squareGrid = "square.grid.2x2.fill"
+    static let messageFill = "message.fill"
+    static let playFill = "play.fill"
+    
     static let chevronLeft = "chevron.left"
     static let chevronRight = "chevron.right"
+    static let arrowUpForwardSquare = "arrow.up.forward.square"
+    
     static let eyeSlash =  "eye.slash"
     static let eye = "eye"
     static let magnifyingglass = "magnifyingglass"
-    static let squareGrid = "square.grid.2x2.fill"
-    static let messageFill = "message.fill"
-    static let arrowUpForwardSquare = "arrow.up.forward.square"
     static let xCircle = "x.circle"
     
     // MARK: - OTHERS
     
     static let emptyString = ""
-    static let whiteSpace = " "
+    static let whiteSpaceString = " "
+    static let dashString = "-"
     static let underScoreString = "_"
     static let equalString = "="
     static let emailRegexOne = "[A-Za-z0-9.@]"

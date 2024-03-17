@@ -48,7 +48,6 @@
 		5B5B79812AA9981700DBEA9F /* RegisterLowerPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79802AA9981700DBEA9F /* RegisterLowerPart.swift */; };
 		5B5B79872AA99E1F00DBEA9F /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79862AA99E1F00DBEA9F /* AppConstants.swift */; };
 		5B5B79892AA9AEA200DBEA9F /* CustomPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79882AA9AEA200DBEA9F /* CustomPreview.swift */; };
-		5B5B79922AA9BAA800DBEA9F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79912AA9BAA800DBEA9F /* AuthService.swift */; };
 		5B5B79942AA9BD1200DBEA9F /* RegistrationValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79932AA9BD1200DBEA9F /* RegistrationValidationService.swift */; };
 		5B5B79962AA9BD7500DBEA9F /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79952AA9BD7500DBEA9F /* RegistrationModel.swift */; };
 		5B61E5442B9047D600B36FA4 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B61E5432B9047D600B36FA4 /* SearchModel.swift */; };
@@ -57,6 +56,8 @@
 		5B7480682B3DD47200CD333B /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7480672B3DD47200CD333B /* DownloadManager.swift */; };
 		5B74806A2B3DD50800CD333B /* MealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7480692B3DD50800CD333B /* MealsModel.swift */; };
 		5B74806C2B3DE5EB00CD333B /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74806B2B3DE5EB00CD333B /* ApiConstants.swift */; };
+		5B753C502BA18ED7005BF90E /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B753C4F2BA18ED7005BF90E /* LoginService.swift */; };
+		5B753C522BA18F10005BF90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B753C512BA18F10005BF90E /* RegistrationService.swift */; };
 		5B7FCBA92B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B7FCBA72B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld */; };
 		5B89F7242B65F5D000BA5DFF /* MealsCategoriesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89F7232B65F5D000BA5DFF /* MealsCategoriesEnum.swift */; };
 		5B953D572ABBB9F60057E3B9 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 5B953D562ABBB9F60057E3B9 /* SwiftfulLoadingIndicators */; };
@@ -111,7 +112,6 @@
 		5B5B79802AA9981700DBEA9F /* RegisterLowerPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterLowerPart.swift; sourceTree = "<group>"; };
 		5B5B79862AA99E1F00DBEA9F /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		5B5B79882AA9AEA200DBEA9F /* CustomPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPreview.swift; sourceTree = "<group>"; };
-		5B5B79912AA9BAA800DBEA9F /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		5B5B79932AA9BD1200DBEA9F /* RegistrationValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationValidationService.swift; sourceTree = "<group>"; };
 		5B5B79952AA9BD7500DBEA9F /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		5B61E5432B9047D600B36FA4 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
@@ -120,6 +120,8 @@
 		5B7480672B3DD47200CD333B /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		5B7480692B3DD50800CD333B /* MealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsModel.swift; sourceTree = "<group>"; };
 		5B74806B2B3DE5EB00CD333B /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
+		5B753C4F2BA18ED7005BF90E /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		5B753C512BA18F10005BF90E /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		5B7FCBA82B3F1FE200E72D11 /* MealsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealsDataModel.xcdatamodel; sourceTree = "<group>"; };
 		5B89F7232B65F5D000BA5DFF /* MealsCategoriesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsCategoriesEnum.swift; sourceTree = "<group>"; };
 		5B969D432ACFDC420039F2BE /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
@@ -381,10 +383,11 @@
 			isa = PBXGroup;
 			children = (
 				5B6DC3202B3D6DF2008FAA22 /* BaseService.swift */,
-				5B5B79912AA9BAA800DBEA9F /* AuthService.swift */,
 				5B5B79932AA9BD1200DBEA9F /* RegistrationValidationService.swift */,
 				5B6DC3222B3D7A5D008FAA22 /* LoginValidationService.swift */,
 				5B9FE8D92B3F1AA000E49F07 /* MealsService.swift */,
+				5B753C4F2BA18ED7005BF90E /* LoginService.swift */,
+				5B753C512BA18F10005BF90E /* RegistrationService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -492,9 +495,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B56EE042AD8E7A30095D70D /* ImageModifier.swift in Sources */,
-				5B5B79922AA9BAA800DBEA9F /* AuthService.swift in Sources */,
 				5B597A812AD61BB70093045C /* MealsCategoriesViewModel.swift in Sources */,
 				5BA258242B935102003E37A3 /* ViewExtension.swift in Sources */,
+				5B753C522BA18F10005BF90E /* RegistrationService.swift in Sources */,
 				5B61E5442B9047D600B36FA4 /* SearchModel.swift in Sources */,
 				5B5B79942AA9BD1200DBEA9F /* RegistrationValidationService.swift in Sources */,
 				5B5A05572A9F343C001A05CA /* ButtonOne.swift in Sources */,
@@ -535,6 +538,7 @@
 				5B5B797F2AA9980A00DBEA9F /* RegisterMiddlePart.swift in Sources */,
 				5B1D142D2AB17B7C003BA1A5 /* AppDelegate.swift in Sources */,
 				5B578C2E2B961CCC00FD0277 /* RecipesViewModel.swift in Sources */,
+				5B753C502BA18ED7005BF90E /* LoginService.swift in Sources */,
 				5B5B79962AA9BD7500DBEA9F /* RegistrationModel.swift in Sources */,
 				5BF7EEDE2ABACC92005A736A /* AlertModel.swift in Sources */,
 				5B89F7242B65F5D000BA5DFF /* MealsCategoriesEnum.swift in Sources */,
