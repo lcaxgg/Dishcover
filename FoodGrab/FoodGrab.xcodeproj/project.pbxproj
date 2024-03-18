@@ -23,6 +23,8 @@
 		5B1D143A2AB17C32003BA1A5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B1D14392AB17C32003BA1A5 /* FirebaseFirestoreSwift */; };
 		5B1D143C2AB17C3B003BA1A5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5B1D143B2AB17C3B003BA1A5 /* FirebaseStorage */; };
 		5B1D143E2AB18365003BA1A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B1D143D2AB18365003BA1A5 /* GoogleService-Info.plist */; };
+		5B2611812BA86C7600461E83 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2611802BA86C7600461E83 /* Base.swift */; };
+		5B2611832BA871EF00461E83 /* ScreenSizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */; };
 		5B355B472BA725FD0044D070 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B355B462BA725FD0044D070 /* Chat.swift */; };
 		5B379B1E2AD646E00081FB59 /* ButtonOneAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B379B1D2AD646E00081FB59 /* ButtonOneAttributes.swift */; };
 		5B56EDFA2AD8CBF00095D70D /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B56EDF92AD8CBF00095D70D /* Catalog.swift */; };
@@ -87,6 +89,8 @@
 		5B1A1BF02B3F3F0D0061AE2D /* MealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewModel.swift; sourceTree = "<group>"; };
 		5B1D142C2AB17B7C003BA1A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B1D143D2AB18365003BA1A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5B2611802BA86C7600461E83 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
+		5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeReader.swift; sourceTree = "<group>"; };
 		5B355B462BA725FD0044D070 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		5B379B1D2AD646E00081FB59 /* ButtonOneAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOneAttributes.swift; sourceTree = "<group>"; };
 		5B56EDF92AD8CBF00095D70D /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
@@ -335,6 +339,7 @@
 				5B5A054C2A9ED192001A05CA /* Register.swift */,
 				5B12E4A02AC525DC008BB487 /* Meals.swift */,
 				5B355B462BA725FD0044D070 /* Chat.swift */,
+				5B2611802BA86C7600461E83 /* Base.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -349,6 +354,7 @@
 				5B5B79752AA95E7300DBEA9F /* HorizontalSeparator.swift */,
 				5B5B79772AA9734900DBEA9F /* VerticalSeparator.swift */,
 				5B969D432ACFDC420039F2BE /* SearchField.swift */,
+				5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -512,6 +518,7 @@
 				5B9FE8DA2B3F1AA000E49F07 /* MealsService.swift in Sources */,
 				5B5A05492A9ECD5D001A05CA /* Welcome.swift in Sources */,
 				5B5A053A2A9ECA81001A05CA /* Splash.swift in Sources */,
+				5B2611832BA871EF00461E83 /* ScreenSizeReader.swift in Sources */,
 				5BB2BF9E2AC3A8C500AF886D /* AlertViewModel.swift in Sources */,
 				5B74806C2B3DE5EB00CD333B /* ApiConstants.swift in Sources */,
 				5BAA442D2B34271F00DE4713 /* LoginModel.swift in Sources */,
@@ -529,6 +536,7 @@
 				5BB2BF9C2AC3A56A00AF886D /* RegistrationViewModel.swift in Sources */,
 				5B7480682B3DD47200CD333B /* DownloadManager.swift in Sources */,
 				5B56EE022AD8E7990095D70D /* TextModifier.swift in Sources */,
+				5B2611812BA86C7600461E83 /* Base.swift in Sources */,
 				5B5B79812AA9981700DBEA9F /* RegisterLowerPart.swift in Sources */,
 				5B5A05382A9ECA81001A05CA /* FoodGrabApp.swift in Sources */,
 				5B969D442ACFDC420039F2BE /* SearchField.swift in Sources */,

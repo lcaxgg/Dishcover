@@ -19,7 +19,7 @@ struct AllCategories: View {
     
     static private var mealsCategoriesViewModel = MealsCategoriesViewModel()
     
-    var geometry: GeometryProxy
+    var screenSize: CGSize
     @Binding var shouldShowAllCategories: Bool
     var completion: (Int, MealsCategoriesModel) -> Void
     
@@ -30,7 +30,7 @@ struct AllCategories: View {
             
             VStack {
                 HStack {
-                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
+                    let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: firstTextModifier)
@@ -40,14 +40,14 @@ struct AllCategories: View {
                     
                     Spacer()
                     
-                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                    let secondTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .semibold, design: .rounded), color: AppConstants.black)]
                     
                     Text(AppConstants.allCategories)
                         .configure(withModifier: secondTextModifier)
                     
                     Spacer()
                     
-                    let thirdTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.02, weight: .light, design: .rounded), color: AppConstants.white)]
+                    let thirdTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.02, weight: .light, design: .rounded), color: AppConstants.white)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: thirdTextModifier)
@@ -78,7 +78,7 @@ struct AllCategories: View {
                                 
                                 Image(categoryModel.name.lowercased())
                                     .configure(withModifier: imageModifier)
-                                    .frame(width: geometry.size.width * 0.3, height: geometry.size.width * 0.3)
+                                    .frame(width: screenSize.width * 0.3, height: screenSize.height * 0.3)
                                 
                                 let firstTextModifier = [TextModifier(font: .system(size: 15, weight: .semibold, design: .rounded), color: AppConstants.black)]
                                 
@@ -95,7 +95,7 @@ struct AllCategories: View {
                                     .configure(withModifier: secondTextModifier)
                                     .padding(.top, 5.0)
                             }
-                            .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.3)
+                            .frame(width: screenSize.width * 0.4, height: screenSize.height * 0.3)
                             .onTapGesture {
                                 completion(index, categoryModel)
                             }
@@ -116,13 +116,13 @@ struct AllCategories: View {
 // MARK: - PREVIEW
 
 #Preview {
-    GeometryReader { geometry in
+    Group {
         let shouldShowAllCategories = Binding<Bool>(
             get: { false },
             set: { _ in }
         )
         
-        CustomPreview { AllCategories(geometry: geometry,
+        CustomPreview { AllCategories(screenSize: CGSize(),
                                       shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
     }
 }
