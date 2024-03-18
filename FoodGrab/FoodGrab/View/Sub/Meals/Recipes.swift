@@ -181,10 +181,10 @@ struct Recipes: View {
                 }
                 .padding(.horizontal, 15.0)
                 .padding(.top, 10.0)
-                .padding(.bottom, 25.0)
+                .padding(.bottom, 35.0)
                 
                 if isShowDetailsForInstructions {
-                    VStack(spacing: 25.0) {
+                    VStack(spacing: 40.0) {
                         Button(action: {
                             
                         }) {
