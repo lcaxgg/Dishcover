@@ -23,7 +23,7 @@ struct Meals: View {
     @State private var isPresentedAllCategories: Bool = false
     @State private var isPresentedRecipe: Bool = false
     @FocusState private var isSearchFieldFocused: Bool
-
+    
     @StateObject private var searchViewModel = SearchViewModel()
     
     private var mealsCategoriesViewModel = MealsCategoriesViewModel()
@@ -153,8 +153,6 @@ struct Meals: View {
                                     processMealTap(with: idMeal)
                                 })
                                 .tag(0)
-                                .frame(width: geometry.size.width)
-                                .background(Color(AppConstants.lightGrayOne))
                                 .tabItem {
                                     Image(systemName: AppConstants.squareGrid)
                                     Text(AppConstants.meals)
@@ -163,9 +161,18 @@ struct Meals: View {
                                     Recipes(isPresentedRecipe: $isPresentedRecipe,
                                             geometry: geometry)
                                 }
+                                
+                                Chat()
+                                    .tag(1)
+                                    .tabItem {
+                                        Image(systemName: AppConstants.messageFill)
+                                        Text(AppConstants.chat)
+                                    }
                             }
+                            .frame(width: geometry.size.width)
+                            .background(Color(AppConstants.lightGrayOne))
                             .accentColor(Color(AppConstants.green))
-                            .onTapGesture {
+                            .onChange(of: selectedTab) { newValue in
                                 isSearchFieldFocused = false
                                 searchViewModel.setSearchText(with: AppConstants.emptyString)
                             }
