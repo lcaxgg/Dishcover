@@ -130,7 +130,7 @@ struct Register: View {
             )
         }
         .background(
-            NavigationLink(AppConstants.emptyString, destination: Meals(), isActive: $isPresentedMainScreen)
+            NavigationLink(AppConstants.emptyString, destination: Meals(screenSize: CGSize()), isActive: $isPresentedMainScreen)
         )
     }
 }
