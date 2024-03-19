@@ -12,7 +12,7 @@ struct Recipes: View {
     // MARK: - PROPERTIES
     
     @Binding var isPresentedRecipe: Bool
-    var geometry: GeometryProxy
+    var screenSize: CGSize
     
     @State private var isTappedShowDetailsForIngredients: Bool = false
     @State private var isTappedShowDetailsForInstructions: Bool = false
@@ -20,13 +20,12 @@ struct Recipes: View {
     @State private var isShowDetailsForInstructions: Bool = false
     
     var body: some View {
-        
         VStack {
             // MARK: - HEADER
             
             HStack {
                 HStack() {
-                    let textModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
+                    let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: textModifier)
@@ -38,11 +37,11 @@ struct Recipes: View {
                 Spacer()
                 
                 Color(AppConstants.green)
-                    .frame(width: geometry.size.width * 0.23)
+                    .frame(width: screenSize.width * 0.23)
                     .cornerRadius(11.0)
                     .overlay(
                         HStack(spacing: 6.0) {
-                            let textModifier = [TextModifier(font: .system(size: geometry.size.height * 0.018, weight: .semibold, design: .rounded), color: AppConstants.white)]
+                            let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.018, weight: .semibold, design: .rounded), color: AppConstants.white)]
                             
                             Text(AppConstants.share)
                                 .configure(withModifier: textModifier)
@@ -51,11 +50,11 @@ struct Recipes: View {
                             
                             Image(systemName: AppConstants.arrowUpForwardSquare)
                                 .configure(withModifier: imageModifier)
-                                .frame(width: geometry.size.width * 0.015, height: geometry.size.height * 0.015)
+                                .frame(width: screenSize.width * 0.015, height: screenSize.height * 0.015)
                         }
                     )
             }
-            .frame(height: geometry.size.height * 0.04)
+            .frame(height: screenSize.height * 0.04)
             .padding(.horizontal, 15.0)
             .padding(.bottom, 5.0)
             
@@ -68,18 +67,18 @@ struct Recipes: View {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(1.5, contentMode: .fill)
-                    .frame(width: geometry.size.width, height: geometry.size.height * 0.4)
+                    .frame(width: screenSize.width, height: screenSize.height * 0.4)
                     .padding(.bottom, 15.0)
                     .animation(nil, value: UUID())
             }
             
             VStack {
-                let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.030, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.030, weight: .semibold, design: .rounded), color: AppConstants.black)]
                 
                 Text(detail?.strMeal ?? AppConstants.emptyString)
                     .configure(withModifier: firstTextModifier)
                 
-                let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.023, weight: .regular, design: .rounded), color: AppConstants.darkGrayOne)]
+                let secondTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.023, weight: .regular, design: .rounded), color: AppConstants.darkGrayOne)]
                 
                 Text(AppConstants.mealName)
                     .configure(withModifier: secondTextModifier)
@@ -90,14 +89,14 @@ struct Recipes: View {
                 // MARK: - INGREDIENTS SECTION
                 
                 HStack {
-                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.025, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                    let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.025, weight: .semibold, design: .rounded), color: AppConstants.black)]
                     
                     Text(AppConstants.ingredients)
                         .configure(withModifier: firstTextModifier)
                     
                     Spacer()
                     
-                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.020, weight: .regular, design: .rounded), color: AppConstants.green)]
+                    let secondTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .regular, design: .rounded), color: AppConstants.green)]
                     
                     Text(isShowDetailsForIngredients ? AppConstants.hideDetails : AppConstants.showDetails)
                         .configure(withModifier: secondTextModifier)
@@ -126,14 +125,14 @@ struct Recipes: View {
                                 let (key, value) = keyValue
                                 
                                 HStack {
-                                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.020, weight: .light, design: .rounded), color: AppConstants.black)]
+                                    let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .light, design: .rounded), color: AppConstants.black)]
                                     
                                     Text(key)
                                         .configure(withModifier: firstTextModifier)
                                     
                                     Spacer ()
                                     
-                                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.020, weight: .regular, design: .rounded), color: AppConstants.black)]
+                                    let secondTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .regular, design: .rounded), color: AppConstants.black)]
                                     
                                     Text(value == AppConstants.whiteSpaceString ? AppConstants.dashString : value)
                                         .configure(withModifier: secondTextModifier)
@@ -157,14 +156,14 @@ struct Recipes: View {
                 // MARK: - INSTRUCTIONS SECTION
                 
                 HStack {
-                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.025, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                    let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.025, weight: .semibold, design: .rounded), color: AppConstants.black)]
                     
                     Text(AppConstants.instructions)
                         .configure(withModifier: firstTextModifier)
                     
                     Spacer()
                     
-                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.020, weight: .regular, design: .rounded), color: AppConstants.green)]
+                    let secondTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .regular, design: .rounded), color: AppConstants.green)]
                     
                     Text(isShowDetailsForInstructions ? AppConstants.hideDetails : AppConstants.showDetails)
                         .configure(withModifier: secondTextModifier)
@@ -182,10 +181,10 @@ struct Recipes: View {
                 }
                 .padding(.horizontal, 15.0)
                 .padding(.top, 10.0)
-                .padding(.bottom, 25.0)
+                .padding(.bottom, 35.0)
                 
                 if isShowDetailsForInstructions {
-                    VStack(spacing: 25.0) {
+                    VStack(spacing: 40.0) {
                         Button(action: {
                             
                         }) {
@@ -194,9 +193,9 @@ struct Recipes: View {
                                 
                                 Image(systemName: AppConstants.playFill)
                                     .configure(withModifier: imageModifier)
-                                    .frame(width: geometry.size.width * 0.03, height: geometry.size.height * 0.03)
+                                    .frame(width: screenSize.width * 0.03, height: screenSize.height * 0.03)
                                 
-                                let textModifier = [TextModifier(font: .system(size: geometry.size.height * 0.020, weight: .semibold, design: .rounded), color: AppConstants.green)]
+                                let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .semibold, design: .rounded), color: AppConstants.green)]
                                 
                                 Text(AppConstants.playVideo)
                                     .configure(withModifier: textModifier)
@@ -204,13 +203,12 @@ struct Recipes: View {
                             .overlay {
                                 RoundedRectangle(cornerRadius: 10.0)
                                     .stroke(Color(AppConstants.green), lineWidth: 1)
-                                    .frame(width: geometry.size.width - 30.0, height: geometry.size.height * 0.065)
+                                    .frame(width: screenSize.width - 30.0, height: screenSize.height * 0.065)
                             }
-                            
                         }
                         
                         if let instructions = detail?.strInstructions {
-                            let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.020, weight: .light, design: .rounded), color: AppConstants.black)]
+                            let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .light, design: .rounded), color: AppConstants.black)]
                             
                             Text(instructions)
                                 .configure(withModifier: firstTextModifier)
@@ -220,21 +218,20 @@ struct Recipes: View {
                 }
                 
                 // MARK: - FOOTER
-                
             }
         }//: VStack
     }
 }
 
 #Preview {
-    GeometryReader { geometry in
+    Group {
         CustomPreview {
             let isPresented = Binding<Bool>(
                 get: { false },
                 set: { _ in }
             )
             
-            Recipes(isPresentedRecipe: isPresented, geometry: geometry)
+            Recipes(isPresentedRecipe: isPresented, screenSize: CGSize())
         }
     }
 }

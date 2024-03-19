@@ -16,11 +16,11 @@ import SwiftUI
 struct AllCategories: View {
     
     // MARK: - PROPERTIES
-    
-    static private var mealsCategoriesViewModel = MealsCategoriesViewModel()
-    
-    var geometry: GeometryProxy
-    @Binding var shouldShowAllCategories: Bool
+
+    var screenSize: CGSize
+    @Binding var isPresentedAllCategories: Bool
+    @EnvironmentObject var mealsCategoriesViewModel: MealsCategoriesViewModel
+  
     var completion: (Int, MealsCategoriesModel) -> Void
     
     var body: some View {
@@ -30,24 +30,24 @@ struct AllCategories: View {
             
             VStack {
                 HStack {
-                    let firstTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
+                    let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: firstTextModifier)
                         .onTapGesture {
-                            shouldShowAllCategories.toggle()
+                            isPresentedAllCategories.toggle()
                         }
                     
                     Spacer()
                     
-                    let secondTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.022, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                    let secondTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .semibold, design: .rounded), color: AppConstants.black)]
                     
                     Text(AppConstants.allCategories)
                         .configure(withModifier: secondTextModifier)
                     
                     Spacer()
                     
-                    let thirdTextModifier = [TextModifier(font: .system(size: geometry.size.height * 0.02, weight: .light, design: .rounded), color: AppConstants.white)]
+                    let thirdTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.02, weight: .light, design: .rounded), color: AppConstants.white)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: thirdTextModifier)
@@ -70,18 +70,19 @@ struct AllCategories: View {
                     GridItem(.flexible(), spacing: 10.0),
                     GridItem(.flexible(), spacing: 10.0)
                 ], spacing: 17.0) {
+                    let mealsCategories = mealsCategoriesViewModel.getMealsCategories()
                     
-                    ForEach(Array(AllCategories.mealsCategoriesViewModel.mealsCategories.enumerated()), id: \.1.id) { index, categoryModel in
-                        VStack {
-                            VStack(spacing: 0) {
-                                let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.lightGrayThree)
-                                
-                                Image(categoryModel.name.lowercased())
-                                    .configure(withModifier: imageModifier)
-                                    .frame(width: geometry.size.width * 0.3, height: geometry.size.width * 0.3)
-                                
-                                let firstTextModifier = [TextModifier(font: .system(size: 15, weight: .semibold, design: .rounded), color: AppConstants.black)]
-                                
+                    ForEach(Array(mealsCategories.enumerated()), id: \.1.id) { index, categoryModel in
+                        VStack(spacing: 5.0) {
+                            let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.emptyString)
+                            
+                            Image(categoryModel.name.lowercased())
+                                .configure(withModifier: imageModifier)
+                                .frame(width: screenSize.width * 0.3, height: screenSize.height * 0.1)
+                            
+                            let firstTextModifier = [TextModifier(font: .system(size: 15, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                            
+                            VStack(spacing: 5.0) {
                                 Text(categoryModel.name)
                                     .configure(withModifier: firstTextModifier)
                                 
@@ -93,15 +94,14 @@ struct AllCategories: View {
                                 
                                 Text(itemCount + AppConstants.whiteSpaceString + additionalLabel)
                                     .configure(withModifier: secondTextModifier)
-                                    .padding(.top, 5.0)
-                            }
-                            .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.3)
-                            .onTapGesture {
-                                completion(index, categoryModel)
                             }
                         }
+                        .frame(width: screenSize.width * 0.4, height: screenSize.height * 0.3)
                         .background(Color(AppConstants.white))
                         .cornerRadius(11.0)
+                        .onTapGesture {
+                            completion(index, categoryModel)
+                        }
                     }
                 }
                 .padding()
@@ -116,13 +116,14 @@ struct AllCategories: View {
 // MARK: - PREVIEW
 
 #Preview {
-    GeometryReader { geometry in
+    Group {
         let shouldShowAllCategories = Binding<Bool>(
             get: { false },
             set: { _ in }
         )
         
-        CustomPreview { AllCategories(geometry: geometry,
-                                      shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
+        CustomPreview { AllCategories(screenSize: CGSize(),
+                                      isPresentedAllCategories: shouldShowAllCategories,
+                                      completion: { _,_  in }) }
     }
 }

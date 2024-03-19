@@ -6,11 +6,15 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 class MealsCategoriesViewModel: ObservableObject {
-    @Published var mealsCategories: [MealsCategoriesModel] = Array()
-
+    
+    // MARK: - PROPERTIES
+    
+    var mealsCategories: [MealsCategoriesModel] = Array()
+    @Published private var selectedIndex: Int
+    
     init() {
         mealsCategories = [
             MealsCategoriesModel(name: AppConstants.beef),
@@ -28,5 +32,23 @@ class MealsCategoriesViewModel: ObservableObject {
             MealsCategoriesModel(name: AppConstants.breakFast),
             MealsCategoriesModel(name: AppConstants.goat)
         ]
+        
+        selectedIndex = 0
+    }
+    
+    // MARK: - GETTER
+    
+    func getMealsCategories() -> [MealsCategoriesModel] {
+        mealsCategories
+    }
+    
+    func getSelectedIndex() -> Int {
+        selectedIndex
+    }
+    
+    // MARK: - SETTER
+    
+    func setSelectedIndex(with index: Int) {
+        selectedIndex = index
     }
 }
