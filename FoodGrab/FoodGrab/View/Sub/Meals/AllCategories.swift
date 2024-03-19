@@ -16,11 +16,11 @@ import SwiftUI
 struct AllCategories: View {
     
     // MARK: - PROPERTIES
-    
-    static private var mealsCategoriesViewModel = MealsCategoriesViewModel()
-    
+
     var screenSize: CGSize
-    @Binding var shouldShowAllCategories: Bool
+    @Binding var isPresentedAllCategories: Bool
+    @EnvironmentObject var mealsCategoriesViewModel: MealsCategoriesViewModel
+  
     var completion: (Int, MealsCategoriesModel) -> Void
     
     var body: some View {
@@ -35,7 +35,7 @@ struct AllCategories: View {
                     Text(AppConstants.close)
                         .configure(withModifier: firstTextModifier)
                         .onTapGesture {
-                            shouldShowAllCategories.toggle()
+                            isPresentedAllCategories.toggle()
                         }
                     
                     Spacer()
@@ -70,18 +70,19 @@ struct AllCategories: View {
                     GridItem(.flexible(), spacing: 10.0),
                     GridItem(.flexible(), spacing: 10.0)
                 ], spacing: 17.0) {
+                    let mealsCategories = mealsCategoriesViewModel.getMealsCategories()
                     
-                    ForEach(Array(AllCategories.mealsCategoriesViewModel.mealsCategories.enumerated()), id: \.1.id) { index, categoryModel in
-                        VStack {
-                            VStack(spacing: 0) {
-                                let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.lightGrayThree)
-                                
-                                Image(categoryModel.name.lowercased())
-                                    .configure(withModifier: imageModifier)
-                                    .frame(width: screenSize.width * 0.3, height: screenSize.height * 0.3)
-                                
-                                let firstTextModifier = [TextModifier(font: .system(size: 15, weight: .semibold, design: .rounded), color: AppConstants.black)]
-                                
+                    ForEach(Array(mealsCategories.enumerated()), id: \.1.id) { index, categoryModel in
+                        VStack(spacing: 5.0) {
+                            let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.emptyString)
+                            
+                            Image(categoryModel.name.lowercased())
+                                .configure(withModifier: imageModifier)
+                                .frame(width: screenSize.width * 0.3, height: screenSize.height * 0.1)
+                            
+                            let firstTextModifier = [TextModifier(font: .system(size: 15, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                            
+                            VStack(spacing: 5.0) {
                                 Text(categoryModel.name)
                                     .configure(withModifier: firstTextModifier)
                                 
@@ -93,15 +94,14 @@ struct AllCategories: View {
                                 
                                 Text(itemCount + AppConstants.whiteSpaceString + additionalLabel)
                                     .configure(withModifier: secondTextModifier)
-                                    .padding(.top, 5.0)
-                            }
-                            .frame(width: screenSize.width * 0.4, height: screenSize.height * 0.3)
-                            .onTapGesture {
-                                completion(index, categoryModel)
                             }
                         }
+                        .frame(width: screenSize.width * 0.4, height: screenSize.height * 0.3)
                         .background(Color(AppConstants.white))
                         .cornerRadius(11.0)
+                        .onTapGesture {
+                            completion(index, categoryModel)
+                        }
                     }
                 }
                 .padding()
@@ -123,6 +123,7 @@ struct AllCategories: View {
         )
         
         CustomPreview { AllCategories(screenSize: CGSize(),
-                                      shouldShowAllCategories: shouldShowAllCategories, completion: { _,_  in }) }
+                                      isPresentedAllCategories: shouldShowAllCategories,
+                                      completion: { _,_  in }) }
     }
 }

@@ -14,7 +14,8 @@ struct SearchField: View {
     
     var screenSize: CGSize
     @Binding var searchText: String
-    @ObservedObject var searchViewModel: SearchViewModel
+
+    @EnvironmentObject var searchViewModel: SearchViewModel
     
     var body: some View {
         HStack {
@@ -25,13 +26,13 @@ struct SearchField: View {
                 .frame(width: screenSize.width * 0.048, height: screenSize.height * 0.048)
                 .padding(.leading, screenSize.width * 0.035)
             
-            TextField(AppConstants.searchPlaceHolder, text: $searchViewModel.searchModel.searchText)
+            TextField(AppConstants.searchPlaceHolder, text: searchViewModel.getSearchText())
                 .autocapitalization(.none)
                 .keyboardType(.default)
                 .submitLabel(.done)
                 .padding()
                 .overlay {
-                    if !searchViewModel.getSearchText().isEmpty {
+                    if !searchViewModel.getSearchText().wrappedValue.isEmpty {
                         HStack {
                             Spacer()
                             
@@ -62,7 +63,6 @@ struct SearchField: View {
         )
         
         CustomPreview { SearchField(screenSize: CGSize(),
-                                    searchText: textBinding,
-                                    searchViewModel: SearchViewModel()) }
+                                    searchText: textBinding) }
     }
 }

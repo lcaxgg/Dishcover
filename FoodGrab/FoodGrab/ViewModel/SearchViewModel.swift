@@ -6,25 +6,38 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SearchViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
-    @Published var searchModel = SearchModel()
+    @Published var searchModel: SearchModel
+    
+    init() {
+        searchModel = SearchModel()
+    }
     
     // MARK: - GETTER
     
-    func getSearchText() -> String {
-        searchModel.searchText
+    func getSearchText() -> Binding<String> {
+        return Binding {
+            self.searchModel.searchText
+        } set: { newValue in
+            self.searchModel.searchText = newValue
+        }
     }
     
     func getIsSearching() -> Bool {
         searchModel.isSearching
     }
     
-    func getTest() -> Bool {
-        searchModel.isSearchFieldFocused
+    func getIsSearchFieldFocused() -> Binding<Bool> {
+        return Binding {
+            self.searchModel.isSearchFieldFocused
+        } set: { newValue in
+            self.searchModel.isSearchFieldFocused = newValue
+        }
     }
     
     // MARK: - SETTER

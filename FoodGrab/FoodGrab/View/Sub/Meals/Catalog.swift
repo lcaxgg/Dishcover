@@ -12,10 +12,10 @@ struct Catalog: View {
     // MARK: - PROPERTIES
     
     var screenSize: CGSize
-    @ObservedObject var searchViewModel: SearchViewModel
     var completion: (String) -> Void
     
     @State private var searchedMealsData: [MealsDetailsModel]?
+    @EnvironmentObject var searchViewModel: SearchViewModel
     
     var body: some View {
         ZStack {
@@ -30,7 +30,7 @@ struct Catalog: View {
                     
                     let mealsData = MealsService.fetchMealsData()
                     
-                    ForEach((!searchViewModel.getSearchText().isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
+                    ForEach((!searchViewModel.getSearchText().wrappedValue.isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
                             VStack(spacing: 0) {
                                 if let image = MealsService.fetchImageFromLocal(urlString: item.strMealThumb ?? AppConstants.emptyString) {
@@ -89,9 +89,9 @@ struct Catalog: View {
                         .background(Color(AppConstants.lightGrayTwo))
                         .cornerRadius(11.0)
                     }
-                    .onChange(of: searchViewModel.getSearchText()) { searchText in
+                    .onChange(of: searchViewModel.getSearchText().wrappedValue) { searchText in
                         if !searchText.isEmpty {
-                            searchedMealsData = MealsService.searchMeal(in: mealsData, with: searchViewModel.getSearchText())
+                            searchedMealsData = MealsService.searchMeal(in: mealsData, with: searchText)
                         }
                     }
                 }
@@ -105,7 +105,6 @@ struct Catalog: View {
 
 #Preview {
     Group {
-        CustomPreview { Catalog(screenSize: CGSize(),
-                                searchViewModel: SearchViewModel(), completion: { idMeal in }) }
+        CustomPreview { Catalog(screenSize: CGSize(), completion: { idMeal in }) }
     }
 }
