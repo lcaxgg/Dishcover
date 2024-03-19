@@ -123,7 +123,7 @@ struct Login: View {
             .navigationBarBackButtonHidden(loginViewModel.isProccessingLogin)
             .disabled(loginViewModel.isProccessingLogin)
             .background(
-                NavigationLink(AppConstants.emptyString, destination: Meals(), isActive: $loginViewModel.isPresentedMainScreen)
+                NavigationLink(AppConstants.emptyString, destination: Meals(screenSize: CGSize()), isActive: $loginViewModel.isPresentedMainScreen)
             )
             .onAppear {
                 loginViewModel.initDictionary()

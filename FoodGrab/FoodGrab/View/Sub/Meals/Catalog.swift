@@ -11,12 +11,11 @@ struct Catalog: View {
     
     // MARK: - PROPERTIES
     
-    var geometry: GeometryProxy
-    @ObservedObject var mealsViewModel: MealsViewModel
-    @ObservedObject var searchViewModel: SearchViewModel
-    var completion: () -> Void
+    var screenSize: CGSize
+    var completion: (String) -> Void
     
-    @State private var searchedMealsData: [MealsDetails]?
+    @State private var searchedMealsData: [MealsDetailsModel]?
+    @EnvironmentObject var searchViewModel: SearchViewModel
     
     var body: some View {
         ZStack {
@@ -29,14 +28,12 @@ struct Catalog: View {
                     GridItem(.flexible(), spacing: 10.0)
                 ], spacing: 17.0) {
                     
-                    let mealsData =  MealsService.fetchMealsData(per: mealsViewModel.mealCategory, in: mealsViewModel.mealsData)
+                    let mealsData = MealsService.fetchMealsData()
                     
-                    ForEach((!searchViewModel.getSearchText().isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
+                    ForEach((!searchViewModel.getSearchText().wrappedValue.isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
                             VStack(spacing: 0) {
-                                if let strMealThumb = item.strMealThumb,
-                                   let image = MealsService.fetchImageFromLocal(urlString: strMealThumb) {
-                                    
+                                if let image = MealsService.fetchImageFromLocal(urlString: item.strMealThumb ?? AppConstants.emptyString) {
                                     let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.emptyString)
                                     
                                     Image(uiImage: image)
@@ -48,12 +45,14 @@ struct Catalog: View {
                                         Text(item.strMeal)
                                             .configure(withModifier: textModifier)
                                             .lineLimit(2)
-                                            .frame(height: geometry.size.height * 0.06)
+                                            .frame(height: screenSize.height * 0.06)
                                         
                                         Spacer()
                                         
-                                        Color(AppConstants.green)
-                                            .frame(width: geometry.size.width * 0.09, height: geometry.size.height * 0.04)
+                                        let isEmptyRecipesData = MealsService.checkEmptyRecipesData()
+                                        
+                                        Color(isEmptyRecipesData ? AppConstants.lightGrayTwo : AppConstants.green)
+                                            .frame(width: screenSize.width * 0.09, height: screenSize.height * 0.04)
                                             .cornerRadius(11.0)
                                             .overlay(
                                                 Group {
@@ -61,16 +60,16 @@ struct Catalog: View {
                                                     
                                                     Image(systemName: AppConstants.arrowUpForwardSquare)
                                                         .configure(withModifier: imageModifier)
-                                                        .frame(width: geometry.size.width * 0.023, height: geometry.size.height * 0.023)
+                                                        .frame(width: screenSize.width * 0.023, height: screenSize.height * 0.023)
                                                 }
                                             )
                                     }
-                                    .padding()
-                                    .padding(.bottom, 2.0)
-                                    .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.06)
+                                    .padding(.horizontal, 10.0)
+                                    .padding(.vertical, 5.0)
+                                    .frame(width: screenSize.width * 0.4, height: screenSize.height * 0.07)
                                     .background(Color(AppConstants.white))
                                     .onTapGesture {
-                                        completion()
+                                        completion(item.idMeal)
                                     }
                                 } else {
                                     Color(AppConstants.lightGrayOne)
@@ -80,19 +79,19 @@ struct Catalog: View {
                                                 
                                                 Image(systemName: AppConstants.photoFill)
                                                     .configure(withModifier: imageModifier)
-                                                    .frame(width: geometry.size.width * 0.1, height: geometry.size.height * 0.3)
+                                                    .frame(width: screenSize.width * 0.1, height: screenSize.height * 0.3)
                                             }
                                         )
                                 }
                             }
-                            .frame(width: geometry.size.width * 0.4, height: geometry.size.height * 0.3)
+                            .frame(width: screenSize.width * 0.4, height: screenSize.height * 0.3)
                         }
                         .background(Color(AppConstants.lightGrayTwo))
                         .cornerRadius(11.0)
                     }
-                    .onChange(of: searchViewModel.getSearchText()) { searchText in
+                    .onChange(of: searchViewModel.getSearchText().wrappedValue) { searchText in
                         if !searchText.isEmpty {
-                            searchedMealsData = MealsService.searchMeal(in: mealsData, with: searchViewModel.getSearchText())
+                            searchedMealsData = MealsService.searchMeal(in: mealsData, with: searchText)
                         }
                     }
                 }
@@ -105,9 +104,7 @@ struct Catalog: View {
 // MARK: - PREVIEW
 
 #Preview {
-    GeometryReader { geometry in
-        CustomPreview { Catalog(geometry: geometry,
-                                mealsViewModel: MealsViewModel(),
-                                searchViewModel: SearchViewModel(), completion: {}) }
+    Group {
+        CustomPreview { Catalog(screenSize: CGSize(), completion: { idMeal in }) }
     }
 }

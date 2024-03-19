@@ -12,9 +12,10 @@ struct SearchField: View {
     
     // MARK: - PROPERTIES
     
-    var geometry: GeometryProxy
+    var screenSize: CGSize
     @Binding var searchText: String
-    @ObservedObject var searchViewModel: SearchViewModel
+
+    @EnvironmentObject var searchViewModel: SearchViewModel
     
     var body: some View {
         HStack {
@@ -22,16 +23,16 @@ struct SearchField: View {
             
             Image(systemName: AppConstants.magnifyingglass)
                 .configure(withModifier: imageModifier)
-                .frame(width: geometry.size.width * 0.048, height: geometry.size.height * 0.048)
-                .padding(.leading, geometry.size.width * 0.035)
+                .frame(width: screenSize.width * 0.048, height: screenSize.height * 0.048)
+                .padding(.leading, screenSize.width * 0.035)
             
-            TextField(AppConstants.searchPlaceHolder, text: $searchViewModel.searchModel.searchText)
+            TextField(AppConstants.searchPlaceHolder, text: searchViewModel.getSearchText())
                 .autocapitalization(.none)
                 .keyboardType(.default)
                 .submitLabel(.done)
                 .padding()
                 .overlay {
-                    if !searchViewModel.getSearchText().isEmpty {
+                    if !searchViewModel.getSearchText().wrappedValue.isEmpty {
                         HStack {
                             Spacer()
                             
@@ -41,7 +42,7 @@ struct SearchField: View {
                                 Image(systemName: AppConstants.xCircle)
                                     .foregroundColor(Color(AppConstants.darkGray).opacity(0.6))
                             }
-                            .padding(.trailing, geometry.size.width * 0.035)
+                            .padding(.trailing, screenSize.width * 0.035)
                         }
                     }
                 }
@@ -55,14 +56,13 @@ struct SearchField: View {
 // MARK: - PREVIEW
 
 #Preview {
-    GeometryReader { geometry in
+    Group {
         let textBinding = Binding<String>(
             get: { AppConstants.emptyString },
             set: { _ in }
         )
         
-        CustomPreview { SearchField(geometry: geometry,
-                                    searchText: textBinding,
-                                    searchViewModel: SearchViewModel()) }
+        CustomPreview { SearchField(screenSize: CGSize(),
+                                    searchText: textBinding) }
     }
 }

@@ -17,9 +17,10 @@ struct RecipesDetailsModel {
     var strMeal: String = AppConstants.emptyString
     var strCategory: String = AppConstants.emptyString
     var strIngredients: String = AppConstants.emptyString
-    var strIngredientsDictionary: Dictionary = Dictionary<String, String>()
+    var strIngredientsDictionary: [String: String] = Dictionary()
+    var strIngredientsWithMeasures: [String: String] = Dictionary()
     var strMeasures: String = AppConstants.emptyString
-    var strMeasuresDictionary: Dictionary = Dictionary<String, String>()
+    var strMeasuresDictionary: [String: String] = Dictionary()
     var strInstructions: String = AppConstants.emptyString
     var strMealThumb: String = AppConstants.emptyString
     var strYoutube: String = AppConstants.emptyString

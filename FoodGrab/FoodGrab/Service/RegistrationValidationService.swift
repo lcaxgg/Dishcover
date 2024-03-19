@@ -132,7 +132,7 @@ class RegistrationValidationService : BaseService {
             return false
         }
         
-        if password.contains(AppConstants.whiteSpace) {
+        if password.contains(AppConstants.whiteSpaceString) {
             return false
         }
         
