@@ -115,6 +115,7 @@ struct AllCategories: View {
 
 // MARK: - PREVIEW
 
+@available(iOS 17, *)
 #Preview {
     Group {
         let shouldShowAllCategories = Binding<Bool>(

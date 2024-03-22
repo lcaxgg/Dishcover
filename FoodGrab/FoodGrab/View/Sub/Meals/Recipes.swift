@@ -223,6 +223,8 @@ struct Recipes: View {
     }
 }
 
+// MARK: - PREVIEW
+
 #Preview {
     Group {
         CustomPreview {

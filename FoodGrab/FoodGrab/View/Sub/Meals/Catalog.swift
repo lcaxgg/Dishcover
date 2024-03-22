@@ -103,6 +103,7 @@ struct Catalog: View {
 
 // MARK: - PREVIEW
 
+@available(iOS 17, *)
 #Preview {
     Group {
         CustomPreview { Catalog(screenSize: CGSize(), completion: { idMeal in }) }

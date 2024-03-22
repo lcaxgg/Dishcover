@@ -95,6 +95,7 @@ struct Base: View {
 
 // MARK: - PREVIEW
 
+@available(iOS 17, *)
 #Preview {
     CustomPreview { Base() }
 }

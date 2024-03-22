@@ -17,6 +17,7 @@ struct ScreenSizeReader<Content: View>: View {
     }
 }
 
+@available(iOS 17, *)
 #Preview {
     ScreenSizeReader { size in
         Color.green

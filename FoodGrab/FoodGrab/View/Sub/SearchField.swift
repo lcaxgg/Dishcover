@@ -55,6 +55,7 @@ struct SearchField: View {
 
 // MARK: - PREVIEW
 
+@available(iOS 17, *)
 #Preview {
     Group {
         let textBinding = Binding<String>(
