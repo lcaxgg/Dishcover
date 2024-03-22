@@ -43,7 +43,7 @@ struct Splash: View {
 
 // MARK: - PREVIEW
 
-@available(iOS 17, *)
-#Preview {
-    CustomPreview { Splash() }
-}
+//@available(iOS 17, *)
+//#Preview {
+//    CustomPreview { Splash() }
+//}

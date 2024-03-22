@@ -64,10 +64,10 @@ struct MealsHeaderLabel: View {
 
 // MARK: - PREVIEW
 
-@available(iOS 17, *)
-#Preview(traits: .fixedLayout(width: UIScreen.main.bounds.width, height: 50.0)) {
-    CustomPreview {
-        MealsHeaderLabel(screenSize: CGSize())
-            .padding(.horizontal, 15.0)
-    }
-}
+//@available(iOS 17, *)
+//#Preview(traits: .fixedLayout(width: UIScreen.main.bounds.width, height: 50.0)) {
+//    CustomPreview {
+//        MealsHeaderLabel(screenSize: CGSize())
+//            .padding(.horizontal, 15.0)
+//    }
+//}

@@ -25,12 +25,12 @@ struct Logo: View {
 
 // MARK: - PREVIEW
 
-@available(iOS 17, *)
-#Preview(traits: .fixedLayout(width: 100.0, height: 100.0)) {
-    ZStack {
-        Color(AppConstants.green)
-            .ignoresSafeArea(.all)
-        
-        Logo()
-    }
-}
+//@available(iOS 17, *)
+//#Preview(traits: .fixedLayout(width: 100.0, height: 100.0)) {
+//    ZStack {
+//        Color(AppConstants.green)
+//            .ignoresSafeArea(.all)
+//        
+//        Logo()
+//    }
+//}

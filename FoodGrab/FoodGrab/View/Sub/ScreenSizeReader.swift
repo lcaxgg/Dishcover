@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ScreenSizeReader<Content: View>: View {
+    
+    // MARK: - PROPERTIES
+    
     let content: (CGSize) -> Content
 
     var body: some View {
@@ -17,10 +20,12 @@ struct ScreenSizeReader<Content: View>: View {
     }
 }
 
-@available(iOS 17, *)
-#Preview {
-    ScreenSizeReader { size in
-        Color.green
-            .frame(width: size.width / 2, height: size.height / 2)
-    }
-}
+// MARK: - PREVIEW
+
+//@available(iOS 17, *)
+//#Preview {
+//    ScreenSizeReader { size in
+//        Color.green
+//            .frame(width: size.width / 2, height: size.height / 2)
+//    }
+//}
