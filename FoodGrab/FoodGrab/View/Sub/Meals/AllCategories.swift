@@ -115,15 +115,16 @@ struct AllCategories: View {
 
 // MARK: - PREVIEW
 
-#Preview {
-    Group {
-        let shouldShowAllCategories = Binding<Bool>(
-            get: { false },
-            set: { _ in }
-        )
-        
-        CustomPreview { AllCategories(screenSize: CGSize(),
-                                      isPresentedAllCategories: shouldShowAllCategories,
-                                      completion: { _,_  in }) }
-    }
-}
+//@available(iOS 17, *)
+//#Preview {
+//    Group {
+//        let shouldShowAllCategories = Binding<Bool>(
+//            get: { false },
+//            set: { _ in }
+//        )
+//        
+//        CustomPreview { AllCategories(screenSize: CGSize(),
+//                                      isPresentedAllCategories: shouldShowAllCategories,
+//                                      completion: { _,_  in }) }
+//    }
+//}

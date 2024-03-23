@@ -55,14 +55,15 @@ struct SearchField: View {
 
 // MARK: - PREVIEW
 
-#Preview {
-    Group {
-        let textBinding = Binding<String>(
-            get: { AppConstants.emptyString },
-            set: { _ in }
-        )
-        
-        CustomPreview { SearchField(screenSize: CGSize(),
-                                    searchText: textBinding) }
-    }
-}
+//@available(iOS 17, *)
+//#Preview {
+//    Group {
+//        let textBinding = Binding<String>(
+//            get: { AppConstants.emptyString },
+//            set: { _ in }
+//        )
+//        
+//        CustomPreview { SearchField(screenSize: CGSize(),
+//                                    searchText: textBinding) }
+//    }
+//}

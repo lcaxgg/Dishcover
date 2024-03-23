@@ -38,10 +38,12 @@ struct MealsHeader: View {
     }
 }
 
-@available(iOS 17, *)
-#Preview(traits: .fixedLayout(width: UIScreen.main.bounds.width, height: 100.0)) {
-    CustomPreview {
-        MealsHeader(screenSize: CGSize())
-            .padding(.horizontal, 15.0)
-    }
-}
+// MARK: - PREVIEW
+//
+//@available(iOS 17, *)
+//#Preview(traits: .fixedLayout(width: UIScreen.main.bounds.width, height: 100.0)) {
+//    CustomPreview {
+//        MealsHeader(screenSize: CGSize())
+//            .padding(.horizontal, 15.0)
+//    }
+//}
