@@ -2,39 +2,19 @@ name: automerge
 on:
   pull_request:
     types:
-      - labeled
-      - unlabeled
-      - synchronize
       - opened
-      - edited
-      - ready_for_review
-      - reopened
-      - unlocked
 jobs:
-  automerge:
+  add-label:
     runs-on: ubuntu-latest
     steps:
-      - name: Check for automerge label
+      - name: Add automerge label
         uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.PERSONAL_TOKEN }}
           script: |
-            const labels = context.payload.pull_request.labels.map(label => label.name);
-            if (!labels.includes('automerge')) {
-              console.log("Automerge label is missing, adding...");
-              await github.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                labels: ['automerge']
-              });
-            }
-      - name: Automerge
-        if: github.event_name == 'pull_request' && contains(github.event.action, 'opened')
-        uses: pascalgn/automerge-action@v0.15.6
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-      - name: Feedback
-        if: steps.automerge.outputs.mergeResult == 'merged'
-        run: |
-          echo "Pull request ${{ github.event.pull_request.number }} merged!"
+            await github.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['automerge']
+            });
