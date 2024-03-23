@@ -4,7 +4,8 @@ on:
     branches:
       - '2024/Q1/ci_cd/validate/develop'
 
-merge_job:
+jobs:
+  merge_job:
     runs-on: macos-latest
     steps:
       - name: Merge Pull Request
