@@ -1,23 +1,28 @@
-name: "Build FoodGrab"
+name: automerge
 on:
   pull_request:
-    branches:
-      - '2024/Q1/ci_cd/validate/develop'
-
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
+  pull_request_review:
+    types:
+      - submitted
+  check_suite:
+    types:
+      - completed
+  status: {}
 jobs:
-  merge_job:
-    runs-on: macos-latest
+  automerge:
+    runs-on: ubuntu-latest
     steps:
-      - name: Merge Pull Request
-        if: github.event.pull_request.merged == true
-        run: |
-          git config user.name "j8bok"
-          git config user.email "jayvee.d.ercia@gmail.com"
-          git fetch origin 2024/Q1/ci_cd/validate/develop
-          git checkout 2024/Q1/ci_cd/validate/develop
-          git merge --no-ff 2024/Q1/ci_cd/issues/FG-010 -m "Merge 2024/Q1/ci_cd/issues/FG-010 into 2024/Q1/ci_cd/validate/develop"
-
-          # Push the merged changes back to the repository
-          git push origin 2024/Q1/ci_cd/validate/develop
-
-  
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.16.2"
+        env:
+          GITHUB_TOKEN: "${{ secrets.PERSONAL_TOKEN }}"
