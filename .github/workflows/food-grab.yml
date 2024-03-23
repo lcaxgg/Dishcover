@@ -4,51 +4,19 @@ on:
     branches:
       - '2024/Q1/ci_cd/validate/develop'
 
-jobs:
-  build_with_signing:
+merge_job:
     runs-on: macos-latest
     steps:
-      - name: Check Xcode Version
-        run: /usr/bin/xcodebuild -version
-
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
-      - name: Install the Apple Certificate and Provisioning Profile
-        env:
-          DISTRIBUTION_CERTIFICATE_BASE64: ${{ secrets.DISTRIBUTION_CERTIFICATE_BASE64 }}
-          DISTRIBUTION_PROVISIONING_PROFILE_BASE64: ${{ secrets.DISTRIBUTION_PROVISIONING_PROFILE_BASE64 }}
-          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
-
+      - name: Merge Pull Request
+        if: github.event.pull_request.merged == true
         run: |
-          # create variables
-          CERTIFICATE_PATH=$RUNNER_TEMP/certificate.p12
-          PROVISIONING_PROFILE_PATH=$RUNNER_TEMP/FoodGrab-Distribution.mobileprovision
-          KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+          git config user.name "j8bok"
+          git config user.email "jayvee.d.ercia@gmail.com"
+          git fetch origin ${{ github.event.pull_request.base.ref }}
+          git checkout ${{ github.event.pull_request.base.ref }}
+          git merge --no-ff ${{ github.event.pull_request.head.ref }} -m "Merge pull request #${{ github.event.pull_request.number }}"
 
-          # import certificate and provisioning profile from secrets
-          echo -n "$DISTRIBUTION_CERTIFICATE_BASE64" | base64 --decode -o $CERTIFICATE_PATH
-          echo -n "$DISTRIBUTION_PROVISIONING_PROFILE_BASE64" | base64 --decode -o $PROVISIONING_PROFILE_PATH
+          # Push the merged changes back to the repository
+          git push origin ${{ github.event.pull_request.base.ref }}
 
-          # create temporary keychain
-          security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-          security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
-          security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
-
-          # import certificate to keychain
-          security import $CERTIFICATE_PATH -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
-          security list-keychain -d user -s $KEYCHAIN_PATH
-
-          # apply provisioning profile
-          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
-          cp $PROVISIONING_PROFILE_PATH ~/Library/MobileDevice/Provisioning\ Profiles                
-
-      - name: Build Archive
-        run: |
-          cd FoodGrab
-          xcodebuild -scheme "FoodGrab" \
-          -archivePath $RUNNER_TEMP/FoodGrab.xcarchive \
-          -sdk iphoneos \
-          -configuration Debug \
-          -destination generic/platform=iOS \
-          clean archive  
+  
