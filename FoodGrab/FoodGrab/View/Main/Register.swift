@@ -137,7 +137,7 @@ struct Register: View {
 
 // MARK: - PREVIEW
 
-
-#Preview {
-    CustomPreview { Register() }
-}
+//@available(iOS 17, *)
+//#Preview {
+//    CustomPreview { Register() }
+//}

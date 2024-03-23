@@ -30,6 +30,7 @@ struct Chat: View {
 
 // MARK: - PREVIEW
 
-#Preview {
-    CustomPreview { Chat() }
-}
+//@available(iOS 17, *)
+//#Preview {
+//    CustomPreview { Chat() }
+//}

@@ -153,7 +153,8 @@ struct Login: View {
 
 // MARK: - PREVIEW
 
-#Preview {
-    CustomPreview { Login() }
-        .previewInterfaceOrientation(.portrait)
-}
+//@available(iOS 17, *)
+//#Preview {
+//    CustomPreview { Login() }
+//        .previewInterfaceOrientation(.portrait)
+//}
