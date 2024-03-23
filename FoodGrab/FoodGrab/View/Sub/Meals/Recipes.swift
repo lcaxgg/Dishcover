@@ -223,15 +223,18 @@ struct Recipes: View {
     }
 }
 
-#Preview {
-    Group {
-        CustomPreview {
-            let isPresented = Binding<Bool>(
-                get: { false },
-                set: { _ in }
-            )
-            
-            Recipes(isPresentedRecipe: isPresented, screenSize: CGSize())
-        }
-    }
-}
+// MARK: - PREVIEW
+
+//@available(iOS 17, *)
+//#Preview {
+//    Group {
+//        CustomPreview {
+//            let isPresented = Binding<Bool>(
+//                get: { false },
+//                set: { _ in }
+//            )
+//            
+//            Recipes(isPresentedRecipe: isPresented, screenSize: CGSize())
+//        }
+//    }
+//}

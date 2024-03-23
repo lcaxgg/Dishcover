@@ -76,6 +76,7 @@ struct Meals: View {
 
 // MARK: - PREVIEW
 
-#Preview {
-    CustomPreview { Meals(screenSize: CGSize()) }
-}
+//@available(iOS 17, *)
+//#Preview {
+//    CustomPreview { Meals(screenSize: CGSize()) }
+//}

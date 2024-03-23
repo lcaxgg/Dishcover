@@ -76,6 +76,7 @@ struct Welcome: View {
 
 // MARK: - PREVIEW
 
-#Preview {
-    CustomPreview { Welcome() }
-}
+//@available(iOS 17, *)
+//#Preview {
+//    CustomPreview { Welcome() }
+//}

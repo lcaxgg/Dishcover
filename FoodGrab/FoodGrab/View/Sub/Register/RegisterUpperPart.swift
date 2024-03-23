@@ -95,8 +95,8 @@ struct RegisterUpperPart: View {
 }
 
 // MARK: - PREVIEW
-
-@available(iOS 17, *)
-#Preview(traits: .fixedLayout(width: UIScreen.main.bounds.width, height: 220.0)) {
-    RegisterUpperPart(registrationViewModel: RegistrationViewModel(), registrationValidationService: RegistrationValidationService())
-}
+//
+//@available(iOS 17, *)
+//#Preview(traits: .fixedLayout(width: UIScreen.main.bounds.width, height: 220.0)) {
+//    RegisterUpperPart(registrationViewModel: RegistrationViewModel(), registrationValidationService: RegistrationValidationService())
+//}
