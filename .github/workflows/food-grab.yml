@@ -13,11 +13,11 @@ jobs:
         run: |
           git config user.name "j8bok"
           git config user.email "jayvee.d.ercia@gmail.com"
-          git fetch origin ${{ github.event.pull_request.base.ref }}
-          git checkout ${{ github.event.pull_request.base.ref }}
-          git merge --no-ff ${{ github.event.pull_request.head.ref }} -m "Merge pull request #${{ github.event.pull_request.number }}"
+          git fetch origin 2024/Q1/ci_cd/validate/develop
+          git checkout 2024/Q1/ci_cd/validate/develop
+          git merge --no-ff 2024/Q1/ci_cd/issues/FG-010 -m "Merge 2024/Q1/ci_cd/issues/FG-010 into 2024/Q1/ci_cd/validate/develop"
 
           # Push the merged changes back to the repository
-          git push origin ${{ github.event.pull_request.base.ref }}
+          git push origin 2024/Q1/ci_cd/validate/develop
 
   
