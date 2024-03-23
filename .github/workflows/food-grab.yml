@@ -1,0 +1,17 @@
+name: build-ios-app
+on:
+  push:
+    branches:
+      - '2024/Q1/build_phase/validate/develop'
+jobs:
+  build_with_signing:
+    runs-on: macos-latest
+   
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: fastlane export_ipa
+        env:
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+
+
