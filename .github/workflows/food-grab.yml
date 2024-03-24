@@ -66,8 +66,6 @@ jobs:
         with:
           name: FoodGrab
           path: ${{ runner.temp }}/build/FoodGrab.ipa
-          # you can also archive the entire directory 
-          # path: ${{ runner.temp }}/build
           retention-days: 3
 
         
