@@ -68,8 +68,8 @@ jobs:
 
       - name: Upload application
         uses: actions/upload-artifact@v4
-         with:
-            name: my-ios-app
-            path: $RUNNER_TEMP/ipa/FoodGrab.ipa
+        with:
+          name: my-ios-app
+          path: $RUNNER_TEMP/ipa/FoodGrab.ipa
 
         
