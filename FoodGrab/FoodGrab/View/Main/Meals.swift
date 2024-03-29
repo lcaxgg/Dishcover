@@ -24,7 +24,6 @@ struct Meals: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                
                 // MARK: - HEADER
                 
                 MealsHeader(screenSize: screenSize)
@@ -38,7 +37,7 @@ struct Meals: View {
                 CategoriesList(screenSize: screenSize)
                     .environmentObject(searchViewModel)
                     .environmentObject(mealsCategoriesViewModel)
-                   
+                
                 Catalog(screenSize: screenSize, completion: { idMeal in
                     processMealTap(with: idMeal)
                 })
@@ -52,15 +51,14 @@ struct Meals: View {
                 // MARK: - FOOTER
             }
         }//: ZStack
-        .navigationBarTitle(AppConstants.mainTitle, displayMode: .large)
-        .navigationBarBackButtonHidden(true)
-        .ignoresSafeArea(.keyboard)
         .onDisappear(perform: {
             searchViewModel.setIsSearchFieldFocused(with: false)
             searchViewModel.setSearchText(with: AppConstants.emptyString)
         })
     }
-    
+}
+
+extension Meals {
     private func processMealTap(with idMeal: String) {
         RecipesViewModel.setRecipeId(with: idMeal)
         

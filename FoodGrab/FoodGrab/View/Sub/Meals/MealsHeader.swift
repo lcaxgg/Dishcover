@@ -23,7 +23,6 @@ struct MealsHeader: View {
         VStack {
             SearchField(screenSize: screenSize, searchText: $searchText)
                 .environmentObject(searchViewModel)
-                .padding(.horizontal, screenSize.width * 0.05)
                 .padding(.top, screenSize.height * 0.014)
                 .focused($isSearchFieldFocused)
                 .onTapGesture {
@@ -35,6 +34,7 @@ struct MealsHeader: View {
             MealsHeaderLabel(screenSize: screenSize)
                 .padding(.top, screenSize.width * 0.04)
         }//: VStack
+        .padding(.horizontal, screenSize.width * 0.05)
     }
 }
 
