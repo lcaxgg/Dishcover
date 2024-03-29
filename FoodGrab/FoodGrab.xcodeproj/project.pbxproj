@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5B049A442B94717700806731 /* RecipesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B049A432B94717700806731 /* RecipesModel.swift */; };
 		5B04D4702B3E8DF5006E39E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */; };
+		5B069E502BB697FD00D5E739 /* NavigationBarTitleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B069E4F2BB697FD00D5E739 /* NavigationBarTitleEnum.swift */; };
 		5B0E1ACE2B7626D100924AE0 /* AllCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E1ACD2B7626D100924AE0 /* AllCategories.swift */; };
 		5B12E4A12AC525DC008BB487 /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12E4A02AC525DC008BB487 /* Meals.swift */; };
 		5B1A1BF12B3F3F0D0061AE2D /* MealsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A1BF02B3F3F0D0061AE2D /* MealsViewModel.swift */; };
@@ -87,6 +88,7 @@
 /* Begin PBXFileReference section */
 		5B049A432B94717700806731 /* RecipesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesModel.swift; sourceTree = "<group>"; };
 		5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		5B069E4F2BB697FD00D5E739 /* NavigationBarTitleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitleEnum.swift; sourceTree = "<group>"; };
 		5B0E1ACD2B7626D100924AE0 /* AllCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategories.swift; sourceTree = "<group>"; };
 		5B12E4A02AC525DC008BB487 /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
 		5B1A1BF02B3F3F0D0061AE2D /* MealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewModel.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				5B89F7232B65F5D000BA5DFF /* MealsCategoriesEnum.swift */,
 				5B578C2B2B96065100FD0277 /* RecipesEnum.swift */,
+				5B069E4F2BB697FD00D5E739 /* NavigationBarTitleEnum.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				5BB2BF9C2AC3A56A00AF886D /* RegistrationViewModel.swift in Sources */,
 				5B7480682B3DD47200CD333B /* DownloadManager.swift in Sources */,
 				5B56EE022AD8E7990095D70D /* TextModifier.swift in Sources */,
+				5B069E502BB697FD00D5E739 /* NavigationBarTitleEnum.swift in Sources */,
 				5B2611812BA86C7600461E83 /* Base.swift in Sources */,
 				5B5B79812AA9981700DBEA9F /* RegisterLowerPart.swift in Sources */,
 				5B5A05382A9ECA81001A05CA /* FoodGrabApp.swift in Sources */,

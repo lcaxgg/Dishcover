@@ -11,7 +11,9 @@ struct AppConstants {
     // MARK: - TITLES
     
     static let welcomeTitle = "Food that tells a story"
-    static let mainTitle = "Explore"
+    static let mealNavTitle = "Explore"
+    static let chatNavTitle = "Chat"
+    static let accountNavTitle = "Account"
     
     // MARK: - LABELS
     

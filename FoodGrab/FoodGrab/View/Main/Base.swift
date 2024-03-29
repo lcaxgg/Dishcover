@@ -16,6 +16,7 @@ struct Base: View {
     @State private var isLoadingVisible: Bool = true
     @State private var isAnimating: Bool = false
     
+    @State private var navigationBarTitle: String = AppConstants.emptyString
     @State private var selectedTab: Int = 0
     
     var body: some View {
@@ -34,7 +35,7 @@ struct Base: View {
                         Logo(color: AppConstants.green)
                             .frame(width: isAnimating ?  nil : screenSize.width * 0.3, height: isAnimating ? nil : screenSize.height * 0.3)
                             .scaleEffect(isAnimating ? 3.0 : 1.0)
-                           
+                        
                         LoadingIndicator(animation: .threeBalls, color: Color(AppConstants.green), size: .medium, speed: .normal)
                             .opacity(isLoadingVisible ? 1 : 0)
                     }
@@ -63,13 +64,21 @@ struct Base: View {
                 }
             }//: ZStack
         }//: ScreenSizeReader
+        .navigationBarTitle(navigationBarTitle, displayMode: .large)
+        .navigationBarBackButtonHidden(true)
+        .ignoresSafeArea(.keyboard)
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = UIColor.white
             
             processMealsDisplay()
         })
+        .onChange(of: selectedTab) { selectedTab in
+            setUpNavigationBarTitle(with: selectedTab)
+        }
     }
-    
+}
+
+extension Base {
     private func processMealsDisplay() {
         if !isDownloadComplete {
             MealsService.processMealsDataForDisplay { success in
@@ -85,9 +94,25 @@ struct Base: View {
                         
                         withAnimation(Animation.easeIn(duration: 0.30)) {
                             isDownloadComplete = success
+                            navigationBarTitle = AppConstants.mealNavTitle
                         }
                     }
                 }
+            }
+        }
+    }
+    
+    private func setUpNavigationBarTitle(with selectedTab: Int) {
+        if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
+            switch selectedEnum {
+            case .mealsNavTitle:
+                navigationBarTitle = AppConstants.mealNavTitle
+                
+            case .chatNavTitle:
+                navigationBarTitle = AppConstants.chat
+                
+            case .accountNavTitle:
+                navigationBarTitle = AppConstants.account
             }
         }
     }
