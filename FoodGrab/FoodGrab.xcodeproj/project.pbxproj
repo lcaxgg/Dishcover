@@ -64,6 +64,7 @@
 		5B74806C2B3DE5EB00CD333B /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74806B2B3DE5EB00CD333B /* ApiConstants.swift */; };
 		5B753C502BA18ED7005BF90E /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B753C4F2BA18ED7005BF90E /* LoginService.swift */; };
 		5B753C522BA18F10005BF90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B753C512BA18F10005BF90E /* RegistrationService.swift */; };
+		5B7ADB042BB6C58A00994364 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7ADB032BB6C58A00994364 /* ChatList.swift */; };
 		5B7FCBA92B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B7FCBA72B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld */; };
 		5B89F7242B65F5D000BA5DFF /* MealsCategoriesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89F7232B65F5D000BA5DFF /* MealsCategoriesEnum.swift */; };
 		5B953D572ABBB9F60057E3B9 /* SwiftfulLoadingIndicators in Frameworks */ = {isa = PBXBuildFile; productRef = 5B953D562ABBB9F60057E3B9 /* SwiftfulLoadingIndicators */; };
@@ -135,6 +136,7 @@
 		5B74806B2B3DE5EB00CD333B /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		5B753C4F2BA18ED7005BF90E /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		5B753C512BA18F10005BF90E /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
+		5B7ADB032BB6C58A00994364 /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
 		5B7FCBA82B3F1FE200E72D11 /* MealsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealsDataModel.xcdatamodel; sourceTree = "<group>"; };
 		5B89F7232B65F5D000BA5DFF /* MealsCategoriesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsCategoriesEnum.swift; sourceTree = "<group>"; };
 		5B969D432ACFDC420039F2BE /* SearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 		5B5A05512A9F1A2E001A05CA /* Sub */ = {
 			isa = PBXGroup;
 			children = (
+				5B7ADB022BB6C28D00994364 /* Chat */,
 				5B56EDF82AD8CBE50095D70D /* Meals */,
 				5B5B797D2AA997F100DBEA9F /* Register */,
 				5B5A05522A9F1A9F001A05CA /* Logo.swift */,
@@ -410,6 +413,14 @@
 				5B753C512BA18F10005BF90E /* RegistrationService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		5B7ADB022BB6C28D00994364 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5B7ADB032BB6C58A00994364 /* ChatList.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		5B89F7222B65F1A200BA5DFF /* Enum */ = {
@@ -573,6 +584,7 @@
 				5B355B472BA725FD0044D070 /* Chat.swift in Sources */,
 				5BA258282B9351BB003E37A3 /* SearchViewModel.swift in Sources */,
 				5B56EE002AD8E7860095D70D /* ImageExtension.swift in Sources */,
+				5B7ADB042BB6C58A00994364 /* ChatList.swift in Sources */,
 				5B5B79762AA95E7300DBEA9F /* HorizontalSeparator.swift in Sources */,
 				5BE8A0B32B9A0F30004EE043 /* Recipes.swift in Sources */,
 			);

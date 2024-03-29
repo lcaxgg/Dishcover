@@ -51,7 +51,7 @@ struct Base: View {
                                 Text(AppConstants.meals)
                             }
                         
-                        Chat()
+                        Chat(screenSize: screenSize)
                             .tag(1)
                             .tabItem {
                                 Image(systemName: AppConstants.messageFill)
@@ -67,6 +67,22 @@ struct Base: View {
         .navigationBarTitle(navigationBarTitle, displayMode: .large)
         .navigationBarBackButtonHidden(true)
         .ignoresSafeArea(.keyboard)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
+                    switch selectedEnum {
+                    case .chatNavTitle:
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: AppConstants.squareAndPencil)
+                        }
+                    default:
+                        EmptyView()
+                    }
+                }
+            }
+        }
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = UIColor.white
             

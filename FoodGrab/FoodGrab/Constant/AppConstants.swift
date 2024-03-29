@@ -83,7 +83,7 @@ struct AppConstants {
     static let emailPlaceHolder = "enter your email"
     static let passwordPlaceHolder = "enter your password"
     static let confrimPasswordPlaceHolder = "re-enter your password"
-    static let searchPlaceHolder = "Search food or meal"
+    static let searchPlaceHolder = "Search"
     
     // MARK: - VALIDATION MESSAGES
     
@@ -197,6 +197,7 @@ struct AppConstants {
     static let photoCircle = "photo.circle"
     static let photo = "photo"
     static let photoFill = "photo.fill"
+    static let personXmark = "person.crop.circle.fill.badge.xmark"
     
     static let personCircleFill = "person.crop.circle.fill"
     static let mapFill = "map.fill"
@@ -212,6 +213,8 @@ struct AppConstants {
     static let eye = "eye"
     static let magnifyingglass = "magnifyingglass"
     static let xCircle = "x.circle"
+    
+    static let squareAndPencil = "square.and.pencil"
     
     // MARK: - OTHERS
     

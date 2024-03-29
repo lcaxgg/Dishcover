@@ -24,7 +24,6 @@ struct Meals: View {
                 .edgesIgnoringSafeArea(.all)
             
             VStack {
-                
                 // MARK: - HEADER
                 
                 MealsHeader(screenSize: screenSize)

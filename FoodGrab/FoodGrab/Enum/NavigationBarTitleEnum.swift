@@ -8,7 +8,7 @@
 import Foundation
 
 enum NavigationBarTitleEnum: Int {
-    case mealsNavTitle = 0
+    case mealsNavTitle
     case chatNavTitle
     case accountNavTitle
 }
