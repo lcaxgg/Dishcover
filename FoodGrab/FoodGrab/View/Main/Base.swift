@@ -16,6 +16,8 @@ struct Base: View {
     @State private var isLoadingVisible: Bool = true
     @State private var isAnimating: Bool = false
     
+    @State private var isPresentedChatSelect: Bool = false
+    
     @State private var navigationBarTitle: String = AppConstants.emptyString
     @State private var selectedTab: Int = 0
     
@@ -51,11 +53,15 @@ struct Base: View {
                                 Text(AppConstants.meals)
                             }
                         
-                        Chat(screenSize: screenSize)
+                        Chat(screenSize: screenSize,
+                             isPresentedChatSelect: $isPresentedChatSelect)
                             .tag(1)
                             .tabItem {
                                 Image(systemName: AppConstants.messageFill)
                                 Text(AppConstants.chat)
+                            }
+                            .sheet(isPresented: $isPresentedChatSelect) {
+                                ChatWindow()
                             }
                     }
                     .frame(width: screenSize.width)
@@ -73,7 +79,7 @@ struct Base: View {
                     switch selectedEnum {
                     case .chatNavTitle:
                         Button(action: {
-                            
+                            isPresentedChatSelect = true
                         }) {
                             Image(systemName: AppConstants.squareAndPencil)
                         }

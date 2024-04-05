@@ -106,9 +106,9 @@ struct Login: View {
                         .padding(.bottom, isKeyboardShowing ? keyboardHeight : geometry.size.height * 0.06)
                         .animation(.easeInOut, value: isKeyboardShowing)
                         .onTapGesture {
-                            if loginViewModel.isValidCredentials {
+                            //if loginViewModel.isValidCredentials {
                                 AuthManager.processLogin(with: loginViewModel, andWith: alertViewModel)
-                            }
+                            //}
                         }
                 }//: VStack
                 .opacity(loginViewModel.isProccessingLogin ? 0.4 : 1)
@@ -123,7 +123,7 @@ struct Login: View {
             .navigationBarBackButtonHidden(loginViewModel.isProccessingLogin)
             .disabled(loginViewModel.isProccessingLogin)
             .background(
-                NavigationLink(AppConstants.emptyString, destination: Meals(screenSize: CGSize()), isActive: $loginViewModel.isPresentedMainScreen)
+                NavigationLink(AppConstants.emptyString, destination: Base(), isActive: $loginViewModel.isPresentedBaseView)
             )
             .onAppear {
                 loginViewModel.initDictionary()

@@ -17,6 +17,8 @@ struct Chat: View {
     @FocusState private var isSearchFieldFocused: Bool
     @State private var searchViewModel: SearchViewModel = SearchViewModel()
     
+    @Binding var isPresentedChatSelect: Bool
+    
     let itemCount = 5 // temp
 
     var body: some View {
@@ -72,5 +74,12 @@ struct Chat: View {
 
 @available(iOS 17, *)
 #Preview {
-    CustomPreview { Chat(screenSize: CGSize()) }
+    CustomPreview {
+        let isPresented = Binding<Bool>(
+            get: { false },
+            set: { _ in }
+        )
+        
+        Chat(screenSize: CGSize(), isPresentedChatSelect: isPresented)
+    }
 }
