@@ -92,24 +92,6 @@ struct ChatList: View {
     }
 }
 
-extension ChatList {
-    func getAllDocs() {
-        topLevelCollectionReference.document("itachi@gmail.com").getDocument { document, error in
-            if let document = document, document.exists {
-                let nestedCollectionReference = document.reference.collection("received_messages")
-                
-                nestedCollectionReference.getDocuments { (querySnapshot, error) in
-                    if let documents = querySnapshot?.documents {
-                        for document in documents {
-                            print(document.data())
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
 // MARK: - PREVIEW
 
 #Preview {

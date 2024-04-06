@@ -28,6 +28,8 @@
 		5B2611832BA871EF00461E83 /* ScreenSizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */; };
 		5B355B472BA725FD0044D070 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B355B462BA725FD0044D070 /* Chat.swift */; };
 		5B379B1E2AD646E00081FB59 /* ButtonOneAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B379B1D2AD646E00081FB59 /* ButtonOneAttributes.swift */; };
+		5B3D382D2BC19EBA0093ACC5 /* ChatDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */; };
+		5B3D382F2BC19F850093ACC5 /* DateTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */; };
 		5B4D63042BA92963009A3E30 /* MealsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4D63032BA92963009A3E30 /* MealsHeader.swift */; };
 		5B4D63062BA92D29009A3E30 /* CategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4D63052BA92D29009A3E30 /* CategoriesList.swift */; };
 		5B56EDFA2AD8CBF00095D70D /* Catalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B56EDF92AD8CBF00095D70D /* Catalog.swift */; };
@@ -105,6 +107,8 @@
 		5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeReader.swift; sourceTree = "<group>"; };
 		5B355B462BA725FD0044D070 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		5B379B1D2AD646E00081FB59 /* ButtonOneAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOneAttributes.swift; sourceTree = "<group>"; };
+		5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsModel.swift; sourceTree = "<group>"; };
+		5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeService.swift; sourceTree = "<group>"; };
 		5B4D63032BA92963009A3E30 /* MealsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsHeader.swift; sourceTree = "<group>"; };
 		5B4D63052BA92D29009A3E30 /* CategoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesList.swift; sourceTree = "<group>"; };
 		5B56EDF92AD8CBF00095D70D /* Catalog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalog.swift; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 				5B8562D32BC16033007547B2 /* MealsAndRecipes */,
 				5B8562D22BC16025007547B2 /* Authentication */,
 				5B379B1C2AD6455F0081FB59 /* Attribute */,
+				5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -465,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				5B6DC3202B3D6DF2008FAA22 /* BaseService.swift */,
+				5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -700,6 +706,7 @@
 				5BAA442D2B34271F00DE4713 /* LoginModel.swift in Sources */,
 				5B5B79782AA9734900DBEA9F /* VerticalSeparator.swift in Sources */,
 				5B597A7F2AD61B890093045C /* MealsCategoriesModel.swift in Sources */,
+				5B3D382D2BC19EBA0093ACC5 /* ChatDetailsModel.swift in Sources */,
 				5BDBC1F82AB144E900AB6171 /* AuthManager.swift in Sources */,
 				5B56EDFA2AD8CBF00095D70D /* Catalog.swift in Sources */,
 				5B56EDFE2AD8E7720095D70D /* TextExtension.swift in Sources */,
@@ -724,6 +731,7 @@
 				5BAA442F2B34275300DE4713 /* LoginViewModel.swift in Sources */,
 				5B5A054B2A9ED14E001A05CA /* Login.swift in Sources */,
 				5B5B797F2AA9980A00DBEA9F /* RegisterMiddlePart.swift in Sources */,
+				5B3D382F2BC19F850093ACC5 /* DateTimeService.swift in Sources */,
 				5B1D142D2AB17B7C003BA1A5 /* AppDelegate.swift in Sources */,
 				5B578C2E2B961CCC00FD0277 /* RecipesViewModel.swift in Sources */,
 				5B753C502BA18ED7005BF90E /* LoginService.swift in Sources */,

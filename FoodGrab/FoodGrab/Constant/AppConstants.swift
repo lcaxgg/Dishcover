@@ -29,7 +29,7 @@ struct AppConstants {
     static let zipCode = "zip Code"
     static let country = "country"
     
-    static let userID = "User Id"
+    static let userId = "User Id"
     static let userName = "Username"
     static let password = "Password"
     static let confirmPassword = "Confirm Password"

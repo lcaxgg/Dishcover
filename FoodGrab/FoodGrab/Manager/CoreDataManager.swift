@@ -45,13 +45,13 @@ class CoreDataManager {
             if let error = error {
                 fatalError("\(error.localizedDescription)")
             } else {
-                print("Core Data loaded successfully")
+                print("Core Data loaded successfully ⛁")
             }
         }
     }
     
     func getSharedInstance() -> CoreDataManager {
-        return CoreDataManager.shared
+        CoreDataManager.shared
     }
     
     func checkEmptyRecord() -> Bool {
