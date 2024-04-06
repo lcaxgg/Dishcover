@@ -6,12 +6,21 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestore
 
 struct ChatList: View {
     
     // MARK: - PROPERTIES
     
     var screenSize: CGSize
+    
+    //temp
+    @State private var nestedData: [String: Any] = [:] // Assuming your nested data structure
+    
+    let db = Firestore.firestore()
+    let topLevelCollectionReference = Firestore.firestore().collection("Conversation")
+    @State var listener: ListenerRegistration?
     
     var body: some View {
         HStack(alignment: .center, spacing: 20.0) {
@@ -77,6 +86,27 @@ struct ChatList: View {
                 }
             }
         }//: HStack
+        .onTapGesture(perform: {
+            ChatDownloadManager.shared.fetchMessagesFromServer()
+        })
+    }
+}
+
+extension ChatList {
+    func getAllDocs() {
+        topLevelCollectionReference.document("itachi@gmail.com").getDocument { document, error in
+            if let document = document, document.exists {
+                let nestedCollectionReference = document.reference.collection("received_messages")
+                
+                nestedCollectionReference.getDocuments { (querySnapshot, error) in
+                    if let documents = querySnapshot?.documents {
+                        for document in documents {
+                            print(document.data())
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

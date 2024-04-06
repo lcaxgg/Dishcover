@@ -25,7 +25,7 @@ class RecipesViewModel: ObservableObject {
     
     private init() {}
     
-    func getFirstInstance() -> RecipesViewModel {
+    static func getSharedInstance() -> RecipesViewModel {
         return RecipesViewModel.shared
     }
     

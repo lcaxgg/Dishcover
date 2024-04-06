@@ -16,7 +16,7 @@ struct RegistrationService {
         
         Auth.auth().createUser(withEmail: registrationViewModel.getEmail(), password: registrationViewModel.getPassword()) { authResult, error in
             if let error = error {
-                print("Registration error: \(error.localizedDescription)")
+                print("* Couldn't proceed in registration. \(error.localizedDescription) *")
                 completion(error)
                 return
             }

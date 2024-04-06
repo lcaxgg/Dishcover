@@ -18,17 +18,19 @@ struct LoginService {
         
         Auth.auth().signIn(withEmail: loginViewModel.getEmail(), password: loginViewModel.getPassword()) { (user, error) in
             if let error = error {
-                print("Login error: \(error.localizedDescription)")
+                print("* Couldn't proceed in login. \(error.localizedDescription) *")
                 completion(error)
                 return
             }
-            
+        
+            UserService.fetchUserInfo()
+    
             let endTime = Date().timeIntervalSince1970
             var duration = endTime - startTime
             duration = duration + 1.0
             
             DispatchQueue.main.asyncAfter(deadline: .now() + duration) {
-                print("User ID : " + (Auth.auth().currentUser?.uid ?? AppConstants.emptyString))
+                print("User ID : " + (user?.user.uid ?? AppConstants.emptyString))
                 completion(nil)
             }
         }
