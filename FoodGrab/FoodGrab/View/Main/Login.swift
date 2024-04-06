@@ -106,9 +106,9 @@ struct Login: View {
                         .padding(.bottom, isKeyboardShowing ? keyboardHeight : geometry.size.height * 0.06)
                         .animation(.easeInOut, value: isKeyboardShowing)
                         .onTapGesture {
-                            //if loginViewModel.isValidCredentials {
+                            if loginViewModel.isValidCredentials {
                                 AuthManager.processLogin(with: loginViewModel, andWith: alertViewModel)
-                            //}
+                            }
                         }
                 }//: VStack
                 .opacity(loginViewModel.isProccessingLogin ? 0.4 : 1)

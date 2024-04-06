@@ -9,7 +9,6 @@ import SwiftUI
 import Firebase
 import FirebaseFirestore
 
-
 struct ChatWindow: View {
     
     // MARK: - PROPERTIES
@@ -29,32 +28,32 @@ struct ChatWindow: View {
         // MARK: - FOOTER
         
         Button(action: {
-            listenForChanges()
+            send()
         }, label: {
             Text("Send")
         })
         .onAppear {
-            DispatchQueue.global(qos: .background).async {
-                listener = topLevelCollectionReference.document("itachi@gmail.com").addSnapshotListener { (documentSnapshot, error) in
-                    
-                    guard let documentSnapshot = documentSnapshot, documentSnapshot.exists else {
-                        print("Top-level document does not exist")
-                        return
-                    }
-                    
-                    let nestedCollectionReference = documentSnapshot.reference.collection("received_messages")
-                    listener = nestedCollectionReference.document("sender_OEhyJNMKKvXDIjpBlpg3lG0ML2z2").addSnapshotListener { (nestedDocumentSnapshot, nestedError) in
-                        guard let nestedDocumentSnapshot = nestedDocumentSnapshot, nestedDocumentSnapshot.exists else {
-                            print("Nested document does not exist")
-                            return
-                        }
-                        
-                        
-                        nestedData = nestedDocumentSnapshot.data() ?? [:]
-                        print(nestedData as Any)
-                    }
-                }
-            }
+//            DispatchQueue.global(qos: .background).async {
+//                listener = topLevelCollectionReference.document("itachi@gmail.com").addSnapshotListener { (documentSnapshot, error) in
+//                    
+//                    guard let documentSnapshot = documentSnapshot, documentSnapshot.exists else {
+//                        print("Top-level document does not exist")
+//                        return
+//                    }
+//                    
+//                    let nestedCollectionReference = documentSnapshot.reference.collection("received_messages")
+//                    listener = nestedCollectionReference.document("sender_OEhyJNMKKvXDIjpBlpg3lG0ML2z2").addSnapshotListener { (nestedDocumentSnapshot, nestedError) in
+//                        guard let nestedDocumentSnapshot = nestedDocumentSnapshot, nestedDocumentSnapshot.exists else {
+//                            print("Nested document does not exist")
+//                            return
+//                        }
+//                        
+//                        
+//                        nestedData = nestedDocumentSnapshot.data() ?? [:]
+//                        print(nestedData as Any)
+//                    }
+//                }
+//            }
         }
     }
 }
@@ -93,7 +92,7 @@ extension ChatWindow {
         
         let userData = [
             "sender_email": userEmail,
-            "sender_name": "Minato Namikaze",
+            "sender_name": "Kushina Uzumaki",
             "message": "test message",
             "is_read": false
         ] as [String : Any]
