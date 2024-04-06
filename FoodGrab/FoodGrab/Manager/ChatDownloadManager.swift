@@ -20,7 +20,7 @@ struct ChatDownloadManager {
     private init() {}
     
     static func getSharedInstance() -> ChatDownloadManager {
-        return ChatDownloadManager.shared
+        ChatDownloadManager.shared
     }
     
     // MARK: - FETCH
@@ -33,7 +33,7 @@ struct ChatDownloadManager {
         let collection = Firestore.firestore().collection("Conversation")
         collection.document(uEmail).getDocument { document, error in
             guard error == nil else {
-                print("* Couldn't fetch Document. \(String(describing: error?.localizedDescription)) *")
+                print("Couldn't fetch Document. \(String(describing: error?.localizedDescription)) ⛔")
                 return
             }
             
@@ -52,7 +52,7 @@ struct ChatDownloadManager {
                 var outerArr = [[String: Array<Any>]]()
                 
                 if let documents = querySnapshot?.documents {
-                    
+                 // service
                     var someArr = [[String: ChatDetailsModel]]()
                     
                     for document in documents {
@@ -68,33 +68,18 @@ struct ChatDownloadManager {
                             
                             }
                         } catch let error {
-                            print("* Couldn't decode document. \(error.localizedDescription) *")
+                            print("Couldn't decode document. \(error.localizedDescription) ⛔")
                         }
                         
                         outerArr.append([document.documentID: someArr])
                     }
                     
                     print("test")
+                    
                 }
             }
         }
     }
 }
 
-struct ChatModel {
-    let timeStamp: [ChatDetailsModel]
-}
 
-struct ChatDetailsModel: Codable {
-    let isRead: Bool
-    let message: String
-    let senderEmail: String
-    let senderName: String
-    
-    enum CodingKeys: String, CodingKey {
-        case isRead = "is_read"
-        case message
-        case senderEmail = "sender_email"
-        case senderName = "sender_name"
-    }
-}

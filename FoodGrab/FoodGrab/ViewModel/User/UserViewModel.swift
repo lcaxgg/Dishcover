@@ -19,7 +19,7 @@ class UserViewModel: ObservableObject {
     private init() {}
     
     static func getSharedInstance() -> UserViewModel {
-        return UserViewModel.shared
+        UserViewModel.shared
     }
     
     // MARK: - SETTER

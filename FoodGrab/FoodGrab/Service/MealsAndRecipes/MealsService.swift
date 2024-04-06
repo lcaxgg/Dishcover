@@ -61,9 +61,9 @@ struct MealsService {
                     }
                 }
                 
-                print("Completed fetching data. Entity Name:" + AppConstants.whiteSpaceString + entityName)
+                print("Completed fetching data. Entity Name:" + AppConstants.whiteSpaceString + entityName + AppConstants.whiteSpaceString + "✅")
             } catch {
-                print("* Couldn't fetch data. Entity Name: \(String(describing: entityName)) \nReason: \(error.localizedDescription) *")
+                print("Couldn't fetch data. Entity Name: \(String(describing: entityName)) \nReason: \(error.localizedDescription) ⛔")
                 completion(false)
             }
         }
@@ -110,9 +110,9 @@ struct MealsService {
                     RecipesViewModel.setEmptyRecipesList(with: entityName)
                 }
                 
-                print("Completed fetching data. Entity Name:" + AppConstants.whiteSpaceString + entityName)
+                print("Completed fetching data. Entity Name:" + AppConstants.whiteSpaceString + entityName + AppConstants.whiteSpaceString + "✅")
             } catch {
-                print("* Couldn't fetch data. Entity Name: \(String(describing: entityName)) \nReason: \(error.localizedDescription) *")
+                print("Couldn't fetch data. Entity Name: \(String(describing: entityName)) \nReason: \(error.localizedDescription) ⛔")
                 completion(false)
             }
         }
@@ -210,7 +210,7 @@ struct MealsService {
         if isDoneFetchingMeals && isDoneFetchingRecipes {
             let endTime = Date().timeIntervalSince1970
             let elapsedTime = endTime - startTime
-            print("Completed fetching data. Elapsed time: \(elapsedTime.rounded())")
+            print("Completed fetching data. Elapsed time: \(elapsedTime.rounded())" + AppConstants.whiteSpaceString + "⌛")
             
             completion(true)
         }

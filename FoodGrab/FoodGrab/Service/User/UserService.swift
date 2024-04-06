@@ -10,7 +10,7 @@ import Firebase
 import FirebaseFirestore
 
 struct UserService {
-    static func fetchUserInfo() {
+    static func fetchUserDetails() {
         guard let uid = Auth.auth().currentUser?.uid else {
             return
         }
@@ -18,7 +18,7 @@ struct UserService {
         let collection = Firestore.firestore().collection(AppConstants.users)
         collection.document(uid).getDocument { document, error in
             guard error == nil else {
-                print("* Couldn't fetch Document. \(String(describing: error?.localizedDescription)) *")
+                print("Couldn't fetch Document. \(String(describing: error?.localizedDescription)) ⛔")
                 return
             }
             
@@ -31,7 +31,7 @@ struct UserService {
                 let details = try document.data(as: UserDetailsModel.self)
                 UserViewModel.shared.setUserDetails(with: details)
             } catch let error {
-                print("* Couldn't decode document. \(error.localizedDescription) *")
+                print("Couldn't decode document. \(error.localizedDescription) ⛔")
             }
         }
     }
