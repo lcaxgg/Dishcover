@@ -67,7 +67,7 @@ extension ChatWindow {
             // Unwrap weak self
             if let document = document, document.exists {
                 let nestedCollectionReference = document.reference.collection("received_messages")
-                nestedCollectionReference.document("sender_OEhyJNMKKvXDIjpBlpg3lG0ML2z2").getDocument { (nestedDocument, nestedError) in
+                nestedCollectionReference.document(UserViewModel.getName()).getDocument { (nestedDocument, nestedError) in
                     if let nestedDocument = nestedDocument, nestedDocument.exists {
                         nestedData = nestedDocument.data() ?? [:]
                         print(nestedData as Any)
@@ -91,8 +91,7 @@ extension ChatWindow {
         }
         
         let userData = [
-            "sender_email": userEmail,
-            "sender_name": "Kushina Uzumaki",
+            "email": userEmail,
             "message": "test message",
             "is_read": false
         ] as [String : Any]
@@ -103,10 +102,12 @@ extension ChatWindow {
         let date = Date(timeIntervalSince1970: timestamp)
         let dateString = dateFormatter.string(from: date)
         
-        let docRef = Firestore.firestore().collection("Conversation")
+        let name = UserViewModel.getName()
+        
+        let docRef = Firestore.firestore().collection(AppConstants.conversations)
             .document("itachi@gmail.com")
             .collection("received_messages")
-            .document("sender_\(uid)")
+            .document(name)
         
         docRef.setData([
             dateString: userData

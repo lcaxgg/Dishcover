@@ -19,7 +19,7 @@ struct ChatDownloadManager {
     
     private init() {}
     
-    func getFirstInstance() -> ChatDownloadManager {
+    static func getSharedInstance() -> ChatDownloadManager {
         return ChatDownloadManager.shared
     }
     
@@ -68,7 +68,7 @@ struct ChatDownloadManager {
                             
                             }
                         } catch let error {
-                            print("* Couldn't decode Document. \(error.localizedDescription) *")
+                            print("* Couldn't decode document. \(error.localizedDescription) *")
                         }
                         
                         outerArr.append([document.documentID: someArr])

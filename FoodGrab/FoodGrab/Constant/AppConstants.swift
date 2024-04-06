@@ -29,7 +29,7 @@ struct AppConstants {
     static let zipCode = "zip Code"
     static let country = "country"
     
-    static let userID = "User ID"
+    static let userID = "User Id"
     static let userName = "Username"
     static let password = "Password"
     static let confirmPassword = "Confirm Password"
@@ -112,6 +112,7 @@ struct AppConstants {
     // MARK: - FIREBASE DB COLLECTION & FILE NAMES
     
     static let users = "Users"
+    static let conversations = "Conversations"
     static let images = "Images"
     
     // MARK: - MEALS, RECIPES

@@ -24,7 +24,7 @@ class MealsViewModel: ObservableObject {
     
     private init() {}
  
-    func getFirstInstance() -> MealsViewModel {
+    static func getSharedInstance() -> MealsViewModel {
         return MealsViewModel.shared
     }
     

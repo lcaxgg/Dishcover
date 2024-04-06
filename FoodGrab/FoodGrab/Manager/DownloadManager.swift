@@ -30,7 +30,7 @@ struct DownloadManager {
     
     private init() {}
  
-    func getFirstInstance() -> DownloadManager {
+    static func getSharedInstance() -> DownloadManager {
         return DownloadManager.shared
     }
     
