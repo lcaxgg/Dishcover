@@ -35,6 +35,7 @@
 > <sup>• SwiftUI</sup><br>
 > <sup>• Core Data</sup><br>
 > <sup>• Firebase</sup><br>
+> <sup>• MVVM</sup><br>
 > <sup>• Open Source API (https://www.themealdb.com/api.php)</sup><br>
 
 > [!NOTE]  
