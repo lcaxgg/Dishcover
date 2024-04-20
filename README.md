@@ -39,6 +39,6 @@
 > <sup>• Open Source API (https://www.themealdb.com/api.php)</sup><br>
 
 > [!NOTE]  
-> <sup>This project is currently in progress as part of my ongoing learning journey. <br>Your valuable comments and suggestions are highly encouraged—please feel free to reach out to me. <br>Let's collaborate and create something truly remarkable together! 🙇🏻</sup><br>
+> <sup>This project is currently in progress as part of my learning journey. <br>Your valuable comments and suggestions are highly encouraged—please feel free to reach out to me. <br>Let's collaborate and create something truly remarkable together! 🙇🏻</sup><br>
 
 ---
