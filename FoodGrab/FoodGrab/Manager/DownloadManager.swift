@@ -30,8 +30,8 @@ struct DownloadManager {
     
     private init() {}
  
-    func getFirstInstance() -> DownloadManager {
-        return DownloadManager.shared
+    static func getSharedInstance() -> DownloadManager {
+        DownloadManager.shared
     }
     
     // MARK: - PROCESS FOR MEALS
@@ -69,11 +69,11 @@ struct DownloadManager {
                         DownloadManager.shared.recipessUrls?[category] = urlListPerCategory
                         urlListPerCategory.removeAll()
                         
-                        print("Completed fetching meal. Category:" + AppConstants.whiteSpaceString + category)
+                        print("Completed fetching meal. Category:" + AppConstants.whiteSpaceString + category + AppConstants.whiteSpaceString + "✅")
                     }
                     
                 case .failure(let error):
-                    print("* Couldn't fetch meal. \(error.localizedDescription) *")
+                    print("Couldn't fetch meal. \(error.localizedDescription) ⛔")
                     return
                 }
             }
@@ -132,11 +132,11 @@ struct DownloadManager {
                                         let key = (category ?? AppConstants.emptyString) + AppConstants.underScoreString + AppConstants.recipe
                                         saveRecipeDetailsLocally(with: key, andWith: recipeDetails)
                                         
-                                        print("Completed fetching recipe. Category:" + AppConstants.whiteSpaceString + (category ?? AppConstants.emptyString))
+                                        print("Completed fetching recipe. Category:" + AppConstants.whiteSpaceString + (category ?? AppConstants.emptyString) + AppConstants.whiteSpaceString + "✅")
                                     }
                                 }
                             case .failure(let error):
-                                print("* Couldn't fetch recipe. URL: \(url) \nReason: \(error.localizedDescription) *")
+                                print("Couldn't fetch recipe. URL: \(url) \nReason: \(error.localizedDescription) ⛔")
                                 return
                             }
                         }
@@ -180,9 +180,9 @@ struct DownloadManager {
                                 let fileURL = imagesDirectory.appendingPathComponent(filename)
                                 try imageData.write(to: fileURL)
                                 
-                                print("Completed saving image. Filename:" + AppConstants.whiteSpaceString + filename)
+                                print("Completed saving image. Filename:" + AppConstants.whiteSpaceString + filename + AppConstants.whiteSpaceString + "✅")
                             } catch {
-                                print("* Couldn't save image: \(error.localizedDescription) *")
+                                print("Couldn't save image: \(error.localizedDescription) ⛔")
                             }
                         }
                         
@@ -209,7 +209,7 @@ struct DownloadManager {
         if isDoneFetchingRecipe && isDoneFetchingMealsImages {
             let endTime = Date().timeIntervalSince1970
             let elapsedTime = endTime - DownloadManager.shared.startTime
-            print("Completed fetching data. Elapsed time: \(elapsedTime.rounded())")
+            print("Completed fetching data. Elapsed time: \(elapsedTime.rounded())" + AppConstants.whiteSpaceString + "⌛")
             
             return DownloadManager.shared.meals
         }

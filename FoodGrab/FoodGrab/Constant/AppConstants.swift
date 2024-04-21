@@ -11,7 +11,9 @@ struct AppConstants {
     // MARK: - TITLES
     
     static let welcomeTitle = "Food that tells a story"
-    static let mainTitle = "Explore"
+    static let mealNavTitle = "Explore"
+    static let chatNavTitle = "Chat"
+    static let accountNavTitle = "Account"
     
     // MARK: - LABELS
     
@@ -27,7 +29,7 @@ struct AppConstants {
     static let zipCode = "zip Code"
     static let country = "country"
     
-    static let userID = "User ID"
+    static let userId = "User Id"
     static let userName = "Username"
     static let password = "Password"
     static let confirmPassword = "Confirm Password"
@@ -81,7 +83,7 @@ struct AppConstants {
     static let emailPlaceHolder = "enter your email"
     static let passwordPlaceHolder = "enter your password"
     static let confrimPasswordPlaceHolder = "re-enter your password"
-    static let searchPlaceHolder = "Search food or meal"
+    static let searchPlaceHolder = "Search"
     
     // MARK: - VALIDATION MESSAGES
     
@@ -110,6 +112,7 @@ struct AppConstants {
     // MARK: - FIREBASE DB COLLECTION & FILE NAMES
     
     static let users = "Users"
+    static let conversations = "Conversations"
     static let images = "Images"
     
     // MARK: - MEALS, RECIPES
@@ -195,6 +198,7 @@ struct AppConstants {
     static let photoCircle = "photo.circle"
     static let photo = "photo"
     static let photoFill = "photo.fill"
+    static let personXmark = "person.crop.circle.fill.badge.xmark"
     
     static let personCircleFill = "person.crop.circle.fill"
     static let mapFill = "map.fill"
@@ -210,6 +214,8 @@ struct AppConstants {
     static let eye = "eye"
     static let magnifyingglass = "magnifyingglass"
     static let xCircle = "x.circle"
+    
+    static let squareAndPencil = "square.and.pencil"
     
     // MARK: - OTHERS
     

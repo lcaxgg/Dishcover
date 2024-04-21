@@ -23,11 +23,13 @@ struct AuthManager {
                 alertViewModel.setTitle(with: AppConstants.error)
                 alertViewModel.setMessage(with: error!.localizedDescription)
                 
-                loginViewModel.isPresentedMainScreen = false
+                loginViewModel.isPresentedBaseView = false
             } else {
-                loginViewModel.isPresentedMainScreen = true
+                loginViewModel.isPresentedBaseView  = true
             }
         }
+        
+        //loginViewModel.isPresentedBaseView  = true
     }
     
     static func processRegistration(with registrationViewModel: RegistrationViewModel, andWith alertViewModel: AlertViewModel) {

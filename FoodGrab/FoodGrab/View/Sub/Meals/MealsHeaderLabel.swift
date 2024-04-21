@@ -58,7 +58,6 @@ struct MealsHeaderLabel: View {
                 .environmentObject(mealsCategoriesViewModel)
             }
         }
-        .padding(.horizontal, screenSize.width * 0.05)
     }
 }
 

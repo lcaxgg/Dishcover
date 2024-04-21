@@ -24,8 +24,8 @@ class MealsViewModel: ObservableObject {
     
     private init() {}
  
-    func getFirstInstance() -> MealsViewModel {
-        return MealsViewModel.shared
+    static func getSharedInstance() -> MealsViewModel {
+        MealsViewModel.shared
     }
     
     func initMealsDetails(with entity: NSManagedObject) -> MealsDetailsModel {

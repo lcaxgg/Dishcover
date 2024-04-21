@@ -19,7 +19,7 @@ class LoginViewModel: ObservableObject {
     @Published var isValidCredentials: Bool = false
     @Published var isPasswordValid: Bool = false
     @Published var isProccessingLogin: Bool = false
-    @Published var isPresentedMainScreen: Bool = false
+    @Published var isPresentedBaseView: Bool = false
     @Published var shouldDisableButton: Bool = false
     
     // MARK: - METHODS

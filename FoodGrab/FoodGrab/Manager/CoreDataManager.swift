@@ -45,13 +45,13 @@ class CoreDataManager {
             if let error = error {
                 fatalError("\(error.localizedDescription)")
             } else {
-                print("Core Data loaded successfully")
+                print("Core Data loaded successfully ⛁")
             }
         }
     }
     
-    func getFirstInstance() -> CoreDataManager {
-        return CoreDataManager.shared
+    func getSharedInstance() -> CoreDataManager {
+        CoreDataManager.shared
     }
     
     func checkEmptyRecord() -> Bool {
@@ -180,7 +180,7 @@ class CoreDataManager {
     }
     
     func setMealDetails(with mealsDetails: MealsDetailsModel, andWith entityKey: String) {
-        let mealsViewModel = MealsViewModel.shared.getFirstInstance()
+        let mealsViewModel = MealsViewModel.getSharedInstance()
         mealsViewModel.setMealsDetails(with: mealsDetails)
         
         let entity = fetchMealEntity(with: entityKey)
@@ -193,7 +193,7 @@ class CoreDataManager {
     }
     
     func setRecipeDetails(with recipeDetails: Dictionary<String, String?>?, andWith entityKey: String) {
-        let recipesViewModel = RecipesViewModel.shared.getFirstInstance()
+        let recipesViewModel = RecipesViewModel.getSharedInstance()
         recipesViewModel.setRecipesDetails(with: recipeDetails)
         
         let entity = fetchRecipeEntity(with: entityKey)
