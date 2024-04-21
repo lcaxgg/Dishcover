@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BaseService {
+class EmailValidationService: ValidationProtocol {
     
     // MARK: - AUTHENTICATION
     

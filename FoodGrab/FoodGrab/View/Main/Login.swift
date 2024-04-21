@@ -22,7 +22,6 @@ struct Login: View {
     @StateObject private var alertViewModel = AlertViewModel()
     
     private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
-    private let loginValidationService = LoginValidationService()
     
     var body: some View {
         GeometryReader { geometry in
@@ -35,14 +34,14 @@ struct Login: View {
                             .configure(withModifier: textModifier)
                             .frame(width: geometry.size.width * 0.23, alignment: .leading)
                         
-                        TextField(AppConstants.emailPlaceHolder, text: loginViewModel.emailBinding)
+                        TextField(AppConstants.emailPlaceHolder, text: $loginViewModel.loginModel.email)
                             .keyboardType(.emailAddress)
                             .padding()
                             .onChange(of: loginViewModel.getEmail()) { newValue in
-                                let email = loginValidationService.validateEmailInput(newValue)
+                                let email = loginViewModel.emailValidationService.validateEmailInput(newValue)
                                 
                                 loginViewModel.setEmail(with: email)
-                                loginValidationService.validateLoginInputs(with: AppConstants.emailKey, andWith: loginViewModel)
+                                loginViewModel.validateLoginInputs(with: AppConstants.emailKey)
                             }
                     }
                     .frame(height: geometry.size.height * 0.06)
@@ -57,22 +56,22 @@ struct Login: View {
                             .frame(width: geometry.size.width * 0.23, alignment: .leading)
                         
                         if isPasswordVisible {
-                            TextField(AppConstants.passwordPlaceHolder, text: loginViewModel.passwordBinding)
+                            TextField(AppConstants.passwordPlaceHolder, text: $loginViewModel.loginModel.password)
                                 .onChange(of: loginViewModel.getPassword()) { newValue in
                                     let password = newValue.filter { !$0.isWhitespace }
                                     
                                     loginViewModel.setPassword(with: password)
-                                    loginValidationService.validateLoginInputs(with: AppConstants.passwordKey, andWith: loginViewModel)
+                                    loginViewModel.validateLoginInputs(with: AppConstants.passwordKey)
                                 }
                                 .padding()
                             
                         } else {
-                            SecureField(AppConstants.passwordPlaceHolder, text: loginViewModel.passwordBinding)
+                            SecureField(AppConstants.passwordPlaceHolder, text: $loginViewModel.loginModel.password)
                                 .onChange(of: loginViewModel.getPassword()) { newValue in
                                     let password = newValue.filter { !$0.isWhitespace }
                                     
                                     loginViewModel.setPassword(with: password)
-                                    loginValidationService.validateLoginInputs(with: AppConstants.passwordKey, andWith: loginViewModel)
+                                    loginViewModel.validateLoginInputs(with: AppConstants.passwordKey)
                                 }
                                 .padding()
                         }

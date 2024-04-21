@@ -6,21 +6,21 @@
 //
 
 import Foundation
-import SwiftUI
 
 class LoginViewModel: ObservableObject {
- 
+    
     // MARK: - PROPERTIES
-
-    @Published var loginModel = LoginModel()
+    
+    @Published var loginModel: LoginModel = LoginModel()
     
     @Published var invalidFields: [String : String] = Dictionary()
-    
     @Published var isValidCredentials: Bool = false
     @Published var isPasswordValid: Bool = false
     @Published var isProccessingLogin: Bool = false
     @Published var isPresentedBaseView: Bool = false
     @Published var shouldDisableButton: Bool = false
+    
+    let emailValidationService: EmailValidationService = EmailValidationService()
     
     // MARK: - METHODS
     
@@ -48,21 +48,47 @@ class LoginViewModel: ObservableObject {
     func setPassword(with password: String) {
         loginModel.password = password
     }
-    
-    // MARK: - BINDING
-    
-    var emailBinding: Binding<String> {
-        Binding(
-            get: { self.loginModel.email },
-            set: { self.loginModel.email = $0 }
-        )
-    }
-    
-    var passwordBinding: Binding<String> {
-        Binding(
-            get: { self.loginModel.password },
-            set: { self.loginModel.password = $0 }
-        )
-    }
 }
 
+extension LoginViewModel {
+    func validateLoginInputs(with key: String) {
+        if key == AppConstants.emailKey {
+            validateEmail(with: key)
+        }
+        
+        if key == AppConstants.passwordKey {
+            validatePassword(with: key)
+        }
+        
+        if invalidFields.count == 0 {
+            isValidCredentials = true
+        } else {
+            isValidCredentials = false
+        }
+    }
+    
+    private func validateEmail(with key: String) {
+        if getEmail().count > 0 {
+            if emailValidationService.isEmailValid(getEmail()) {
+                invalidFields.removeValue(forKey: key)
+            } else {
+                invalidFields[key] = AppConstants.invalidEmail
+            }
+            
+            shouldDisableButton = false
+        } else {
+            invalidFields[key] = AppConstants.fillInEmail
+            shouldDisableButton = true
+        }
+    }
+    
+    private func validatePassword(with key: String) {
+        if getPassword().count >= 8 {
+            invalidFields.removeValue(forKey: key)
+            shouldDisableButton = false
+        } else {
+            invalidFields[key] = AppConstants.invalidLength
+            shouldDisableButton = true
+        }
+    }
+}

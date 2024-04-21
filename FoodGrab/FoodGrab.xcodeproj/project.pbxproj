@@ -59,8 +59,7 @@
 		5B5B79942AA9BD1200DBEA9F /* RegistrationValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79932AA9BD1200DBEA9F /* RegistrationValidationService.swift */; };
 		5B5B79962AA9BD7500DBEA9F /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79952AA9BD7500DBEA9F /* RegistrationModel.swift */; };
 		5B61E5442B9047D600B36FA4 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B61E5432B9047D600B36FA4 /* SearchModel.swift */; };
-		5B6DC3212B3D6DF2008FAA22 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DC3202B3D6DF2008FAA22 /* BaseService.swift */; };
-		5B6DC3232B3D7A5D008FAA22 /* LoginValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DC3222B3D7A5D008FAA22 /* LoginValidationService.swift */; };
+		5B6DC3212B3D6DF2008FAA22 /* EmailValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DC3202B3D6DF2008FAA22 /* EmailValidationService.swift */; };
 		5B7480682B3DD47200CD333B /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7480672B3DD47200CD333B /* DownloadManager.swift */; };
 		5B74806A2B3DD50800CD333B /* MealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7480692B3DD50800CD333B /* MealsModel.swift */; };
 		5B74806C2B3DE5EB00CD333B /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B74806B2B3DE5EB00CD333B /* ApiConstants.swift */; };
@@ -140,8 +139,7 @@
 		5B5B79932AA9BD1200DBEA9F /* RegistrationValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationValidationService.swift; sourceTree = "<group>"; };
 		5B5B79952AA9BD7500DBEA9F /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		5B61E5432B9047D600B36FA4 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
-		5B6DC3202B3D6DF2008FAA22 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
-		5B6DC3222B3D7A5D008FAA22 /* LoginValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginValidationService.swift; sourceTree = "<group>"; };
+		5B6DC3202B3D6DF2008FAA22 /* EmailValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationService.swift; sourceTree = "<group>"; };
 		5B7480672B3DD47200CD333B /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		5B7480692B3DD50800CD333B /* MealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsModel.swift; sourceTree = "<group>"; };
 		5B74806B2B3DE5EB00CD333B /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
@@ -279,11 +277,11 @@
 		5B5A05362A9ECA81001A05CA /* FoodGrab */ = {
 			isa = PBXGroup;
 			children = (
-				5BBE48572BD52C28001409CF /* Protocol */,
 				5B89F7222B65F1A200BA5DFF /* Enum */,
 				5B56EDFC2AD8E75B0095D70D /* Modifier */,
 				5B56EDFB2AD8E7520095D70D /* Extension */,
 				5B1D142B2AB17B4F003BA1A5 /* Delegate */,
+				5BBE48572BD52C28001409CF /* Protocol */,
 				5B5B79902AA9BA7200DBEA9F /* Service */,
 				5B5B798B2AA9B98300DBEA9F /* Manager */,
 				5B5B79852AA99DF100DBEA9F /* Constant */,
@@ -415,6 +413,8 @@
 		5B5B79902AA9BA7200DBEA9F /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5B6DC3202B3D6DF2008FAA22 /* EmailValidationService.swift */,
+				5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */,
 				5B8562D92BC16214007547B2 /* User */,
 				5B8562D82BC160DE007547B2 /* Chat */,
 				5B8562D72BC160D6007547B2 /* Authentication */,
@@ -472,8 +472,6 @@
 		5B8562D62BC160D1007547B2 /* Others */ = {
 			isa = PBXGroup;
 			children = (
-				5B6DC3202B3D6DF2008FAA22 /* BaseService.swift */,
-				5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -482,7 +480,6 @@
 			isa = PBXGroup;
 			children = (
 				5B5B79932AA9BD1200DBEA9F /* RegistrationValidationService.swift */,
-				5B6DC3222B3D7A5D008FAA22 /* LoginValidationService.swift */,
 				5B753C4F2BA18ED7005BF90E /* LoginService.swift */,
 				5B753C512BA18F10005BF90E /* RegistrationService.swift */,
 			);
@@ -702,7 +699,6 @@
 				5B8562CF2BC129C4007547B2 /* ChatDownloadManager.swift in Sources */,
 				5B5A05572A9F343C001A05CA /* ButtonOne.swift in Sources */,
 				5B12E4A12AC525DC008BB487 /* Meals.swift in Sources */,
-				5B6DC3232B3D7A5D008FAA22 /* LoginValidationService.swift in Sources */,
 				5B379B1E2AD646E00081FB59 /* ButtonOneAttributes.swift in Sources */,
 				5B5B79892AA9AEA200DBEA9F /* CustomPreview.swift in Sources */,
 				5B04D4702B3E8DF5006E39E9 /* CoreDataManager.swift in Sources */,
@@ -723,7 +719,7 @@
 				5B56EDFE2AD8E7720095D70D /* TextExtension.swift in Sources */,
 				5B578C2C2B96065100FD0277 /* RecipesEnum.swift in Sources */,
 				5B7FCBA92B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld in Sources */,
-				5B6DC3212B3D6DF2008FAA22 /* BaseService.swift in Sources */,
+				5B6DC3212B3D6DF2008FAA22 /* EmailValidationService.swift in Sources */,
 				5BDBC1F62AB12E1300AB6171 /* RegisterUpperPart.swift in Sources */,
 				5B049A442B94717700806731 /* RecipesModel.swift in Sources */,
 				5B5B79872AA99E1F00DBEA9F /* AppConstants.swift in Sources */,
