@@ -24,13 +24,13 @@ struct RegisterMiddlePart: View {
                     .padding(.leading, UIScreen.main.bounds.width * 0.05)
 
                 VStack {
-                    TextField(AppConstants.streetNumber, text: registrationViewModel.streetNumberBinding)
+                    TextField(AppConstants.streetNumber, text: $registrationViewModel.registrationModel.streetNumber)
                         .keyboardType(.numberPad)
                         .padding()
                     
                     HorizontalSeparator(color: AppConstants.lightGrayThree, height: 1.0)
                     
-                    TextField(AppConstants.streetName, text: registrationViewModel.streetNameBinding)
+                    TextField(AppConstants.streetName, text: $registrationViewModel.registrationModel.streetName)
                         .autocapitalization(.words)
                         .keyboardType(.alphabet)
                         .padding()
@@ -43,7 +43,7 @@ struct RegisterMiddlePart: View {
                     HorizontalSeparator(color: AppConstants.lightGrayThree, height: 1.0)
                     
                     HStack {
-                        TextField(AppConstants.barangay, text: registrationViewModel.barangayBinding)
+                        TextField(AppConstants.barangay, text: $registrationViewModel.registrationModel.barangay)
                             .autocapitalization(.words)
                             .padding()
                             .onChange(of: registrationViewModel.getBarangay()) { newValue in
@@ -54,7 +54,7 @@ struct RegisterMiddlePart: View {
                         
                         VerticalSeparator()
                         
-                        TextField(AppConstants.zipCode, text: registrationViewModel.zipCodeBinding)
+                        TextField(AppConstants.zipCode, text: $registrationViewModel.registrationModel.zipCode)
                             .keyboardType(.numberPad)
                             .padding()
                     }
@@ -63,7 +63,7 @@ struct RegisterMiddlePart: View {
                     HorizontalSeparator(color: AppConstants.lightGrayThree, height: 1.0)
                     
                     HStack {
-                        TextField(AppConstants.city, text: registrationViewModel.cityBinding)
+                        TextField(AppConstants.city, text: $registrationViewModel.registrationModel.city)
                             .autocapitalization(.words)
                             .keyboardType(.alphabet)
                             .padding()
@@ -75,7 +75,7 @@ struct RegisterMiddlePart: View {
                         
                         VerticalSeparator()
                         
-                        TextField(AppConstants.country, text: registrationViewModel.countryBinding)
+                        TextField(AppConstants.country, text: $registrationViewModel.registrationModel.country)
                             .autocapitalization(.words)
                             .keyboardType(.alphabet)
                             .padding()

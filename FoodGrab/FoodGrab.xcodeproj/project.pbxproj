@@ -418,7 +418,6 @@
 				5B8562D92BC16214007547B2 /* User */,
 				5B8562D82BC160DE007547B2 /* Chat */,
 				5B8562D72BC160D6007547B2 /* Authentication */,
-				5B8562D62BC160D1007547B2 /* Others */,
 				5B8562D52BC160AD007547B2 /* MealsAndRecipes */,
 			);
 			path = Service;
@@ -467,13 +466,6 @@
 				5B9FE8D92B3F1AA000E49F07 /* MealsService.swift */,
 			);
 			path = MealsAndRecipes;
-			sourceTree = "<group>";
-		};
-		5B8562D62BC160D1007547B2 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Others;
 			sourceTree = "<group>";
 		};
 		5B8562D72BC160D6007547B2 /* Authentication */ = {

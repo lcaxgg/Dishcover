@@ -9,8 +9,6 @@ import SwiftUI
 import SwiftfulLoadingIndicators
 import AlertToast
 
-import Alamofire
-
 struct Register: View {
     
     // MARK: - PROPERTIES
@@ -21,8 +19,6 @@ struct Register: View {
     
     @StateObject private var registrationViewModel = RegistrationViewModel()
     @StateObject private var alertViewModel = AlertViewModel()
-    
-    private let registrationValidationService = RegistrationValidationService()
     
     var body: some View {
         ZStack {
@@ -62,8 +58,7 @@ struct Register: View {
                     // MARK: - BODY
                     
                     VStack(spacing: 0) {
-                        RegisterUpperPart(registrationViewModel: registrationViewModel,
-                                          registrationValidationService: registrationValidationService)
+                        RegisterUpperPart(registrationViewModel: registrationViewModel)
                         
                         Group {
                             HorizontalSeparator(color: AppConstants.lightGrayOne, height: geometry.size.height * 0.05)
@@ -80,8 +75,7 @@ struct Register: View {
                         
                         // MARK: - FOOTER
                         
-                        RegisterLowerPart(registrationViewModel: registrationViewModel,
-                                          registrationValidationService: registrationValidationService)
+                        RegisterLowerPart(registrationViewModel: registrationViewModel)
                     }
                     
                     let attribute = ButtonOneAttributes(text: AppConstants.register,
