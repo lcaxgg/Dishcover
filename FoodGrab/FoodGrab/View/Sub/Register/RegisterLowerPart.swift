@@ -16,7 +16,6 @@ struct RegisterLowerPart: View {
     @State private var isConfirmPasswordVisible: Bool = false
     
     private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
-    let registrationValidationService: RegistrationValidationService
     
     var body: some View {
         VStack(spacing: 7.0) {
@@ -26,21 +25,21 @@ struct RegisterLowerPart: View {
                     .frame(width: UIScreen.main.bounds.width * 0.19, alignment: .leading)
                 
                 if isPasswordVisible {
-                    TextField(AppConstants.passwordPlaceHolder, text: registrationViewModel.passwordBinding)
+                    TextField(AppConstants.passwordPlaceHolder, text: $registrationViewModel.registrationModel.password)
                         .onChange(of: registrationViewModel.getPassword()) { newValue in
                             let password = newValue.filter { !$0.isWhitespace }
                             
                             registrationViewModel.setPassword(with: password)
-                            registrationValidationService.validateRegistrationData(with: AppConstants.passwordKey, andWith: registrationViewModel)
+                            registrationViewModel.validateRegistrationData(with: AppConstants.passwordKey)
                         }
                     
                 } else {
-                    SecureField(AppConstants.passwordPlaceHolder, text: registrationViewModel.passwordBinding)
+                    SecureField(AppConstants.passwordPlaceHolder, text: $registrationViewModel.registrationModel.password)
                         .onChange(of: registrationViewModel.getPassword()) { newValue in
                             let password = newValue.filter { !$0.isWhitespace }
                             
                             registrationViewModel.setPassword(with: password)
-                            registrationValidationService.validateRegistrationData(with: AppConstants.passwordKey, andWith: registrationViewModel)
+                            registrationViewModel.validateRegistrationData(with: AppConstants.passwordKey)
                         }
                 }
                 
@@ -67,21 +66,21 @@ struct RegisterLowerPart: View {
                         .frame(width: UIScreen.main.bounds.width * 0.19, alignment: .leading)
                     
                     if isConfirmPasswordVisible {
-                        TextField(AppConstants.confrimPasswordPlaceHolder, text: registrationViewModel.confirmPasswordBinding)
+                        TextField(AppConstants.confrimPasswordPlaceHolder, text: $registrationViewModel.registrationModel.confirmPassword)
                             .onChange(of: registrationViewModel.getConfirmPassword()) { newValue in
                                 let confirmPassword = newValue.filter { !$0.isWhitespace }
                                 
                                 registrationViewModel.setConfirmPaswword(with: confirmPassword)
-                                registrationValidationService.validateRegistrationData(with: AppConstants.confirmPasswordKey, andWith: registrationViewModel)
+                                registrationViewModel.validateRegistrationData(with: AppConstants.confirmPasswordKey)
                             }
                         
                     } else {
-                        SecureField(AppConstants.confrimPasswordPlaceHolder, text: registrationViewModel.confirmPasswordBinding)
+                        SecureField(AppConstants.confrimPasswordPlaceHolder, text: $registrationViewModel.registrationModel.confirmPassword)
                             .onChange(of: registrationViewModel.getConfirmPassword()) { newValue in
                                 let confirmPassword = newValue.filter { !$0.isWhitespace }
                                 
                                 registrationViewModel.setConfirmPaswword(with: confirmPassword)
-                                registrationValidationService.validateRegistrationData(with: AppConstants.confirmPasswordKey, andWith: registrationViewModel)
+                                registrationViewModel.validateRegistrationData(with: AppConstants.confirmPasswordKey)
                             }
                     }
                     

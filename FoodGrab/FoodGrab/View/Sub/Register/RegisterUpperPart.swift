@@ -8,7 +8,6 @@
 import SwiftUI
 import FirebaseFirestoreSwift
 
-
 struct RegisterUpperPart: View {
     
     // MARK: - PROPERTIES
@@ -16,7 +15,6 @@ struct RegisterUpperPart: View {
     @ObservedObject var registrationViewModel: RegistrationViewModel
     
     private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
-    let registrationValidationService: RegistrationValidationService
     
     var body: some View {
         VStack(spacing: 7.0) {
@@ -28,7 +26,7 @@ struct RegisterUpperPart: View {
                     .configure(withModifier: textModifier)
                     .frame(width: UIScreen.main.bounds.width * 0.19, alignment: .leading)
                 
-                TextField(AppConstants.firstNamePlaceHolder, text: registrationViewModel.firstNameBinding)
+                TextField(AppConstants.firstNamePlaceHolder, text: $registrationViewModel.registrationModel.firstName)
                     .autocapitalization(.words)
                     .keyboardType(.alphabet)
                     .padding()
@@ -36,7 +34,7 @@ struct RegisterUpperPart: View {
                         let firstName = newValue.filter { $0.isLetter || $0.isWhitespace }.capitalized
                         
                         registrationViewModel.setFirstName(with: firstName)
-                        registrationValidationService.validateRegistrationData(with: AppConstants.firstNameKey, andWith: registrationViewModel)
+                        registrationViewModel.validateRegistrationData(with: AppConstants.firstNameKey)
                     }
             }
             .frame(height: UIScreen.main.bounds.height * 0.06)
@@ -52,7 +50,7 @@ struct RegisterUpperPart: View {
                     .configure(withModifier: textModifier)
                     .frame(width: UIScreen.main.bounds.width * 0.19, alignment: .leading)
                 
-                TextField(AppConstants.lastNamePlaceHolder, text: registrationViewModel.lastNameBinding)
+                TextField(AppConstants.lastNamePlaceHolder, text: $registrationViewModel.registrationModel.lastName)
                     .autocapitalization(.words)
                     .keyboardType(.alphabet)
                     .padding()
@@ -60,7 +58,7 @@ struct RegisterUpperPart: View {
                         let lastName = newValue.filter { $0.isLetter || $0.isWhitespace }.capitalized
                         
                         registrationViewModel.setLastName(with: lastName)
-                        registrationValidationService.validateRegistrationData(with: AppConstants.lastNameKey, andWith: registrationViewModel)
+                        registrationViewModel.validateRegistrationData(with: AppConstants.lastNameKey)
                     }
             }
             .frame(height: UIScreen.main.bounds.height * 0.06)
@@ -76,14 +74,14 @@ struct RegisterUpperPart: View {
                     .configure(withModifier: textModifier)
                     .frame(width: UIScreen.main.bounds.width * 0.19, alignment: .leading)
                 
-                TextField(AppConstants.emailPlaceHolder, text: registrationViewModel.emailBinding)
+                TextField(AppConstants.emailPlaceHolder, text: $registrationViewModel.registrationModel.email)
                     .keyboardType(.emailAddress)
                     .padding()
                     .onChange(of: registrationViewModel.getEmail()) { newValue in
-                        let email = registrationValidationService.validateEmailInput(newValue)
+                        let email = registrationViewModel.emailValidationService.validateEmailInput(newValue)
                         
                         registrationViewModel.setEmail(with: email)
-                        registrationValidationService.validateRegistrationData(with: AppConstants.emailKey, andWith: registrationViewModel)
+                        registrationViewModel.validateRegistrationData(with: AppConstants.emailKey)
                     }
             }
             .frame(height: UIScreen.main.bounds.height * 0.06)
