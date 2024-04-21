@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RegistrationValidationService : BaseService {
+class RegistrationValidationService : EmailValidationService {
     func validateRegistrationData(with key: String, andWith viewModel: RegistrationViewModel) {
         if key == AppConstants.firstNameKey {
             validateFirstName(with: key, andWith: viewModel)
