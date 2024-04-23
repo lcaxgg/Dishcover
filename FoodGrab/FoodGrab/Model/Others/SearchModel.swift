@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct SearchModel {
     var searchText: String = AppConstants.emptyString

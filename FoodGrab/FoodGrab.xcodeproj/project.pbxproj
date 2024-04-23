@@ -325,10 +325,10 @@
 		5B5A05472A9ECC2C001A05CA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5B8562DD2BC1629C007547B2 /* Authentication */,
 				5B8562E22BC162FC007547B2 /* User */,
 				5B8562DF2BC162A8007547B2 /* MealsAndRecipes */,
 				5B8562DE2BC162A0007547B2 /* Others */,
-				5B8562DD2BC1629C007547B2 /* Authentication */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
