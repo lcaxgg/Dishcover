@@ -1,5 +1,5 @@
 //
-//  ChatDownloadManager.swift
+//  ChatManager.swift
 //  FoodGrab
 //
 //  Created by j8bok on 4/6/24.
@@ -9,18 +9,18 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-struct ChatDownloadManager {
+struct ChatManager {
     
     // MARK: - PROPERTIES
     
-    static var shared = ChatDownloadManager()
+    static var shared = ChatManager()
     
     // MARK: - METHODS
     
     private init() {}
     
-    static func getSharedInstance() -> ChatDownloadManager {
-        ChatDownloadManager.shared
+    static func getSharedInstance() -> ChatManager {
+        ChatManager.shared
     }
     
     // MARK: - FETCH
