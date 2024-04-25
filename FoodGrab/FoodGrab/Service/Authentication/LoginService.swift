@@ -46,7 +46,7 @@ extension LoginService {
                 return
             }
         
-            UserManager.fetchUserDetails()
+            UserService.fetchUserDetails()
     
             let endTime = Date().timeIntervalSince1970
             var duration = endTime - startTime
