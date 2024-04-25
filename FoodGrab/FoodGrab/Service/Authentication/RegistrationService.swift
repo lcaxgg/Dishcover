@@ -11,7 +11,7 @@ import FirebaseCore
 import FirebaseFirestore
 
 struct RegistrationService {
-    static func processRegistration(with registrationViewModel: RegistrationViewModel, andWith alertViewModel: AlertViewModel) {
+    static func performRegistration(with registrationViewModel: RegistrationViewModel, andWith alertViewModel: AlertViewModel) {
         alertViewModel.setIsPresented(with: false)
         registrationViewModel.isProccessingRegistration = true
         registrationViewModel.shouldDisableButton = true

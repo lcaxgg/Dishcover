@@ -13,7 +13,7 @@ import FirebaseCore
 import FirebaseFirestore
 
 struct LoginService {
-    static func processLogin(with loginViewModel: LoginViewModel, andWith alertViewModel: AlertViewModel) {
+    static func performLogin(with loginViewModel: LoginViewModel, andWith alertViewModel: AlertViewModel) {
         loginViewModel.isProccessingLogin = true
         loginViewModel.shouldDisableButton = true
         alertViewModel.setIsPresented(with: false)
