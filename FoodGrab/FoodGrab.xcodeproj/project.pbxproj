@@ -271,19 +271,19 @@
 		5B5A05362A9ECA81001A05CA /* FoodGrab */ = {
 			isa = PBXGroup;
 			children = (
-				5B89F7222B65F1A200BA5DFF /* Enum */,
-				5B56EDFC2AD8E75B0095D70D /* Modifier */,
-				5B56EDFB2AD8E7520095D70D /* Extension */,
 				5B1D142B2AB17B4F003BA1A5 /* Delegate */,
-				5BBE48572BD52C28001409CF /* Protocol */,
-				5B5B79902AA9BA7200DBEA9F /* Service */,
-				5B5B798B2AA9B98300DBEA9F /* Manager */,
-				5B5B79852AA99DF100DBEA9F /* Constant */,
-				5B5A054F2A9ED1FA001A05CA /* Resource */,
 				5B5A054E2A9ED1EF001A05CA /* Scene */,
-				5B5A05472A9ECC2C001A05CA /* ViewModel */,
-				5B5A05462A9ECC24001A05CA /* View */,
+				5B5B79852AA99DF100DBEA9F /* Constant */,
+				5B89F7222B65F1A200BA5DFF /* Enum */,
+				5B56EDFB2AD8E7520095D70D /* Extension */,
+				5B56EDFC2AD8E75B0095D70D /* Modifier */,
+				5B5B798B2AA9B98300DBEA9F /* Manager */,
+				5B5B79902AA9BA7200DBEA9F /* Service */,
+				5BBE48572BD52C28001409CF /* Protocol */,
+				5B5A054F2A9ED1FA001A05CA /* Resource */,
 				5B5A05452A9ECC1C001A05CA /* Model */,
+				5B5A05462A9ECC24001A05CA /* View */,
+				5B5A05472A9ECC2C001A05CA /* ViewModel */,
 				5B5A053D2A9ECA86001A05CA /* Preview Content */,
 			);
 			path = FoodGrab;
@@ -303,10 +303,10 @@
 			children = (
 				5B379B1C2AD6455F0081FB59 /* Attribute */,
 				5B8562D22BC16025007547B2 /* Authentication */,
+				5BA9CFA72BDAB7970098819E /* Chat */,
 				5B8562E32BC16302007547B2 /* User */,
 				5B8562D32BC16033007547B2 /* MealsAndRecipes */,
 				5B8562D42BC16097007547B2 /* Others */,
-				5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -566,6 +566,14 @@
 				5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */,
 			);
 			path = Others;
+			sourceTree = "<group>";
+		};
+		5BA9CFA72BDAB7970098819E /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		5BBE48572BD52C28001409CF /* Protocol */ = {
