@@ -23,7 +23,7 @@ struct LoginService {
                 return
             }
         
-            UserService.fetchUserDetails()
+            UserManager.fetchUserDetails()
     
             let endTime = Date().timeIntervalSince1970
             var duration = endTime - startTime

@@ -1,5 +1,5 @@
 //
-//  UserService.swift
+//  UserManager.swift
 //  FoodGrab
 //
 //  Created by j8bok on 4/6/24.
@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-struct UserService {
+struct UserManager {
     static func fetchUserDetails() {
         guard let uid = Auth.auth().currentUser?.uid else {
             return
