@@ -29,7 +29,7 @@ struct MealsHeader: View {
                     searchViewModel.setIsSearchFieldFocused(with: true)
                     searchViewModel.setIsSearching(with: true)
                 }
-                .bindFocusState(searchViewModel.getIsSearchFieldFocused(), with: _isSearchFieldFocused)
+                .bindFocusState($searchViewModel.searchModel.isSearchFieldFocused, with: _isSearchFieldFocused)
             
             MealsHeaderLabel(screenSize: screenSize)
                 .padding(.top, screenSize.width * 0.04)

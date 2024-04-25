@@ -30,7 +30,7 @@ struct Catalog: View {
                     
                     let mealsData = MealsService.fetchMealsData()
                     
-                    ForEach((!searchViewModel.getSearchText().wrappedValue.isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
+                    ForEach((!searchViewModel.searchModel.searchText.isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
                             VStack(spacing: 0) {
                                 if let image = MealsService.fetchImageFromLocal(urlString: item.strMealThumb ?? AppConstants.emptyString) {
@@ -89,7 +89,7 @@ struct Catalog: View {
                         .background(Color(AppConstants.lightGrayTwo))
                         .cornerRadius(11.0)
                     }
-                    .onChange(of: searchViewModel.getSearchText().wrappedValue) { searchText in
+                    .onChange(of: searchViewModel.searchModel.searchText) { searchText in
                         if !searchText.isEmpty {
                             searchedMealsData = MealsService.searchMeal(in: mealsData, with: searchText)
                         }

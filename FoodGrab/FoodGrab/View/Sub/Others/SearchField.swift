@@ -26,13 +26,13 @@ struct SearchField: View {
                 .frame(width: screenSize.width * 0.048, height: screenSize.height * 0.048)
                 .padding(.leading, screenSize.width * 0.035)
             
-            TextField(AppConstants.searchPlaceHolder, text: searchViewModel.getSearchText())
+            TextField(AppConstants.searchPlaceHolder, text: $searchViewModel.searchModel.searchText)
                 .autocapitalization(.none)
                 .keyboardType(.default)
                 .submitLabel(.done)
                 .padding()
                 .overlay {
-                    if !searchViewModel.getSearchText().wrappedValue.isEmpty {
+                    if !searchViewModel.searchModel.searchText.isEmpty {
                         HStack {
                             Spacer()
                             
