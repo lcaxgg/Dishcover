@@ -89,7 +89,7 @@ struct Register: View {
                         .padding(.top, geometry.size.height * 0.03)
                         .padding(.horizontal, geometry.size.width * 0.04)
                         .onTapGesture(perform: {
-                            AuthManager.processRegistration(with: registrationViewModel, andWith: alertViewModel)
+                            RegistrationService.performRegistration(with: registrationViewModel, andWith: alertViewModel)
                         })
                 }//: ScrollView
                 .opacity(registrationViewModel.isProccessingRegistration ? 0.5 : 1.0)

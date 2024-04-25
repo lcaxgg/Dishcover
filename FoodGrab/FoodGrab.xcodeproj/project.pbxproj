@@ -86,7 +86,6 @@
 		5BBE48592BD52CC4001409CF /* ValidationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BBE48582BD52CC4001409CF /* ValidationProtocol.swift */; };
 		5BD88B792BA9D14400334F47 /* MealsHeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD88B782BA9D14400334F47 /* MealsHeaderLabel.swift */; };
 		5BDBC1F62AB12E1300AB6171 /* RegisterUpperPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBC1F52AB12E1300AB6171 /* RegisterUpperPart.swift */; };
-		5BDBC1F82AB144E900AB6171 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BDBC1F72AB144E900AB6171 /* AuthManager.swift */; };
 		5BDD66CD2AFCC55900C39111 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5BDD66CC2AFCC55900C39111 /* Alamofire */; };
 		5BE8A0B32B9A0F30004EE043 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8A0B22B9A0F30004EE043 /* Recipes.swift */; };
 		5BF7EEDE2ABACC92005A736A /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF7EEDD2ABACC92005A736A /* AlertModel.swift */; };
@@ -161,7 +160,6 @@
 		5BBE48582BD52CC4001409CF /* ValidationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationProtocol.swift; sourceTree = "<group>"; };
 		5BD88B782BA9D14400334F47 /* MealsHeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsHeaderLabel.swift; sourceTree = "<group>"; };
 		5BDBC1F52AB12E1300AB6171 /* RegisterUpperPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUpperPart.swift; sourceTree = "<group>"; };
-		5BDBC1F72AB144E900AB6171 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		5BE8A0B22B9A0F30004EE043 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		5BF7EEDD2ABACC92005A736A /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -273,19 +271,19 @@
 		5B5A05362A9ECA81001A05CA /* FoodGrab */ = {
 			isa = PBXGroup;
 			children = (
-				5B89F7222B65F1A200BA5DFF /* Enum */,
-				5B56EDFC2AD8E75B0095D70D /* Modifier */,
-				5B56EDFB2AD8E7520095D70D /* Extension */,
 				5B1D142B2AB17B4F003BA1A5 /* Delegate */,
-				5BBE48572BD52C28001409CF /* Protocol */,
-				5B5B79902AA9BA7200DBEA9F /* Service */,
-				5B5B798B2AA9B98300DBEA9F /* Manager */,
-				5B5B79852AA99DF100DBEA9F /* Constant */,
-				5B5A054F2A9ED1FA001A05CA /* Resource */,
 				5B5A054E2A9ED1EF001A05CA /* Scene */,
-				5B5A05472A9ECC2C001A05CA /* ViewModel */,
-				5B5A05462A9ECC24001A05CA /* View */,
+				5B5B79852AA99DF100DBEA9F /* Constant */,
+				5B89F7222B65F1A200BA5DFF /* Enum */,
+				5B56EDFB2AD8E7520095D70D /* Extension */,
+				5B56EDFC2AD8E75B0095D70D /* Modifier */,
+				5B5B798B2AA9B98300DBEA9F /* Manager */,
+				5B5B79902AA9BA7200DBEA9F /* Service */,
+				5BBE48572BD52C28001409CF /* Protocol */,
+				5B5A054F2A9ED1FA001A05CA /* Resource */,
 				5B5A05452A9ECC1C001A05CA /* Model */,
+				5B5A05462A9ECC24001A05CA /* View */,
+				5B5A05472A9ECC2C001A05CA /* ViewModel */,
 				5B5A053D2A9ECA86001A05CA /* Preview Content */,
 			);
 			path = FoodGrab;
@@ -303,12 +301,12 @@
 		5B5A05452A9ECC1C001A05CA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5B8562E32BC16302007547B2 /* User */,
-				5B8562D42BC16097007547B2 /* Others */,
-				5B8562D32BC16033007547B2 /* MealsAndRecipes */,
-				5B8562D22BC16025007547B2 /* Authentication */,
 				5B379B1C2AD6455F0081FB59 /* Attribute */,
-				5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */,
+				5B8562D22BC16025007547B2 /* Authentication */,
+				5BA9CFA72BDAB7970098819E /* Chat */,
+				5B8562E32BC16302007547B2 /* User */,
+				5B8562D32BC16033007547B2 /* MealsAndRecipes */,
+				5B8562D42BC16097007547B2 /* Others */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,10 +396,9 @@
 		5B5B798B2AA9B98300DBEA9F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				5B7480672B3DD47200CD333B /* DownloadManager.swift */,
-				5BDBC1F72AB144E900AB6171 /* AuthManager.swift */,
 				5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */,
 				5B8562CE2BC129C4007547B2 /* ChatManager.swift */,
+				5B7480672B3DD47200CD333B /* DownloadManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -409,11 +406,10 @@
 		5B5B79902AA9BA7200DBEA9F /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				5B6DC3202B3D6DF2008FAA22 /* EmailValidationService.swift */,
-				5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */,
-				5B8562D92BC16214007547B2 /* User */,
 				5B8562D72BC160D6007547B2 /* Authentication */,
 				5B8562D52BC160AD007547B2 /* MealsAndRecipes */,
+				5BA9CFA42BDAB5AD0098819E /* User */,
+				5BA9CFA52BDAB5B80098819E /* Others */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -470,14 +466,6 @@
 				5B753C512BA18F10005BF90E /* RegistrationService.swift */,
 			);
 			path = Authentication;
-			sourceTree = "<group>";
-		};
-		5B8562D92BC16214007547B2 /* User */ = {
-			isa = PBXGroup;
-			children = (
-				5B8562DA2BC16221007547B2 /* UserService.swift */,
-			);
-			path = User;
 			sourceTree = "<group>";
 		};
 		5B8562DC2BC16280007547B2 /* Others */ = {
@@ -561,6 +549,31 @@
 				5B8562E02BC162CE007547B2 /* MealsAndRecipes */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		5BA9CFA42BDAB5AD0098819E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				5B8562DA2BC16221007547B2 /* UserService.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		5BA9CFA52BDAB5B80098819E /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5B6DC3202B3D6DF2008FAA22 /* EmailValidationService.swift */,
+				5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		5BA9CFA72BDAB7970098819E /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		5BBE48572BD52C28001409CF /* Protocol */ = {
@@ -691,7 +704,6 @@
 				5B5B79782AA9734900DBEA9F /* VerticalSeparator.swift in Sources */,
 				5B597A7F2AD61B890093045C /* MealsCategoriesModel.swift in Sources */,
 				5B3D382D2BC19EBA0093ACC5 /* ChatDetailsModel.swift in Sources */,
-				5BDBC1F82AB144E900AB6171 /* AuthManager.swift in Sources */,
 				5B56EDFA2AD8CBF00095D70D /* Catalog.swift in Sources */,
 				5B56EDFE2AD8E7720095D70D /* TextExtension.swift in Sources */,
 				5B578C2C2B96065100FD0277 /* RecipesEnum.swift in Sources */,

@@ -11,7 +11,28 @@ import FirebaseCore
 import FirebaseFirestore
 
 struct RegistrationService {
-    static func register(with registrationViewModel: RegistrationViewModel, completion: @escaping (Error?) -> Void) {
+    static func performRegistration(with registrationViewModel: RegistrationViewModel, andWith alertViewModel: AlertViewModel) {
+        alertViewModel.setIsPresented(with: false)
+        registrationViewModel.isProccessingRegistration = true
+        registrationViewModel.shouldDisableButton = true
+        
+        register(with: registrationViewModel) { error in
+            alertViewModel.setIsPresented(with: true)
+            registrationViewModel.isProccessingRegistration = false
+            
+            if error != nil {
+                alertViewModel.setTitle(with: AppConstants.information)
+                alertViewModel.setMessage(with: error!.localizedDescription)
+            } else {
+                alertViewModel.setTitle(with: AppConstants.emptyString)
+                alertViewModel.setMessage(with: AppConstants.successfullyRegistered)
+            }
+        }
+    }
+}
+
+extension RegistrationService {
+    private static func register(with registrationViewModel: RegistrationViewModel, completion: @escaping (Error?) -> Void) {
         let startTime = Date().timeIntervalSince1970
         
         Auth.auth().createUser(withEmail: registrationViewModel.getEmail(), password: registrationViewModel.getPassword()) { authResult, error in

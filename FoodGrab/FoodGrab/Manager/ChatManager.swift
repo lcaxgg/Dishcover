@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-struct ChatManager {
+struct ChatManager {// should be chat service
     
     // MARK: - PROPERTIES
     
