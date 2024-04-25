@@ -106,7 +106,7 @@ struct Login: View {
                         .animation(.easeInOut, value: isKeyboardShowing)
                         .onTapGesture {
                             if loginViewModel.isValidCredentials {
-                                AuthManager.processLogin(with: loginViewModel, andWith: alertViewModel)
+                                LoginService.performLogin(with: loginViewModel, andWith: alertViewModel)
                             }
                         }
                 }//: VStack
