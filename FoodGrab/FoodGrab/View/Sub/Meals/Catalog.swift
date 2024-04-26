@@ -33,7 +33,7 @@ struct Catalog: View {
                     ForEach((!searchViewModel.searchModel.searchText.isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
                             VStack(spacing: 0) {
-                                if let image = ImageService.fetchImageFromLocal(urlString: item.strMealThumb ?? AppConstants.emptyString) {
+                                if let image = ImageService.getImageFromLocal(urlString: item.strMealThumb ?? AppConstants.emptyString) {
                                     let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.emptyString)
                                     
                                     Image(uiImage: image)
