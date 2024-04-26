@@ -22,7 +22,7 @@ struct ChatWindow: View {
         // MARK: - FOOTER
         
         Button(action: {
-            //ChatService.sendMessage()
+            ChatManager.fetchMessages()
         }, label: {
             Text("Send")
         })

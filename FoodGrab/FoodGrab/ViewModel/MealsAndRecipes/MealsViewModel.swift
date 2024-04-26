@@ -65,6 +65,7 @@ class MealsViewModel: ObservableObject {
 }
 
 extension MealsViewModel {
+    
     // MARK: - GETTER FOR MODEL PROPERTIES
     
     func getIdMeal() -> Int64 {

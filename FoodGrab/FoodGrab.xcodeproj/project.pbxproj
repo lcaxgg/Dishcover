@@ -28,7 +28,7 @@
 		5B2611832BA871EF00461E83 /* ScreenSizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */; };
 		5B355B472BA725FD0044D070 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B355B462BA725FD0044D070 /* Chat.swift */; };
 		5B379B1E2AD646E00081FB59 /* ButtonOneAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B379B1D2AD646E00081FB59 /* ButtonOneAttributes.swift */; };
-		5B3D382D2BC19EBA0093ACC5 /* ChatDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */; };
+		5B3D382D2BC19EBA0093ACC5 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D382C2BC19EBA0093ACC5 /* ChatModel.swift */; };
 		5B3D382F2BC19F850093ACC5 /* DateTimeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */; };
 		5B4D63042BA92963009A3E30 /* MealsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4D63032BA92963009A3E30 /* MealsHeader.swift */; };
 		5B4D63062BA92D29009A3E30 /* CategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4D63052BA92D29009A3E30 /* CategoriesList.swift */; };
@@ -58,6 +58,7 @@
 		5B5B79892AA9AEA200DBEA9F /* CustomPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79882AA9AEA200DBEA9F /* CustomPreview.swift */; };
 		5B5B79962AA9BD7500DBEA9F /* RegistrationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5B79952AA9BD7500DBEA9F /* RegistrationModel.swift */; };
 		5B61E5442B9047D600B36FA4 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B61E5432B9047D600B36FA4 /* SearchModel.swift */; };
+		5B634CBE2BDBF40B00166C4F /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B634CBD2BDBF40B00166C4F /* ChatViewModel.swift */; };
 		5B6DC3212B3D6DF2008FAA22 /* EmailValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DC3202B3D6DF2008FAA22 /* EmailValidationService.swift */; };
 		5B7480682B3DD47200CD333B /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7480672B3DD47200CD333B /* DownloadManager.swift */; };
 		5B74806A2B3DD50800CD333B /* MealsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7480692B3DD50800CD333B /* MealsModel.swift */; };
@@ -66,7 +67,7 @@
 		5B753C522BA18F10005BF90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B753C512BA18F10005BF90E /* RegistrationService.swift */; };
 		5B7ADB042BB6C58A00994364 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7ADB032BB6C58A00994364 /* ChatList.swift */; };
 		5B7FCBA92B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B7FCBA72B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld */; };
-		5B8562CF2BC129C4007547B2 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562CE2BC129C4007547B2 /* ChatService.swift */; };
+		5B8562CF2BC129C4007547B2 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562CE2BC129C4007547B2 /* ChatManager.swift */; };
 		5B8562DB2BC16221007547B2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562DA2BC16221007547B2 /* UserService.swift */; };
 		5B8562E52BC16321007547B2 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562E42BC16321007547B2 /* UserViewModel.swift */; };
 		5B8562E72BC1633A007547B2 /* UserDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562E62BC1633A007547B2 /* UserDetailsModel.swift */; };
@@ -105,7 +106,7 @@
 		5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeReader.swift; sourceTree = "<group>"; };
 		5B355B462BA725FD0044D070 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		5B379B1D2AD646E00081FB59 /* ButtonOneAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOneAttributes.swift; sourceTree = "<group>"; };
-		5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailsModel.swift; sourceTree = "<group>"; };
+		5B3D382C2BC19EBA0093ACC5 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		5B3D382E2BC19F850093ACC5 /* DateTimeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeService.swift; sourceTree = "<group>"; };
 		5B4D63032BA92963009A3E30 /* MealsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsHeader.swift; sourceTree = "<group>"; };
 		5B4D63052BA92D29009A3E30 /* CategoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesList.swift; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		5B5B79882AA9AEA200DBEA9F /* CustomPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPreview.swift; sourceTree = "<group>"; };
 		5B5B79952AA9BD7500DBEA9F /* RegistrationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationModel.swift; sourceTree = "<group>"; };
 		5B61E5432B9047D600B36FA4 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		5B634CBD2BDBF40B00166C4F /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		5B6DC3202B3D6DF2008FAA22 /* EmailValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidationService.swift; sourceTree = "<group>"; };
 		5B7480672B3DD47200CD333B /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		5B7480692B3DD50800CD333B /* MealsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsModel.swift; sourceTree = "<group>"; };
@@ -144,7 +146,7 @@
 		5B753C512BA18F10005BF90E /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		5B7ADB032BB6C58A00994364 /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
 		5B7FCBA82B3F1FE200E72D11 /* MealsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealsDataModel.xcdatamodel; sourceTree = "<group>"; };
-		5B8562CE2BC129C4007547B2 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		5B8562CE2BC129C4007547B2 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		5B8562DA2BC16221007547B2 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		5B8562E42BC16321007547B2 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		5B8562E62BC1633A007547B2 /* UserDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsModel.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				5B8562DD2BC1629C007547B2 /* Authentication */,
 				5B8562E22BC162FC007547B2 /* User */,
+				5B634CBC2BDBF3E200166C4F /* Chat */,
 				5B8562DF2BC162A8007547B2 /* MealsAndRecipes */,
 				5B8562DE2BC162A0007547B2 /* Others */,
 			);
@@ -355,11 +358,11 @@
 			children = (
 				5B5A05392A9ECA81001A05CA /* Splash.swift */,
 				5B5A05482A9ECD5D001A05CA /* Welcome.swift */,
-				5B5A054A2A9ED14E001A05CA /* Login.swift */,
-				5B5A054C2A9ED192001A05CA /* Register.swift */,
+				5B2611802BA86C7600461E83 /* Base.swift */,
 				5B12E4A02AC525DC008BB487 /* Meals.swift */,
 				5B355B462BA725FD0044D070 /* Chat.swift */,
-				5B2611802BA86C7600461E83 /* Base.swift */,
+				5B5A054A2A9ED14E001A05CA /* Login.swift */,
+				5B5A054C2A9ED192001A05CA /* Register.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 		5B5B798B2AA9B98300DBEA9F /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				5B8562CE2BC129C4007547B2 /* ChatManager.swift */,
 				5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */,
 				5B7480672B3DD47200CD333B /* DownloadManager.swift */,
 			);
@@ -407,12 +411,19 @@
 			isa = PBXGroup;
 			children = (
 				5B8562D72BC160D6007547B2 /* Authentication */,
-				5BAC22B72BDBBCF300E15EB3 /* Chat */,
 				5B8562D52BC160AD007547B2 /* MealsAndRecipes */,
 				5BA9CFA42BDAB5AD0098819E /* User */,
 				5BA9CFA52BDAB5B80098819E /* Others */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		5B634CBC2BDBF3E200166C4F /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5B634CBD2BDBF40B00166C4F /* ChatViewModel.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		5B7ADB022BB6C28D00994364 /* Chat */ = {
@@ -574,15 +585,7 @@
 		5BA9CFA72BDAB7970098819E /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				5B3D382C2BC19EBA0093ACC5 /* ChatDetailsModel.swift */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
-		5BAC22B72BDBBCF300E15EB3 /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				5B8562CE2BC129C4007547B2 /* ChatService.swift */,
+				5B3D382C2BC19EBA0093ACC5 /* ChatModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -686,10 +689,11 @@
 				5B597A812AD61BB70093045C /* MealsCategoriesViewModel.swift in Sources */,
 				5BA258242B935102003E37A3 /* ViewExtension.swift in Sources */,
 				5B4D63062BA92D29009A3E30 /* CategoriesList.swift in Sources */,
+				5B634CBE2BDBF40B00166C4F /* ChatViewModel.swift in Sources */,
 				5B753C522BA18F10005BF90E /* RegistrationService.swift in Sources */,
 				5B8562DB2BC16221007547B2 /* UserService.swift in Sources */,
 				5B61E5442B9047D600B36FA4 /* SearchModel.swift in Sources */,
-				5B8562CF2BC129C4007547B2 /* ChatService.swift in Sources */,
+				5B8562CF2BC129C4007547B2 /* ChatManager.swift in Sources */,
 				5B5A05572A9F343C001A05CA /* ButtonOne.swift in Sources */,
 				5B12E4A12AC525DC008BB487 /* Meals.swift in Sources */,
 				5B379B1E2AD646E00081FB59 /* ButtonOneAttributes.swift in Sources */,
@@ -706,7 +710,7 @@
 				5BAA442D2B34271F00DE4713 /* LoginModel.swift in Sources */,
 				5B5B79782AA9734900DBEA9F /* VerticalSeparator.swift in Sources */,
 				5B597A7F2AD61B890093045C /* MealsCategoriesModel.swift in Sources */,
-				5B3D382D2BC19EBA0093ACC5 /* ChatDetailsModel.swift in Sources */,
+				5B3D382D2BC19EBA0093ACC5 /* ChatModel.swift in Sources */,
 				5B56EDFA2AD8CBF00095D70D /* Catalog.swift in Sources */,
 				5B56EDFE2AD8E7720095D70D /* TextExtension.swift in Sources */,
 				5B578C2C2B96065100FD0277 /* RecipesEnum.swift in Sources */,

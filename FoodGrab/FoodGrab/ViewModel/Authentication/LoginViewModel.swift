@@ -27,28 +27,6 @@ class LoginViewModel: ObservableObject {
         invalidFields[AppConstants.passwordKey] = AppConstants.fillInPassword
     }
     
-    // MARK: - GETTER
-    
-    func getEmail() -> String {
-        loginModel.email
-    }
-    
-    func getPassword() -> String {
-        loginModel.password
-    }
-    
-    // MARK: - SETTER
-    
-    func setEmail(with email: String) {
-        loginModel.email = email
-    }
-    
-    func setPassword(with password: String) {
-        loginModel.password = password
-    }
-}
-
-extension LoginViewModel {
     func validateLoginInputs(with key: String) {
         if key == AppConstants.emailKey {
             validateEmail(with: key)
@@ -88,5 +66,28 @@ extension LoginViewModel {
             invalidFields[key] = AppConstants.invalidLength
             shouldDisableButton = true
         }
+    }
+}
+
+extension LoginViewModel {
+    
+    // MARK: - GETTER
+    
+    func getEmail() -> String {
+        loginModel.email
+    }
+    
+    func getPassword() -> String {
+        loginModel.password
+    }
+    
+    // MARK: - SETTER
+    
+    func setEmail(with email: String) {
+        loginModel.email = email
+    }
+    
+    func setPassword(with password: String) {
+        loginModel.password = password
     }
 }
