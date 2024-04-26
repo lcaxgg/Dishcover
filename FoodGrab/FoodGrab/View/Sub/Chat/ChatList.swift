@@ -87,7 +87,7 @@ struct ChatList: View {
             }
         }//: HStack
         .onTapGesture(perform: {
-            ChatManager.shared.fetchMessagesFromServer()
+
         })
     }
 }

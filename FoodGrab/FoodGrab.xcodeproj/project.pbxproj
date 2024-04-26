@@ -66,7 +66,7 @@
 		5B753C522BA18F10005BF90E /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B753C512BA18F10005BF90E /* RegistrationService.swift */; };
 		5B7ADB042BB6C58A00994364 /* ChatList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B7ADB032BB6C58A00994364 /* ChatList.swift */; };
 		5B7FCBA92B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B7FCBA72B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld */; };
-		5B8562CF2BC129C4007547B2 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562CE2BC129C4007547B2 /* ChatManager.swift */; };
+		5B8562CF2BC129C4007547B2 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562CE2BC129C4007547B2 /* ChatService.swift */; };
 		5B8562DB2BC16221007547B2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562DA2BC16221007547B2 /* UserService.swift */; };
 		5B8562E52BC16321007547B2 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562E42BC16321007547B2 /* UserViewModel.swift */; };
 		5B8562E72BC1633A007547B2 /* UserDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562E62BC1633A007547B2 /* UserDetailsModel.swift */; };
@@ -143,7 +143,7 @@
 		5B753C512BA18F10005BF90E /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		5B7ADB032BB6C58A00994364 /* ChatList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatList.swift; sourceTree = "<group>"; };
 		5B7FCBA82B3F1FE200E72D11 /* MealsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealsDataModel.xcdatamodel; sourceTree = "<group>"; };
-		5B8562CE2BC129C4007547B2 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		5B8562CE2BC129C4007547B2 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
 		5B8562DA2BC16221007547B2 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		5B8562E42BC16321007547B2 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		5B8562E62BC1633A007547B2 /* UserDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsModel.swift; sourceTree = "<group>"; };
@@ -304,8 +304,8 @@
 				5B379B1C2AD6455F0081FB59 /* Attribute */,
 				5B8562D22BC16025007547B2 /* Authentication */,
 				5BA9CFA72BDAB7970098819E /* Chat */,
-				5B8562E32BC16302007547B2 /* User */,
 				5B8562D32BC16033007547B2 /* MealsAndRecipes */,
+				5B8562E32BC16302007547B2 /* User */,
 				5B8562D42BC16097007547B2 /* Others */,
 			);
 			path = Model;
@@ -366,10 +366,10 @@
 		5B5A05512A9F1A2E001A05CA /* Sub */ = {
 			isa = PBXGroup;
 			children = (
-				5B8562DC2BC16280007547B2 /* Others */,
 				5B7ADB022BB6C28D00994364 /* Chat */,
 				5B56EDF82AD8CBE50095D70D /* Meals */,
 				5B5B797D2AA997F100DBEA9F /* Register */,
+				5B8562DC2BC16280007547B2 /* Others */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -397,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */,
-				5B8562CE2BC129C4007547B2 /* ChatManager.swift */,
 				5B7480672B3DD47200CD333B /* DownloadManager.swift */,
 			);
 			path = Manager;
@@ -407,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				5B8562D72BC160D6007547B2 /* Authentication */,
+				5BAC22B72BDBBCF300E15EB3 /* Chat */,
 				5B8562D52BC160AD007547B2 /* MealsAndRecipes */,
 				5BA9CFA42BDAB5AD0098819E /* User */,
 				5BA9CFA52BDAB5B80098819E /* Others */,
@@ -576,6 +576,14 @@
 			path = Chat;
 			sourceTree = "<group>";
 		};
+		5BAC22B72BDBBCF300E15EB3 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				5B8562CE2BC129C4007547B2 /* ChatService.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		5BBE48572BD52C28001409CF /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -686,7 +694,7 @@
 				5B753C522BA18F10005BF90E /* RegistrationService.swift in Sources */,
 				5B8562DB2BC16221007547B2 /* UserService.swift in Sources */,
 				5B61E5442B9047D600B36FA4 /* SearchModel.swift in Sources */,
-				5B8562CF2BC129C4007547B2 /* ChatManager.swift in Sources */,
+				5B8562CF2BC129C4007547B2 /* ChatService.swift in Sources */,
 				5B5A05572A9F343C001A05CA /* ButtonOne.swift in Sources */,
 				5B12E4A12AC525DC008BB487 /* Meals.swift in Sources */,
 				5B379B1E2AD646E00081FB59 /* ButtonOneAttributes.swift in Sources */,
