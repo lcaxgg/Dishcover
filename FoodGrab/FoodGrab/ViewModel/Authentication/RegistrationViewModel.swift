@@ -20,8 +20,6 @@ class RegistrationViewModel: ObservableObject {
     @Published var isRegistrationSuccessful: Bool = false
     @Published var shouldDisableButton: Bool = false
     
-    let emailValidationService: EmailValidationService = EmailValidationService()
-    
     // MARK: - METHODS
     
     func initDictionary() {
@@ -176,7 +174,7 @@ extension RegistrationViewModel {
     
     private func validateEmail(with key: String) {
         if getEmail().count > 0 {
-            if emailValidationService.isEmailValid(getEmail()) {
+            if EmailValidationService.isEmailValid(getEmail()) {
                 invalidFields.removeValue(forKey: key)
             } else {
                 invalidFields[key] = AppConstants.invalidEmail

@@ -38,7 +38,7 @@ struct Login: View {
                             .keyboardType(.emailAddress)
                             .padding()
                             .onChange(of: loginViewModel.getEmail()) { newValue in
-                                let email = loginViewModel.emailValidationService.validateEmailInput(newValue)
+                                let email = EmailValidationService.validateEmailInput(newValue)
                                 
                                 loginViewModel.setEmail(with: email)
                                 loginViewModel.validateLoginInputs(with: AppConstants.emailKey)

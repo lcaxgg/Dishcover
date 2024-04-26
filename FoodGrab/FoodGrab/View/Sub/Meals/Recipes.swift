@@ -60,10 +60,10 @@ struct Recipes: View {
             
             // MARK: - BODY
             
-            let recipesData = MealsService.fetchRecipesData()
+            let recipesData = RecipesViewModel.getRecipesDataById()
             let detail = recipesData?.first
             
-            if let image = MealsService.fetchImageFromLocal(urlString: detail?.strMealThumb ?? AppConstants.emptyString) {
+            if let image = ImageService.fetchImageFromLocal(urlString: detail?.strMealThumb ?? AppConstants.emptyString) {
                 Image(uiImage: image)
                     .resizable()
                     .aspectRatio(1.5, contentMode: .fill)

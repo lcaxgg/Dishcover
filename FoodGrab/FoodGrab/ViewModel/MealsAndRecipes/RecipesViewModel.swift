@@ -157,6 +157,42 @@ class RecipesViewModel: ObservableObject {
         setStrYoutube(with: recipeDetails?[AppConstants.strYoutube]! ?? AppConstants.emptyString)
     }
     
+    static func getRecipesDataById() -> [RecipesDetailsModel]? {
+        let category = RecipesViewModel.getRecipeCategory()
+        let recipeId = Int64(RecipesViewModel.getRecipeId())
+        let recipesData = RecipesViewModel.getRecipesData()
+        let ingredients = RecipesViewModel.getIngredients()
+        
+        let recipesPerCategory = recipesData[category]
+        var filteredRecipes = recipesPerCategory?.filter { $0.idMeal == recipeId }
+        
+        let ingredientsPerCategory = ingredients[category]
+        let filteredIngredients = ingredientsPerCategory?.filter { dictionary in
+            dictionary.keys.contains(String(recipeId ?? 0))
+        }
+        
+        if var details = filteredRecipes?.first {
+            let dictionary = filteredIngredients?.first
+            let key = String(recipeId ?? 0)
+            let value = dictionary?[key]
+            
+            details.strIngredientsWithMeasures = value ?? [:]
+            filteredRecipes?[0] = details
+        }
+        
+        return filteredRecipes
+    }
+    
+    static func checkEmptyRecipesData() -> Bool {
+        let category = RecipesViewModel.getRecipeCategory()
+        let emptyRecipesList = RecipesViewModel.getEmptyRecipesList()
+        let isEmpty = emptyRecipesList.contains(category)
+        
+        return isEmpty
+    }
+}
+
+extension RecipesViewModel {
     // MARK: - GETTER FOR MODEL PROPERTIES
     
     func getIdMeal() -> Int64 {
