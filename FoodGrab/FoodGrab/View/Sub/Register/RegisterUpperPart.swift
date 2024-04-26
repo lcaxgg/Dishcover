@@ -78,7 +78,7 @@ struct RegisterUpperPart: View {
                     .keyboardType(.emailAddress)
                     .padding()
                     .onChange(of: registrationViewModel.getEmail()) { newValue in
-                        let email = registrationViewModel.emailValidationService.validateEmailInput(newValue)
+                        let email = EmailValidationService.validateEmailInput(newValue)
                         
                         registrationViewModel.setEmail(with: email)
                         registrationViewModel.validateRegistrationData(with: AppConstants.emailKey)

@@ -28,12 +28,12 @@ struct Catalog: View {
                     GridItem(.flexible(), spacing: 10.0)
                 ], spacing: 17.0) {
                     
-                    let mealsData = MealsService.fetchMealsData()
+                    let mealsData = MealsViewModel.getMealsDataByCategory()
                     
                     ForEach((!searchViewModel.searchModel.searchText.isEmpty ? searchedMealsData : mealsData) ?? [] , id: \.idMeal) { item in
                         VStack {
                             VStack(spacing: 0) {
-                                if let image = MealsService.fetchImageFromLocal(urlString: item.strMealThumb ?? AppConstants.emptyString) {
+                                if let image = ImageService.fetchImageFromLocal(urlString: item.strMealThumb ?? AppConstants.emptyString) {
                                     let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.emptyString)
                                     
                                     Image(uiImage: image)
@@ -49,7 +49,7 @@ struct Catalog: View {
                                         
                                         Spacer()
                                         
-                                        let isEmptyRecipesData = MealsService.checkEmptyRecipesData()
+                                        let isEmptyRecipesData = RecipesViewModel.checkEmptyRecipesData()
                                         
                                         Color(isEmptyRecipesData ? AppConstants.lightGrayTwo : AppConstants.green)
                                             .frame(width: screenSize.width * 0.09, height: screenSize.height * 0.04)
@@ -91,7 +91,7 @@ struct Catalog: View {
                     }
                     .onChange(of: searchViewModel.searchModel.searchText) { searchText in
                         if !searchText.isEmpty {
-                            searchedMealsData = MealsService.searchMeal(in: mealsData, with: searchText)
+                            searchedMealsData = MealsViewModel.shared.searchMeal(with: searchText)
                         }
                     }
                 }

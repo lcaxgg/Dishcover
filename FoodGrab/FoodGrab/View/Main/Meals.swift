@@ -62,7 +62,7 @@ extension Meals {
     private func processMealTap(with idMeal: String) {
         RecipesViewModel.setRecipeId(with: idMeal)
         
-        let recipesData = MealsService.fetchRecipesData()
+        let recipesData = RecipesViewModel.getRecipesDataById()
         let detail = recipesData?.first
         
         if detail != nil {

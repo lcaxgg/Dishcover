@@ -7,11 +7,8 @@
 
 import Foundation
 
-class EmailValidationService: ValidationProtocol {
-    
-    // MARK: - AUTHENTICATION
-    
-    func isEmailValid(_ email: String) -> Bool {
+struct EmailValidationService {
+    static func isEmailValid(_ email: String) -> Bool {
         let trimmedEmail = email.trimmingCharacters(in: .whitespacesAndNewlines)
         
         let emailRegex = AppConstants.emailRegexTwo
@@ -20,11 +17,9 @@ class EmailValidationService: ValidationProtocol {
         return emailValue.evaluate(with: trimmedEmail)
     }
     
-    // MARK: - VALIDATION WHEN HANDLING EVENT FOR EMAIL
+    /* This will ignore special characters that are not included in the accepted values  */
     
-    /** This will ignore special characters that are not included in the accepted values  */
-    
-    func validateEmailInput(_ email: String) -> String {
+    static func validateEmailInput(_ email: String) -> String {
         var newEmail = email.lowercased()
         let validCharactersRegex = AppConstants.emailRegexOne
         
