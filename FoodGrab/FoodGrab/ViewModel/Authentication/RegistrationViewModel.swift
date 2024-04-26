@@ -30,100 +30,6 @@ class RegistrationViewModel: ObservableObject {
         invalidFields[AppConstants.confirmPasswordKey] = AppConstants.fillInConfirmPassword
     }
     
-    // MARK: - GETTER
-    
-    func getFirstName() -> String {
-        registrationModel.firstName
-    }
-    
-    func getLastName() -> String {
-        registrationModel.lastName
-    }
-    
-    func getEmail() -> String {
-        registrationModel.email
-    }
-    
-    func getStreetNumber() -> String {
-        registrationModel.streetNumber
-    }
-    
-    func getStreetName() -> String {
-        registrationModel.streetName
-    }
-    
-    func getBarangay() -> String {
-        registrationModel.barangay
-    }
-    
-    func getZipCode() -> String {
-        registrationModel.zipCode
-    }
-    
-    func getCity() -> String {
-        registrationModel.city
-    }
-    
-    func getCountry() -> String {
-        registrationModel.country
-    }
-    
-    func getPassword() -> String {
-        registrationModel.password
-    }
-    
-    func getConfirmPassword() -> String {
-        registrationModel.confirmPassword
-    }
-    
-    // MARK: - SETTER
-    
-    func setFirstName(with firstName: String) {
-        registrationModel.firstName = firstName
-    }
-    
-    func setLastName(with lastName: String) {
-        registrationModel.lastName = lastName
-    }
-    
-    func setEmail(with email: String) {
-        registrationModel.email = email
-    }
-    
-    func setStreetNumber(with streetNumber: String) {
-        registrationModel.streetNumber = streetNumber
-    }
-    
-    func setStreetName(with streetName: String) {
-        registrationModel.streetName = streetName
-    }
-    
-    func setBarangay(with barangay: String) {
-        registrationModel.barangay = barangay
-    }
-    
-    func setZipCode(with zipCode: String) {
-        registrationModel.zipCode = zipCode
-    }
-    
-    func setCity(with city: String) {
-        registrationModel.city = city
-    }
-    
-    func setCountry(with country: String) {
-        registrationModel.country = country
-    }
-    
-    func setPassword(with password: String) {
-        registrationModel.password = password
-    }
-    
-    func setConfirmPaswword(with confirmPassword: String) {
-        registrationModel.confirmPassword = confirmPassword
-    }
-}
-
-extension RegistrationViewModel {
     func validateRegistrationData(with key: String) {
         if key == AppConstants.firstNameKey {
             validateFirstName(with: key)
@@ -253,5 +159,100 @@ extension RegistrationViewModel {
         }
         
         return true
+    }
+}
+
+extension RegistrationViewModel {
+    
+    // MARK: - GETTER
+    
+    func getFirstName() -> String {
+        registrationModel.firstName
+    }
+    
+    func getLastName() -> String {
+        registrationModel.lastName
+    }
+    
+    func getEmail() -> String {
+        registrationModel.email
+    }
+    
+    func getStreetNumber() -> String {
+        registrationModel.streetNumber
+    }
+    
+    func getStreetName() -> String {
+        registrationModel.streetName
+    }
+    
+    func getBarangay() -> String {
+        registrationModel.barangay
+    }
+    
+    func getZipCode() -> String {
+        registrationModel.zipCode
+    }
+    
+    func getCity() -> String {
+        registrationModel.city
+    }
+    
+    func getCountry() -> String {
+        registrationModel.country
+    }
+    
+    func getPassword() -> String {
+        registrationModel.password
+    }
+    
+    func getConfirmPassword() -> String {
+        registrationModel.confirmPassword
+    }
+    
+    // MARK: - SETTER
+    
+    func setFirstName(with firstName: String) {
+        registrationModel.firstName = firstName
+    }
+    
+    func setLastName(with lastName: String) {
+        registrationModel.lastName = lastName
+    }
+    
+    func setEmail(with email: String) {
+        registrationModel.email = email
+    }
+    
+    func setStreetNumber(with streetNumber: String) {
+        registrationModel.streetNumber = streetNumber
+    }
+    
+    func setStreetName(with streetName: String) {
+        registrationModel.streetName = streetName
+    }
+    
+    func setBarangay(with barangay: String) {
+        registrationModel.barangay = barangay
+    }
+    
+    func setZipCode(with zipCode: String) {
+        registrationModel.zipCode = zipCode
+    }
+    
+    func setCity(with city: String) {
+        registrationModel.city = city
+    }
+    
+    func setCountry(with country: String) {
+        registrationModel.country = country
+    }
+    
+    func setPassword(with password: String) {
+        registrationModel.password = password
+    }
+    
+    func setConfirmPaswword(with confirmPassword: String) {
+        registrationModel.confirmPassword = confirmPassword
     }
 }

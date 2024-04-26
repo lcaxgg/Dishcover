@@ -35,7 +35,10 @@ class MealsCategoriesViewModel: ObservableObject {
         
         selectedIndex = 0
     }
-    
+}
+
+extension MealsCategoriesViewModel {
+  
     // MARK: - GETTER
     
     func getMealsCategories() -> [MealsCategoriesModel] {

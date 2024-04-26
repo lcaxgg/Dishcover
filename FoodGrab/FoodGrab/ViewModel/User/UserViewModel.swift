@@ -21,16 +21,19 @@ class UserViewModel: ObservableObject {
     static func getSharedInstance() -> UserViewModel {
         UserViewModel.shared
     }
-    
-    // MARK: - SETTER
-    
-    func setUserDetails(with details: UserDetailsModel) {
-        userDetailsModel = details
-    }
+}
+
+extension UserViewModel {
     
     // MARK: - GETTER
     
     static func getName() -> String {
         shared.userDetailsModel.firstName + AppConstants.whiteSpaceString + shared.userDetailsModel.lastName
+    }
+    
+    // MARK: - SETTER
+    
+    func setUserDetails(with details: UserDetailsModel) {
+        userDetailsModel = details
     }
 }

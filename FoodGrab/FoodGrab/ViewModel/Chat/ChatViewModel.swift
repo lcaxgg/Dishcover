@@ -23,17 +23,20 @@ class ChatViewModel: ObservableObject {
     static func getSharedInstance() -> ChatViewModel {
         ChatViewModel.shared
     }
-    
-    // MARK: - SETTER
+}
 
-    static func setMessages(with sender: String, andWith chatDetails: [[String: ChatDetailsModel]]) {
-        ChatViewModel.shared.messages.append([sender: chatDetails])
-    }
+extension ChatViewModel {
     
     // MARK: - GETTER
 
     static func getMessages() -> [[String: [[String: ChatDetailsModel]]]] {
         ChatViewModel.shared.messages
+    }
+    
+    // MARK: - SETTER
+
+    static func setMessages(with sender: String, andWith chatDetails: [[String: ChatDetailsModel]]) {
+        ChatViewModel.shared.messages.append([sender: chatDetails])
     }
 }
 

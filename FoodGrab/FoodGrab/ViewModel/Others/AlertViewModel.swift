@@ -12,22 +12,11 @@ class AlertViewModel: ObservableObject {
     // MARK: - PROPERTIES
     
     @Published var alertModel = AlertModel()
+}
+
+extension AlertViewModel {
     
-    // MARK: - SET
-    
-    func setIsPresented(with isPresented: Bool) {
-        alertModel.isPresented = isPresented
-    }
-    
-    func setTitle(with title: String) {
-        alertModel.title = title
-    }
-    
-    func setMessage(with message: String) {
-        alertModel.message = message
-    }
-    
-    // MARK: - GET
+    // MARK: - GETTER
     
     func getIsPresented() -> Bool {
         alertModel.isPresented
@@ -39,5 +28,19 @@ class AlertViewModel: ObservableObject {
     
     func getMessage() -> String {
         alertModel.message
+    }
+    
+    // MARK: - SETTER
+    
+    func setIsPresented(with isPresented: Bool) {
+        alertModel.isPresented = isPresented
+    }
+    
+    func setTitle(with title: String) {
+        alertModel.title = title
+    }
+    
+    func setMessage(with message: String) {
+        alertModel.message = message
     }
 }

@@ -16,7 +16,10 @@ class SearchViewModel: ObservableObject {
     init() {
         searchModel = SearchModel()
     }
-    
+}
+
+extension SearchViewModel {
+   
     // MARK: - GETTER
     
     func getIsSearching() -> Bool {
