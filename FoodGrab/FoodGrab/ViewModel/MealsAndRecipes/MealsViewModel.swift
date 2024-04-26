@@ -56,6 +56,15 @@ class MealsViewModel: ObservableObject {
         self.setStrMealThumb(with: mealsDetailsModel.strMealThumb ?? AppConstants.emptyString)
     }
     
+    func searchMeal(with searchText: String) -> [MealsDetailsModel]? {
+        let mealsDataByCategory = MealsViewModel.getMealsDataByCategory()
+        let searchedMeal = mealsDataByCategory?.filter { $0.strMeal.localizedStandardContains(searchText) }
+        
+        return searchedMeal
+    }
+}
+
+extension MealsViewModel {
     // MARK: - GETTER FOR MODEL PROPERTIES
     
     func getIdMeal() -> Int64 {
@@ -92,6 +101,13 @@ class MealsViewModel: ObservableObject {
     
     static func getMealsData() -> Dictionary<String, [MealsDetailsModel]> {
         MealsViewModel.shared.mealsData
+    }
+    
+    static func getMealsDataByCategory() -> [MealsDetailsModel]? {
+        let category = MealsViewModel.getMealCategory()
+        let mealsData = MealsViewModel.getMealsData()
+        
+        return mealsData[category]
     }
     
     // MARK: - SETTER FOR VIEWMODEL PROPERTIES
