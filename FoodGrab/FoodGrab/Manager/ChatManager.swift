@@ -20,8 +20,7 @@ struct ChatManager {
                 return
             }
             
-            var outerArr = [[String: Array<Any>]]()
-            var innerArr = [[String: ChatDetailsModel]]()
+            var chatDetails = [[String: ChatDetailsModel]]()
             
             for document in documents {
                 do {
@@ -34,10 +33,11 @@ struct ChatManager {
                         let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
                         let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
                         
-                        innerArr.append([key: details])
+                        chatDetails.append([key: details])
                     }
                     
-                    outerArr.append([document.documentID: innerArr])
+                    ChatViewModel.setMessages(with: document.documentID, andWith: chatDetails)
+                
                 } catch let error {
                     print("Couldn't decode document. \(error.localizedDescription) ⛔")
                 }
