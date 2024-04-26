@@ -1,5 +1,5 @@
 //
-//  ChatManager.swift
+//  ChatService.swift
 //  FoodGrab
 //
 //  Created by j8bok on 4/6/24.
@@ -9,22 +9,12 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-struct ChatManager {// should be chat service
+struct ChatService {// should be chat service
     
     // MARK: - PROPERTIES
     
-    static var shared = ChatManager()
-    
     // MARK: - METHODS
-    
-    private init() {}
-    
-    static func getSharedInstance() -> ChatManager {
-        ChatManager.shared
-    }
-    
-    // MARK: - FETCH
-    
+        
     func fetchMessagesFromServer() {
         guard let uEmail = Auth.auth().currentUser?.email else {
             return

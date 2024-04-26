@@ -13,7 +13,7 @@ struct UserDetailsModel: Codable {
     var lastName: String = AppConstants.emptyString
     
     enum CodingKeys: String, CodingKey {
-        case userId = "User Id" // will change to User Id
+        case userId = "User Id"
         case firstName = "First Name"
         case lastName = "Last Name"
     }
