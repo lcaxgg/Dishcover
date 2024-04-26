@@ -10,7 +10,7 @@ import Alamofire
 import AlamofireImage
 import SwiftUI
 
-class DownloadManager {
+struct DownloadManager {
     
     // MARK: - PROPERTIES
     
@@ -43,7 +43,7 @@ class DownloadManager {
         for url in mealsUrls {
             dispatchGroup.enter()
             
-            AF.request(url).responseDecodable(of: MealsModel.self) { [self] response in
+            AF.request(url).responseDecodable(of: MealsModel.self) { response in
                 defer {
                     dispatchGroup.leave()
                 }
@@ -79,8 +79,8 @@ class DownloadManager {
             }
         }
         
-        dispatchGroup.notify(queue: .main) { [self] in
-            fetchRecipesFromServer { [self] done in
+        dispatchGroup.notify(queue: .main) {
+            fetchRecipesFromServer { done in
                 DownloadManager.shared.isDoneFetchingRecipe = done
                 
                 if let response = processCompletion() {
@@ -90,7 +90,7 @@ class DownloadManager {
                 }
             }
             
-            fetchMealsImagesFromServer { [self] meals in
+            fetchMealsImagesFromServer { meals in
                 DownloadManager.shared.isDoneFetchingMealsImages = meals!.count > 0
                 
                 if let response = processCompletion() {
@@ -119,7 +119,7 @@ class DownloadManager {
                     dispatchGroup.enter()
                     
                     AF.request(url)
-                        .responseDecodable(of: RecipesModel.self) { [self] response in
+                        .responseDecodable(of: RecipesModel.self) { response in
                             defer {
                                 dispatchGroup.leave()
                             }
@@ -164,7 +164,7 @@ class DownloadManager {
                 
                 dispatchGroup.enter()
                 
-                AF.request(url).responseImage { [self] response in
+                AF.request(url).responseImage { response in
                     switch response.result {
                     case .success(let image):
                         if let imageData = image.jpegData(compressionQuality: 1.0) {
