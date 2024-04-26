@@ -10,6 +10,10 @@ import Firebase
 import FirebaseFirestore
 
 struct ChatService {
+    static func fetchMessages() {
+        
+    }
+    
     static func sendMessage() {
         guard let uEmail = Auth.auth().currentUser?.email else {
             return
@@ -48,7 +52,7 @@ struct ChatService {
 }
 
 extension ChatService {
-    static func fetchMessagesFromServer() {
+    private static func fetchMessagesFromServer(completion: @escaping (Error?) -> Void) {
         guard let uEmail = Auth.auth().currentUser?.email else {
             return
         }
@@ -66,40 +70,42 @@ extension ChatService {
             }
             
             let collection = document.reference.collection("received_messages")
+           
             collection.getDocuments { (querySnapshot, error) in
                 guard querySnapshot?.documents.count != 0 else {
+                    
                     print("Received Messages Collection is empty.")
                     return
                 }
                 
-                var outerArr = [[String: Array<Any>]]()
-                
-                if let documents = querySnapshot?.documents {
-                 // service
-                    var someArr = [[String: ChatDetailsModel]]()
-                    
-                    for document in documents {
-                        do {
-                            let data = document.data()
-                            
-                            for (key, value) in data {
-                              
-                                let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
-                                let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
-                                
-                                someArr.append([key: details])
-                            
-                            }
-                        } catch let error {
-                            print("Couldn't decode document. \(error.localizedDescription) ⛔")
-                        }
-                        
-                        outerArr.append([document.documentID: someArr])
-                    }
-                    
-                    print("test")
-                    
-                }
+//                var outerArr = [[String: Array<Any>]]()
+//                
+//                if let documents = querySnapshot?.documents {
+//                 // service
+//                    var someArr = [[String: ChatDetailsModel]]()
+//                    
+//                    for document in documents {
+//                        do {
+//                            let data = document.data()
+//                            
+//                            for (key, value) in data {
+//                              
+//                                let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+//                                let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
+//                                
+//                                someArr.append([key: details])
+//                            
+//                            }
+//                        } catch let error {
+//                            print("Couldn't decode document. \(error.localizedDescription) ⛔")
+//                        }
+//                        
+//                        outerArr.append([document.documentID: someArr])
+//                    }
+//                    
+//                    print("test")
+//                    
+//                }
             }
         }
     }
