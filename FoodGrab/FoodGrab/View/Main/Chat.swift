@@ -45,7 +45,9 @@ struct Chat: View {
                 if #available(iOS 16.0, *) {
                     List {
                         Section {
-                            ForEach(0..<itemCount, id: \.self) { index in
+                            let messages = ChatViewModel.getMessages()
+                            
+                            ForEach(0..<messages.count, id: \.self) { index in
                                 ChatList(screenSize: screenSize)
                             }
                             .onDelete(perform: { indexSet in

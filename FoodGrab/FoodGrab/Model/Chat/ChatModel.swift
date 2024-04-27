@@ -9,7 +9,7 @@ import Foundation
 
 struct ChatModel: Codable {
     let senderName: String
-    let chatDetails: [[String: ChatDetailsModel]]
+    let chatDetails: [String: ChatDetailsModel]
 }
 
 struct ChatDetailsModel: Codable {

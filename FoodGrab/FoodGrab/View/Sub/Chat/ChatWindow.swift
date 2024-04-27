@@ -21,13 +21,22 @@ struct ChatWindow: View {
         
         // MARK: - FOOTER
         
-        Button(action: {
-            ChatManager.fetchMessages()
-        }, label: {
-            Text("Send")
-        })
-        .onAppear {
+        VStack(spacing: 20) {
+            Button(action: {
+                ChatManager.sendMessage()
+                
+            }, label: {
+                Text("Send")
+            })
+            
+            Button(action: {
+                ChatManager.fetchMessages()
+            }, label: {
+                Text("Fetch")
+            })
         }
+        
+        
     }
 }
 

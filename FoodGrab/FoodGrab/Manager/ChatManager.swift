@@ -9,38 +9,49 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-struct ChatManager {
+class ChatManager {
+    
+    // MARK: - PROPERTIES
+    
+    static var shared = ChatManager()
+    
+    // MARK: - METHODS
+    
+    private init() {}
+    
+    static func getSharedInstance() -> ChatManager {
+        ChatManager.shared
+    }
+    
     static func fetchMessages() {
-        fetchMessagesFromServer { documents in
-            guard documents?.count != 0 else {
+        fetchMessagesFromServer { document in
+            guard let document = document else {
                 return
             }
             
-            guard let documents = documents else {
-                return
-            }
-            
-            var chatDetails = [[String: ChatDetailsModel]]()
-            
-            for document in documents {
-                do {
-                    guard let data = document.data() else {
-                        return
-                    }
+            do {
+                guard let data = document.data() else {
+                    return
+                }
+                
+                let messages = data["received_messages"] as! Dictionary<String, Any>
+
+                for (senderName, value) in messages {
+                    let valueDictionary = value as! Dictionary<String, Any>
+                    var chatDetails = [String: ChatDetailsModel]()
                     
-                    for (key, value) in data {
+                    for (date, value) in valueDictionary {
                         let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
                         let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
                         
-                        chatDetails.append([key: details])
+                        chatDetails[date] = details
                     }
                     
-                    let chatModel = ChatModel(senderName: document.documentID, chatDetails: chatDetails)
+                    let chatModel = ChatModel(senderName: senderName, chatDetails: chatDetails)
                     ChatViewModel.setMessages(with: chatModel)
-                
-                } catch let error {
-                    print("Couldn't decode document. \(error.localizedDescription) ⛔")
                 }
+            } catch let error {
+                print("Couldn't decode document. \(error.localizedDescription) ⛔")
             }
         }
     }
@@ -68,10 +79,8 @@ struct ChatManager {
         
         let document = Firestore.firestore().collection(AppConstants.conversations)
             .document("itachi.uchiha@gmail.com")
-            .collection("received_messages")
-            .document(name)
         
-        document.setData([date: jsonDictionary], merge: true) { error in
+        document.setData(["received_messages": [name : [date: jsonDictionary]]], merge: true) { error in
             guard error == nil else {
                 print("Couldn't send message. \(String(describing: error?.localizedDescription)) ⛔")
                 return
@@ -83,15 +92,15 @@ struct ChatManager {
 }
 
 extension ChatManager {
-    private static func fetchMessagesFromServer(completion: @escaping ([DocumentSnapshot]?) -> Void) {
+    private static func fetchMessagesFromServer(completion: @escaping (DocumentSnapshot?) -> Void) {
         guard let uEmail = Auth.auth().currentUser?.email else {
             completion(nil)
             return
         }
         
-        let collection = Firestore.firestore().collection("Conversations")
+        let docRef = Firestore.firestore().collection("Conversations").document("itachi.uchiha@gmail.com")
         
-        collection.document(uEmail).getDocument { document, error in
+        docRef.getDocument { document, error in
             guard error == nil else {
                 print("Couldn't fetch Document. \(String(describing: error?.localizedDescription)) ⛔")
                 
@@ -106,19 +115,7 @@ extension ChatManager {
                 return
             }
             
-            let collection = document.reference.collection("received_messages")
-            
-            collection.getDocuments { (querySnapshot, error) in
-                guard querySnapshot?.documents.count != 0 else {
-                    print("Received Messages Collection is empty.")
-                    
-                    completion(nil)
-                    return
-                }
-                
-                let documents = querySnapshot?.documents
-                completion(documents)
-            }
+            completion(document)
         }
     }
 }
