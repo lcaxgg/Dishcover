@@ -77,16 +77,28 @@ class ChatManager {
         let name = UserViewModel.getName()
         let date = DateTimeService.getFormattedDateTime()
         
-        let document = Firestore.firestore().collection(AppConstants.conversations)
-            .document("itachi.uchiha@gmail.com")
+        let documentReceiver = Firestore.firestore().collection(AppConstants.conversations)
+            .document("kushina.uzumaki@gmail.com")
         
-        document.setData(["received_messages": [name : [date: jsonDictionary]]], merge: true) { error in
+        documentReceiver.setData(["received_messages": [name : [date: jsonDictionary]]], merge: true) { error in
             guard error == nil else {
                 print("Couldn't send message. \(String(describing: error?.localizedDescription)) ⛔")
                 return
             }
             
             print("Message Sent 📨")
+        }
+        
+        let documentSender = Firestore.firestore().collection(AppConstants.conversations)
+            .document(uEmail)
+        
+        documentSender.setData(["sent_messages": ["Kushina Uzumaki": [date: jsonDictionary]]], merge: true) { error in
+            guard error == nil else {
+                print("Couldn't save message. \(String(describing: error?.localizedDescription)) ⛔")
+                return
+            }
+
+            print("Message saved ✅")
         }
     }
 }
