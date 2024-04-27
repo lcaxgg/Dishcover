@@ -35,7 +35,7 @@ class ChatManager {
                 }
                 
                 let messages = data["received_messages"] as! Dictionary<String, Any>
-
+                
                 for (senderName, value) in messages {
                     let valueDictionary = value as! Dictionary<String, Any>
                     var chatDetails = [String: ChatDetailsModel]()
@@ -98,9 +98,7 @@ extension ChatManager {
             return
         }
         
-        let docRef = Firestore.firestore().collection("Conversations").document("itachi.uchiha@gmail.com")
-        
-        docRef.getDocument { document, error in
+        Firestore.firestore().collection("Conversations").document("itachi.uchiha@gmail.com").addSnapshotListener { document, error in
             guard error == nil else {
                 print("Couldn't fetch Document. \(String(describing: error?.localizedDescription)) ⛔")
                 
