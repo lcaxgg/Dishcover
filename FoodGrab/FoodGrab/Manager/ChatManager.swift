@@ -29,14 +29,14 @@ struct ChatManager {
                     }
                     
                     for (key, value) in data {
-                        
                         let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
                         let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
                         
                         chatDetails.append([key: details])
                     }
                     
-                    ChatViewModel.setMessages(with: document.documentID, andWith: chatDetails)
+                    let chatModel = ChatModel(senderName: document.documentID, chatDetails: chatDetails)
+                    ChatViewModel.setMessages(with: chatModel)
                 
                 } catch let error {
                     print("Couldn't decode document. \(error.localizedDescription) ⛔")
