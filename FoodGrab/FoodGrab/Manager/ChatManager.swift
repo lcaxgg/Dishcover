@@ -98,7 +98,7 @@ extension ChatManager {
             return
         }
         
-        Firestore.firestore().collection("Conversations").document("itachi.uchiha@gmail.com").addSnapshotListener { document, error in
+        Firestore.firestore().collection("Conversations").document(uEmail).addSnapshotListener { document, error in
             guard error == nil else {
                 print("Couldn't fetch Document. \(String(describing: error?.localizedDescription)) ⛔")
                 
