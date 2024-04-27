@@ -34,21 +34,21 @@ class ChatManager {
                     return
                 }
                 
-                let messages = data["received_messages"] as! Dictionary<String, Any>
-                
-                for (senderName, value) in messages {
-                    let valueDictionary = value as! Dictionary<String, Any>
-                    var chatDetails = [String: ChatDetailsModel]()
-                    
-                    for (date, value) in valueDictionary {
-                        let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
-                        let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
+                if let messages = data["received_messages"] as? Dictionary<String, Any> {
+                    for (senderName, value) in messages {
+                        let valueDictionary = value as! Dictionary<String, Any>
+                        var chatDetails = [String: ChatDetailsModel]()
                         
-                        chatDetails[date] = details
+                        for (date, value) in valueDictionary {
+                            let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+                            let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
+                            
+                            chatDetails[date] = details
+                        }
+                        
+                        let chatModel = ChatModel(senderName: senderName, chatDetails: chatDetails)
+                        ChatViewModel.setMessages(with: chatModel)
                     }
-                    
-                    let chatModel = ChatModel(senderName: senderName, chatDetails: chatDetails)
-                    ChatViewModel.setMessages(with: chatModel)
                 }
             } catch let error {
                 print("Couldn't decode document. \(error.localizedDescription) ⛔")
@@ -106,7 +106,7 @@ extension ChatManager {
                 return
             }
             
-            guard let document = document else {
+            guard document?.data()?.count != 0 else {
                 print(uEmail + "Document is empty.")
                 
                 completion(nil)
