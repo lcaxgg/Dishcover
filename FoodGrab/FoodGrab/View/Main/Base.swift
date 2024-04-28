@@ -91,8 +91,9 @@ struct Base: View {
         }
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = UIColor.white
-            
+    
             processMealsDisplay()
+            fetchMessages()
         })
         .onChange(of: selectedTab) { selectedTab in
             setUpNavigationBarTitle(with: selectedTab)
@@ -101,6 +102,21 @@ struct Base: View {
 }
 
 extension Base {
+    private func setUpNavigationBarTitle(with selectedTab: Int) {
+        if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
+            switch selectedEnum {
+            case .mealsNavTitle:
+                navigationBarTitle = AppConstants.mealNavTitle
+                
+            case .chatNavTitle:
+                navigationBarTitle = AppConstants.chat
+                
+            case .accountNavTitle:
+                navigationBarTitle = AppConstants.account
+            }
+        }
+    }
+    
     private func processMealsDisplay() {
         if !isDownloadComplete {
             MealsService.processMealsDataForDisplay { success in
@@ -124,19 +140,8 @@ extension Base {
         }
     }
     
-    private func setUpNavigationBarTitle(with selectedTab: Int) {
-        if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
-            switch selectedEnum {
-            case .mealsNavTitle:
-                navigationBarTitle = AppConstants.mealNavTitle
-                
-            case .chatNavTitle:
-                navigationBarTitle = AppConstants.chat
-                
-            case .accountNavTitle:
-                navigationBarTitle = AppConstants.account
-            }
-        }
+    private func fetchMessages() {
+        ChatManager.fetchMessages()
     }
 }
 

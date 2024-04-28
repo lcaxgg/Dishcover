@@ -9,38 +9,49 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
-struct ChatManager {
+class ChatManager {
+    
+    // MARK: - PROPERTIES
+    
+    static var shared = ChatManager()
+    
+    // MARK: - METHODS
+    
+    private init() {}
+    
+    static func getSharedInstance() -> ChatManager {
+        ChatManager.shared
+    }
+    
     static func fetchMessages() {
-        fetchMessagesFromServer { documents in
-            guard documents?.count != 0 else {
+        fetchMessagesFromServer { document in
+            guard let document = document else {
                 return
             }
             
-            guard let documents = documents else {
-                return
-            }
-            
-            var chatDetails = [[String: ChatDetailsModel]]()
-            
-            for document in documents {
-                do {
-                    guard let data = document.data() else {
-                        return
-                    }
-                    
-                    for (key, value) in data {
-                        
-                        let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
-                        let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
-                        
-                        chatDetails.append([key: details])
-                    }
-                    
-                    ChatViewModel.setMessages(with: document.documentID, andWith: chatDetails)
-                
-                } catch let error {
-                    print("Couldn't decode document. \(error.localizedDescription) ⛔")
+            do {
+                guard let data = document.data() else {
+                    return
                 }
+                
+                if let messages = data["received_messages"] as? Dictionary<String, Any> {
+                    for (senderName, value) in messages {
+                        let valueDictionary = value as! Dictionary<String, Any>
+                        var chatDetails = [String: ChatDetailsModel]()
+                        
+                        for (date, value) in valueDictionary {
+                            let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
+                            let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
+                            
+                            chatDetails[date] = details
+                        }
+                        
+                        let chatModel = ChatModel(senderName: senderName, chatDetails: chatDetails)
+                        ChatViewModel.setMessages(with: chatModel)
+                    }
+                }
+            } catch let error {
+                print("Couldn't decode document. \(error.localizedDescription) ⛔")
             }
         }
     }
@@ -66,12 +77,10 @@ struct ChatManager {
         let name = UserViewModel.getName()
         let date = DateTimeService.getFormattedDateTime()
         
-        let document = Firestore.firestore().collection(AppConstants.conversations)
-            .document("itachi.uchiha@gmail.com")
-            .collection("received_messages")
-            .document(name)
+        let documentReceiver = Firestore.firestore().collection(AppConstants.conversations)
+            .document("kushina.uzumaki@gmail.com")
         
-        document.setData([date: jsonDictionary], merge: true) { error in
+        documentReceiver.setData(["received_messages": [name : [date: jsonDictionary]]], merge: true) { error in
             guard error == nil else {
                 print("Couldn't send message. \(String(describing: error?.localizedDescription)) ⛔")
                 return
@@ -79,19 +88,29 @@ struct ChatManager {
             
             print("Message Sent 📨")
         }
+        
+        let documentSender = Firestore.firestore().collection(AppConstants.conversations)
+            .document(uEmail)
+        
+        documentSender.setData(["sent_messages": ["Kushina Uzumaki": [date: jsonDictionary]]], merge: true) { error in
+            guard error == nil else {
+                print("Couldn't save message. \(String(describing: error?.localizedDescription)) ⛔")
+                return
+            }
+
+            print("Message saved ✅")
+        }
     }
 }
 
 extension ChatManager {
-    private static func fetchMessagesFromServer(completion: @escaping ([DocumentSnapshot]?) -> Void) {
+    private static func fetchMessagesFromServer(completion: @escaping (DocumentSnapshot?) -> Void) {
         guard let uEmail = Auth.auth().currentUser?.email else {
             completion(nil)
             return
         }
         
-        let collection = Firestore.firestore().collection("Conversations")
-        
-        collection.document(uEmail).getDocument { document, error in
+        Firestore.firestore().collection("Conversations").document(uEmail).addSnapshotListener { document, error in
             guard error == nil else {
                 print("Couldn't fetch Document. \(String(describing: error?.localizedDescription)) ⛔")
                 
@@ -99,26 +118,14 @@ extension ChatManager {
                 return
             }
             
-            guard let document = document else {
+            guard document?.data()?.count != 0 else {
                 print(uEmail + "Document is empty.")
                 
                 completion(nil)
                 return
             }
             
-            let collection = document.reference.collection("received_messages")
-            
-            collection.getDocuments { (querySnapshot, error) in
-                guard querySnapshot?.documents.count != 0 else {
-                    print("Received Messages Collection is empty.")
-                    
-                    completion(nil)
-                    return
-                }
-                
-                let documents = querySnapshot?.documents
-                completion(documents)
-            }
+            completion(document)
         }
     }
 }

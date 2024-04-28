@@ -12,9 +12,9 @@ class ChatViewModel: ObservableObject {
     // MARK: - PROPERTIES
    
     static let shared: ChatViewModel = ChatViewModel()
-    private var chatModel: ChatModel = ChatModel()
+    //private var chatModel: ChatModel = ChatModel(senderName: AppConstants.emptyString, chatDetails: Array())
     
-    var messages: [[String: [[String: ChatDetailsModel]]]] = Array()
+    var messages: [ChatModel] = Array()
     
     // MARK: - METHOD
     
@@ -29,14 +29,14 @@ extension ChatViewModel {
     
     // MARK: - GETTER
 
-    static func getMessages() -> [[String: [[String: ChatDetailsModel]]]] {
+    static func getMessages() -> [ChatModel] {
         ChatViewModel.shared.messages
     }
     
     // MARK: - SETTER
 
-    static func setMessages(with sender: String, andWith chatDetails: [[String: ChatDetailsModel]]) {
-        ChatViewModel.shared.messages.append([sender: chatDetails])
+    static func setMessages(with chatModel: ChatModel) {
+        ChatViewModel.shared.messages.append(chatModel)
     }
 }
 
