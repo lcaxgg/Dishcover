@@ -61,7 +61,7 @@ class ChatManager {
             return
         }
         
-        let details = ChatDetailsModel(isRead: false, message: "test message", senderEmail: uEmail)
+        let details = ChatDetailsModel(isRead: false, message: "This is kakashi", senderEmail: uEmail)
         let encoder = JSONEncoder()
         
         guard let data = try? encoder.encode(details) else {
@@ -74,31 +74,87 @@ class ChatManager {
             return
         }
         
-        let name = UserViewModel.getName()
         let date = DateTimeService.getFormattedDateTime()
         
-        let documentReceiver = Firestore.firestore().collection(AppConstants.conversations)
-            .document("kushina.uzumaki@gmail.com")
+        let documentReceiver = Firestore.firestore()
+            .collection(AppConstants.conversations)
+            .document("itachi.uchiha@gmail.com")
         
-        documentReceiver.setData(["received_messages": [name : [date: jsonDictionary]]], merge: true) { error in
-            guard error == nil else {
-                print("Couldn't send message. \(String(describing: error?.localizedDescription)) ⛔")
+        createDummyField(for: documentReceiver) { success in
+            guard success == true else {
                 return
             }
             
-            print("Message Sent 📨")
+            let name = UserViewModel.getName()
+            
+            documentReceiver
+                .collection("received_messages")
+                .document(name)
+                .setData([date: jsonDictionary], merge: true) { error in
+                    guard error == nil else {
+                        print("Couldn't send message. \(String(describing: error?.localizedDescription)) ⛔")
+                        return
+                    }
+                    
+                    print("Message Sent 📨")
+                }
+            
+            saveSentMessage()
         }
         
-        let documentSender = Firestore.firestore().collection(AppConstants.conversations)
-            .document(uEmail)
+        // save data for the sender (current user)
         
-        documentSender.setData(["sent_messages": ["Kushina Uzumaki": [date: jsonDictionary]]], merge: true) { error in
-            guard error == nil else {
-                print("Couldn't save message. \(String(describing: error?.localizedDescription)) ⛔")
-                return
+        func saveSentMessage() {
+            let documentSender = Firestore.firestore()
+                .collection(AppConstants.conversations)
+                .document(uEmail)
+            
+            createDummyField(for: documentSender) { success in
+                guard success == true else {
+                    return
+                }
+                
+                documentSender
+                    .collection("sent_messages")
+                    .document("itachi.uchiha@gmail.com")
+                    .setData([date: jsonDictionary], merge: true) { error in
+                    guard error == nil else {
+                        print("Couldn't save message. \(String(describing: error?.localizedDescription)) ⛔")
+                        return
+                    }
+                    
+                        print("Message saved ✅")
+                }
             }
-
-            print("Message saved ✅")
+        }
+   
+        // create a dummy field for document so that it would become existent in firebase
+        
+        func createDummyField(for docRef: DocumentReference, completion: @escaping (Bool) -> Void) {
+            docRef.getDocument { document, error in
+                guard error == nil else {
+                    print("Couldn't fetch document of \(docRef.documentID). \(String(describing: error?.localizedDescription)) ⛔")
+                    completion(false)
+                    return
+                }
+                
+                guard document?.data()?["dumm_key"] == nil else {
+                    print("Dummy field already exists for \(docRef.documentID) ℹ️")
+                    completion(true)
+                    return
+                }
+                
+                docRef.setData(["dumm_key": "dummy_value"]) { error in
+                    guard error == nil else {
+                        print("Couldn't create dummy field for \(docRef.documentID). \(String(describing: error?.localizedDescription)) ⛔")
+                        completion(false)
+                        return
+                    }
+                    
+                    print("Dummy field created for \(docRef.documentID) ✅")
+                    completion(true)
+                }
+            }
         }
     }
 }
@@ -110,7 +166,7 @@ extension ChatManager {
             return
         }
         
-        Firestore.firestore().collection("Conversations").document(uEmail).addSnapshotListener { document, error in
+        Firestore.firestore().collection(AppConstants.conversations).document(uEmail).addSnapshotListener { querySnapShot, error in
             guard error == nil else {
                 print("Couldn't fetch Document. \(String(describing: error?.localizedDescription)) ⛔")
                 
@@ -118,14 +174,14 @@ extension ChatManager {
                 return
             }
             
-            guard document?.data()?.count != 0 else {
+            guard querySnapShot?.data()?.count != 0 else {
                 print(uEmail + "Document is empty.")
                 
                 completion(nil)
                 return
             }
             
-            completion(document)
+            completion(querySnapShot)
         }
     }
 }
