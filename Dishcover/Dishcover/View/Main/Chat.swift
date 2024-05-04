@@ -18,9 +18,10 @@ struct Chat: View {
     @State private var searchViewModel: SearchViewModel = SearchViewModel()
     
     @Binding var isPresentedChatSelect: Bool
-    
+    @State private var isPresentedChatWindow: Bool = false
+   
     @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.getSharedInstance()
-
+    
     var body: some View {
         ZStack {
             Color(AppConstants.lightGrayOne)
@@ -49,6 +50,9 @@ struct Chat: View {
                             
                             ForEach(0..<messages.count, id: \.self) { index in
                                 ChatList(screenSize: screenSize)
+                                    .overlay {
+                                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(), isActive: $isPresentedChatWindow).opacity(0)
+                                    }
                             }
                             .onDelete(perform: { indexSet in
                                 
@@ -65,7 +69,7 @@ struct Chat: View {
                 } else {
                     // Fallback on earlier versions
                 }
-               
+                
                 // MARK: - FOOTER
             }
         }//: ZStack

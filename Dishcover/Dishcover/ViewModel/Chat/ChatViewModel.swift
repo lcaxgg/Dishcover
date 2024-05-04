@@ -15,7 +15,7 @@ class ChatViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
-    private static let sharedInstance: ChatViewModel = ChatViewModel()
+    private static let shared: ChatViewModel = ChatViewModel()
     @Published private var messages: ArrayOfChatModel = Array()
     
     // MARK: - METHOD
@@ -23,7 +23,7 @@ class ChatViewModel: ObservableObject {
     private init() {}
     
     static func getSharedInstance() -> ChatViewModel {
-        sharedInstance
+        shared
     }
 }
 
@@ -40,7 +40,7 @@ extension ChatViewModel {
     static func setMessages(with chatModel: ChatModel, andWith isForMerging: Bool) {
         let senderName = chatModel.senderName
         
-        if let filteredMessage = sharedInstance.messages.filter( { $0.senderName == senderName }).first, isForMerging {
+        if let filteredMessage = shared.messages.filter( { $0.senderName == senderName }).first, isForMerging {
             let senderChatDetails = chatModel.chatDetails
             let date = senderChatDetails.keys.first ?? AppConstants.emptyString
             let detailsToMerge = senderChatDetails.values.first
@@ -48,11 +48,11 @@ extension ChatViewModel {
             var newChatDetails = filteredMessage.chatDetails
             newChatDetails[date] = detailsToMerge
             
-            if let index = sharedInstance.messages.firstIndex(of: filteredMessage) {
-                sharedInstance.messages[index].chatDetails = newChatDetails
+            if let index = shared.messages.firstIndex(of: filteredMessage) {
+                shared.messages[index].chatDetails = newChatDetails
             }
         } else {
-            sharedInstance.messages.append(chatModel)
+            shared.messages.append(chatModel)
         }
     }
 }
