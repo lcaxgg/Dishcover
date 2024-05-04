@@ -10,6 +10,7 @@
 		5B049A442B94717700806731 /* RecipesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B049A432B94717700806731 /* RecipesModel.swift */; };
 		5B04D4702B3E8DF5006E39E9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */; };
 		5B069E502BB697FD00D5E739 /* NavigationBarTitleEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B069E4F2BB697FD00D5E739 /* NavigationBarTitleEnum.swift */; };
+		5B0AA7122BE5FC6B00303297 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B0AA7112BE5FC6B00303297 /* GoogleService-Info.plist */; };
 		5B0E1ACE2B7626D100924AE0 /* AllCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B0E1ACD2B7626D100924AE0 /* AllCategories.swift */; };
 		5B12E4A12AC525DC008BB487 /* Meals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12E4A02AC525DC008BB487 /* Meals.swift */; };
 		5B1A1BF12B3F3F0D0061AE2D /* MealsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B1A1BF02B3F3F0D0061AE2D /* MealsViewModel.swift */; };
@@ -23,7 +24,6 @@
 		5B1D14382AB17C2E003BA1A5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5B1D14372AB17C2E003BA1A5 /* FirebaseFirestore */; };
 		5B1D143A2AB17C32003BA1A5 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5B1D14392AB17C32003BA1A5 /* FirebaseFirestoreSwift */; };
 		5B1D143C2AB17C3B003BA1A5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5B1D143B2AB17C3B003BA1A5 /* FirebaseStorage */; };
-		5B1D143E2AB18365003BA1A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5B1D143D2AB18365003BA1A5 /* GoogleService-Info.plist */; };
 		5B2611812BA86C7600461E83 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2611802BA86C7600461E83 /* Base.swift */; };
 		5B2611832BA871EF00461E83 /* ScreenSizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */; };
 		5B355B472BA725FD0044D070 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B355B462BA725FD0044D070 /* Chat.swift */; };
@@ -97,11 +97,11 @@
 		5B049A432B94717700806731 /* RecipesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesModel.swift; sourceTree = "<group>"; };
 		5B04D46F2B3E8DF5006E39E9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		5B069E4F2BB697FD00D5E739 /* NavigationBarTitleEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitleEnum.swift; sourceTree = "<group>"; };
+		5B0AA7112BE5FC6B00303297 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B0E1ACD2B7626D100924AE0 /* AllCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllCategories.swift; sourceTree = "<group>"; };
 		5B12E4A02AC525DC008BB487 /* Meals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meals.swift; sourceTree = "<group>"; };
 		5B1A1BF02B3F3F0D0061AE2D /* MealsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsViewModel.swift; sourceTree = "<group>"; };
 		5B1D142C2AB17B7C003BA1A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5B1D143D2AB18365003BA1A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5B2611802BA86C7600461E83 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeReader.swift; sourceTree = "<group>"; };
 		5B355B462BA725FD0044D070 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
@@ -346,9 +346,9 @@
 		5B5A054F2A9ED1FA001A05CA /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				5B04D4712B3E928F006E39E9 /* DataModel */,
-				5B1D143D2AB18365003BA1A5 /* GoogleService-Info.plist */,
 				5B5A053B2A9ECA86001A05CA /* Assets.xcassets */,
+				5B0AA7112BE5FC6B00303297 /* GoogleService-Info.plist */,
+				5B04D4712B3E928F006E39E9 /* DataModel */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -672,7 +672,7 @@
 			files = (
 				5B5A053F2A9ECA86001A05CA /* Preview Assets.xcassets in Resources */,
 				5B5A053C2A9ECA86001A05CA /* Assets.xcassets in Resources */,
-				5B1D143E2AB18365003BA1A5 /* GoogleService-Info.plist in Resources */,
+				5B0AA7122BE5FC6B00303297 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

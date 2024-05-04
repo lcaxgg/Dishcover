@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyB8BRZZcIqUOAvUwOiDvkykKKqE-r_6F-s</string>
+	<string>AIzaSyAZQPKwO1ytGK8iNj8_devtYhThMPTTThg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>1029587703074</string>
+	<string>414089593544</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.splitViewTestApp.FoodGrab</string>
+	<string>com.Dishcover</string>
 	<key>PROJECT_ID</key>
-	<string>foodgrab-af8aa</string>
+	<string>dishcover-5d75c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>foodgrab-af8aa.appspot.com</string>
+	<string>dishcover-5d75c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,8 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1029587703074:ios:92d35383f7b17428cb417b</string>
-	<key>DATABASE_URL</key>
-	<string>https://foodgrab-af8aa-default-rtdb.asia-southeast1.firebasedatabase.app</string>
+	<string>1:414089593544:ios:73ecd2b2eff50b0ffb5bfd</string>
 </dict>
 </plist>
