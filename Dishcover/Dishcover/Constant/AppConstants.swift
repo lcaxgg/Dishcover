@@ -181,11 +181,11 @@ struct AppConstants {
     
     // MARK: - COLORS
     
-    static let white = "white"
-    static let black = "black"
-    static let green = "green"
-    static let darkGray = "darkGray"
+    static let customWhite = "customWhite"
+    static let customBlack = "customBlack"
+    static let customGreen = "customGreen"
     static let darkGrayOne = "darkGrayOne"
+    static let darkGrayTwo = "darkGrayTwo"
     static let lightGrayOne = "lightGrayOne"
     static let lightGrayTwo = "lightGrayTwo"
     static let lightGrayThree = "lightGrayThree"

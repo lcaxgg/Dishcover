@@ -21,10 +21,10 @@ struct Splash: View {
             } else {
                 GeometryReader { geometry in
                     ZStack {
-                        Color(AppConstants.green)
+                        Color(AppConstants.customGreen)
                             .ignoresSafeArea(.all)
                         
-                        Logo(color: AppConstants.white)
+                        Logo(color: AppConstants.customWhite)
                             .frame(width: geometry.size.width * 0.3, height: geometry.size.height * 0.3)
                             .opacity(showWelcome ? 0.0 : 1.0)
                             .onAppear {

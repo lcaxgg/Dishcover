@@ -40,7 +40,7 @@ struct Catalog: View {
                                         .configure(withModifier: imageModifier)
                                     
                                     HStack {
-                                        let textModifier = [TextModifier(font: .system(size: 15.0, weight: .regular, design: .rounded), color: AppConstants.black)]
+                                        let textModifier = [TextModifier(font: .system(size: 15.0, weight: .regular, design: .rounded), color: AppConstants.customBlack)]
                                         
                                         Text(item.strMeal)
                                             .configure(withModifier: textModifier)
@@ -51,12 +51,12 @@ struct Catalog: View {
                                         
                                         let isEmptyRecipesData = RecipesViewModel.checkEmptyRecipesData()
                                         
-                                        Color(isEmptyRecipesData ? AppConstants.lightGrayTwo : AppConstants.green)
+                                        Color(isEmptyRecipesData ? AppConstants.lightGrayTwo : AppConstants.customGreen)
                                             .frame(width: screenSize.width * 0.09, height: screenSize.height * 0.04)
                                             .cornerRadius(11.0)
                                             .overlay(
                                                 Group {
-                                                    let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.white)
+                                                    let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customWhite)
                                                     
                                                     Image(systemName: AppConstants.arrowUpForwardSquare)
                                                         .configure(withModifier: imageModifier)
@@ -67,7 +67,7 @@ struct Catalog: View {
                                     .padding(.horizontal, 10.0)
                                     .padding(.vertical, 5.0)
                                     .frame(width: screenSize.width * 0.4, height: screenSize.height * 0.07)
-                                    .background(Color(AppConstants.white))
+                                    .background(Color(AppConstants.customWhite))
                                     .onTapGesture {
                                         completion(item.idMeal)
                                     }

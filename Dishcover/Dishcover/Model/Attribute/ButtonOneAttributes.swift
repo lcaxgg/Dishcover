@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ButtonOneAttributes {
     var text: String = AppConstants.register
-    var bgColor: String = AppConstants.green
-    var fontColor: String = AppConstants.white
+    var bgColor: String = AppConstants.customGreen
+    var fontColor: String = AppConstants.customWhite
     var fontWeight: Font.Weight = .regular
     var fontSize: CGFloat = 17.0
     var cornerRadius: CGFloat = 10.0
