@@ -34,11 +34,11 @@ struct Base: View {
                 if !isDownloadComplete {
                     VStack(spacing: -55.0) {
                         
-                        Logo(color: AppConstants.green)
+                        Logo(color: AppConstants.customGreen)
                             .frame(width: isAnimating ?  nil : screenSize.width * 0.3, height: isAnimating ? nil : screenSize.height * 0.3)
                             .scaleEffect(isAnimating ? 3.0 : 1.0)
                         
-                        LoadingIndicator(animation: .threeBalls, color: Color(AppConstants.green), size: .medium, speed: .normal)
+                        LoadingIndicator(animation: .threeBalls, color: Color(AppConstants.customGreen), size: .medium, speed: .normal)
                             .opacity(isLoadingVisible ? 1 : 0)
                     }
                 } else {
@@ -66,7 +66,7 @@ struct Base: View {
                     }
                     .frame(width: screenSize.width)
                     .background(Color(AppConstants.lightGrayOne))
-                    .accentColor(Color(AppConstants.green))
+                    .accentColor(Color(AppConstants.customGreen))
                 }
             }//: ZStack
         }//: ScreenSizeReader

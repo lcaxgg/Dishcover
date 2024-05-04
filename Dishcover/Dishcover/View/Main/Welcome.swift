@@ -12,7 +12,7 @@ struct Welcome: View {
     // MARK: - PROPERTIES
     
     init() {
-        UINavigationBar.appearance().tintColor = UIColor(named: AppConstants.black)
+        UINavigationBar.appearance().tintColor = UIColor(named: AppConstants.customBlack)
     }
     
     var body: some View {
@@ -31,10 +31,10 @@ struct Welcome: View {
                     // MARK: - HEADER
                     
                     VStack(spacing: 30.0) {
-                        Logo(color: AppConstants.green)
+                        Logo(color: AppConstants.customGreen)
                             .frame(width: geometry.size.width * 0.3, height: geometry.size.height * 0.08)
                         
-                        let textModifier = [TextModifier(font: .system(size: geometry.size.height * 0.02, weight: .light, design: .rounded), color: AppConstants.white)]
+                        let textModifier = [TextModifier(font: .system(size: geometry.size.height * 0.02, weight: .light, design: .rounded), color: AppConstants.customWhite)]
                         
                         Text(AppConstants.welcomeTitle)
                             .configure(withModifier: textModifier)
@@ -50,14 +50,14 @@ struct Welcome: View {
                         Spacer()
                         
                         NavigationLink(destination: Register()) {
-                            let attribute = ButtonOneAttributes(text: AppConstants.register, bgColor: AppConstants.green, fontWeight: .semibold, fontSize: geometry.size.height * 0.018, cornerRadius: 10.0, isEnabled: true)
+                            let attribute = ButtonOneAttributes(text: AppConstants.register, bgColor: AppConstants.customGreen, fontWeight: .semibold, fontSize: geometry.size.height * 0.018, cornerRadius: 10.0, isEnabled: true)
                             
                             ButtonOne(attribute: attribute)
                                 .frame(height: geometry.size.height * 0.045)
                         }
                         
                         NavigationLink(destination: Login()) {
-                            let attribute =  ButtonOneAttributes(text: AppConstants.login, bgColor: AppConstants.darkGray, fontWeight: .semibold, fontSize: geometry.size.height * 0.018, cornerRadius: 10.0, isEnabled: false)
+                            let attribute =  ButtonOneAttributes(text: AppConstants.login, bgColor: AppConstants.darkGrayTwo, fontWeight: .semibold, fontSize: geometry.size.height * 0.018, cornerRadius: 10.0, isEnabled: false)
                             
                             ButtonOne(attribute: attribute)
                                 .frame(height: geometry.size.height * 0.045)
@@ -70,7 +70,7 @@ struct Welcome: View {
             .edgesIgnoringSafeArea(.all)
         }
         .navigationViewStyle(StackNavigationViewStyle())
-        .accentColor(Color(AppConstants.green))
+        .accentColor(Color(AppConstants.customGreen))
     }
 }
 

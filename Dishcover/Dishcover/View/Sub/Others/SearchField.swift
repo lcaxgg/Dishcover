@@ -19,7 +19,7 @@ struct SearchField: View {
     
     var body: some View {
         HStack {
-            let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.green)
+            let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.customGreen)
             
             Image(systemName: AppConstants.magnifyingglass)
                 .configure(withModifier: imageModifier)
@@ -40,15 +40,15 @@ struct SearchField: View {
                                 searchViewModel.setSearchText(with: AppConstants.emptyString)
                             }) {
                                 Image(systemName: AppConstants.xCircle)
-                                    .foregroundColor(Color(AppConstants.darkGray).opacity(0.6))
+                                    .foregroundColor(Color(AppConstants.darkGrayTwo).opacity(0.6))
                             }
                             .padding(.trailing, screenSize.width * 0.035)
                         }
                     }
                 }
         }
-        .background(Color(AppConstants.white))
-        .accentColor(Color(AppConstants.green))
+        .background(Color(AppConstants.customWhite))
+        .accentColor(Color(AppConstants.customGreen))
         .cornerRadius(13.0)
     }
 }

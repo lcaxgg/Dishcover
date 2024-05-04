@@ -35,7 +35,7 @@ struct Register: View {
                             .configure(withModifier: imageModifier)
                             .frame(width: geometry.size.width * 0.07, height:  geometry.size.height * 0.07)
                         
-                        let textModifier =  [TextModifier(font: .system(size: 16.0, weight: .light, design: .rounded), color: isAddPhotoTapped ? AppConstants.lightGrayTwo : AppConstants.green)]
+                        let textModifier =  [TextModifier(font: .system(size: 16.0, weight: .light, design: .rounded), color: isAddPhotoTapped ? AppConstants.lightGrayTwo : AppConstants.customGreen)]
                         
                         Text(AppConstants.addPhoto)
                             .configure(withModifier: textModifier)
@@ -79,7 +79,7 @@ struct Register: View {
                     }
                     
                     let attribute = ButtonOneAttributes(text: AppConstants.register,
-                                                        bgColor: registrationViewModel.shouldDisableButton ? AppConstants.lightGrayTwo : registrationViewModel.invalidFields.count > 0 ? AppConstants.lightGrayTwo : AppConstants.green,
+                                                        bgColor: registrationViewModel.shouldDisableButton ? AppConstants.lightGrayTwo : registrationViewModel.invalidFields.count > 0 ? AppConstants.lightGrayTwo : AppConstants.customGreen,
                                                         fontWeight: .semibold,
                                                         fontSize: geometry.size.height * 0.02,
                                                         cornerRadius: 10.0, isEnabled: true)
@@ -96,7 +96,7 @@ struct Register: View {
             }
             
             if registrationViewModel.isProccessingRegistration {
-                LoadingIndicator(animation: .circleBars, color: Color(AppConstants.green), size: .medium, speed: .normal)
+                LoadingIndicator(animation: .circleBars, color: Color(AppConstants.customGreen), size: .medium, speed: .normal)
             }
         }//: ZStack
         .ignoresSafeArea(.keyboard)

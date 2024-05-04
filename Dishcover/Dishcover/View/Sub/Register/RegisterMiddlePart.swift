@@ -16,7 +16,7 @@ struct RegisterMiddlePart: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
                 
                 Text(AppConstants.address)
                     .configure(withModifier: textModifier)
@@ -93,13 +93,13 @@ struct RegisterMiddlePart: View {
             HorizontalSeparator(color: AppConstants.lightGrayThree, height: 1.0)
             
             HStack(spacing: 20.0) {
-                let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.green)
+                let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
                 
                 Image(systemName: AppConstants.mapFill)
                     .configure(withModifier: imageModifier)
                     .frame(width: UIScreen.main.bounds.width * 0.03, height:  UIScreen.main.bounds.height * 0.03)
                 
-                let textModifier = [TextModifier(font: .system(size: 15.0, weight: .regular, design: .rounded), color: AppConstants.black)]
+                let textModifier = [TextModifier(font: .system(size: 15.0, weight: .regular, design: .rounded), color: AppConstants.customBlack)]
                 
                 Text(AppConstants.useLocation)
                     .configure(withModifier: textModifier)

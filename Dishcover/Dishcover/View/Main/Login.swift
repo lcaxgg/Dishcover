@@ -21,7 +21,7 @@ struct Login: View {
     @StateObject private var loginViewModel = LoginViewModel()
     @StateObject private var alertViewModel = AlertViewModel()
     
-    private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
+    private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
     
     var body: some View {
         GeometryReader { geometry in
@@ -94,7 +94,7 @@ struct Login: View {
                     Spacer()
                     
                     let attribute = ButtonOneAttributes(text: AppConstants.login,
-                                                        bgColor: loginViewModel.shouldDisableButton ? AppConstants.lightGrayTwo : loginViewModel.invalidFields.count > 0 ? AppConstants.lightGrayTwo : AppConstants.green,
+                                                        bgColor: loginViewModel.shouldDisableButton ? AppConstants.lightGrayTwo : loginViewModel.invalidFields.count > 0 ? AppConstants.lightGrayTwo : AppConstants.customGreen,
                                                         fontWeight: .semibold,
                                                         fontSize: geometry.size.height * 0.02,
                                                         cornerRadius: 10.0, isEnabled: false)
@@ -113,11 +113,11 @@ struct Login: View {
                 .opacity(loginViewModel.isProccessingLogin ? 0.4 : 1)
                 
                 if loginViewModel.isProccessingLogin {
-                    LoadingIndicator(animation: .circleBars, color: Color(AppConstants.green), size: .medium, speed: .normal)
+                    LoadingIndicator(animation: .circleBars, color: Color(AppConstants.customGreen), size: .medium, speed: .normal)
                 }
             }//: ZStack
             .edgesIgnoringSafeArea(.bottom)
-            .accentColor(Color(AppConstants.green))
+            .accentColor(Color(AppConstants.customGreen))
             .navigationBarTitle(AppConstants.login, displayMode: .inline)
             .navigationBarBackButtonHidden(loginViewModel.isProccessingLogin)
             .disabled(loginViewModel.isProccessingLogin)

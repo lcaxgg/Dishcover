@@ -11,7 +11,7 @@ struct Logo: View {
     
     // MARK: - PROPERTIES
     
-    var color: String = AppConstants.white
+    var color: String = AppConstants.customWhite
     
     var body: some View {
         ZStack {

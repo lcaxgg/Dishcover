@@ -30,7 +30,7 @@ struct ChatList: View {
                     .cornerRadius(13.0)
                     .overlay(
                         Group {
-                            let firstImageModifier = ImageModifier(contentMode: .fill, color: AppConstants.white)
+                            let firstImageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customWhite)
                             
                             Image(systemName: AppConstants.personXmark)
                                 .configure(withModifier: firstImageModifier)
@@ -45,7 +45,7 @@ struct ChatList: View {
             VStack(spacing: 8.0) {
                 HStack {
                     Group {
-                        let firstTextModifier = [TextModifier(font: .system(size: 16.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                        let firstTextModifier = [TextModifier(font: .system(size: 16.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
                         
                         Text("Full Name")
                             .configure(withModifier: firstTextModifier)
@@ -55,14 +55,14 @@ struct ChatList: View {
                     
                     HStack(spacing: 5.0) {
                         Group {
-                            let secondTextModifier = [TextModifier(font: .system(size: 13.0, weight: .light, design: .rounded), color: AppConstants.black)]
+                            let secondTextModifier = [TextModifier(font: .system(size: 13.0, weight: .light, design: .rounded), color: AppConstants.customBlack)]
                             
                             Text("12:00")
                                 .configure(withModifier: secondTextModifier)
                         }
                         
                         Group {
-                            let secondImageModifier = ImageModifier(contentMode: .fill, color: AppConstants.black)
+                            let secondImageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customBlack)
                             
                             Image(systemName: AppConstants.chevronRight)
                                 .configure(withModifier: secondImageModifier)

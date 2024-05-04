@@ -30,7 +30,7 @@ struct AllCategories: View {
             
             VStack {
                 HStack {
-                    let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.green)]
+                    let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.customGreen)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: firstTextModifier)
@@ -40,14 +40,14 @@ struct AllCategories: View {
                     
                     Spacer()
                     
-                    let secondTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                    let secondTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
                     
                     Text(AppConstants.allCategories)
                         .configure(withModifier: secondTextModifier)
                     
                     Spacer()
                     
-                    let thirdTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.02, weight: .light, design: .rounded), color: AppConstants.white)]
+                    let thirdTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.02, weight: .light, design: .rounded), color: AppConstants.customWhite)]
                     
                     Text(AppConstants.close)
                         .configure(withModifier: thirdTextModifier)
@@ -59,7 +59,7 @@ struct AllCategories: View {
                 Color(AppConstants.lightGrayThree)
                     .frame(height: 1.0)
             }//: VStack
-            .background(Color(AppConstants.white))
+            .background(Color(AppConstants.customWhite))
             
             Spacer()
             
@@ -80,7 +80,7 @@ struct AllCategories: View {
                                 .configure(withModifier: imageModifier)
                                 .frame(width: screenSize.width * 0.3, height: screenSize.height * 0.1)
                             
-                            let firstTextModifier = [TextModifier(font: .system(size: 15, weight: .semibold, design: .rounded), color: AppConstants.black)]
+                            let firstTextModifier = [TextModifier(font: .system(size: 15, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
                             
                             VStack(spacing: 5.0) {
                                 Text(categoryModel.name)
@@ -97,7 +97,7 @@ struct AllCategories: View {
                             }
                         }
                         .frame(width: screenSize.width * 0.4, height: screenSize.height * 0.3)
-                        .background(Color(AppConstants.white))
+                        .background(Color(AppConstants.customWhite))
                         .cornerRadius(11.0)
                         .onTapGesture {
                             completion(index, categoryModel)

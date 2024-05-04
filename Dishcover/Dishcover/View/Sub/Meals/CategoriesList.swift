@@ -25,8 +25,8 @@ struct CategoriesList: View {
                     ForEach(Array(mealsCategories.enumerated()), id: \.1.id) { index, categoryModel in
                         let selectedIndex = mealsCategoriesViewModel.getSelectedIndex()
                         
-                        let bgColor = selectedIndex == index ? AppConstants.green : AppConstants.white
-                        let fontColor = selectedIndex == index ? AppConstants.white : AppConstants.black
+                        let bgColor = selectedIndex == index ? AppConstants.customGreen : AppConstants.customWhite
+                        let fontColor = selectedIndex == index ? AppConstants.customWhite : AppConstants.customBlack
                         let fontWeight = selectedIndex == index ? Font.Weight.semibold : Font.Weight.regular
                         let attribute =  ButtonOneAttributes(text: categoryModel.name, bgColor: bgColor, 
                                                              fontColor: fontColor, fontWeight: fontWeight,

@@ -19,7 +19,7 @@ struct MealsHeaderLabel: View {
     
     var body: some View {
         HStack {
-            let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.0237, weight: .semibold, design: .rounded), color: AppConstants.black)]
+            let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.0237, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
             
             Text(AppConstants.categories)
                 .configure(withModifier: textModifier)
@@ -27,12 +27,12 @@ struct MealsHeaderLabel: View {
             Spacer()
             
             HStack {
-                let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.021, weight: .regular, design: .rounded), color: AppConstants.green)]
+                let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.021, weight: .regular, design: .rounded), color: AppConstants.customGreen)]
                 
                 Text(AppConstants.seeAll)
                     .configure(withModifier: textModifier)
                 
-                let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.green)
+                let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
                 
                 Image(systemName: AppConstants.chevronRight)
                     .configure(withModifier: imageModifier)

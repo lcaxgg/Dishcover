@@ -14,7 +14,7 @@ struct RegisterUpperPart: View {
     
     @ObservedObject var registrationViewModel: RegistrationViewModel
     
-    private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.black)]
+    private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
     
     var body: some View {
         VStack(spacing: 7.0) {
