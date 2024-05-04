@@ -7,9 +7,13 @@
 
 import Foundation
 
-struct ChatModel: Codable {
+struct ChatModel: Codable, Equatable {
     let senderName: String
-    let chatDetails: [String: ChatDetailsModel]
+    var chatDetails: [String: ChatDetailsModel]
+    
+    static func == (lhs: ChatModel, rhs: ChatModel) -> Bool {
+        lhs.senderName == rhs.senderName
+    }
 }
 
 struct ChatDetailsModel: Codable {
