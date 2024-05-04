@@ -74,7 +74,7 @@ class ChatManager {
         
         let documentReceiver = Firestore.firestore()
             .collection(AppConstants.conversations)
-            .document("itachi.uchiha@gmail.com")
+            .document("itachi@gmail.com")
         
         createDummyField(for: documentReceiver) { success in
             guard success == true else {
@@ -112,7 +112,7 @@ class ChatManager {
                 
                 documentSender
                     .collection("sent_messages")
-                    .document("itachi.uchiha@gmail.com")
+                    .document("itachi@gmail.com")
                     .setData([date: jsonDictionary], merge: true) { error in
                         guard error == nil else {
                             print("Couldn't save message. \(String(describing: error?.localizedDescription)) ⛔")

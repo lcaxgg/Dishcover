@@ -19,7 +19,7 @@ struct Chat: View {
     
     @Binding var isPresentedChatSelect: Bool
     
-    let itemCount = 5 // temp
+    @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.getSharedInstance()
 
     var body: some View {
         ZStack {
@@ -45,7 +45,7 @@ struct Chat: View {
                 if #available(iOS 16.0, *) {
                     List {
                         Section {
-                            let messages = ChatViewModel.getMessages()
+                            let messages = chatViewModel.getMessages()
                             
                             ForEach(0..<messages.count, id: \.self) { index in
                                 ChatList(screenSize: screenSize)
@@ -54,7 +54,7 @@ struct Chat: View {
                                 
                             })
                         }
-                        .listSectionSeparator(.hidden, edges: .bottom)
+                        .listSectionSeparator(.visible, edges: .bottom)
                         .listRowBackground(Color(AppConstants.lightGrayOne))
                         .padding(.vertical, 8.0)
                     }

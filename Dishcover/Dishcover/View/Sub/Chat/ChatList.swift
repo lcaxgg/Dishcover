@@ -15,13 +15,6 @@ struct ChatList: View {
     
     var screenSize: CGSize
     
-    //temp
-    @State private var nestedData: [String: Any] = [:] // Assuming your nested data structure
-    
-    let db = Firestore.firestore()
-    let topLevelCollectionReference = Firestore.firestore().collection("Conversation")
-    @State var listener: ListenerRegistration?
-    
     var body: some View {
         HStack(alignment: .center, spacing: 20.0) {
             Group {
@@ -86,9 +79,6 @@ struct ChatList: View {
                 }
             }
         }//: HStack
-        .onTapGesture(perform: {
-
-        })
     }
 }
 

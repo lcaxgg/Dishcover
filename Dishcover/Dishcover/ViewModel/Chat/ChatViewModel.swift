@@ -14,46 +14,45 @@ class ChatViewModel: ObservableObject {
     typealias ArrayOfChatModel = [ChatModel]
     
     // MARK: - PROPERTIES
-   
-    static let shared: ChatViewModel = ChatViewModel()
-    var messages: ArrayOfChatModel = Array()
+    
+    private static let sharedInstance: ChatViewModel = ChatViewModel()
+    @Published private var messages: ArrayOfChatModel = Array()
     
     // MARK: - METHOD
     
     private init() {}
     
     static func getSharedInstance() -> ChatViewModel {
-        ChatViewModel.shared
+        sharedInstance
     }
 }
 
 extension ChatViewModel {
     
     // MARK: - GETTER
-
-    static func getMessages() -> ArrayOfChatModel {
-        ChatViewModel.shared.messages
+    
+   func getMessages() -> ArrayOfChatModel {
+        messages
     }
     
     // MARK: - SETTER
-
+    
     static func setMessages(with chatModel: ChatModel, andWith isForMerging: Bool) {
-        if isForMerging {
-            let senderName = chatModel.senderName
+        let senderName = chatModel.senderName
+        
+        if let filteredMessage = sharedInstance.messages.filter( { $0.senderName == senderName }).first, isForMerging {
             let senderChatDetails = chatModel.chatDetails
             let date = senderChatDetails.keys.first ?? AppConstants.emptyString
             let detailsToMerge = senderChatDetails.values.first
             
-            let filteredMessage = ChatViewModel.shared.messages.filter( { $0.senderName == senderName }).first
-           
-            var newChatDetails = filteredMessage?.chatDetails ?? [:]
+            var newChatDetails = filteredMessage.chatDetails
             newChatDetails[date] = detailsToMerge
-        
-            if let index = ChatViewModel.shared.messages.firstIndex(of: filteredMessage!) {
-                ChatViewModel.shared.messages[index].chatDetails = newChatDetails
+            
+            if let index = sharedInstance.messages.firstIndex(of: filteredMessage) {
+                sharedInstance.messages[index].chatDetails = newChatDetails
             }
         } else {
-            ChatViewModel.shared.messages.append(chatModel)
+            sharedInstance.messages.append(chatModel)
         }
     }
 }
