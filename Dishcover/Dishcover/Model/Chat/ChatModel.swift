@@ -8,6 +8,7 @@
 import Foundation
 
 struct ChatModel: Codable, Equatable {
+    var id: UUID = UUID()
     let senderName: String
     var chatDetails: [String: ChatDetailsModel]
     

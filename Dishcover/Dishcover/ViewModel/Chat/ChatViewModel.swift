@@ -31,13 +31,31 @@ extension ChatViewModel {
     
     // MARK: - GETTER
     
-   func getMessages() -> ArrayOfChatModel {
+    func getMessages() -> ArrayOfChatModel {
         messages
+    }
+    
+    static func getSenderName(at index: Int) -> String {
+        shared.messages[index].senderName
+    }
+    
+    static func getMessageDateTime(at index: Int) -> String {
+        var dateTimeString = shared.messages[index].chatDetails.keys.first ?? AppConstants.emptyString
+       
+        if let formattedDateTime = DateTimeService.formatStringDateTime(of: dateTimeString) {
+            dateTimeString = DateTimeService.computeElapsedDateTime(from: formattedDateTime)
+        }
+        
+        return dateTimeString
+    }
+    
+    static func getLatestMessage(at index: Int) -> String {
+        shared.messages[index].chatDetails.values.first?.message ?? AppConstants.emptyString
     }
     
     // MARK: - SETTER
     
-    static func setMessages(with chatModel: ChatModel, andWith isForMerging: Bool) {
+    static func setMessages(with chatModel: inout ChatModel, andWith isForMerging: Bool) {
         let senderName = chatModel.senderName
         
         if let filteredMessage = shared.messages.filter( { $0.senderName == senderName }).first, isForMerging {

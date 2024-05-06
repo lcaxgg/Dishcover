@@ -14,6 +14,7 @@ struct ChatList: View {
     // MARK: - PROPERTIES
     
     var screenSize: CGSize
+    var index: Int
     
     var body: some View {
         HStack(alignment: .center, spacing: 20.0) {
@@ -39,8 +40,9 @@ struct ChatList: View {
                 HStack {
                     Group {
                         let firstTextModifier = [TextModifier(font: .system(size: 16.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
+                        let senderName = ChatViewModel.getSenderName(at: index)
                         
-                        Text("Full Name")
+                        Text(senderName)
                             .configure(withModifier: firstTextModifier)
                     }
                     
@@ -49,8 +51,9 @@ struct ChatList: View {
                     HStack(spacing: 5.0) {
                         Group {
                             let secondTextModifier = [TextModifier(font: .system(size: 13.0, weight: .light, design: .rounded), color: AppConstants.customBlack)]
+                            let dateTime = ChatViewModel.getMessageDateTime(at: index)
                             
-                            Text("12:00")
+                            Text(dateTime)
                                 .configure(withModifier: secondTextModifier)
                         }
                         
@@ -68,8 +71,9 @@ struct ChatList: View {
                 HStack {
                     Group {
                         let thirdTextModifier = [TextModifier(font: .system(size: 12.0, weight: .light, design: .rounded), color: AppConstants.darkGrayOne)]
+                        let latestMessage = ChatViewModel.getLatestMessage(at: index)
                         
-                        Text("Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat")
+                        Text(latestMessage)
                             .configure(withModifier: thirdTextModifier)
                             .lineLimit(2)
                             .lineSpacing(1.0)
@@ -85,5 +89,5 @@ struct ChatList: View {
 // MARK: - PREVIEW
 
 #Preview {
-    ChatList(screenSize: CGSize())
+    ChatList(screenSize: CGSize(), index: 0)
 }

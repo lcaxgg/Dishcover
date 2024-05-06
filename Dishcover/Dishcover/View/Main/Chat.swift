@@ -46,10 +46,10 @@ struct Chat: View {
                 if #available(iOS 16.0, *) {
                     List {
                         Section {
-                            let messages = chatViewModel.getMessages()
+                            let messagesCount = chatViewModel.getMessages().count
                             
-                            ForEach(0..<messages.count, id: \.self) { index in
-                                ChatList(screenSize: screenSize)
+                            ForEach(0..<messagesCount, id: \.self) { index in
+                                ChatList(screenSize: screenSize, index: index)
                                     .overlay {
                                         NavigationLink(AppConstants.emptyString, destination: ChatWindow(), isActive: $isPresentedChatWindow).opacity(0)
                                     }

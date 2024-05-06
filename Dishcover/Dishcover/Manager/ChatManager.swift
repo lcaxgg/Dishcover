@@ -53,9 +53,9 @@ class ChatManager {
                         }
                         
                         let isForMerging = newChatDetails.count == 1
-                        let chatModel = ChatModel(senderName: senderName, chatDetails: newChatDetails)
+                        var chatModel = ChatModel(senderName: senderName, chatDetails: newChatDetails)
                         
-                        ChatViewModel.setMessages(with: chatModel, andWith: isForMerging)
+                        ChatViewModel.setMessages(with: &chatModel, andWith: isForMerging)
                     }
                     
                     completion(true)
@@ -85,7 +85,7 @@ class ChatManager {
             return
         }
         
-        let date = DateTimeService.getFormattedDateTime()
+        let date = DateTimeService.getCurrentDateTime()
         
         let documentReceiver = Firestore.firestore()
             .collection(AppConstants.conversations)
