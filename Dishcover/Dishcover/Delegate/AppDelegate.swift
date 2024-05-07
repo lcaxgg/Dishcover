@@ -18,8 +18,3 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
 }
 
-extension UINavigationController {
-    open override func viewWillLayoutSubviews() {
-        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: AppConstants.back, style: .plain, target: nil, action: nil)
-    }
-}
