@@ -14,80 +14,83 @@ struct ChatList: View {
     // MARK: - PROPERTIES
     
     var screenSize: CGSize
-    var index: Int
+    var index: Int?
     
     var body: some View {
-        HStack(alignment: .center, spacing: 20.0) {
-            Group {
-                Color(AppConstants.lightGrayTwo)
-                    .frame(width: screenSize.width * 0.12, height: screenSize.height * 0.065)
-                    .cornerRadius(13.0)
-                    .overlay(
-                        Group {
-                            let firstImageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customWhite)
-                            
-                            Image(systemName: AppConstants.personXmark)
-                                .configure(withModifier: firstImageModifier)
-                                .opacity(0.7)
-                                .frame(width: screenSize.width * 0.07, height: screenSize.height * 0.032)
-                        }
-                            .padding(.top, 2.0)
-                            .padding(.trailing, 2.0)
-                    )
-            }
+        if let index = index {
+            HStack(alignment: .center, spacing: 20.0) {
+                Group {
+                    Color(AppConstants.lightGrayTwo)
+                        .frame(width: screenSize.width * 0.12, height: screenSize.height * 0.065)
+                        .cornerRadius(13.0)
+                        .overlay(
+                            Group {
+                                let firstImageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customWhite)
+                                
+                                Image(systemName: AppConstants.personXmark)
+                                    .configure(withModifier: firstImageModifier)
+                                    .opacity(0.7)
+                                    .frame(width: screenSize.width * 0.07, height: screenSize.height * 0.032)
+                            }
+                                .padding(.top, 2.0)
+                                .padding(.trailing, 2.0)
+                        )
+                }
             
-            VStack(spacing: 8.0) {
-                HStack {
-                    Group {
-                        let firstTextModifier = [TextModifier(font: .system(size: 16.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
-                        let senderName = ChatViewModel.getSenderName(at: index)
-                        
-                        Text(senderName)
-                            .configure(withModifier: firstTextModifier)
-                    }
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 5.0) {
+                VStack(spacing: 8.0) {
+                    HStack {
                         Group {
-                            let secondTextModifier = [TextModifier(font: .system(size: 13.0, weight: .light, design: .rounded), color: AppConstants.customBlack)]
-                            let dateTime = ChatViewModel.getMessageDateTime(at: index)
+                            let firstTextModifier = [TextModifier(font: .system(size: 16.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
+                            let senderName = ChatViewModel.getSenderName(at: index)
                             
-                            Text(dateTime)
-                                .configure(withModifier: secondTextModifier)
+                            Text(senderName)
+                                .configure(withModifier: firstTextModifier)
                         }
                         
-                        Group {
-                            let secondImageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customBlack)
+                        Spacer()
+                        
+                        HStack(spacing: 5.0) {
+                            Group {
+                                let secondTextModifier = [TextModifier(font: .system(size: 13.0, weight: .light, design: .rounded), color: AppConstants.customBlack)]
+                                let dateTime = ChatViewModel.getMessageDateTime(at: index)
+                                
+                                Text(dateTime)
+                                    .configure(withModifier: secondTextModifier)
+                            }
                             
-                            Image(systemName: AppConstants.chevronRight)
-                                .configure(withModifier: secondImageModifier)
-                                .opacity(0.7)
-                                .frame(width: screenSize.width * 0.014, height: screenSize.height * 0.014)
+                            Group {
+                                let secondImageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customBlack)
+                                
+                                Image(systemName: AppConstants.chevronRight)
+                                    .configure(withModifier: secondImageModifier)
+                                    .opacity(0.7)
+                                    .frame(width: screenSize.width * 0.014, height: screenSize.height * 0.014)
+                            }
                         }
                     }
-                }
-                
-                HStack {
-                    Group {
-                        let thirdTextModifier = [TextModifier(font: .system(size: 12.0, weight: .light, design: .rounded), color: AppConstants.darkGrayOne)]
-                        let latestMessage = ChatViewModel.getLatestMessage(at: index)
+                   
+                    HStack {
+                        Group {
+                            let thirdTextModifier = [TextModifier(font: .system(size: 14.0, weight: .light, design: .rounded), color: AppConstants.darkGrayOne)]
+                            let latestMessage = ChatViewModel.getLatestMessage(at: index)
+                            
+                            Text(latestMessage)
+                                .configure(withModifier: thirdTextModifier)
+                                .lineLimit(2)
+                                .lineSpacing(1.0)
+                        }
                         
-                        Text(latestMessage)
-                            .configure(withModifier: thirdTextModifier)
-                            .lineLimit(2)
-                            .lineSpacing(1.0)
+                        Spacer()
                     }
-                    
-                    Spacer()
                 }
-            }
-        }//: HStack
+            }//: HStack
+            .background(Color(AppConstants.lightGrayOne))
+        }
     }
 }
 
 // MARK: - PREVIEW
 
 #Preview {
-    ChatList(screenSize: CGSize(), index: 0)
+    ChatList(screenSize: CGSize())
 }

@@ -19,7 +19,7 @@ struct Chat: View {
     
     @Binding var isPresentedChatSelect: Bool
     @State private var isPresentedChatWindow: Bool = false
-   
+    
     @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.getSharedInstance()
     
     var body: some View {
@@ -50,8 +50,8 @@ struct Chat: View {
                             
                             ForEach(0..<messagesCount, id: \.self) { index in
                                 ChatList(screenSize: screenSize, index: index)
-                                    .overlay {
-                                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(), isActive: $isPresentedChatWindow).opacity(0)
+                                    .onTapGesture {
+                                        isPresentedChatWindow.toggle()
                                     }
                             }
                             .onDelete(perform: { indexSet in
@@ -63,6 +63,9 @@ struct Chat: View {
                         .padding(.vertical, 8.0)
                     }
                     .background(Color(AppConstants.lightGrayOne))
+                    .overlay {
+                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(), isActive: $isPresentedChatWindow).opacity(0)
+                    }
                     .scrollContentBackground(.hidden)
                     .listStyle(.inset)
                     .padding(.top, 10.0)

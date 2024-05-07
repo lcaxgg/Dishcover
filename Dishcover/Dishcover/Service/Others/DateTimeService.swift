@@ -21,7 +21,7 @@ struct DateTimeService {
     
     static func formatStringDateTime(of dateTime: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM d"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         guard let formattedDateTime = dateFormatter.date(from: dateTime) else {
             print("Couldn't format date. ⛔")
