@@ -18,9 +18,10 @@ struct Chat: View {
     @State private var searchViewModel: SearchViewModel = SearchViewModel()
     
     @Binding var isPresentedChatSelect: Bool
+    @State private var isPresentedChatWindow: Bool = false
     
-    let itemCount = 5 // temp
-
+    @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.getSharedInstance()
+    
     var body: some View {
         ZStack {
             Color(AppConstants.lightGrayOne)
@@ -45,16 +46,19 @@ struct Chat: View {
                 if #available(iOS 16.0, *) {
                     List {
                         Section {
-                            let messages = ChatViewModel.getMessages()
+                            let messagesCount = chatViewModel.getMessages().count
                             
-                            ForEach(0..<messages.count, id: \.self) { index in
-                                ChatList(screenSize: screenSize)
+                            ForEach(0..<messagesCount, id: \.self) { index in
+                                ChatList(screenSize: screenSize, index: index)
+                                    .onTapGesture {
+                                        isPresentedChatWindow.toggle()
+                                    }
                             }
                             .onDelete(perform: { indexSet in
                                 
                             })
                         }
-                        .listSectionSeparator(.hidden, edges: .bottom)
+                        .listSectionSeparator(.visible, edges: .bottom)
                         .listRowBackground(Color(AppConstants.lightGrayOne))
                         .padding(.vertical, 8.0)
                     }
@@ -62,13 +66,27 @@ struct Chat: View {
                     .scrollContentBackground(.hidden)
                     .listStyle(.inset)
                     .padding(.top, 10.0)
+                    .overlay {
+                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(screenSize: screenSize), isActive: $isPresentedChatWindow).opacity(0)
+                    }
+                    .onAppear(perform: {
+                        setNavigationViewItemTag()
+                    })
                 } else {
                     // Fallback on earlier versions
                 }
-               
+                
                 // MARK: - FOOTER
             }
         }//: ZStack
+    }
+    
+    private func setNavigationViewItemTag() {
+        guard NavigationViewModel.getNavigationViewItemTag() != NavigationViewItemEnum.chat.rawValue else {
+            return
+        }
+        
+        NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.chat.rawValue)
     }
 }
 

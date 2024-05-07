@@ -126,6 +126,7 @@ struct Login: View {
             )
             .onAppear {
                 loginViewModel.initDictionary()
+                NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.login.rawValue)
             }
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
                 isKeyboardShowing = true

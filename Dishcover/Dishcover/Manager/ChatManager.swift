@@ -13,7 +13,7 @@ class ChatManager {
     
     // MARK: - PROPERTIES
     
-    static var shared = ChatManager()
+    static var shared: ChatManager = ChatManager()
     
     // MARK: TYPES
     
@@ -28,26 +28,41 @@ class ChatManager {
         ChatManager.shared
     }
     
-    static func fetchMessages() {
-        fetchMessagesFromServer { senderName, messages  in
+    static func fetchMessages(completion: @escaping (Bool) -> Void) {
+        fetchMessagesFromServer { messages  in
             do {
                 if let messages = messages {
-                    var chatDetails = [String: ChatDetailsModel]()
-                    
-                    for (date, value) in messages {
-                        let jsonData = try JSONSerialization.data(withJSONObject: value, options: [])
-                        let details = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
+                    for (senderName, values) in messages {
+                        let tupleMirror = Mirror(reflecting: values)
+                        let tupleElemets = tupleMirror.children.map({ $0.value })
                         
-                        chatDetails[date] = details
+                        var newChatDetails = [String: ChatDetailsModel]()
+                        
+                        for index in 0..<tupleElemets.count {
+                            let tupleData = tupleElemets[index]
+                           
+                            if let tupleData = tupleData as? (key: String, value: Any) {
+                                let sentDate = tupleData.key
+                                let chatDetails = tupleData.value
+                                
+                                let jsonData = try JSONSerialization.data(withJSONObject: chatDetails, options: [])
+                                let decodedChatDetails = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
+                                
+                                newChatDetails[sentDate] = decodedChatDetails
+                            }
+                        }
+                        
+                        let isForMerging = newChatDetails.count == 1
+                        var chatModel = ChatModel(senderName: senderName, chatDetails: newChatDetails)
+                        
+                        ChatViewModel.setMessages(with: &chatModel, andWith: isForMerging)
                     }
                     
-                    let isForMerging = chatDetails.count == 1
-                    let chatModel = ChatModel(senderName: senderName, chatDetails: chatDetails)
-                   
-                    ChatViewModel.setMessages(with: chatModel, andWith: isForMerging)
+                    completion(true)
                 }
             } catch let error {
                 print("Couldn't decode document. \(error.localizedDescription) ⛔")
+                return
             }
         }
     }
@@ -70,11 +85,11 @@ class ChatManager {
             return
         }
         
-        let date = DateTimeService.getFormattedDateTime()
+        let date = DateTimeService.getCurrentDateTime()
         
         let documentReceiver = Firestore.firestore()
             .collection(AppConstants.conversations)
-            .document("itachi.uchiha@gmail.com")
+            .document("itachi@gmail.com")
         
         createDummyField(for: documentReceiver) { success in
             guard success == true else {
@@ -112,7 +127,7 @@ class ChatManager {
                 
                 documentSender
                     .collection("sent_messages")
-                    .document("itachi.uchiha@gmail.com")
+                    .document("itachi@gmail.com")
                     .setData([date: jsonDictionary], merge: true) { error in
                         guard error == nil else {
                             print("Couldn't save message. \(String(describing: error?.localizedDescription)) ⛔")
@@ -156,11 +171,11 @@ class ChatManager {
 }
 
 extension ChatManager {
-    private static func fetchMessagesFromServer(completion: @escaping (String, ArrayOfTuple?) -> Void) {
+    private static func fetchMessagesFromServer(completion: @escaping (ArrayOfTuple?) -> Void) {
         guard let uEmail = Auth.auth().currentUser?.email else {
             return
         }
-    
+        
         let outerCollection = Firestore.firestore().collection(AppConstants.conversations)
         
         outerCollection.document(uEmail).getDocument { document, error in
@@ -175,7 +190,7 @@ extension ChatManager {
             }
             
             let innerCollection = document.reference.collection("received_messages")
-        
+            
             innerCollection.addSnapshotListener(includeMetadataChanges: true) { querySnapShot, error in
                 guard let querySnapShot = querySnapShot else {
                     print("Couldn't fetch snapshot. \(String(describing: error?.localizedDescription)) ⛔")
@@ -187,21 +202,29 @@ extension ChatManager {
                     return
                 }
                 
+                var messages = ArrayOfTuple()
+                
                 querySnapShot.documentChanges.forEach { diff in
                     let senderName = diff.document.documentID
                     let data = diff.document.data()
                     let sortedData = data.sorted(by: { $0.key > $1.key })
-
+                    
                     if diff.type == .added {
-                        completion(senderName, sortedData)
+                        messages.append((senderName, sortedData))
                     }
                     
                     if diff.type == .modified {
                         if let firstTuple = sortedData.first {
-                            completion(senderName, [firstTuple])
+                            messages.append((senderName, [firstTuple]))
                         }
                     }
                 }
+                
+                guard messages.count > 0 else {
+                    return
+                }
+                
+                completion(messages)
             }
         }
     }

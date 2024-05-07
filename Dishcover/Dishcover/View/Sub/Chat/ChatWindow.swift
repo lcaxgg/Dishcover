@@ -13,6 +13,8 @@ struct ChatWindow: View {
     
     // MARK: - PROPERTIES
     
+    let index: Int = 0
+    
     var body: some View {
         
         // MARK: - HEADER
@@ -22,21 +24,8 @@ struct ChatWindow: View {
         // MARK: - FOOTER
         
         VStack(spacing: 20) {
-            Button(action: {
-                ChatManager.sendMessage()
-                
-            }, label: {
-                Text("Send")
-            })
-            
-            Button(action: {
-                ChatManager.fetchMessages()
-            }, label: {
-                Text("Fetch")
-            })
+         
         }
-        
-        
     }
 }
 
