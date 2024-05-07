@@ -15,7 +15,7 @@ class ChatViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
-    private static let shared: ChatViewModel = ChatViewModel()
+    private static let sharedInstance: ChatViewModel = ChatViewModel()
     @Published private var messages: ArrayOfChatModel = Array()
     
     // MARK: - METHOD
@@ -23,7 +23,7 @@ class ChatViewModel: ObservableObject {
     private init() {}
     
     static func getSharedInstance() -> ChatViewModel {
-        shared
+        sharedInstance
     }
 }
 
@@ -36,11 +36,11 @@ extension ChatViewModel {
     }
     
     static func getSenderName(at index: Int) -> String {
-        shared.messages[index].senderName
+        sharedInstance.messages[index].senderName
     }
     
     static func getMessageDateTime(at index: Int) -> String {
-        var dateTimeString = shared.messages[index].chatDetails.keys.first ?? AppConstants.emptyString
+        var dateTimeString = sharedInstance.messages[index].chatDetails.keys.first ?? AppConstants.emptyString
        
         if let formattedDateTime = DateTimeService.formatStringDateTime(of: dateTimeString) {
             dateTimeString = DateTimeService.computeElapsedDateTime(from: formattedDateTime)
@@ -50,7 +50,7 @@ extension ChatViewModel {
     }
     
     static func getLatestMessage(at index: Int) -> String {
-        shared.messages[index].chatDetails.values.first?.message ?? AppConstants.emptyString
+        sharedInstance.messages[index].chatDetails.values.first?.message ?? AppConstants.emptyString
     }
     
     // MARK: - SETTER
@@ -58,7 +58,7 @@ extension ChatViewModel {
     static func setMessages(with chatModel: inout ChatModel, andWith isForMerging: Bool) {
         let senderName = chatModel.senderName
         
-        if let filteredMessage = shared.messages.filter( { $0.senderName == senderName }).first, isForMerging {
+        if let filteredMessage = sharedInstance.messages.filter( { $0.senderName == senderName }).first, isForMerging {
             let senderChatDetails = chatModel.chatDetails
             let date = senderChatDetails.keys.first ?? AppConstants.emptyString
             let detailsToMerge = senderChatDetails.values.first
@@ -66,11 +66,11 @@ extension ChatViewModel {
             var newChatDetails = filteredMessage.chatDetails
             newChatDetails[date] = detailsToMerge
             
-            if let index = shared.messages.firstIndex(of: filteredMessage) {
-                shared.messages[index].chatDetails = newChatDetails
+            if let index = sharedInstance.messages.firstIndex(of: filteredMessage) {
+                sharedInstance.messages[index].chatDetails = newChatDetails
             }
         } else {
-            shared.messages.append(chatModel)
+            sharedInstance.messages.append(chatModel)
         }
     }
 }
