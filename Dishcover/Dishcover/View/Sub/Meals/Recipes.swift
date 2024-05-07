@@ -183,36 +183,38 @@ struct Recipes: View {
                 .padding(.top, 10.0)
                 .padding(.bottom, 35.0)
                 
-                if isShowDetailsForInstructions {
-                    VStack(spacing: 40.0) {
-                        Button(action: {
-                            
-                        }) {
-                            HStack {
-                                let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.customGreen)
+                Group {
+                    if isShowDetailsForInstructions {
+                        VStack(spacing: 40.0) {
+                            Button(action: {
                                 
-                                Image(systemName: AppConstants.playFill)
-                                    .configure(withModifier: imageModifier)
-                                    .frame(width: screenSize.width * 0.03, height: screenSize.height * 0.03)
-                                
-                                let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .semibold, design: .rounded), color: AppConstants.customGreen)]
-                                
-                                Text(AppConstants.playVideo)
-                                    .configure(withModifier: textModifier)
+                            }) {
+                                HStack {
+                                    let imageModifier = ImageModifier(contentMode: .fit, color: AppConstants.customGreen)
+                                    
+                                    Image(systemName: AppConstants.playFill)
+                                        .configure(withModifier: imageModifier)
+                                        .frame(width: screenSize.width * 0.03, height: screenSize.height * 0.03)
+                                    
+                                    let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .semibold, design: .rounded), color: AppConstants.customGreen)]
+                                    
+                                    Text(AppConstants.playVideo)
+                                        .configure(withModifier: textModifier)
+                                }
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 10.0)
+                                        .stroke(Color(AppConstants.customGreen), lineWidth: 1)
+                                        .frame(width: screenSize.width - 30.0, height: screenSize.height * 0.065)
+                                }
                             }
-                            .overlay {
-                                RoundedRectangle(cornerRadius: 10.0)
-                                    .stroke(Color(AppConstants.customGreen), lineWidth: 1)
-                                    .frame(width: screenSize.width - 30.0, height: screenSize.height * 0.065)
-                            }
-                        }
-                        
-                        if let instructions = detail?.strInstructions {
-                            let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .light, design: .rounded), color: AppConstants.customBlack)]
                             
-                            Text(instructions)
-                                .configure(withModifier: firstTextModifier)
-                                .padding(.horizontal, 15.0)
+                            if let instructions = detail?.strInstructions {
+                                let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.020, weight: .light, design: .rounded), color: AppConstants.customBlack)]
+                                
+                                Text(instructions)
+                                    .configure(withModifier: firstTextModifier)
+                                    .padding(.horizontal, 15.0)
+                            }
                         }
                     }
                 }

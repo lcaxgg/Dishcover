@@ -239,7 +239,7 @@ extension RecipesViewModel {
     }
     
     func setStrCategory(with strCategory: String) {
-        recipesDetailsModel.strCategory = strCategory + AppConstants.underScoreString + AppConstants.recipe
+        recipesDetailsModel.strCategory = strCategory
     }
     
     func setStrIngredients(with strIngredients: Dictionary<String, String>) {
