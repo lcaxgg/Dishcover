@@ -67,7 +67,7 @@ struct Chat: View {
                     .listStyle(.inset)
                     .padding(.top, 10.0)
                     .overlay {
-                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(screenSize: screenSize), isActive: $isPresentedChatWindow).opacity(0)
+                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(), isActive: $isPresentedChatWindow).opacity(0)
                     }
                     .onAppear(perform: {
                         setNavigationViewItemTag()
