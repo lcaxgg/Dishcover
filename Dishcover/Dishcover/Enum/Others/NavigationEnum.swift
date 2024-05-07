@@ -17,6 +17,5 @@ enum NavigationViewItemEnum: Int {
     case none
     case login
     case register
-    case base
     case chat
 }

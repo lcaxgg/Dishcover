@@ -106,7 +106,9 @@ struct Register: View {
             }
             
             UIScrollView.appearance().showsVerticalScrollIndicator = false
+
             registrationViewModel.initDictionary()
+            NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.login.rawValue)
         }
         .onDisappear {
             NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)

@@ -63,12 +63,15 @@ struct Chat: View {
                         .padding(.vertical, 8.0)
                     }
                     .background(Color(AppConstants.lightGrayOne))
-                    .overlay {
-                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(), isActive: $isPresentedChatWindow).opacity(0)
-                    }
                     .scrollContentBackground(.hidden)
                     .listStyle(.inset)
                     .padding(.top, 10.0)
+                    .overlay {
+                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(screenSize: screenSize), isActive: $isPresentedChatWindow).opacity(0)
+                    }
+                    .onAppear(perform: {
+                        setNavigationViewItemTag()
+                    })
                 } else {
                     // Fallback on earlier versions
                 }
@@ -76,6 +79,14 @@ struct Chat: View {
                 // MARK: - FOOTER
             }
         }//: ZStack
+    }
+    
+    private func setNavigationViewItemTag() {
+        guard NavigationViewModel.getNavigationViewItemTag() != NavigationViewItemEnum.chat.rawValue else {
+            return
+        }
+        
+        NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.chat.rawValue)
     }
 }
 

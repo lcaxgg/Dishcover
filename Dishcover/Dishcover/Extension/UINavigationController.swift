@@ -10,6 +10,17 @@ import SwiftUI
 
 extension UINavigationController {
     open override func viewWillLayoutSubviews() {
-        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: AppConstants.back, style: .plain, target: nil, action: nil)
+        var title = String()
+        
+        if let tag = NavigationViewItemEnum(rawValue: NavigationViewModel.getNavigationViewItemTag()) {
+            switch tag {
+            case .login, .register:
+                title = AppConstants.back
+            case .none, .chat:
+                title = AppConstants.emptyString
+            }
+        }
+        
+        navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
     }
 }
