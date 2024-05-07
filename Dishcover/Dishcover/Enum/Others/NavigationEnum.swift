@@ -12,3 +12,11 @@ enum NavigationBarTitleEnum: Int {
     case chatNavTitle
     case accountNavTitle
 }
+
+enum NavigationViewItemEnum: Int {
+    case none
+    case login
+    case register
+    case base
+    case chat
+}
