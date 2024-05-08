@@ -15,16 +15,12 @@ class ChatViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
-    private static let sharedInstance: ChatViewModel = ChatViewModel()
+    static let sharedInstance: ChatViewModel = ChatViewModel()
     @Published private var messages: ArrayOfChatModel = Array()
     
     // MARK: - METHOD
     
     private init() {}
-    
-    static func getSharedInstance() -> ChatViewModel {
-        sharedInstance
-    }
 }
 
 extension ChatViewModel {

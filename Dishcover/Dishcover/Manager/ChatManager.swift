@@ -13,8 +13,6 @@ class ChatManager {
     
     // MARK: - PROPERTIES
     
-    static var shared: ChatManager = ChatManager()
-    
     // MARK: TYPES
     
     typealias DictionaryOfStringAny = Dictionary<String, Any>
@@ -23,10 +21,6 @@ class ChatManager {
     // MARK: - METHODS
     
     private init() {}
-    
-    static func getSharedInstance() -> ChatManager {
-        ChatManager.shared
-    }
     
     static func fetchMessages(completion: @escaping (Bool) -> Void) {
         fetchMessagesFromServer { messages  in

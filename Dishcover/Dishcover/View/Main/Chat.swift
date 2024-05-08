@@ -20,7 +20,7 @@ struct Chat: View {
     @Binding var isPresentedChatSelect: Bool
     @State private var isPresentedChatWindow: Bool = false
     
-    @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.getSharedInstance()
+    @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.sharedInstance
     
     var body: some View {
         ZStack {
