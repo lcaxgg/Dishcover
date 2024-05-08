@@ -19,13 +19,13 @@ struct Splash: View {
                 Welcome()
                     .transition(.opacity)
             } else {
-                GeometryReader { geometry in
+                ScreenSizeReader { screenSize in
                     ZStack {
                         Color(AppConstants.customGreen)
                             .ignoresSafeArea(.all)
                         
                         Logo(color: AppConstants.customWhite)
-                            .frame(width: geometry.size.width * 0.3, height: geometry.size.height * 0.3)
+                            .frame(width: screenSize.width * 0.3, height: screenSize.height * 0.3)
                             .opacity(showWelcome ? 0.0 : 1.0)
                             .onAppear {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
