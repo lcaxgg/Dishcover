@@ -11,7 +11,7 @@ class NavigationViewModel: ObservableObject {
 
     // MARK: - PROPERTIES
    
-    private static let sharedInstance: NavigationViewModel = NavigationViewModel()
+    static let sharedInstance: NavigationViewModel = NavigationViewModel()
     private var navigationModel: NavigationModel = NavigationModel(tag: NavigationViewItemEnum.none.rawValue)
     
     // MARK: - METHOD

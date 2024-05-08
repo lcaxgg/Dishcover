@@ -10,7 +10,7 @@ import CoreData
 
 struct RecipesService {
     static func processFetchingRecipesDataFromLocal(completion: @escaping (Bool) -> Void) {
-        let entities = CoreDataManager.shared.fetchAllRecipesEntities()
+        let entities = CoreDataManager.sharedInstance.fetchAllRecipesEntities()
         
         for entity in entities {
             guard let entityName = entity.name else {
@@ -20,7 +20,7 @@ struct RecipesService {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
             
             do {
-                let results = try CoreDataManager.shared.viewContext.fetch(fetchRequest)
+                let results = try CoreDataManager.sharedInstance.viewContext.fetch(fetchRequest)
                 
                 if (results.count != 0) {
                     initRecipesDataFromLocal(with: [entityName: results])
@@ -48,7 +48,7 @@ struct RecipesService {
         if let value = value {
             for entity in value {
                 if let entity = entity as? NSManagedObject {
-                    let details = RecipesViewModel.shared.initRecipesDetails(with: entity)
+                    let details = RecipesViewModel.sharedIntance.initRecipesDetails(with: entity)
                     let ingAndMeas = processIngredientsAndMeasures(with: details)
                     
                     recipesDetails.append(details)

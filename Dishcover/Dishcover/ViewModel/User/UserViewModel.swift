@@ -11,7 +11,7 @@ class UserViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
    
-    static let shared: UserViewModel = UserViewModel()
+    static let sharedInstance: UserViewModel = UserViewModel()
     private var userDetailsModel: UserDetailsModel = UserDetailsModel()
     
     // MARK: - METHOD
@@ -19,7 +19,7 @@ class UserViewModel: ObservableObject {
     private init() {}
     
     static func getSharedInstance() -> UserViewModel {
-        UserViewModel.shared
+        UserViewModel.sharedInstance
     }
 }
 
@@ -28,7 +28,7 @@ extension UserViewModel {
     // MARK: - GETTER
     
     static func getName() -> String {
-        shared.userDetailsModel.firstName + AppConstants.whiteSpaceString + shared.userDetailsModel.lastName
+        sharedInstance.userDetailsModel.firstName + AppConstants.whiteSpaceString + sharedInstance.userDetailsModel.lastName
     }
     
     // MARK: - SETTER

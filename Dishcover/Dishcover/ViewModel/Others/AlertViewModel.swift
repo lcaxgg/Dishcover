@@ -11,7 +11,7 @@ class AlertViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
-    @Published var alertModel = AlertModel()
+    @Published var alertModel: AlertModel = AlertModel()
 }
 
 extension AlertViewModel {
