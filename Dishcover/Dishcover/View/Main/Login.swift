@@ -24,7 +24,7 @@ struct Login: View {
     private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
     
     var body: some View {
-        GeometryReader { geometry in
+        ScreenSizeReader { screenSize in
             ZStack{
                 VStack(spacing: 0) {
                     HorizontalSeparator(color: AppConstants.lightGrayThree, height: 1.0)
@@ -32,7 +32,7 @@ struct Login: View {
                     HStack {
                         Text(AppConstants.email)
                             .configure(withModifier: textModifier)
-                            .frame(width: geometry.size.width * 0.23, alignment: .leading)
+                            .frame(width: screenSize.width * 0.23, alignment: .leading)
                         
                         TextField(AppConstants.emailPlaceHolder, text: $loginViewModel.loginModel.email)
                             .keyboardType(.emailAddress)
@@ -44,16 +44,16 @@ struct Login: View {
                                 loginViewModel.validateLoginInputs(with: AppConstants.emailKey)
                             }
                     }
-                    .frame(height: geometry.size.height * 0.06)
-                    .padding(.leading, geometry.size.width * 0.05)
+                    .frame(height: screenSize.height * 0.06)
+                    .padding(.leading, screenSize.width * 0.05)
                     
                     HorizontalSeparator(color: AppConstants.lightGrayThree, height: 1.0)
-                        .padding(.leading, geometry.size.width * 0.06)
+                        .padding(.leading, screenSize.width * 0.06)
                     
                     HStack {
                         Text(AppConstants.password)
                             .configure(withModifier: textModifier)
-                            .frame(width: geometry.size.width * 0.23, alignment: .leading)
+                            .frame(width: screenSize.width * 0.23, alignment: .leading)
                         
                         if isPasswordVisible {
                             TextField(AppConstants.passwordPlaceHolder, text: $loginViewModel.loginModel.password)
@@ -86,8 +86,8 @@ struct Login: View {
                             }
                         }
                     }
-                    .frame(height: geometry.size.height * 0.06)
-                    .padding(.leading, geometry.size.width * 0.05)
+                    .frame(height: screenSize.height * 0.06)
+                    .padding(.leading, screenSize.width * 0.05)
                     
                     HorizontalSeparator(color: AppConstants.lightGrayThree, height: 1.0)
                     
@@ -96,13 +96,13 @@ struct Login: View {
                     let attribute = ButtonOneAttributes(text: AppConstants.login,
                                                         bgColor: loginViewModel.shouldDisableButton ? AppConstants.lightGrayTwo : loginViewModel.invalidFields.count > 0 ? AppConstants.lightGrayTwo : AppConstants.customGreen,
                                                         fontWeight: .semibold,
-                                                        fontSize: geometry.size.height * 0.02,
+                                                        fontSize: screenSize.height * 0.02,
                                                         cornerRadius: 10.0, isEnabled: false)
                     
                     ButtonOne(attribute: attribute)
-                        .frame(height: geometry.size.height * 0.055)
-                        .padding(.horizontal, geometry.size.width * 0.04)
-                        .padding(.bottom, isKeyboardShowing ? keyboardHeight : geometry.size.height * 0.06)
+                        .frame(height: screenSize.height * 0.055)
+                        .padding(.horizontal, screenSize.width * 0.04)
+                        .padding(.bottom, isKeyboardShowing ? keyboardHeight : screenSize.height * 0.06)
                         .animation(.easeInOut, value: isKeyboardShowing)
                         .onTapGesture {
                             if loginViewModel.isValidCredentials {
@@ -146,7 +146,7 @@ struct Login: View {
                     dismissButton: .default(Text(AppConstants.ok), action: {})
                 )
             }
-        }//: GeometryReader
+        }//: ScreenSizeReader
         .ignoresSafeArea(.keyboard)
     }
 }
