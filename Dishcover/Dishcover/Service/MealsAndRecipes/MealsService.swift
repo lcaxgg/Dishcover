@@ -10,10 +10,10 @@ import CoreData
 
 struct MealsService {
     static func processMealsDataForDisplay(completion: @escaping (Bool) -> Void) {
-        let isEmptyRecord = CoreDataManager.shared.checkEmptyRecord()
+        let isEmptyRecord = CoreDataManager.sharedInstance.checkEmptyRecord()
         
         if isEmptyRecord {
-            DownloadManager.shared.fetchMealsFromServer(with: ApiConstants.Url.mealsList) { responseObject in
+            DownloadManager.sharedInstance.fetchMealsFromServer(with: ApiConstants.Url.mealsList) { responseObject in
                 if responseObject != nil {
                     if let mealsCollection = responseObject {
                         for dictionary in mealsCollection {
@@ -39,7 +39,7 @@ struct MealsService {
     }
     
     private static func processFetchingMealsDataFromLocal(completion: @escaping (Bool) -> Void) {
-        let entities = CoreDataManager.shared.fetchAllMealsEntities()
+        let entities = CoreDataManager.sharedInstance.fetchAllMealsEntities()
         
         for entity in entities {
             guard let entityName = entity.name else {
@@ -49,7 +49,7 @@ struct MealsService {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
             
             do {
-                let results = try CoreDataManager.shared.viewContext.fetch(fetchRequest)
+                let results = try CoreDataManager.sharedInstance.viewContext.fetch(fetchRequest)
                 
                 for result in results {
                     if let managedObject = result as? NSManagedObject {
@@ -77,7 +77,7 @@ struct MealsService {
         if let value = value {
             for entity in value {
                 if let entity = entity as? NSManagedObject {
-                    let details = MealsViewModel.shared.initMealsDetails(with: entity)
+                    let details = MealsViewModel.sharedInstance.initMealsDetails(with: entity)
                     mealsDetails.append(details)
                 }
             }
