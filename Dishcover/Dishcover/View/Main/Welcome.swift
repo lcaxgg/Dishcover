@@ -16,7 +16,6 @@ struct Welcome: View {
     }
     
     var body: some View {
-        
         NavigationView {
             ScreenSizeReader { screenSize in
                 ZStack {
