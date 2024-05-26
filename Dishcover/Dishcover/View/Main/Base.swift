@@ -25,10 +25,12 @@ struct Base: View {
     var body: some View {
         ScreenSizeReader { screenSize in
             ZStack {
-                // MARK: - HEADER
+                // MARK: - BACKGROUND
                 
                 Color(AppConstants.lightGrayOne)
                     .edgesIgnoringSafeArea(.all)
+                
+                // MARK: - HEADER
                 
                 // MARK: - BODY
                 
