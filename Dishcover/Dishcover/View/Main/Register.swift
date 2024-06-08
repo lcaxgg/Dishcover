@@ -80,11 +80,10 @@ struct Register: View {
                     
                     let attribute = ButtonOneAttributes(text: AppConstants.register,
                                                         bgColor: registrationViewModel.shouldDisableButton ? AppConstants.lightGrayTwo : registrationViewModel.invalidFields.count > 0 ? AppConstants.lightGrayTwo : AppConstants.customGreen,
-                                                        fontWeight: .semibold,
                                                         fontSize: screenSize.height * 0.02,
                                                         cornerRadius: 10.0, isEnabled: true)
                     
-                    ButtonOne(attribute: attribute)
+                    ButtonOne(attribute: attribute, fontWeight: .semibold)
                         .frame(height: screenSize.height * 0.055)
                         .padding(.top, screenSize.height * 0.03)
                         .padding(.horizontal, screenSize.width * 0.04)
@@ -108,7 +107,6 @@ struct Register: View {
             UIScrollView.appearance().showsVerticalScrollIndicator = false
             
             registrationViewModel.initDictionary()
-            NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.login.rawValue)
         }
         .onDisappear {
             NotificationCenter.default.removeObserver(self, name: UIDevice.orientationDidChangeNotification, object: nil)
