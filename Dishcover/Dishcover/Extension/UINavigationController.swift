@@ -10,6 +10,10 @@ import SwiftUI
 
 extension UINavigationController {
     open override func viewWillLayoutSubviews() {
+        setNavigationBackButtonTitle()
+    }
+    
+    private func getNavigationViewTitle() -> String {
         var title = String()
         
         if let tag = NavigationViewItemEnum(rawValue: NavigationViewModel.getNavigationViewItemTag()) {
@@ -20,6 +24,12 @@ extension UINavigationController {
                 title = AppConstants.emptyString
             }
         }
+        
+        return title
+    }
+    
+    private func setNavigationBackButtonTitle() {
+        let title = getNavigationViewTitle()
         
         navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: nil, action: nil)
     }
