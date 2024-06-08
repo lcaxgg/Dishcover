@@ -16,9 +16,11 @@ struct Chat: View {
     @State private var searchText: String = AppConstants.emptyString
     @FocusState private var isSearchFieldFocused: Bool
     @State private var searchViewModel: SearchViewModel = SearchViewModel()
-    
+
     @Binding var isPresentedChatSelect: Bool
     @State private var isPresentedChatWindow: Bool = false
+    
+    @Binding var navigationPath: NavigationPath
     
     @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.sharedInstance
     
@@ -51,7 +53,8 @@ struct Chat: View {
                             ForEach(0..<messagesCount, id: \.self) { index in
                                 ChatList(screenSize: screenSize, index: index)
                                     .onTapGesture {
-                                        isPresentedChatWindow.toggle()
+                                       // isPresentedChatWindow.toggle()
+                                        navigationPath.append(NavigationRoute.chatWindow)
                                     }
                             }
                             .onDelete(perform: { indexSet in
@@ -66,9 +69,9 @@ struct Chat: View {
                     .scrollContentBackground(.hidden)
                     .listStyle(.inset)
                     .padding(.top, 10.0)
-                    .overlay {
-                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(screenSize: screenSize), isActive: $isPresentedChatWindow).opacity(0)
-                    }
+//                    .overlay {
+//                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(screenSize: screenSize), isActive: $isPresentedChatWindow).opacity(0)
+//                    }
                     .onAppear(perform: {
                         setNavigationViewItemTag()
                     })
@@ -100,6 +103,11 @@ struct Chat: View {
             set: { _ in }
         )
         
-        Chat(screenSize: CGSize(), isPresentedChatSelect: isPresented)
+        let navigationPath = Binding<NavigationPath>(
+            get: { NavigationPath() },
+            set: { _ in }
+        )
+        
+        Chat(screenSize: CGSize(), isPresentedChatSelect: isPresented, navigationPath: navigationPath)
     }
 }

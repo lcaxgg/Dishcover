@@ -21,14 +21,16 @@ struct RootNavigation: View {
                         NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.welcome.rawValue)
                     }
             }
-            .navigationDestination(for: NavigationRoute.self) { route in
-                switch route {
+            .navigationDestination(for: NavigationRoute.self) { navigationRoute in
+                switch navigationRoute {
                 case .register:
-                    Register()
+                    Register(navigationPath: $navigationPath)
                 case .login:
                     Login(navigationPath: $navigationPath)
                 case .base:
-                    Base()
+                    Base(navigationPath: $navigationPath)
+                case .chatWindow:
+                    ChatWindow()
                 }
             }
         }//: NavigationStack

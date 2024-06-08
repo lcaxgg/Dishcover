@@ -25,5 +25,6 @@ enum NavigationRoute: Hashable {
     case register
     case login
     case base
+    case chatWindow
 }
 

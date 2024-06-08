@@ -20,6 +20,8 @@ struct Register: View {
     @StateObject private var registrationViewModel = RegistrationViewModel()
     @StateObject private var alertViewModel = AlertViewModel()
     
+    @Binding var navigationPath: NavigationPath
+    
     var body: some View {
         ZStack {
             ScreenSizeReader { screenSize in
@@ -96,6 +98,11 @@ struct Register: View {
             
             if registrationViewModel.isProccessingRegistration {
                 LoadingIndicator(animation: .circleBars, color: Color(AppConstants.customGreen), size: .medium, speed: .normal)
+                    .onDisappear {
+                        if isPresentedBaseView {
+                            navigationPath.append(NavigationRoute.base)
+                        }
+                    }
             }
         }//: ZStack
         .ignoresSafeArea(.keyboard)
@@ -123,9 +130,6 @@ struct Register: View {
                 })
             )
         }
-        .background(
-            NavigationLink(AppConstants.emptyString, destination: Base(), isActive: $isPresentedBaseView)
-        )
     }
 }
 

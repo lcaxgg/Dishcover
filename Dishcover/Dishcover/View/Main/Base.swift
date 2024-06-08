@@ -22,6 +22,8 @@ struct Base: View {
     @State private var navigationBarTitle: String = AppConstants.emptyString
     @State private var selectedTab: Int = 0
     
+    @Binding var navigationPath: NavigationPath
+    
     var body: some View {
         ScreenSizeReader { screenSize in
             ZStack {
@@ -57,7 +59,8 @@ struct Base: View {
                             }
                         
                         Chat(screenSize: screenSize,
-                             isPresentedChatSelect: $isPresentedChatSelect)
+                             isPresentedChatSelect: $isPresentedChatSelect,
+                             navigationPath: $navigationPath)
                             .tag(1)
                             .tabItem {
                                 Image(systemName: AppConstants.messageFill)
