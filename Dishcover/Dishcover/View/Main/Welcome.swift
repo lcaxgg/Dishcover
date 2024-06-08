@@ -1,151 +1,74 @@
 //
-//  Base.swift
+//  Welcome.swift
 //  Dishcover
 //
-//  Created by j8bok on 3/18/24.
+//  Created by j8bok on 8/30/23.
 //
 
 import SwiftUI
-import SwiftfulLoadingIndicators
 
-struct Base: View {
+struct Welcome: View {
     
     // MARK: - PROPERTIES
     
-    @State private var isDownloadingMealsComplete: Bool = false
-    @State private var isFetchingMessagesComplete: Bool = false
-    @State private var isLoadingVisible: Bool = true
-    @State private var isAnimating: Bool = false
-    
-    @State private var isPresentedChatSelect: Bool = false
-    
-    @State private var navigationBarTitle: String = AppConstants.emptyString
-    @State private var selectedTab: Int = 0
+    @Binding var navigationPath: NavigationPath
     
     var body: some View {
         ScreenSizeReader { screenSize in
             ZStack {
+                // MARK: - BACKGROUND
+                
+                let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.emptyString)
+                
+                Image(AppConstants.welcomeBackGround)
+                    .configure(withModifier: imageModifier)
+                    .frame(width: screenSize.width, height: screenSize.height)
+                
                 // MARK: - HEADER
                 
-                Color(AppConstants.lightGrayOne)
-                    .edgesIgnoringSafeArea(.all)
-                
-                // MARK: - BODY
-                
-                if !isDownloadingMealsComplete || !isFetchingMessagesComplete {
-                    VStack(spacing: -55.0) {
-                        
-                        Logo(color: AppConstants.customGreen)
-                            .frame(width: isAnimating ?  nil : screenSize.width * 0.3, height: isAnimating ? nil : screenSize.height * 0.3)
-                            .scaleEffect(isAnimating ? 3.0 : 1.0)
-                        
-                        LoadingIndicator(animation: .threeBalls, color: Color(AppConstants.customGreen), size: .medium, speed: .normal)
-                            .opacity(isLoadingVisible ? 1 : 0)
-                    }
-                } else {
+                VStack(spacing: 30.0) {
+                    Logo(color: AppConstants.customGreen)
+                        .frame(width: screenSize.width * 0.3, height: screenSize.height * 0.08)
                     
-                    // MARK: - FOOTER
+                    let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.02, weight: .light, design: .rounded), color: AppConstants.customWhite)]
                     
-                    TabView(selection: $selectedTab) {
-                        Meals(screenSize: screenSize)
-                            .tag(0)
-                            .tabItem {
-                                Image(systemName: AppConstants.squareGrid)
-                                Text(AppConstants.meals)
-                            }
-                        
-                        Chat(screenSize: screenSize,
-                             isPresentedChatSelect: $isPresentedChatSelect)
-                            .tag(1)
-                            .tabItem {
-                                Image(systemName: AppConstants.messageFill)
-                                Text(AppConstants.chat)
-                            }
-                    }
-                    .frame(width: screenSize.width)
-                    .background(Color(AppConstants.lightGrayOne))
-                    .accentColor(Color(AppConstants.customGreen))
+                    Text(AppConstants.welcomeTitle)
+                        .configure(withModifier: textModifier)
+                    
+                    Spacer()
                 }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.top, screenSize.height * 0.08)
+                
+                // MARK: - FOOTER
+                
+                VStack {
+                    Spacer()
+                    
+                    let registerAttribute = ButtonOneAttributes(text: AppConstants.register, bgColor: AppConstants.customGreen, fontSize: screenSize.height * 0.018, cornerRadius: 10.0, isEnabled: true)
+                    
+                    ButtonOne(attribute: registerAttribute, fontWeight: .semibold)
+                        .frame(height: screenSize.height * 0.045)
+                        .onTapGesture {
+                            navigationPath.append(NavigationRoute.register)
+                            NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.register.rawValue)
+                        }
+                    
+                    let loginAttribute =  ButtonOneAttributes(text: AppConstants.login, bgColor: AppConstants.darkGrayTwo, fontSize: screenSize.height * 0.018, cornerRadius: 10.0, isEnabled: false)
+                    
+                    ButtonOne(attribute: loginAttribute, fontWeight: .semibold)
+                        .frame(height: screenSize.height * 0.045)
+                        .onTapGesture {
+                            navigationPath.append(NavigationRoute.login)
+                            NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.login.rawValue)
+                        }
+                    
+                }
+                .padding(.horizontal, screenSize.width * 0.04)
+                .padding(.bottom, screenSize.height * 0.09)
             }//: ZStack
-        }//: ScreenSizeReader
-        .navigationBarTitle(navigationBarTitle, displayMode: .large)
-        .navigationBarBackButtonHidden(true)
-        .ignoresSafeArea(.keyboard)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
-                    switch selectedEnum {
-                    case .chatNavTitle:
-                        Button(action: {
-                            isPresentedChatSelect = true
-                        }) {
-                            Image(systemName: AppConstants.squareAndPencil)
-                        }
-                    default:
-                        EmptyView()
-                    }
-                }
-            }
         }
-        .onAppear(perform: {
-            UITabBar.appearance().backgroundColor = UIColor.white
-    
-            processMealsDisplay()
-            fetchMessages()
-        })
-        .onChange(of: selectedTab) { selectedTab in
-            setUpNavigationBarTitle(with: selectedTab)
-        }
-    }
-}
-
-extension Base {
-    private func setUpNavigationBarTitle(with selectedTab: Int) {
-        if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
-            switch selectedEnum {
-            case .mealsNavTitle:
-                navigationBarTitle = AppConstants.mealNavTitle
-                
-            case .chatNavTitle:
-                navigationBarTitle = AppConstants.chat
-                
-            case .accountNavTitle:
-                navigationBarTitle = AppConstants.account
-            }
-        }
-    }
-    
-    private func processMealsDisplay() {
-        if !isDownloadingMealsComplete {
-            MealsService.processMealsDataForDisplay { success in
-                if success {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.65) {
-                        isLoadingVisible.toggle()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.7) {
-                        withAnimation(Animation.easeOut(duration: 0.40)) {
-                            isAnimating.toggle()
-                        }
-                        
-                        withAnimation(Animation.easeIn(duration: 0.30)) {
-                            isDownloadingMealsComplete = success
-                            navigationBarTitle = AppConstants.mealNavTitle
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    private func fetchMessages() {
-        if !isFetchingMessagesComplete {
-            ChatManager.fetchMessages { success in
-                if success {
-                    isFetchingMessagesComplete = success
-                }
-            }
-        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
@@ -153,5 +76,5 @@ extension Base {
 
 //@available(iOS 17, *)
 //#Preview {
-//    CustomPreview { Base() }
+//    CustomPreview { Welcome() }
 //}
