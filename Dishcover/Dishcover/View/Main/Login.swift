@@ -14,12 +14,14 @@ struct Login: View {
     // MARK: - PROPERTIES
     
     @State private var text: String = AppConstants.emptyString
-    @State private var isPasswordVisible = false
-    @State private var isKeyboardShowing = false
+    @State private var isPasswordVisible: Bool = false
+    @State private var isKeyboardShowing: Bool = false
     @State private var keyboardHeight: CGFloat = 0
     
-    @StateObject private var loginViewModel = LoginViewModel()
-    @StateObject private var alertViewModel = AlertViewModel()
+    @StateObject private var loginViewModel: LoginViewModel = LoginViewModel()
+    @StateObject private var alertViewModel: AlertViewModel = AlertViewModel()
+    
+    @Binding var navigationPath: NavigationPath
     
     private let textModifier = [TextModifier(font: .system(size: 15.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
     
@@ -95,11 +97,10 @@ struct Login: View {
                     
                     let attribute = ButtonOneAttributes(text: AppConstants.login,
                                                         bgColor: loginViewModel.shouldDisableButton ? AppConstants.lightGrayTwo : loginViewModel.invalidFields.count > 0 ? AppConstants.lightGrayTwo : AppConstants.customGreen,
-                                                        fontWeight: .semibold,
                                                         fontSize: screenSize.height * 0.02,
                                                         cornerRadius: 10.0, isEnabled: false)
                     
-                    ButtonOne(attribute: attribute)
+                    ButtonOne(attribute: attribute, fontWeight: .semibold)
                         .frame(height: screenSize.height * 0.055)
                         .padding(.horizontal, screenSize.width * 0.04)
                         .padding(.bottom, isKeyboardShowing ? keyboardHeight : screenSize.height * 0.06)
@@ -114,6 +115,11 @@ struct Login: View {
                 
                 if loginViewModel.isProccessingLogin {
                     LoadingIndicator(animation: .circleBars, color: Color(AppConstants.customGreen), size: .medium, speed: .normal)
+                        .onDisappear {
+                            if loginViewModel.isPresentedBaseView {
+                                navigationPath.append(NavigationRoute.base)
+                            }
+                        }
                 }
             }//: ZStack
             .edgesIgnoringSafeArea(.bottom)
@@ -121,12 +127,8 @@ struct Login: View {
             .navigationBarTitle(AppConstants.login, displayMode: .inline)
             .navigationBarBackButtonHidden(loginViewModel.isProccessingLogin)
             .disabled(loginViewModel.isProccessingLogin)
-            .background(
-                NavigationLink(AppConstants.emptyString, destination: Base(), isActive: $loginViewModel.isPresentedBaseView)
-            )
             .onAppear {
                 loginViewModel.initDictionary()
-                NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.login.rawValue)
             }
             .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
                 isKeyboardShowing = true

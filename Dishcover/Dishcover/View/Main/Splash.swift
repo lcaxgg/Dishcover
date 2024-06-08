@@ -16,7 +16,7 @@ struct Splash: View {
     var body: some View {
         ZStack {
             if showWelcome {
-                Welcome()
+                RootNavigation()
                     .transition(.opacity)
             } else {
                 ScreenSizeReader { screenSize in
