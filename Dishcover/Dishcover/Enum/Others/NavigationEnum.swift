@@ -15,7 +15,15 @@ enum NavigationBarTitleEnum: Int {
 
 enum NavigationViewItemEnum: Int {
     case none
+    case welcome
     case login
     case register
     case chat
 }
+
+enum NavigationRoute: Hashable {
+    case register
+    case login
+    case base
+}
+

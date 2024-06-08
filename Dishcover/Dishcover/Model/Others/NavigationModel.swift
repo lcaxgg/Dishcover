@@ -9,7 +9,7 @@ import Foundation
 
 struct NavigationModel {
     var tag: Int
-    
+
     init(tag: Int) {
         self.tag = tag
     }

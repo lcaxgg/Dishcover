@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct RecipesModel: Codable {
     let meals: [[String: String?]]
