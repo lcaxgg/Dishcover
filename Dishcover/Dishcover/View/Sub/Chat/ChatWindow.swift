@@ -13,15 +13,13 @@ struct ChatWindow: View {
     
     // MARK: - PROPERTIES
     
-    //var screenSize: CGSize
-    
     private var customBackButton: some View { Button(action: {
         self.presentationMode.wrappedValue.dismiss()
     }) {
         HStack {
             let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
             
-            Image(systemName: "arrow.backward")
+            Image(systemName: AppConstants.arrowBackward)
                 .configure(withModifier: imageModifier)
         }
     }
@@ -42,9 +40,29 @@ struct ChatWindow: View {
                 
                 // MARK: - BODY
                 
-                // MARK: - FOOTER
+                //                VStack { // to configure
+                //                    let messages = chatViewModel.getMessagesPerSender()
+                //
+                //                    ForEach(Array(messages.keys), id: \.self) { key in
+                //                        if let value: ChatDetailsModel = messages[key] {
+                //                            Text("\(key): \(value.message)")
+                //                        }
+                //                    }
+                //                }
                 
+                VStack {
+                    ScrollView(showsIndicators: false) {
+                        
+                    }
+                    
+                    // MARK: - FOOTER
+                    
+                    Spacer()
+                    
+                    ComposeArea(screenSize: screenSize)
+                }
             }//: ZStack
+            .edgesIgnoringSafeArea(.bottom)
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .navigationBarItems(leading: customBackButton.frame(width: screenSize.width * 0.034, height: screenSize.height * 0.034))
@@ -65,15 +83,17 @@ struct ChatWindow: View {
                         VStack(alignment: .leading) {
                             Group {
                                 let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.019, weight: .regular, design: .rounded), color: AppConstants.darkGrayTwo)]
+                                let firstName = chatViewModel.getFirstName()
                                 
-                                Text("First Name")
+                                Text(firstName)
                                     .configure(withModifier: textModifier)
                             }
                             
                             Group {
                                 let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.017, weight: .light, design: .rounded), color: AppConstants.darkGrayOne)]
+                                let lastName = chatViewModel.getLastName()
                                 
-                                Text("Last Name")
+                                Text(lastName)
                                     .configure(withModifier: textModifier)
                             }
                         }
@@ -86,7 +106,7 @@ struct ChatWindow: View {
                         Group {
                             let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
                             
-                            Image(systemName: "phone.fill")
+                            Image(systemName: AppConstants.phoneFill)
                                 .configure(withModifier: imageModifier)
                                 .frame(width: screenSize.width * 0.03, height: screenSize.height * 0.03)
                         }
@@ -94,7 +114,7 @@ struct ChatWindow: View {
                         Group {
                             let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
                             
-                            Image(systemName: "video.fill")
+                            Image(systemName: AppConstants.videoFill)
                                 .configure(withModifier: imageModifier)
                                 .frame(width: screenSize.width * 0.03, height: screenSize.height * 0.03)
                         }

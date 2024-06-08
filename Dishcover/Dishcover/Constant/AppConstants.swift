@@ -84,6 +84,7 @@ struct AppConstants {
     static let passwordPlaceHolder = "enter your password"
     static let confrimPasswordPlaceHolder = "re-enter your password"
     static let searchPlaceHolder = "Search"
+    static let messagePlaceHolder = "type something..."
     
     // MARK: - VALIDATION MESSAGES
     
@@ -209,6 +210,7 @@ struct AppConstants {
     static let chevronLeft = "chevron.left"
     static let chevronRight = "chevron.right"
     static let arrowUpForwardSquare = "arrow.up.forward.square"
+    static let arrowBackward = "arrow.backward"
     
     static let eyeSlash =  "eye.slash"
     static let eye = "eye"
@@ -216,6 +218,9 @@ struct AppConstants {
     static let xCircle = "x.circle"
     
     static let squareAndPencil = "square.and.pencil"
+    static let paperPlaneCircelFill = "paperplane.circle.fill"
+    static let phoneFill = "phone.fill"
+    static let videoFill = "video.fill"
     
     // MARK: - OTHERS
     

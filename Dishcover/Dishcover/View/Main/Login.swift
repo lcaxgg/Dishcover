@@ -16,7 +16,7 @@ struct Login: View {
     @State private var text: String = AppConstants.emptyString
     @State private var isPasswordVisible: Bool = false
     @State private var isKeyboardShowing: Bool = false
-    @State private var keyboardHeight: CGFloat = 0
+    @State private var keyboardHeight: CGFloat = 0.0
     
     @StateObject private var loginViewModel: LoginViewModel = LoginViewModel()
     @StateObject private var alertViewModel: AlertViewModel = AlertViewModel()

@@ -107,7 +107,6 @@ struct Recipes: View {
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
                                 withAnimation {
-                                    
                                     isTappedShowDetailsForIngredients = false
                                 }
                             }

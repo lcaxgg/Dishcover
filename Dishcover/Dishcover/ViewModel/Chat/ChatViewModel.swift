@@ -12,11 +12,15 @@ class ChatViewModel: ObservableObject {
     // MARK: - TYPES
     
     typealias ArrayOfChatModel = [ChatModel]
+    typealias DictionaryOfChatDetails = [String: ChatDetailsModel]
     
     // MARK: - PROPERTIES
     
     static let sharedInstance: ChatViewModel = ChatViewModel()
     @Published private var messages: ArrayOfChatModel = Array()
+    @Published private var messagePerSender: ChatModel = ChatModel(id: UUID(),
+                                                                   senderName: AppConstants.emptyString,
+                                                                   chatDetails: Dictionary())
     
     // MARK: - METHOD
     
@@ -34,10 +38,10 @@ extension ChatViewModel {
     static func getSenderName(at index: Int) -> String {
         sharedInstance.messages[index].senderName
     }
-    
+        
     static func getMessageDateTime(at index: Int) -> String {
         var dateTimeString = sharedInstance.messages[index].chatDetails.keys.first ?? AppConstants.emptyString
-       
+        
         if let formattedDateTime = DateTimeService.formatStringDateTime(of: dateTimeString) {
             dateTimeString = DateTimeService.computeElapsedDateTime(from: formattedDateTime)
         }
@@ -47,6 +51,22 @@ extension ChatViewModel {
     
     static func getLatestMessage(at index: Int) -> String {
         sharedInstance.messages[index].chatDetails.values.first?.message ?? AppConstants.emptyString
+    }
+    
+    // message per sender
+    
+    func getFirstName() -> String {
+        let components = ChatViewModel.sharedInstance.messagePerSender.senderName.components(separatedBy: AppConstants.whiteSpaceString)
+        return components.first ?? AppConstants.emptyString
+    }
+    
+    func getLastName() -> String {
+        let components = ChatViewModel.sharedInstance.messagePerSender.senderName.components(separatedBy: AppConstants.whiteSpaceString)
+        return components.last ?? AppConstants.emptyString
+    }
+    
+    func getMessagesPerSender() -> DictionaryOfChatDetails {
+        ChatViewModel.sharedInstance.messagePerSender.chatDetails
     }
     
     // MARK: - SETTER
@@ -68,6 +88,10 @@ extension ChatViewModel {
         } else {
             sharedInstance.messages.append(chatModel)
         }
+    }
+    
+    func setMessagePerSender(with index: Int) {
+        ChatViewModel.sharedInstance.messagePerSender = ChatViewModel.sharedInstance.getMessages()[index]
     }
 }
 

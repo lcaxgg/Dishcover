@@ -16,7 +16,7 @@ struct Chat: View {
     @State private var searchText: String = AppConstants.emptyString
     @FocusState private var isSearchFieldFocused: Bool
     @State private var searchViewModel: SearchViewModel = SearchViewModel()
-
+    
     @Binding var isPresentedChatSelect: Bool
     @State private var isPresentedChatWindow: Bool = false
     
@@ -53,7 +53,7 @@ struct Chat: View {
                             ForEach(0..<messagesCount, id: \.self) { index in
                                 ChatList(screenSize: screenSize, index: index)
                                     .onTapGesture {
-                                       // isPresentedChatWindow.toggle()
+                                        chatViewModel.setMessagePerSender(with: index)
                                         navigationPath.append(NavigationRoute.chatWindow)
                                     }
                             }
@@ -69,9 +69,6 @@ struct Chat: View {
                     .scrollContentBackground(.hidden)
                     .listStyle(.inset)
                     .padding(.top, 10.0)
-//                    .overlay {
-//                        NavigationLink(AppConstants.emptyString, destination: ChatWindow(screenSize: screenSize), isActive: $isPresentedChatWindow).opacity(0)
-//                    }
                     .onAppear(perform: {
                         setNavigationViewItemTag()
                     })
