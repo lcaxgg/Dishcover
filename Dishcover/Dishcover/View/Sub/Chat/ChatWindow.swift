@@ -46,7 +46,7 @@ struct ChatWindow: View {
                     
                     ScrollView(showsIndicators: false) {
                         VStack {
-                            let messages = chatViewModel.getMessagesPerSender()
+                            let messages = chatViewModel.getCurrentMessages()
                             let uEmail = UserViewModel.getEmail()
                             
                             ForEach(Array(messages.keys), id: \.self) { key in
@@ -69,7 +69,6 @@ struct ChatWindow: View {
                         .padding(.bottom, isKeyboardShowing ? keyboardHeight : screenSize.height * 0.06)
                         .animation(.easeInOut, value: isKeyboardShowing)
                 }
-           
             }//: ZStack
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarTitleDisplayMode(.inline)
@@ -92,7 +91,7 @@ struct ChatWindow: View {
                         VStack(alignment: .leading) {
                             Group {
                                 let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.019, weight: .regular, design: .rounded), color: AppConstants.darkGrayTwo)]
-                                let firstName = chatViewModel.getFirstName()
+                                let firstName = chatViewModel.getCurrentFirstName()
                                 
                                 Text(firstName)
                                     .configure(withModifier: textModifier)
@@ -100,7 +99,7 @@ struct ChatWindow: View {
                             
                             Group {
                                 let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.017, weight: .light, design: .rounded), color: AppConstants.darkGrayOne)]
-                                let lastName = chatViewModel.getLastName()
+                                let lastName = chatViewModel.getCurrentLastName()
                                 
                                 Text(lastName)
                                     .configure(withModifier: textModifier)
@@ -141,6 +140,9 @@ struct ChatWindow: View {
                 isKeyboardShowing = false
                 keyboardHeight = 0.0
             }
+            .onAppear(perform: {
+                chatViewModel.setReceiverEmail()
+            })
         }//: ScreenSizeReader
         .ignoresSafeArea(.keyboard)
     }

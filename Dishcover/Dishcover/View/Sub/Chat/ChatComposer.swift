@@ -13,31 +13,39 @@ struct ChatComposer: View {
     
     var screenSize: CGSize
     
-    @State var test = ""
-
     @State private var didTapSend: Bool = false
+    @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.sharedInstance
     
     var body: some View {
         HStack(spacing: 20.0) {
             withAnimation(.easeInOut) {
-                TextField(AppConstants.messagePlaceHolder, text: $test, axis: .vertical)
+                TextField(AppConstants.messagePlaceHolder, text: $chatViewModel.messageContent.message, axis: .vertical)
                     .lineLimit(...5)
             }
             
             Group {
-                let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
-                
+                let isEnabled = !chatViewModel.messageContent.message.isEmpty
+                let imageModifier = ImageModifier(contentMode: .fill,
+                                                  color: isEnabled ? AppConstants.customGreen : AppConstants.lightGrayTwo)
+  
                 Image(systemName: AppConstants.paperPlaneCircelFill)
                     .configure(withModifier: imageModifier)
                     .rotationEffect(.degrees(45.0))
                     .frame(width: screenSize.width * 0.04, height: screenSize.height * 0.04)
                     .opacity(didTapSend ? 0 : 1)
                     .onTapGesture {
-                        didTapSend = true
-                        
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) {
-                            withAnimation {
-                                didTapSend = false
+                        if isEnabled {
+                            didTapSend = true
+                            
+                            DispatchQueue.global(qos: .userInitiated).async {
+                                ChatManager.sendMessage()
+                                
+                                DispatchQueue.main.async {
+                                    withAnimation {
+                                        didTapSend = false
+                                        chatViewModel.clearMessage()
+                                    }
+                                }
                             }
                         }
                     }
@@ -52,6 +60,7 @@ struct ChatComposer: View {
     }
 }
 
+@available(iOS 17, *)
 #Preview {
-    ChatComposer(screenSize: CGSize())
+    CustomPreview { ChatComposer(screenSize: CGSize()) }
 }

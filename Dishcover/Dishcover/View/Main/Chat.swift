@@ -48,7 +48,7 @@ struct Chat: View {
                 if #available(iOS 16.0, *) {
                     List {
                         Section {
-                            let messagesCount = chatViewModel.getMessages().count
+                            let messagesCount = chatViewModel.getAllMessages().count
                             
                             ForEach(0..<messagesCount, id: \.self) { index in
                                 ChatList(screenSize: screenSize, index: index)

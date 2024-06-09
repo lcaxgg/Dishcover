@@ -11,12 +11,12 @@ import FirebaseFirestore
 
 class ChatManager {
     
-    // MARK: - PROPERTIES
-    
     // MARK: TYPES
     
     typealias DictionaryOfStringAny = Dictionary<String, Any>
     typealias ArrayOfTuple = [(String, Any)]
+    
+    // MARK: - PROPERTIES
     
     // MARK: - METHODS
     
@@ -25,7 +25,7 @@ class ChatManager {
     static func fetchMessages(completion: @escaping (Bool) -> Void) {
         fetchMessagesFromServer { messages  in
             do {
-                if let messages = messages {
+                if let messages = messages { // to pass this as messages as this is already sorted
                     for (senderName, values) in messages {
                         let tupleMirror = Mirror(reflecting: values)
                         let tupleElemets = tupleMirror.children.map({ $0.value })
@@ -47,7 +47,7 @@ class ChatManager {
                         }
                         
                         let isForMerging = newChatDetails.count == 1
-                        var chatModel = ChatModel(senderName: senderName, chatDetails: newChatDetails)
+                        var chatModel = ChatModel(id: UUID(), senderName: senderName, chatDetails: values as! [(String, ChatDetailsModel)])
                         
                         ChatViewModel.setMessages(with: &chatModel, andWith: isForMerging)
                     }
@@ -66,7 +66,10 @@ class ChatManager {
             return
         }
         
-        let details = ChatDetailsModel(isRead: false, message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", senderEmail: uEmail)
+        let message = ChatViewModel.getComposedMessage()
+        let receiverEmail = ChatViewModel.getReceiverEmail()
+        
+        let details = ChatDetailsModel(isRead: false, message: message, senderEmail: uEmail)
         let encoder = JSONEncoder()
         
         guard let data = try? encoder.encode(details) else {
@@ -83,7 +86,7 @@ class ChatManager {
         
         let documentReceiver = Firestore.firestore()
             .collection(AppConstants.conversations)
-            .document("itachi@gmail.com")
+            .document(receiverEmail)
         
         createDummyField(for: documentReceiver) { success in
             guard success == true else {
@@ -214,7 +217,7 @@ extension ChatManager {
                     }
                 }
                 
-                guard messages.count > 0 else {
+                guard !messages.isEmpty else {
                     return
                 }
                 
