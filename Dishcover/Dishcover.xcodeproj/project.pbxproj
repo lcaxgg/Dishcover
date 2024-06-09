@@ -28,7 +28,7 @@
 		5B1D143C2AB17C3B003BA1A5 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5B1D143B2AB17C3B003BA1A5 /* FirebaseStorage */; };
 		5B2611812BA86C7600461E83 /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2611802BA86C7600461E83 /* Base.swift */; };
 		5B2611832BA871EF00461E83 /* ScreenSizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */; };
-		5B3233CA2C14C81900C64C81 /* ComposeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3233C92C14C81900C64C81 /* ComposeArea.swift */; };
+		5B3233CA2C14C81900C64C81 /* ChatComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3233C92C14C81900C64C81 /* ChatComposer.swift */; };
 		5B355B472BA725FD0044D070 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B355B462BA725FD0044D070 /* Chat.swift */; };
 		5B379B1E2AD646E00081FB59 /* ButtonOneAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B379B1D2AD646E00081FB59 /* ButtonOneAttributes.swift */; };
 		5B3D382D2BC19EBA0093ACC5 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3D382C2BC19EBA0093ACC5 /* ChatModel.swift */; };
@@ -97,6 +97,8 @@
 		5BDD66CD2AFCC55900C39111 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 5BDD66CC2AFCC55900C39111 /* Alamofire */; };
 		5BE8A0B32B9A0F30004EE043 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE8A0B22B9A0F30004EE043 /* Recipes.swift */; };
 		5BF7EEDE2ABACC92005A736A /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF7EEDD2ABACC92005A736A /* AlertModel.swift */; };
+		5BFFCC1D2C15D59F00920B83 /* BubbleShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCC1C2C15D59F00920B83 /* BubbleShape.swift */; };
+		5BFFCC1F2C15D65C00920B83 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFFCC1E2C15D65C00920B83 /* ChatBubble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,7 +114,7 @@
 		5B1D142C2AB17B7C003BA1A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B2611802BA86C7600461E83 /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		5B2611822BA871EF00461E83 /* ScreenSizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeReader.swift; sourceTree = "<group>"; };
-		5B3233C92C14C81900C64C81 /* ComposeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeArea.swift; sourceTree = "<group>"; };
+		5B3233C92C14C81900C64C81 /* ChatComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatComposer.swift; sourceTree = "<group>"; };
 		5B355B462BA725FD0044D070 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		5B379B1D2AD646E00081FB59 /* ButtonOneAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonOneAttributes.swift; sourceTree = "<group>"; };
 		5B3D382C2BC19EBA0093ACC5 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
@@ -178,6 +180,8 @@
 		5BDBC1F52AB12E1300AB6171 /* RegisterUpperPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUpperPart.swift; sourceTree = "<group>"; };
 		5BE8A0B22B9A0F30004EE043 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
 		5BF7EEDD2ABACC92005A736A /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		5BFFCC1C2C15D59F00920B83 /* BubbleShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleShape.swift; sourceTree = "<group>"; };
+		5BFFCC1E2C15D65C00920B83 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,7 +450,9 @@
 			children = (
 				5B7ADB032BB6C58A00994364 /* ChatList.swift */,
 				5B85BDC62BB716B200885A99 /* ChatWindow.swift */,
-				5B3233C92C14C81900C64C81 /* ComposeArea.swift */,
+				5B3233C92C14C81900C64C81 /* ChatComposer.swift */,
+				5BFFCC1E2C15D65C00920B83 /* ChatBubble.swift */,
+				5BFFCC1C2C15D59F00920B83 /* BubbleShape.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -738,7 +744,7 @@
 				5B7FCBA92B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld in Sources */,
 				5B6DC3212B3D6DF2008FAA22 /* EmailValidationService.swift in Sources */,
 				5BDBC1F62AB12E1300AB6171 /* RegisterUpperPart.swift in Sources */,
-				5B3233CA2C14C81900C64C81 /* ComposeArea.swift in Sources */,
+				5B3233CA2C14C81900C64C81 /* ChatComposer.swift in Sources */,
 				5B049A442B94717700806731 /* RecipesModel.swift in Sources */,
 				5B5B79872AA99E1F00DBEA9F /* AppConstants.swift in Sources */,
 				5BB2BF9C2AC3A56A00AF886D /* RegistrationViewModel.swift in Sources */,
@@ -748,6 +754,7 @@
 				5B069E502BB697FD00D5E739 /* NavigationEnum.swift in Sources */,
 				5B12497B2BE9EDC20082B9BF /* UINavigationController.swift in Sources */,
 				5B2611812BA86C7600461E83 /* Base.swift in Sources */,
+				5BFFCC1F2C15D65C00920B83 /* ChatBubble.swift in Sources */,
 				5B5B79812AA9981700DBEA9F /* RegisterLowerPart.swift in Sources */,
 				5B5A05382A9ECA81001A05CA /* DishcoverApp.swift in Sources */,
 				5B969D442ACFDC420039F2BE /* SearchField.swift in Sources */,
@@ -756,6 +763,7 @@
 				5B5A054D2A9ED192001A05CA /* Register.swift in Sources */,
 				5B5A05532A9F1A9F001A05CA /* Logo.swift in Sources */,
 				5BAA442F2B34275300DE4713 /* LoginViewModel.swift in Sources */,
+				5BFFCC1D2C15D59F00920B83 /* BubbleShape.swift in Sources */,
 				5B5A054B2A9ED14E001A05CA /* Login.swift in Sources */,
 				5B5B797F2AA9980A00DBEA9F /* RegisterMiddlePart.swift in Sources */,
 				5B3D382F2BC19F850093ACC5 /* DateTimeService.swift in Sources */,
