@@ -31,9 +31,13 @@ extension UserViewModel {
         sharedInstance.userDetailsModel.firstName + AppConstants.whiteSpaceString + sharedInstance.userDetailsModel.lastName
     }
     
+    static func getEmail() -> String {
+        sharedInstance.userDetailsModel.email
+    }
+    
     // MARK: - SETTER
     
-    func setUserDetails(with details: UserDetailsModel) {
-        userDetailsModel = details
+    static func setUserDetails(with details: UserDetailsModel) {
+        sharedInstance.userDetailsModel = details
     }
 }

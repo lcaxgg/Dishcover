@@ -14,7 +14,6 @@ struct Register: View {
     // MARK: - PROPERTIES
     
     @State private var isAddPhotoTapped: Bool = false
-    @State private var isPresentedBaseView: Bool = false
     @State private var deviceOrientation: UIDeviceOrientation = .unknown
     
     @StateObject private var registrationViewModel = RegistrationViewModel()
@@ -98,11 +97,6 @@ struct Register: View {
             
             if registrationViewModel.isProccessingRegistration {
                 LoadingIndicator(animation: .circleBars, color: Color(AppConstants.customGreen), size: .medium, speed: .normal)
-                    .onDisappear {
-                        if isPresentedBaseView {
-                            navigationPath.append(NavigationRoute.base)
-                        }
-                    }
             }
         }//: ZStack
         .ignoresSafeArea(.keyboard)
@@ -126,7 +120,7 @@ struct Register: View {
                 title: Text(alertViewModel.getTitle()),
                 message: Text(alertViewModel.getMessage()),
                 dismissButton: .default(Text(AppConstants.ok), action: {
-                    isPresentedBaseView = true
+                    navigationPath.append(NavigationRoute.base)
                 })
             )
         }

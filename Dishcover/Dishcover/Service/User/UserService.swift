@@ -29,7 +29,7 @@ struct UserService {
             
             do {
                 let details = try document.data(as: UserDetailsModel.self)
-                UserViewModel.sharedInstance.setUserDetails(with: details)
+                UserViewModel.setUserDetails(with: details)
             } catch let error {
                 print("Couldn't decode document. \(error.localizedDescription) ⛔")
             }
