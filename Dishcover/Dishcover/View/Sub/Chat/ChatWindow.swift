@@ -49,13 +49,10 @@ struct ChatWindow: View {
                             let messages = chatViewModel.getCurrentMessages()
                             let uEmail = UserViewModel.getEmail()
                             
-                            ForEach(Array(messages.keys), id: \.self) { key in
-                                if let value: ChatDetailsModel = messages[key] {
-                                    let message = value.message
-                                    let senderEmail = value.senderEmail
-                                    
-                                    ChatBubble(message: message, isFromSender: true)
-                                }
+                            ForEach(0..<messages.count, id: \.self) { index in
+                                let (date, details) = messages[index]
+
+                                ChatBubble(message: details.message, isFromSender: true)
                             }
                         }
                         .padding()

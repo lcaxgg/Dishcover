@@ -14,7 +14,8 @@ class ChatManager {
     // MARK: TYPES
     
     typealias DictionaryOfStringAny = Dictionary<String, Any>
-    typealias ArrayOfTuple = [(String, Any)]
+    typealias ArrayOfTupleStringAny = [(String, Any)]
+    typealias ArrayOfTupleStringModel = [(String, ChatDetailsModel)]
     
     // MARK: - PROPERTIES
     
@@ -25,12 +26,12 @@ class ChatManager {
     static func fetchMessages(completion: @escaping (Bool) -> Void) {
         fetchMessagesFromServer { messages  in
             do {
-                if let messages = messages { // to pass this as messages as this is already sorted
+                if let messages = messages {
                     for (senderName, values) in messages {
                         let tupleMirror = Mirror(reflecting: values)
                         let tupleElemets = tupleMirror.children.map({ $0.value })
                         
-                        var newChatDetails = [String: ChatDetailsModel]()
+                        var newChatDetails = ArrayOfTupleStringModel()
                         
                         for index in 0..<tupleElemets.count {
                             let tupleData = tupleElemets[index]
@@ -42,12 +43,12 @@ class ChatManager {
                                 let jsonData = try JSONSerialization.data(withJSONObject: chatDetails, options: [])
                                 let decodedChatDetails = try JSONDecoder().decode(ChatDetailsModel.self, from: jsonData)
                                 
-                                newChatDetails[sentDate] = decodedChatDetails
+                                newChatDetails.append((sentDate, decodedChatDetails))
                             }
                         }
                         
                         let isForMerging = newChatDetails.count == 1
-                        var chatModel = ChatModel(id: UUID(), senderName: senderName, chatDetails: values as! [(String, ChatDetailsModel)])
+                        var chatModel = ChatModel(senderName: senderName, chatDetails: newChatDetails)
                         
                         ChatViewModel.setMessages(with: &chatModel, andWith: isForMerging)
                     }
@@ -168,7 +169,7 @@ class ChatManager {
 }
 
 extension ChatManager {
-    private static func fetchMessagesFromServer(completion: @escaping (ArrayOfTuple?) -> Void) {
+    private static func fetchMessagesFromServer(completion: @escaping (ArrayOfTupleStringAny?) -> Void) {
         guard let uEmail = Auth.auth().currentUser?.email else {
             return
         }
@@ -199,7 +200,7 @@ extension ChatManager {
                     return
                 }
                 
-                var messages = ArrayOfTuple()
+                var messages = ArrayOfTupleStringAny()
                 
                 querySnapShot.documentChanges.forEach { diff in
                     let senderName = diff.document.documentID

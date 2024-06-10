@@ -52,7 +52,7 @@ struct ChatList: View {
                         HStack(spacing: 5.0) {
                             Group {
                                 let secondTextModifier = [TextModifier(font: .system(size: 13.0, weight: .light, design: .rounded), color: AppConstants.customBlack)]
-                                let dateTime = ChatViewModel.getMessageDateTime(at: index)
+                                let dateTime = ChatViewModel.getLatestMessageDateTime(at: index)
                                 
                                 Text(dateTime)
                                     .configure(withModifier: secondTextModifier)

@@ -19,12 +19,12 @@ struct ChatComposer: View {
     var body: some View {
         HStack(spacing: 20.0) {
             withAnimation(.easeInOut) {
-                TextField(AppConstants.messagePlaceHolder, text: $chatViewModel.messageContent.message, axis: .vertical)
+                TextField(AppConstants.messagePlaceHolder, text: $chatViewModel.composedMessageModel.message, axis: .vertical)
                     .lineLimit(...5)
             }
             
             Group {
-                let isEnabled = !chatViewModel.messageContent.message.isEmpty
+                let isEnabled = !chatViewModel.composedMessageModel.message.isEmpty
                 let imageModifier = ImageModifier(contentMode: .fill,
                                                   color: isEnabled ? AppConstants.customGreen : AppConstants.lightGrayTwo)
   
