@@ -53,7 +53,7 @@ struct Chat: View {
                             ForEach(0..<messagesCount, id: \.self) { index in
                                 ChatList(screenSize: screenSize, index: index)
                                     .onTapGesture {
-                                        chatViewModel.setMessagePerSender(with: index)
+                                        chatViewModel.setIndexOfSender(with: index)
                                         navigationPath.append(NavigationRoute.chatWindow)
                                     }
                             }

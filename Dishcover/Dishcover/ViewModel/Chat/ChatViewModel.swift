@@ -19,9 +19,9 @@ class ChatViewModel: ObservableObject {
     static let sharedInstance: ChatViewModel = ChatViewModel()
     
     @Published var composedMessageModel: ComposedMessageModel = ComposedMessageModel()
-    @Published private var messages: ArrayOfChatModel = Array()
-    @Published private var messagesPerSender: ChatModel = ChatModel(senderName: AppConstants.emptyString, chatDetails: Array())
- 
+    @Published private var conversations: ArrayOfChatModel = Array()
+    @Published var indexOfSender: Int?
+    
     // MARK: - METHOD
     
     private init() {}
@@ -32,15 +32,34 @@ extension ChatViewModel {
     // MARK: - GETTER
     
     func getAllMessages() -> ArrayOfChatModel {
-        messages
+        conversations
     }
     
-    static func getSenderName(at index: Int) -> String {
-        sharedInstance.messages[index].senderName
+    // for ChatList view
+    
+    func getSenderName(at index: Int) -> String {
+        let chatDetails = conversations[index].chatDetails
+        
+        for details in chatDetails {
+            let senderName = details.1.senderName
+            let uName = UserViewModel.getName()
+            
+            if uName == senderName {
+                continue
+            } else {
+                return senderName
+            }
+        }
+        
+        return AppConstants.emptyString
     }
     
-    static func getLatestMessageDateTime(at index: Int) -> String {
-        var dateTimeString = sharedInstance.messages[index].chatDetails.first?.0 ?? AppConstants.emptyString
+    func getLatestMessage(at index: Int) -> String {
+        conversations[index].chatDetails.first?.1.message ?? AppConstants.emptyString
+    }
+    
+    func getLatestMessageDateTime(at index: Int) -> String {
+        var dateTimeString = conversations[index].chatDetails.first?.0 ?? AppConstants.emptyString
         
         if let formattedDateTime = DateTimeService.formatStringDateTime(of: dateTimeString) {
             dateTimeString = DateTimeService.computeElapsedDateTime(from: formattedDateTime)
@@ -49,68 +68,87 @@ extension ChatViewModel {
         return dateTimeString
     }
     
-    static func getLatestMessage(at index: Int) -> String {
-        sharedInstance.messages[index].chatDetails.first?.1.message ?? AppConstants.emptyString
-    }
+    // for ChatWindow view
     
     func getCurrentFirstName() -> String {
-        let components = ChatViewModel.sharedInstance.messagesPerSender.senderName.components(separatedBy: AppConstants.whiteSpaceString)
-        return components.first ?? AppConstants.emptyString
+        if let indexOfSender = indexOfSender {
+            let components = ChatViewModel.sharedInstance.getSenderName(at: indexOfSender).components(separatedBy: AppConstants.whiteSpaceString)
+            return components.first ?? AppConstants.emptyString
+        }
+        
+        return AppConstants.emptyString
     }
     
     func getCurrentLastName() -> String {
-        let components = ChatViewModel.sharedInstance.messagesPerSender.senderName.components(separatedBy: AppConstants.whiteSpaceString)
-        return components.last ?? AppConstants.emptyString
-    }
-    
-    func getCurrentEmail() -> String {
-        let value = ChatViewModel.sharedInstance.messagesPerSender.chatDetails.first?.1
-        return value?.senderEmail ?? AppConstants.emptyString
+        if let indexOfSender = indexOfSender {
+            let components = ChatViewModel.sharedInstance.getSenderName(at: indexOfSender).components(separatedBy: AppConstants.whiteSpaceString)
+            return components.last ?? AppConstants.emptyString
+        }
+        
+        return AppConstants.emptyString
     }
     
     func getCurrentMessages() -> ArrayOfTupleStringModel {
-        ChatViewModel.sharedInstance.messagesPerSender.chatDetails.reversed()
+        if let indexOfSender = indexOfSender {
+            let messages = conversations[indexOfSender].chatDetails
+            return messages.reversed()
+        }
+        
+        return ArrayOfTupleStringModel()
+    }
+    
+    static func getDocumentId() -> String {
+        sharedInstance.composedMessageModel.documentId
     }
     
     static func getComposedMessage() -> String {
         sharedInstance.composedMessageModel.message
     }
     
-    static func getReceiverEmail() -> String {
-        sharedInstance.composedMessageModel.receiverEmail
-    }
+    //
+    //    static func getReceiverEmail() -> String {
+    //        sharedInstance.composedMessageModel.receiverEmail
+    //    }
     
     // MARK: - SETTER
     
     static func setMessages(with chatModel: inout ChatModel, andWith isForMerging: Bool) {
-        let senderName = chatModel.senderName
+        let senderName = chatModel.documentId
         
-        if let filteredMessage = sharedInstance.messages.filter( { $0.senderName == senderName }).first, isForMerging {
+        if let filteredMessage = sharedInstance.conversations.filter( { $0.documentId == senderName }).first, isForMerging {
             let fetchedChatDetails = chatModel.chatDetails
             var newChatDetails = filteredMessage.chatDetails
             
             for (date, details) in fetchedChatDetails {
                 newChatDetails.insert((date, details), at: 0)
             }
-
-            if let index = sharedInstance.messages.firstIndex(of: filteredMessage) {
-                sharedInstance.messages[index].chatDetails = newChatDetails
+            
+            if let index = sharedInstance.conversations.firstIndex(of: filteredMessage) {
+                sharedInstance.conversations[index].chatDetails = newChatDetails
             }
         } else {
-            sharedInstance.messages.append(chatModel)
+            sharedInstance.conversations.append(chatModel)
         }
     }
     
-    func setMessagePerSender(with index: Int) {
-        messagesPerSender = getAllMessages()[index]
+    func setIndexOfSender(with index: Int) {
+        indexOfSender = index
     }
     
-    func setReceiverEmail() {
-        let value = messagesPerSender.chatDetails.first?.1
-        let receiverEmail = value?.senderEmail
-        
-        composedMessageModel.receiverEmail = receiverEmail ?? AppConstants.emptyString
+    func setDocumentId() {
+        if let indexOfSender = indexOfSender {
+            composedMessageModel.documentId = conversations[indexOfSender].documentId
+        }
     }
+    
+    //    func setReceiverEmail() { // will set in the selection list
+    //        if let indexOfSender = indexOfSender {
+    //            let value = messages[indexOfSender].chatDetails.first?.1
+    //            let receiverEmail = ""
+    //
+    //            composedMessageModel.receiverEmail = receiverEmail ?? AppConstants.emptyString
+    //        }
+    //    }
     
     func clearMessage() {
         composedMessageModel.message = AppConstants.emptyString

@@ -51,8 +51,11 @@ struct ChatWindow: View {
                             
                             ForEach(0..<messages.count, id: \.self) { index in
                                 let (date, details) = messages[index]
-
-                                ChatBubble(message: details.message, isFromSender: true)
+                                let senderName = details.senderName
+                                let uName = UserViewModel.getName()
+                                let isFromSender = senderName != uName
+                                
+                                ChatBubble(message: details.message, isFromSender: isFromSender)
                             }
                         }
                         .padding()
@@ -138,7 +141,8 @@ struct ChatWindow: View {
                 keyboardHeight = 0.0
             }
             .onAppear(perform: {
-                chatViewModel.setReceiverEmail()
+                chatViewModel.setDocumentId()
+                //chatViewModel.setReceiverEmail()
             })
         }//: ScreenSizeReader
         .ignoresSafeArea(.keyboard)

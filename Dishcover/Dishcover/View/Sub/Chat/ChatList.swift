@@ -16,6 +16,8 @@ struct ChatList: View {
     var screenSize: CGSize
     var index: Int?
     
+    @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.sharedInstance
+    
     var body: some View {
         if let index = index {
             HStack(alignment: .center, spacing: 20.0) {
@@ -41,7 +43,7 @@ struct ChatList: View {
                     HStack {
                         Group {
                             let firstTextModifier = [TextModifier(font: .system(size: 16.0, weight: .semibold, design: .rounded), color: AppConstants.customBlack)]
-                            let senderName = ChatViewModel.getSenderName(at: index)
+                            let senderName = chatViewModel.getSenderName(at: index)
                             
                             Text(senderName)
                                 .configure(withModifier: firstTextModifier)
@@ -52,7 +54,7 @@ struct ChatList: View {
                         HStack(spacing: 5.0) {
                             Group {
                                 let secondTextModifier = [TextModifier(font: .system(size: 13.0, weight: .light, design: .rounded), color: AppConstants.customBlack)]
-                                let dateTime = ChatViewModel.getLatestMessageDateTime(at: index)
+                                let dateTime = chatViewModel.getLatestMessageDateTime(at: index)
                                 
                                 Text(dateTime)
                                     .configure(withModifier: secondTextModifier)
@@ -72,7 +74,7 @@ struct ChatList: View {
                     HStack {
                         Group {
                             let thirdTextModifier = [TextModifier(font: .system(size: 14.0, weight: .light, design: .rounded), color: AppConstants.darkGrayOne)]
-                            let latestMessage = ChatViewModel.getLatestMessage(at: index)
+                            let latestMessage = chatViewModel.getLatestMessage(at: index)
                             
                             Text(latestMessage)
                                 .configure(withModifier: thirdTextModifier)
