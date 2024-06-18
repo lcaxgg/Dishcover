@@ -12,7 +12,8 @@ struct Base: View {
     
     // MARK: - PROPERTIES
     
-    @State private var isDownloadComplete: Bool = false
+    @State private var isDownloadingMealsComplete: Bool = false
+    @State private var isFetchingMessagesComplete: Bool = false
     @State private var isLoadingVisible: Bool = true
     @State private var isAnimating: Bool = false
     
@@ -21,17 +22,21 @@ struct Base: View {
     @State private var navigationBarTitle: String = AppConstants.emptyString
     @State private var selectedTab: Int = 0
     
+    @Binding var navigationPath: NavigationPath
+    
     var body: some View {
         ScreenSizeReader { screenSize in
             ZStack {
-                // MARK: - HEADER
+                // MARK: - BACKGROUND
                 
                 Color(AppConstants.lightGrayOne)
                     .edgesIgnoringSafeArea(.all)
                 
+                // MARK: - HEADER
+                
                 // MARK: - BODY
                 
-                if !isDownloadComplete {
+                if !isDownloadingMealsComplete || !isFetchingMessagesComplete {
                     VStack(spacing: -55.0) {
                         
                         Logo(color: AppConstants.customGreen)
@@ -54,14 +59,12 @@ struct Base: View {
                             }
                         
                         Chat(screenSize: screenSize,
-                             isPresentedChatSelect: $isPresentedChatSelect)
+                             isPresentedChatSelect: $isPresentedChatSelect,
+                             navigationPath: $navigationPath)
                             .tag(1)
                             .tabItem {
                                 Image(systemName: AppConstants.messageFill)
                                 Text(AppConstants.chat)
-                            }
-                            .sheet(isPresented: $isPresentedChatSelect) {
-                                ChatWindow()
                             }
                     }
                     .frame(width: screenSize.width)
@@ -118,7 +121,7 @@ extension Base {
     }
     
     private func processMealsDisplay() {
-        if !isDownloadComplete {
+        if !isDownloadingMealsComplete {
             MealsService.processMealsDataForDisplay { success in
                 if success {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.65) {
@@ -131,7 +134,7 @@ extension Base {
                         }
                         
                         withAnimation(Animation.easeIn(duration: 0.30)) {
-                            isDownloadComplete = success
+                            isDownloadingMealsComplete = success
                             navigationBarTitle = AppConstants.mealNavTitle
                         }
                     }
@@ -141,7 +144,13 @@ extension Base {
     }
     
     private func fetchMessages() {
-        ChatManager.fetchMessages()
+        if !isFetchingMessagesComplete {
+            ChatManager.fetchMessages { success in
+                if success {
+                    isFetchingMessagesComplete = success
+                }
+            }
+        }
     }
 }
 

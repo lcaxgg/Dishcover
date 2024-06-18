@@ -61,13 +61,15 @@ extension RegistrationService {
     }
     
     private static func storeInformation(with registrationViewModel: RegistrationViewModel, completion: @escaping (Error?) -> Void) {
-        guard let uid = Auth.auth().currentUser?.uid else {
+        guard let uid = Auth.auth().currentUser?.uid,
+              let uEmail = Auth.auth().currentUser?.email else {
+           
             completion(nil)
             return
         }
         
         let userData = [
-            AppConstants.userId: uid,
+            AppConstants.email: uEmail,
             AppConstants.firstName: registrationViewModel.getFirstName(),
             AppConstants.lastName: registrationViewModel.getLastName()
         ]

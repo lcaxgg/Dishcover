@@ -12,7 +12,7 @@ class RecipesViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
     
-    static let shared: RecipesViewModel = RecipesViewModel()
+    static let sharedIntance: RecipesViewModel = RecipesViewModel()
     
     private var recipesDetailsModel: RecipesDetailsModel = RecipesDetailsModel()
     private var recipeId: String = AppConstants.emptyString
@@ -24,10 +24,6 @@ class RecipesViewModel: ObservableObject {
     // MARK: - METHODS
     
     private init() {}
-    
-    static func getSharedInstance() -> RecipesViewModel {
-        RecipesViewModel.shared
-    }
     
     func initRecipesDetails(with entity: NSManagedObject) -> RecipesDetailsModel {
         if entity.responds(to: NSSelectorFromString(AppConstants.idMeal)) {
@@ -193,7 +189,7 @@ class RecipesViewModel: ObservableObject {
 }
 
 extension RecipesViewModel {
-  
+    
     // MARK: - GETTER FOR MODEL PROPERTIES
     
     func getIdMeal() -> Int64 {
@@ -239,7 +235,7 @@ extension RecipesViewModel {
     }
     
     func setStrCategory(with strCategory: String) {
-        recipesDetailsModel.strCategory = strCategory + AppConstants.underScoreString + AppConstants.recipe
+        recipesDetailsModel.strCategory = strCategory
     }
     
     func setStrIngredients(with strIngredients: Dictionary<String, String>) {
@@ -273,46 +269,46 @@ extension RecipesViewModel {
     // MARK: - GETTER FOR VIEWMODEL PROPERTIES
     
     static func getRecipeCategory() -> String {
-        RecipesViewModel.shared.recipeCategory
+        sharedIntance.recipeCategory
     }
     
     static func getRecipeId() -> String {
-        RecipesViewModel.shared.recipeId
+        sharedIntance.recipeId
     }
     
     static func getRecipesData() -> Dictionary<String, [RecipesDetailsModel]> {
-        RecipesViewModel.shared.recipesData
+        sharedIntance.recipesData
     }
     
     static func getEmptyRecipesList() -> Array<String> {
-        RecipesViewModel.shared.emptyRecipesList
+        sharedIntance.emptyRecipesList
     }
     
     static func getIngredients() -> [String: [[String: [String: String]]]] {
-        RecipesViewModel.shared.ingredients
+        sharedIntance.ingredients
     }
     
     // MARK: - SETTER FOR VIEWMODEL PROPERTIES
     
     static func setMealCategory(with category: String) {
-        RecipesViewModel.shared.recipeCategory = category + AppConstants.underScoreString + AppConstants.recipe
+        sharedIntance.recipeCategory = category + AppConstants.underScoreString + AppConstants.recipe
     }
     
     static func setRecipeId(with idMealForRecipeFetching: String) {
-        RecipesViewModel.shared.recipeId = idMealForRecipeFetching
+        sharedIntance.recipeId = idMealForRecipeFetching
     }
     
     static func setRecipesData(with key: String, andWith value: Array<RecipesDetailsModel>) {
-        RecipesViewModel.shared.recipesData[key] = value
+        sharedIntance.recipesData[key] = value
     }
     
     static func setEmptyRecipesList(with entityName: String) {
-        RecipesViewModel.shared.emptyRecipesList.append(entityName)
+        sharedIntance.emptyRecipesList.append(entityName)
     }
     
     static func setIngredientsPerCategory(with ingredientsAndMeasures: [[String: [String: String]]]) {
-        let category = RecipesViewModel.shared.getStrCategory()
+        let category = RecipesViewModel.sharedIntance.getStrCategory()
         
-        RecipesViewModel.shared.ingredients[category] = ingredientsAndMeasures
+        sharedIntance.ingredients[category] = ingredientsAndMeasures
     }
 }

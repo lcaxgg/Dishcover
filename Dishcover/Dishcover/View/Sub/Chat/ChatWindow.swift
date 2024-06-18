@@ -13,33 +13,141 @@ struct ChatWindow: View {
     
     // MARK: - PROPERTIES
     
-    var body: some View {
-        
-        // MARK: - HEADER
-        
-        // MARK: - BODY
-        
-        // MARK: - FOOTER
-        
-        VStack(spacing: 20) {
-            Button(action: {
-                ChatManager.sendMessage()
-                
-            }, label: {
-                Text("Send")
-            })
+    @State private var isKeyboardShowing: Bool = false
+    @State private var keyboardHeight: CGFloat = 0.0
+    
+    private var customBackButton: some View { Button(action: {
+        self.presentationMode.wrappedValue.dismiss()
+    }) {
+        HStack {
+            let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
             
-            Button(action: {
-                ChatManager.fetchMessages()
-            }, label: {
-                Text("Fetch")
-            })
+            Image(systemName: AppConstants.arrowBackward)
+                .configure(withModifier: imageModifier)
         }
-        
-        
+    }
+    }
+    
+    @Environment(\.presentationMode) private var presentationMode: Binding<PresentationMode>
+    @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.sharedInstance
+    
+    var body: some View {
+        ScreenSizeReader { screenSize in
+            ZStack {
+                // MARK: - BACKGROUND
+                
+                Color(AppConstants.lightGrayOne)
+                    .edgesIgnoringSafeArea(.all)
+                
+                // MARK: - HEADER
+                
+                VStack {
+                    // MARK: - BODY
+                    
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            let messages = chatViewModel.getCurrentMessages()
+                            let uEmail = UserViewModel.getEmail()
+                            
+                            ForEach(0..<messages.count, id: \.self) { index in
+                                let (date, details) = messages[index]
+                                let senderName = details.senderName
+                                let uName = UserViewModel.getName()
+                                let isFromSender = senderName != uName
+                                
+                                ChatBubble(message: details.message, isFromSender: isFromSender)
+                            }
+                        }
+                        .padding()
+                    }
+                    
+                    // MARK: - FOOTER
+                    
+                    Spacer()
+                    
+                    ChatComposer(screenSize: screenSize)
+                        .padding(.bottom, isKeyboardShowing ? keyboardHeight : screenSize.height * 0.06)
+                        .animation(.easeInOut, value: isKeyboardShowing)
+                }
+            }//: ZStack
+            .edgesIgnoringSafeArea(.bottom)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: customBackButton.frame(width: screenSize.width * 0.034, height: screenSize.height * 0.034))
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(.customWhite)
+            .toolbar {
+                ToolbarItem(placement: .principal, content: {
+                    HStack(spacing: 15.0) {
+                        Group {
+                            let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
+                            
+                            Image(systemName: "person.circle.fill") // to have the image of sender
+                                .configure(withModifier: imageModifier)
+                                .clipShape(Circle())
+                                .frame(width: screenSize.width * 0.04, height: screenSize.height * 0.04)
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Group {
+                                let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.019, weight: .regular, design: .rounded), color: AppConstants.darkGrayTwo)]
+                                let firstName = chatViewModel.getCurrentFirstName()
+                                
+                                Text(firstName)
+                                    .configure(withModifier: textModifier)
+                            }
+                            
+                            Group {
+                                let textModifier = [TextModifier(font: .system(size: screenSize.height * 0.017, weight: .light, design: .rounded), color: AppConstants.darkGrayOne)]
+                                let lastName = chatViewModel.getCurrentLastName()
+                                
+                                Text(lastName)
+                                    .configure(withModifier: textModifier)
+                            }
+                        }
+                    }
+                    .padding(.leading, -(screenSize.width / 2) + screenSize.width * 0.135)
+                })
+                
+                ToolbarItem(placement: .topBarTrailing, content: {
+                    HStack(spacing: 35.0) {
+                        Group {
+                            let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
+                            
+                            Image(systemName: AppConstants.phoneFill)
+                                .configure(withModifier: imageModifier)
+                                .frame(width: screenSize.width * 0.03, height: screenSize.height * 0.03)
+                        }
+                        
+                        Group {
+                            let imageModifier = ImageModifier(contentMode: .fill, color: AppConstants.customGreen)
+                            
+                            Image(systemName: AppConstants.videoFill)
+                                .configure(withModifier: imageModifier)
+                                .frame(width: screenSize.width * 0.03, height: screenSize.height * 0.03)
+                        }
+                    }
+                })
+            }//: toolbar
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)) { notification in
+                isKeyboardShowing = true
+                
+                if let keyboardSize = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+                    keyboardHeight = keyboardSize.height + 7.0
+                }
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)) { notification in
+                isKeyboardShowing = false
+                keyboardHeight = 0.0
+            }
+            .onAppear(perform: {
+                chatViewModel.setDocumentId()
+                //chatViewModel.setReceiverEmail()
+            })
+        }//: ScreenSizeReader
+        .ignoresSafeArea(.keyboard)
     }
 }
-
 
 // MARK: - PREVIEW
 

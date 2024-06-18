@@ -91,7 +91,7 @@ struct Catalog: View {
                     }
                     .onChange(of: searchViewModel.searchModel.searchText) { searchText in
                         if !searchText.isEmpty {
-                            searchedMealsData = MealsViewModel.shared.searchMeal(with: searchText)
+                            searchedMealsData = MealsViewModel.sharedInstance.searchMeal(with: searchText)
                         }
                     }
                 }

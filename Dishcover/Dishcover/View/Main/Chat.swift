@@ -18,9 +18,12 @@ struct Chat: View {
     @State private var searchViewModel: SearchViewModel = SearchViewModel()
     
     @Binding var isPresentedChatSelect: Bool
+    @State private var isPresentedChatWindow: Bool = false
     
-    let itemCount = 5 // temp
-
+    @Binding var navigationPath: NavigationPath
+    
+    @ObservedObject private var chatViewModel: ChatViewModel = ChatViewModel.sharedInstance
+    
     var body: some View {
         ZStack {
             Color(AppConstants.lightGrayOne)
@@ -45,16 +48,20 @@ struct Chat: View {
                 if #available(iOS 16.0, *) {
                     List {
                         Section {
-                            let messages = ChatViewModel.getMessages()
+                            let messagesCount = chatViewModel.getAllMessages().count
                             
-                            ForEach(0..<messages.count, id: \.self) { index in
-                                ChatList(screenSize: screenSize)
+                            ForEach(0..<messagesCount, id: \.self) { index in
+                                ChatList(screenSize: screenSize, index: index)
+                                    .onTapGesture {
+                                        chatViewModel.setIndexOfSender(with: index)
+                                        navigationPath.append(NavigationRoute.chatWindow)
+                                    }
                             }
                             .onDelete(perform: { indexSet in
                                 
                             })
                         }
-                        .listSectionSeparator(.hidden, edges: .bottom)
+                        .listSectionSeparator(.visible, edges: .bottom)
                         .listRowBackground(Color(AppConstants.lightGrayOne))
                         .padding(.vertical, 8.0)
                     }
@@ -62,13 +69,24 @@ struct Chat: View {
                     .scrollContentBackground(.hidden)
                     .listStyle(.inset)
                     .padding(.top, 10.0)
+                    .onAppear(perform: {
+                        setNavigationViewItemTag()
+                    })
                 } else {
                     // Fallback on earlier versions
                 }
-               
+                
                 // MARK: - FOOTER
             }
         }//: ZStack
+    }
+    
+    private func setNavigationViewItemTag() {
+        guard NavigationViewModel.getNavigationViewItemTag() != NavigationViewItemEnum.chat.rawValue else {
+            return
+        }
+        
+        NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.chat.rawValue)
     }
 }
 
@@ -82,6 +100,11 @@ struct Chat: View {
             set: { _ in }
         )
         
-        Chat(screenSize: CGSize(), isPresentedChatSelect: isPresented)
+        let navigationPath = Binding<NavigationPath>(
+            get: { NavigationPath() },
+            set: { _ in }
+        )
+        
+        Chat(screenSize: CGSize(), isPresentedChatSelect: isPresented, navigationPath: navigationPath)
     }
 }

@@ -12,9 +12,10 @@ struct ButtonOne: View {
     // MARK: - PROPERTIES
     
     var attribute: ButtonOneAttributes
+    var fontWeight: Font.Weight
     
     var body: some View {
-        let textModifier = [TextModifier(font: .system(size: attribute.fontSize, weight: attribute.fontWeight, design: .rounded), color: attribute.fontColor)]
+        let textModifier = [TextModifier(font: .system(size: attribute.fontSize, weight: fontWeight, design: .rounded), color: attribute.fontColor)]
         
         RoundedRectangle(cornerRadius: attribute.cornerRadius)
             .foregroundColor(Color(attribute.bgColor))

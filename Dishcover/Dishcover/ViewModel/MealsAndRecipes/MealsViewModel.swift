@@ -11,22 +11,18 @@ import CoreData
 class MealsViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
-   
-    static let shared: MealsViewModel = MealsViewModel()
+    
+    static let sharedInstance: MealsViewModel = MealsViewModel()
     
     private var mealCategory: String = AppConstants.beef
     private var mealsData: Dictionary<String, [MealsDetailsModel]> = Dictionary()
     private var mealsDetailsModel: MealsDetailsModel = MealsDetailsModel(idMeal: AppConstants.emptyString,
-                                                                    strMeal: AppConstants.emptyString,
-                                                                    strMealThumb: AppConstants.emptyString)
+                                                                         strMeal: AppConstants.emptyString,
+                                                                         strMealThumb: AppConstants.emptyString)
     
     // MARK: - METHOD
     
     private init() {}
- 
-    static func getSharedInstance() -> MealsViewModel {
-        MealsViewModel.shared
-    }
     
     func initMealsDetails(with entity: NSManagedObject) -> MealsDetailsModel {
         if entity.responds(to: NSSelectorFromString(AppConstants.idMeal)) {
@@ -97,11 +93,11 @@ extension MealsViewModel {
     // MARK: - GETTER FOR VIEWMODEL PROPERTIES
     
     static func getMealCategory() -> String {
-        MealsViewModel.shared.mealCategory
+        sharedInstance.mealCategory
     }
     
     static func getMealsData() -> Dictionary<String, [MealsDetailsModel]> {
-        MealsViewModel.shared.mealsData
+        sharedInstance.mealsData
     }
     
     static func getMealsDataByCategory() -> [MealsDetailsModel]? {
@@ -114,10 +110,10 @@ extension MealsViewModel {
     // MARK: - SETTER FOR VIEWMODEL PROPERTIES
     
     static func setMealCategory(with category: String) {
-        MealsViewModel.shared.mealCategory = category
+        sharedInstance.mealCategory = category
     }
     
     static func setMealsData(with key: String, andWith value: Array<MealsDetailsModel>) {
-        MealsViewModel.shared.mealsData[key] = value
+        sharedInstance.mealsData[key] = value
     }
 }

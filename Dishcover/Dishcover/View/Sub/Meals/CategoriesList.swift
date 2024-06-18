@@ -29,10 +29,10 @@ struct CategoriesList: View {
                         let fontColor = selectedIndex == index ? AppConstants.customWhite : AppConstants.customBlack
                         let fontWeight = selectedIndex == index ? Font.Weight.semibold : Font.Weight.regular
                         let attribute =  ButtonOneAttributes(text: categoryModel.name, bgColor: bgColor, 
-                                                             fontColor: fontColor, fontWeight: fontWeight,
+                                                             fontColor: fontColor,
                                                              fontSize: screenSize.height * 0.02, cornerRadius: 6.0)
                         
-                        ButtonOne(attribute: attribute)
+                        ButtonOne(attribute: attribute, fontWeight: fontWeight)
                             .frame(width: index == 4 ? screenSize.width * 0.3 : screenSize.width * 0.26, height: screenSize.height * 0.05)
                             .onTapGesture {
                                 mealsCategoriesViewModel.setSelectedIndex(with: index)
