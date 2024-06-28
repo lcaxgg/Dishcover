@@ -44,31 +44,59 @@ struct ChatWindow: View {
                 VStack {
                     // MARK: - BODY
                     
-                    ScrollView(showsIndicators: false) {
-                        VStack {
-                            let messages = chatViewModel.getCurrentMessages()
-                            let uEmail = UserViewModel.getEmail()
+                    ScrollViewReader { proxy in
+                        let messages = chatViewModel.getCurrentMessages()
+                        
+                        ScrollView(showsIndicators: false) {
+                            VStack {
+                                ForEach(0..<messages.count, id: \.self) { index in
+                                    let (date, details) = messages[index]
+                                    let senderName = details.senderName
+                                    let uName = UserViewModel.getName()
+                                    let isFromSender = senderName != uName
+                                    
+                                    ChatBubble(message: details.message, isFromSender: isFromSender)
+                                }
+                            }
+                            .padding()
                             
-                            ForEach(0..<messages.count, id: \.self) { index in
-                                let (date, details) = messages[index]
-                                let senderName = details.senderName
-                                let uName = UserViewModel.getName()
-                                let isFromSender = senderName != uName
-                                
-                                ChatBubble(message: details.message, isFromSender: isFromSender)
+                        }
+                        .onAppear {
+                            DispatchQueue.main.async {
+                                if let lastIndex = messages.indices.last {
+                                    proxy.scrollTo(lastIndex, anchor: .bottom)
+                                }
                             }
                         }
-                        .padding()
+                        .onChange(of: isKeyboardShowing) { newVal, oldVal in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                if let lastIndex = messages.indices.last {
+                                    withAnimation {
+                                        proxy.scrollTo(lastIndex, anchor: .bottom)
+                                    }
+                                }
+                            }
+                        }
+                        .onChange(of: messages.count) {
+                            DispatchQueue.main.async {
+                                if let lastIndex = messages.indices.last {
+                                    withAnimation {
+                                        proxy.scrollTo(lastIndex, anchor: .bottom)
+                                    }
+                                }
+                            }
+                        }
                     }
+                    .padding()
                     
                     // MARK: - FOOTER
                     
                     Spacer()
                     
                     ChatComposer(screenSize: screenSize)
-                        .padding(.bottom, isKeyboardShowing ? keyboardHeight : screenSize.height * 0.06)
-                        .animation(.easeInOut, value: isKeyboardShowing)
                 }
+                .padding(.bottom, isKeyboardShowing ? keyboardHeight : screenSize.height * 0.06)
+                .animation(.easeInOut, value: isKeyboardShowing)
             }//: ZStack
             .edgesIgnoringSafeArea(.bottom)
             .navigationBarTitleDisplayMode(.inline)
