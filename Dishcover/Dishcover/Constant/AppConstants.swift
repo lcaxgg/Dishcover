@@ -42,6 +42,7 @@ struct AppConstants {
     static let mealName = "Meal Name"
     static let ingredients = "Ingredients"
     static let instructions = "Instructions"
+    static let newMessage = "New Message"
     
     // MARK: - BUTTONS, OTHER ACTIONS
     
@@ -177,6 +178,7 @@ struct AppConstants {
     
     static let ok = "Ok"
     static let close = "Close"
+    static let cancel = "Cancel"
     static let information = "Information"
     static let error = "Error"
     

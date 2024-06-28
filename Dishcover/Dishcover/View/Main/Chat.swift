@@ -57,9 +57,6 @@ struct Chat: View {
                                         navigationPath.append(NavigationRoute.chatWindow)
                                     }
                             }
-                            .onDelete(perform: { indexSet in
-                                
-                            })
                         }
                         .listSectionSeparator(.visible, edges: .bottom)
                         .listRowBackground(Color(AppConstants.lightGrayOne))
@@ -77,6 +74,9 @@ struct Chat: View {
                 }
                 
                 // MARK: - FOOTER
+            }
+            .sheet(isPresented: $isPresentedChatSelect) {
+                ChatSelect(screenSize: screenSize, isPresentedChatSelect: $isPresentedChatSelect)
             }
         }//: ZStack
     }
