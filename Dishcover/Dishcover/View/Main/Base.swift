@@ -12,8 +12,7 @@ struct Base: View {
     
     // MARK: - PROPERTIES
     
-    @State private var isDownloadingMealsComplete: Bool = false
-    @State private var isFetchingMessagesComplete: Bool = false
+    @State private var isDownloadingComplete: Bool = false
     @State private var isLoadingVisible: Bool = true
     @State private var isAnimating: Bool = false
     
@@ -36,16 +35,15 @@ struct Base: View {
                 
                 // MARK: - BODY
                 
-                if !isDownloadingMealsComplete || !isFetchingMessagesComplete {
+                if !isDownloadingComplete {
                     VStack(spacing: -55.0) {
-                        
                         Logo(color: AppConstants.customGreen)
-                            .frame(width: isAnimating ?  nil : screenSize.width * 0.3, height: isAnimating ? nil : screenSize.height * 0.3)
-                            .scaleEffect(isAnimating ? 3.0 : 1.0)
-                        
+                            .frame(width: screenSize.width * 0.3, height: screenSize.height * 0.3)
+
                         LoadingIndicator(animation: .threeBalls, color: Color(AppConstants.customGreen), size: .medium, speed: .normal)
-                            .opacity(isLoadingVisible ? 1 : 0)
                     }
+                    .opacity(isLoadingVisible ? 1 : 0)
+                    
                 } else {
                     
                     // MARK: - FOOTER
@@ -61,11 +59,11 @@ struct Base: View {
                         Chat(screenSize: screenSize,
                              isPresentedChatSelect: $isPresentedChatSelect,
                              navigationPath: $navigationPath)
-                            .tag(1)
-                            .tabItem {
-                                Image(systemName: AppConstants.messageFill)
-                                Text(AppConstants.chat)
-                            }
+                        .tag(1)
+                        .tabItem {
+                            Image(systemName: AppConstants.messageFill)
+                            Text(AppConstants.chat)
+                        }
                     }
                     .frame(width: screenSize.width)
                     .background(Color(AppConstants.lightGrayOne))
@@ -94,9 +92,8 @@ struct Base: View {
         }
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = UIColor.white
-    
-            processMealsDisplay()
-            fetchMessages()
+            
+            processDataForDisplay()
         })
         .onChange(of: selectedTab) { selectedTab in
             setUpNavigationBarTitle(with: selectedTab)
@@ -120,34 +117,47 @@ extension Base {
         }
     }
     
-    private func processMealsDisplay() {
-        if !isDownloadingMealsComplete {
+    private func processDataForDisplay() {
+        let dispatchGroup = DispatchGroup()
+        
+        var isDownloadingMealsComplete = false
+        var isFetchingMessagesComplete = false
+        
+        if !isDownloadingComplete {
+            dispatchGroup.enter()
             MealsService.processMealsDataForDisplay { success in
+                defer {
+                    dispatchGroup.leave()
+                }
+                
                 if success {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.65) {
-                        isLoadingVisible.toggle()
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.7) {
-                        withAnimation(Animation.easeOut(duration: 0.40)) {
-                            isAnimating.toggle()
-                        }
-                        
-                        withAnimation(Animation.easeIn(duration: 0.30)) {
-                            isDownloadingMealsComplete = success
-                            navigationBarTitle = AppConstants.mealNavTitle
-                        }
-                    }
+                    isDownloadingMealsComplete = success
+                }
+            }
+            
+            dispatchGroup.enter()
+            ChatManager.fetchMessages { success in
+                defer {
+                    dispatchGroup.leave()
+                }
+                
+                if success {
+                    isFetchingMessagesComplete = success
                 }
             }
         }
-    }
-    
-    private func fetchMessages() {
-        if !isFetchingMessagesComplete {
-            ChatManager.fetchMessages { success in
-                if success {
-                    isFetchingMessagesComplete = success
+        
+        dispatchGroup.notify(queue: .main) {
+            if isDownloadingMealsComplete && isFetchingMessagesComplete {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.50) {
+                    withAnimation(Animation.easeOut(duration: 0.30)) {
+                        isLoadingVisible = false
+                    }
+                    
+                    withAnimation(Animation.easeIn(duration: 0.30)) {
+                        isDownloadingComplete = true
+                        navigationBarTitle = AppConstants.mealNavTitle
+                    }
                 }
             }
         }
