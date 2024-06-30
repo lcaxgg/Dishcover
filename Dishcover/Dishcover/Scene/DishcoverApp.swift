@@ -13,7 +13,7 @@ struct DishcoverApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Splash() // test commit
+            Splash()
         }
     }
 }
