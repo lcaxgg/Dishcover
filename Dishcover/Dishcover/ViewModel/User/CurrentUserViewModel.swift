@@ -1,5 +1,5 @@
 //
-//  UserViewModel.swift
+//  CurrentUserViewModel.swift
 //  Dishcover
 //
 //  Created by j8bok on 4/6/24.
@@ -7,23 +7,23 @@
 
 import Foundation
 
-class UserViewModel: ObservableObject {
+class CurrentUserViewModel: ObservableObject {
     
     // MARK: - PROPERTIES
    
-    static let sharedInstance: UserViewModel = UserViewModel()
+    static let sharedInstance: CurrentUserViewModel = CurrentUserViewModel()
     private var userDetailsModel: UserDetailsModel = UserDetailsModel()
     
     // MARK: - METHOD
     
     private init() {}
     
-    static func getSharedInstance() -> UserViewModel {
-        UserViewModel.sharedInstance
+    static func getSharedInstance() -> CurrentUserViewModel {
+        CurrentUserViewModel.sharedInstance
     }
 }
 
-extension UserViewModel {
+extension CurrentUserViewModel {
     
     // MARK: - GETTER
     

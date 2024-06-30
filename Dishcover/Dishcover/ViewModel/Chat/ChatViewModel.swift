@@ -42,7 +42,7 @@ extension ChatViewModel {
         
         for details in chatDetails {
             let senderName = details.1.senderName
-            let uName = UserViewModel.getName()
+            let uName = CurrentUserViewModel.getName()
             
             if uName == senderName {
                 continue

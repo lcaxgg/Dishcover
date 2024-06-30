@@ -68,7 +68,7 @@ class ChatManager {
             return
         }
         
-        let uName = UserViewModel.getName()
+        let uName = CurrentUserViewModel.getName()
         let receiverEmail = /*ChatViewModel.getReceiverEmail()*/ ""
         let message = ChatViewModel.getComposedMessage()
         

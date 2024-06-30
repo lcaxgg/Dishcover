@@ -74,7 +74,7 @@
 		5B7FCBA92B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5B7FCBA72B3F1FE200E72D11 /* MealsDataModel.xcdatamodeld */; };
 		5B8562CF2BC129C4007547B2 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562CE2BC129C4007547B2 /* ChatManager.swift */; };
 		5B8562DB2BC16221007547B2 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562DA2BC16221007547B2 /* UserService.swift */; };
-		5B8562E52BC16321007547B2 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562E42BC16321007547B2 /* UserViewModel.swift */; };
+		5B8562E52BC16321007547B2 /* CurrentUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562E42BC16321007547B2 /* CurrentUserViewModel.swift */; };
 		5B8562E72BC1633A007547B2 /* UserDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B8562E62BC1633A007547B2 /* UserDetailsModel.swift */; };
 		5B85BDC72BB716B200885A99 /* ChatWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B85BDC62BB716B200885A99 /* ChatWindow.swift */; };
 		5B89F7242B65F5D000BA5DFF /* MealsCategoriesEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B89F7232B65F5D000BA5DFF /* MealsCategoriesEnum.swift */; };
@@ -162,7 +162,7 @@
 		5B7FCBA82B3F1FE200E72D11 /* MealsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MealsDataModel.xcdatamodel; sourceTree = "<group>"; };
 		5B8562CE2BC129C4007547B2 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		5B8562DA2BC16221007547B2 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		5B8562E42BC16321007547B2 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		5B8562E42BC16321007547B2 /* CurrentUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserViewModel.swift; sourceTree = "<group>"; };
 		5B8562E62BC1633A007547B2 /* UserDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsModel.swift; sourceTree = "<group>"; };
 		5B85BDC62BB716B200885A99 /* ChatWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatWindow.swift; sourceTree = "<group>"; };
 		5B89F7232B65F5D000BA5DFF /* MealsCategoriesEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsCategoriesEnum.swift; sourceTree = "<group>"; };
@@ -569,7 +569,7 @@
 		5B8562E22BC162FC007547B2 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				5B8562E42BC16321007547B2 /* UserViewModel.swift */,
+				5B8562E42BC16321007547B2 /* CurrentUserViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -712,7 +712,7 @@
 			files = (
 				5B7B52F22BEA57BC00E9EFD8 /* NavigationViewModel.swift in Sources */,
 				5B56EE042AD8E7A30095D70D /* ImageModifier.swift in Sources */,
-				5B8562E52BC16321007547B2 /* UserViewModel.swift in Sources */,
+				5B8562E52BC16321007547B2 /* CurrentUserViewModel.swift in Sources */,
 				5B85BDC72BB716B200885A99 /* ChatWindow.swift in Sources */,
 				5BD416D52C14999100E08DAA /* RootNavigation.swift in Sources */,
 				5B597A812AD61BB70093045C /* MealsCategoriesViewModel.swift in Sources */,

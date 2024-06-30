@@ -22,7 +22,7 @@ struct ChatSelect: View {
             VStack {
                 HStack {
                     let firstTextModifier = [TextModifier(font: .system(size: screenSize.height * 0.022, weight: .regular, design: .rounded), color: AppConstants.customGreen)]
-                    
+               
                     Text(AppConstants.cancel)
                         .configure(withModifier: firstTextModifier)
                         .onTapGesture {

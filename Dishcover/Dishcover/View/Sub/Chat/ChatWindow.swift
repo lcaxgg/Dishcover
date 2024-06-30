@@ -52,7 +52,7 @@ struct ChatWindow: View {
                                 ForEach(0..<messages.count, id: \.self) { index in
                                     let (date, details) = messages[index]
                                     let senderName = details.senderName
-                                    let uName = UserViewModel.getName()
+                                    let uName = CurrentUserViewModel.getName()
                                     let isFromSender = senderName != uName
                                     
                                     ChatBubble(message: details.message, isFromSender: isFromSender)
