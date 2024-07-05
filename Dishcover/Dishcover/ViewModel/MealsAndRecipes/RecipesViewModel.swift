@@ -162,7 +162,10 @@ class RecipesViewModel: ObservableObject {
         let recipesPerCategory = recipesData[category]
         var filteredRecipes = recipesPerCategory?.filter { $0.idMeal == recipeId }
         
-        let ingredientsPerCategory = ingredients[category]
+        let components = category.split(separator: AppConstants.underScoreString)
+        let strCategory = String(components.first ?? Substring(AppConstants.emptyString))
+        let ingredientsPerCategory = ingredients[strCategory]
+        
         let filteredIngredients = ingredientsPerCategory?.filter { dictionary in
             dictionary.keys.contains(String(recipeId ?? 0))
         }
