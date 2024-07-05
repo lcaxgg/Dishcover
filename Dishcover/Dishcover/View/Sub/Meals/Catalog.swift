@@ -12,6 +12,7 @@ struct Catalog: View {
     // MARK: - PROPERTIES
     
     var screenSize: CGSize
+    @Binding var navigationPath: NavigationPath
     var completion: (String) -> Void
     
     @State private var searchedMealsData: [MealsDetailsModel]?

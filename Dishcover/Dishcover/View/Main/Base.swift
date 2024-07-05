@@ -36,7 +36,7 @@ struct Base: View {
                 
                 // MARK: - BODY
                 
-                if !isDownloadingMealsComplete || !isFetchingMessagesComplete {
+                if !isDownloadingMealsComplete {
                     VStack(spacing: -55.0) {
                         
                         Logo(color: AppConstants.customGreen)
@@ -47,78 +47,80 @@ struct Base: View {
                             .opacity(isLoadingVisible ? 1 : 0)
                     }
                 } else {
+                    Meals(screenSize: screenSize, navigationPath: $navigationPath)
+                }
                     
                     // MARK: - FOOTER
                     
-                    TabView(selection: $selectedTab) {
-                        Meals(screenSize: screenSize)
-                            .tag(0)
-                            .tabItem {
-                                Image(systemName: AppConstants.squareGrid)
-                                Text(AppConstants.meals)
-                            }
-                        
-                        Chat(screenSize: screenSize,
-                             isPresentedChatSelect: $isPresentedChatSelect,
-                             navigationPath: $navigationPath)
-                            .tag(1)
-                            .tabItem {
-                                Image(systemName: AppConstants.messageFill)
-                                Text(AppConstants.chat)
-                            }
-                    }
-                    .frame(width: screenSize.width)
-                    .background(Color(AppConstants.lightGrayOne))
-                    .accentColor(Color(AppConstants.customGreen))
-                }
+//                    TabView(selection: $selectedTab) {
+//                        Meals(screenSize: screenSize)
+//                            .tag(0)
+//                            .tabItem {
+//                                Image(systemName: AppConstants.squareGrid)
+//                                Text(AppConstants.meals)
+//                            }
+//                        
+//                        Chat(screenSize: screenSize,
+//                             isPresentedChatSelect: $isPresentedChatSelect,
+//                             navigationPath: $navigationPath)
+//                            .tag(1)
+//                            .tabItem {
+//                                Image(systemName: AppConstants.messageFill)
+//                                Text(AppConstants.chat)
+//                            }
+//                    }
+//                    .frame(width: screenSize.width)
+//                    .background(Color(AppConstants.lightGrayOne))
+//                    .accentColor(Color(AppConstants.customGreen))
+                //}
             }//: ZStack
         }//: ScreenSizeReader
         .navigationBarTitle(navigationBarTitle, displayMode: .large)
         .navigationBarBackButtonHidden(true)
         .ignoresSafeArea(.keyboard)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
-                    switch selectedEnum {
-                    case .chatNavTitle:
-                        Button(action: {
-                            isPresentedChatSelect = true
-                        }) {
-                            Image(systemName: AppConstants.squareAndPencil)
-                        }
-                    default:
-                        EmptyView()
-                    }
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .navigationBarTrailing) {
+//                if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
+//                    switch selectedEnum {
+//                    case .chatNavTitle:
+//                        Button(action: {
+//                            isPresentedChatSelect = true
+//                        }) {
+//                            Image(systemName: AppConstants.squareAndPencil)
+//                        }
+//                    default:
+//                        EmptyView()
+//                    }
+//                }
+//            }
+//        }
         .onAppear(perform: {
             UITabBar.appearance().backgroundColor = UIColor.white
     
             processMealsDisplay()
-            fetchMessages()
+           // fetchMessages()
         })
-        .onChange(of: selectedTab) { selectedTab in
-            setUpNavigationBarTitle(with: selectedTab)
-        }
+//        .onChange(of: selectedTab) { selectedTab in
+//            setUpNavigationBarTitle(with: selectedTab)
+//        }
     }
 }
 
 extension Base {
-    private func setUpNavigationBarTitle(with selectedTab: Int) {
-        if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
-            switch selectedEnum {
-            case .mealsNavTitle:
-                navigationBarTitle = AppConstants.mealNavTitle
-                
-            case .chatNavTitle:
-                navigationBarTitle = AppConstants.chat
-                
-            case .accountNavTitle:
-                navigationBarTitle = AppConstants.account
-            }
-        }
-    }
+//    private func setUpNavigationBarTitle(with selectedTab: Int) {
+//        if let selectedEnum = NavigationBarTitleEnum(rawValue: selectedTab) {
+//            switch selectedEnum {
+//            case .mealsNavTitle:
+//                navigationBarTitle = AppConstants.mealNavTitle
+//                
+//            case .chatNavTitle:
+//                navigationBarTitle = AppConstants.chat
+//                
+//            case .accountNavTitle:
+//                navigationBarTitle = AppConstants.account
+//            }
+//        }
+//    }
     
     private func processMealsDisplay() {
         if !isDownloadingMealsComplete {
@@ -143,15 +145,15 @@ extension Base {
         }
     }
     
-    private func fetchMessages() {
-        if !isFetchingMessagesComplete {
-            ChatManager.fetchMessages { success in
-                if success {
-                    isFetchingMessagesComplete = success
-                }
-            }
-        }
-    }
+//    private func fetchMessages() {
+//        if !isFetchingMessagesComplete {
+//            ChatManager.fetchMessages { success in
+//                if success {
+//                    isFetchingMessagesComplete = success
+//                }
+//            }
+//        }
+//    }
 }
 
 // MARK: - PREVIEW

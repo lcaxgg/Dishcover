@@ -19,6 +19,7 @@ enum NavigationViewItemEnum: Int {
     case login
     case register
     case chat
+    case recipe
 }
 
 enum NavigationRoute: Hashable {
@@ -26,5 +27,6 @@ enum NavigationRoute: Hashable {
     case login
     case base
     case chatWindow
+    case recipes
 }
 

@@ -16,10 +16,11 @@ struct RootNavigation: View {
     var body: some View {
         NavigationStack(path: $navigationPath) {
             ZStack {
-                Welcome(navigationPath: $navigationPath)
-                    .onAppear {
-                        NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.welcome.rawValue)
-                    }
+//                Welcome(navigationPath: $navigationPath)
+//                    .onAppear {
+//                        NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.welcome.rawValue)
+//                    }
+                Base(navigationPath: $navigationPath)
             }
             .navigationDestination(for: NavigationRoute.self) { navigationRoute in
                 switch navigationRoute {
@@ -31,6 +32,8 @@ struct RootNavigation: View {
                     Base(navigationPath: $navigationPath)
                 case .chatWindow:
                     ChatWindow()
+                case .recipes:
+                    Recipes()
                 }
             }
         }//: NavigationStack

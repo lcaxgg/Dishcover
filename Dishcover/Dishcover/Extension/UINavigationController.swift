@@ -18,7 +18,7 @@ extension UINavigationController {
         
         if let tag = NavigationViewItemEnum(rawValue: NavigationViewModel.getNavigationViewItemTag()) {
             switch tag {
-            case .welcome, .login, .register:
+            case .welcome, .login, .register, .recipe:
                 title = AppConstants.back
             case .none, .chat:
                 title = AppConstants.emptyString

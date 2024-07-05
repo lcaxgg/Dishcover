@@ -18,6 +18,8 @@ struct Meals: View {
     @StateObject private var searchViewModel: SearchViewModel = SearchViewModel()
     @StateObject private var mealsCategoriesViewModel: MealsCategoriesViewModel = MealsCategoriesViewModel()
     
+    @Binding var navigationPath: NavigationPath
+    
     var body: some View {
         ZStack {
             Color(AppConstants.lightGrayOne)
@@ -38,19 +40,20 @@ struct Meals: View {
                     .environmentObject(searchViewModel)
                     .environmentObject(mealsCategoriesViewModel)
                 
-                Catalog(screenSize: screenSize, completion: { idMeal in
+                Catalog(screenSize: screenSize, navigationPath: $navigationPath, completion: { idMeal in
                     processMealTap(with: idMeal)
                 })
                 .environmentObject(searchViewModel)
                 .environmentObject(mealsCategoriesViewModel)
-                .fullScreenCover(isPresented: $isPresentedRecipe) {
-                    Recipes(isPresentedRecipe: $isPresentedRecipe,
-                            screenSize: screenSize)
-                }
+//                .fullScreenCover(isPresented: $isPresentedRecipe) {
+//                    Recipes(isPresentedRecipe: $isPresentedRecipe,
+//                            screenSize: screenSize)
+//                }
                 
                 // MARK: - FOOTER
             }
         }//: ZStack
+        .padding(.bottom, 10.0)
         .onDisappear(perform: {
             searchViewModel.setIsSearchFieldFocused(with: false)
             searchViewModel.setSearchText(with: AppConstants.emptyString)
@@ -69,6 +72,9 @@ extension Meals {
             searchViewModel.setIsSearchFieldFocused(with: false)
             isPresentedRecipe = true
         }
+        
+        navigationPath.append(NavigationRoute.recipes)
+        NavigationViewModel.setNavigationViewItemTag(with: NavigationViewItemEnum.recipe.rawValue)
     }
 }
 
