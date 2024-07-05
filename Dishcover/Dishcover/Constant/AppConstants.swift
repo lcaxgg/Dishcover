@@ -216,6 +216,7 @@ struct AppConstants {
     static let eye = "eye"
     static let magnifyingglass = "magnifyingglass"
     static let xCircle = "x.circle"
+    static let infoCircle = "info.circle"
     
     static let squareAndPencil = "square.and.pencil"
     static let paperPlaneCircelFill = "paperplane.circle.fill"
@@ -229,6 +230,7 @@ struct AppConstants {
     static let dashString = "-"
     static let underScoreString = "_"
     static let equalString = "="
+    static let notAvailable = "Not Available"
     static let emailRegexOne = "[A-Za-z0-9.@]"
     static let emailRegexTwo = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
     static let passwordCharacterSet = "!@#$%^&*()-_=+[]{}|;:'\",.<>?"
